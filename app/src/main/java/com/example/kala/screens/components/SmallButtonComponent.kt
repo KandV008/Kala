@@ -24,12 +24,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kala.R
 
-const val spanish = "spanish_language"
-const val english = "english_language"
+const val SPANISH = "spanish_language"
+const val ENGLISH = "english_language"
 
 val svgSmallButton: Map<String, Int> = mapOf(
-    english to R.drawable.ic_united_kingdom_flag,
-    spanish to R.drawable.ic_spain_flag,
+    ENGLISH to R.drawable.ic_united_kingdom_flag,
+    SPANISH to R.drawable.ic_spain_flag,
 )
 
 val actionsSmallButton: Map<String, () -> Unit> = mapOf(
@@ -70,8 +70,8 @@ fun SmallButton(configuration: String) {
 @Composable
 fun PreviewSmallButton() {
     Column {
-        SmallButton(english)
-        Spacer(modifier = Modifier.padding(1.dp))
-        SmallButton(spanish)
+        SmallButton(ENGLISH)
+        Spacer(modifier = Modifier.padding(5.dp))
+        SmallButton(SPANISH)
     }
 }

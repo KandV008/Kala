@@ -33,35 +33,25 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kala.R
 
-const val seeReport = "spanish_language"
-const val seeRecord = "english_language"
-const val delete = "spanish_language"
-const val edit = "english_language"
-const val expense = "spanish_language"
-const val income = "english_language"
+const val SEE_REPORT = "See report"
+const val SEE_RECORD = "See record"
+const val DELETE = "Delete Card"
+const val EDIT = "Edit Card"
+const val EXPENSE = "Expense Details"
+const val INCOME = "Income Details"
 
 val svgMediumButton: Map<String, Int> = mapOf(
-    seeReport to R.drawable.ic_see_report,
-    seeRecord to R.drawable.ic_see_record,
-    delete to R.drawable.ic_delete,
-    edit to R.drawable.ic_edit,
-    expense to R.drawable.ic_expense,
-    income to R.drawable.ic_income,
+    SEE_REPORT to R.drawable.ic_see_report,
+    SEE_RECORD to R.drawable.ic_see_record,
+    DELETE to R.drawable.ic_delete,
+    EDIT to R.drawable.ic_edit,
+    EXPENSE to R.drawable.ic_expense,
+    INCOME to R.drawable.ic_income,
 )
 
 val actionsMediumButton: Map<String, () -> Unit> = mapOf(
     /* TODO Functions associate to a configuration */
 )
-
-val textMediumButton: Map<String, String> = mapOf(
-    seeReport to "See Report",
-    seeRecord to "See Record",
-    delete to "Delete Card",
-    edit to "Edit Card",
-    expense to "Expense Details",
-    income to "Income Details",
-)
-
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
@@ -100,7 +90,7 @@ fun MediumButton(configuration: String) {
                 )
             }
             Text(
-                text = textMediumButton.getOrDefault(configuration, "Sample Text"),
+                text = configuration,
                 color = Color.Black,
                 fontSize = 25.sp,
                 textAlign = TextAlign.Center,
@@ -114,12 +104,18 @@ fun MediumButton(configuration: String) {
 @Preview
 @Composable
 fun PreviewMediumButton() {
-    Row {
-        MediumButton(seeReport)
+    Column {
+        MediumButton(SEE_REPORT)
         Spacer(modifier = Modifier.padding(1.dp))
-        MediumButton(seeRecord)
+        MediumButton(SEE_RECORD)
         Spacer(modifier = Modifier.padding(1.dp))
-        MediumButton(delete)
+        MediumButton(DELETE)
+        Spacer(modifier = Modifier.padding(1.dp))
+        MediumButton(EDIT)
+        Spacer(modifier = Modifier.padding(1.dp))
+        MediumButton(EXPENSE)
+        Spacer(modifier = Modifier.padding(1.dp))
+        MediumButton(INCOME)
         Spacer(modifier = Modifier.padding(1.dp))
     }
 }
