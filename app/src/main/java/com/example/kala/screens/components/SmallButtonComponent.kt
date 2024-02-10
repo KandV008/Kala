@@ -27,12 +27,12 @@ import com.example.kala.R
 const val spanish = "spanish_language"
 const val english = "english_language"
 
-val svg_files: Map<String, Int> = mapOf(
+val svgSmallButton: Map<String, Int> = mapOf(
     english to R.drawable.ic_united_kingdom_flag,
     spanish to R.drawable.ic_spain_flag,
 )
 
-val actions: Map<String, () -> Unit> = mapOf(
+val actionsSmallButton: Map<String, () -> Unit> = mapOf(
     /* TODO Functions associate to a configuration */
 )
 
@@ -40,7 +40,7 @@ val actions: Map<String, () -> Unit> = mapOf(
 @Composable
 fun SmallButton(configuration: String) {
     Button(
-        onClick = { actions.getOrDefault(configuration) { println("NOT VALID CONFIGURATION") } },
+        onClick = { actionsSmallButton.getOrDefault(configuration) { println("NOT VALID CONFIGURATION") } },
         colors = ButtonDefaults.buttonColors(Color.White),
         shape = RoundedCornerShape(10.dp),
         modifier = Modifier
@@ -58,7 +58,7 @@ fun SmallButton(configuration: String) {
             contentAlignment = Alignment.Center,
         ) {
             Image(
-                painter = painterResource(id = svg_files.getOrDefault(configuration, 0)),
+                painter = painterResource(id = svgSmallButton.getOrDefault(configuration, 0)),
                 contentDescription = "SVG FILE"
             )
         }
