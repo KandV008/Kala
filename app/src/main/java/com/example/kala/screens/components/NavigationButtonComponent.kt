@@ -2,6 +2,7 @@ package com.example.kala.screens.components
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -13,6 +14,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,14 +47,16 @@ val actionsNavigationButton: Map<String, () -> Unit> = mapOf(
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
-fun NavigationButton(configuration: String) {
+fun NavigationButton(configuration: String, alpha: Float = 1F) {
     Button(
         onClick = { actionsNavigationButton.getOrDefault(configuration) { println("NOT VALID CONFIGURATION") } },
         colors = ButtonDefaults.buttonColors(Color.White),
         shape = RoundedCornerShape(10.dp),
         modifier = Modifier
-            .size(60.dp),
-        contentPadding = PaddingValues(10.dp)
+            .size(60.dp)
+            .alpha(alpha),
+        contentPadding = PaddingValues(10.dp),
+        border = BorderStroke(2.dp, Color.Black)
     ) {
         Image(
             painter = painterResource(id = svgNavigationButton.getOrDefault(configuration, 0)),
