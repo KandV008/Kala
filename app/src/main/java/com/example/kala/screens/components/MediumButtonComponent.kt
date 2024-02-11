@@ -30,12 +30,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.kala.screens.configuration.DEFAULT_INT
-import com.example.kala.screens.configuration.MediumButtonConfiguration
-import com.example.kala.screens.configuration.SVG_DESCRIPTION
-import com.example.kala.screens.configuration.actionsMediumButton
-import com.example.kala.screens.configuration.invalidArgument
-import com.example.kala.screens.configuration.svgMediumButton
+import com.example.kala.configuration.DEFAULT_INT
+import com.example.kala.configuration.MediumButtonConfiguration
+import com.example.kala.configuration.SVG_DESCRIPTION
+import com.example.kala.configuration.actionsMediumButton
+import com.example.kala.configuration.invalidArgument
+import com.example.kala.configuration.svgMediumButton
 
 
 @RequiresApi(Build.VERSION_CODES.N)

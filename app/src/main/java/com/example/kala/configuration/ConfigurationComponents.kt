@@ -1,4 +1,4 @@
-package com.example.kala.screens.configuration
+package com.example.kala.configuration
 
 import com.example.kala.R
 
@@ -125,15 +125,8 @@ val actionsNavigationButton: Map<NavigationButtonConfiguration, () -> Unit> = ma
     HeaderComponent
  */
 
-enum class HeaderConfiguration(private val displayName: String) {
-    UNREGISTERED_USER("Unregistered User"),
-    REGISTERED_USER("Registered User"),
-    HELP_SCREEN("Help Screen"),
-    LANGUAGE_SCREEN("Language Screen");
-
-    override fun toString(): String {
-        return displayName
-    }
+enum class HeaderConfiguration {
+    UNREGISTERED_USER, REGISTERED_USER, HELP_SCREEN, LANGUAGE_SCREEN;
 }
 
 val displayLeftHeader: Map<HeaderConfiguration, Pair<NavigationButtonConfiguration, Float>> = mapOf(
@@ -155,4 +148,42 @@ val displayRightHeader: Map<HeaderConfiguration, Pair<NavigationButtonConfigurat
     HeaderConfiguration.REGISTERED_USER to Pair(NavigationButtonConfiguration.OPTIONS, 1F),
     HeaderConfiguration.HELP_SCREEN to Pair(NavigationButtonConfiguration.LANGUAGE, 1F),
     HeaderConfiguration.LANGUAGE_SCREEN to Pair(NavigationButtonConfiguration.OPTIONS, 0F),
+)
+
+/*
+    FooterComponent
+ */
+
+enum class FooterConfiguration(){
+    EMPTY, ONLY_BACK, ONLY_NEXT, BACK_AND_NEXT, BACK_AND_HOME, NEXT_AND_HOME, ALL
+}
+
+val displayLeftFooter: Map<FooterConfiguration, Float> = mapOf(
+    FooterConfiguration.EMPTY to 0F,
+    FooterConfiguration.ONLY_BACK to 1F,
+    FooterConfiguration.ONLY_NEXT to 0F,
+    FooterConfiguration.BACK_AND_NEXT to 1F,
+    FooterConfiguration.BACK_AND_HOME to 1F,
+    FooterConfiguration.NEXT_AND_HOME to 0F,
+    FooterConfiguration.ALL to 1F,
+)
+
+val displayCenterFooter: Map<FooterConfiguration, Float> = mapOf(
+    FooterConfiguration.EMPTY to 0F,
+    FooterConfiguration.ONLY_BACK to 0F,
+    FooterConfiguration.ONLY_NEXT to 0F,
+    FooterConfiguration.BACK_AND_NEXT to 0F,
+    FooterConfiguration.BACK_AND_HOME to 1F,
+    FooterConfiguration.NEXT_AND_HOME to 1F,
+    FooterConfiguration.ALL to 1F,
+)
+
+val displayRightFooter: Map<FooterConfiguration, Float> = mapOf(
+    FooterConfiguration.EMPTY to 0F,
+    FooterConfiguration.ONLY_BACK to 0F,
+    FooterConfiguration.ONLY_NEXT to 1F,
+    FooterConfiguration.BACK_AND_NEXT to 1F,
+    FooterConfiguration.BACK_AND_HOME to 0F,
+    FooterConfiguration.NEXT_AND_HOME to 1F,
+    FooterConfiguration.ALL to 1F,
 )

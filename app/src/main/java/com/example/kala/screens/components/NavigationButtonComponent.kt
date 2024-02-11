@@ -19,13 +19,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.kala.screens.configuration.DEFAULT_FLOAT
-import com.example.kala.screens.configuration.DEFAULT_INT
-import com.example.kala.screens.configuration.NavigationButtonConfiguration
-import com.example.kala.screens.configuration.SVG_DESCRIPTION
-import com.example.kala.screens.configuration.actionsNavigationButton
-import com.example.kala.screens.configuration.invalidArgument
-import com.example.kala.screens.configuration.svgNavigationButton
+import com.example.kala.configuration.DEFAULT_FLOAT
+import com.example.kala.configuration.DEFAULT_INT
+import com.example.kala.configuration.NavigationButtonConfiguration
+import com.example.kala.configuration.SVG_DESCRIPTION
+import com.example.kala.configuration.actionsNavigationButton
+import com.example.kala.configuration.invalidArgument
+import com.example.kala.configuration.svgNavigationButton
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable

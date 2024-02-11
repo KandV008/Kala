@@ -31,12 +31,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.kala.screens.configuration.DEFAULT_INT
-import com.example.kala.screens.configuration.LargeButtonConfiguration
-import com.example.kala.screens.configuration.SVG_DESCRIPTION
-import com.example.kala.screens.configuration.actionsLargeButton
-import com.example.kala.screens.configuration.invalidArgument
-import com.example.kala.screens.configuration.svgLargeButton
+import com.example.kala.configuration.DEFAULT_INT
+import com.example.kala.configuration.LargeButtonConfiguration
+import com.example.kala.configuration.SVG_DESCRIPTION
+import com.example.kala.configuration.actionsLargeButton
+import com.example.kala.configuration.invalidArgument
+import com.example.kala.configuration.svgLargeButton
 
 
 @RequiresApi(Build.VERSION_CODES.N)
