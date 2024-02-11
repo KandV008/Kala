@@ -31,41 +31,23 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.kala.R
+import com.example.kala.screens.configuration.DEFAULT_INT
+import com.example.kala.screens.configuration.LargeButtonConfiguration
+import com.example.kala.screens.configuration.SVG_DESCRIPTION
+import com.example.kala.screens.configuration.actionsLargeButton
+import com.example.kala.screens.configuration.invalidArgument
+import com.example.kala.screens.configuration.svgLargeButton
 
-const val ADD_EXCHANGE = "Add exchange"
-const val CHANGE_NAME = "Change name"
-const val CHANGE_EMAIL = "Change email"
-const val SET_CURRENCY = "Set currency"
-const val SIGN_UP = "Sign Up"
-const val LOG_IN = "Log In"
-const val LOG_OUT = "Log Out"
-const val DELETE_USER = "Delete User"
-const val FORGOT_PASS = "Forgot Pass?"
-const val SEND_REQUEST = "Send request"
-
-val svgLargeButton: Map<String, Int> = mapOf(
-    ADD_EXCHANGE to R.drawable.ic_exchange,
-    CHANGE_NAME to R.drawable.ic_account,
-    CHANGE_EMAIL to R.drawable.ic_email,
-    SET_CURRENCY to R.drawable.ic_currency,
-    SIGN_UP to R.drawable.ic_sign_up,
-    LOG_IN to R.drawable.ic_log_in,
-    LOG_OUT to R.drawable.ic_log_out,
-    DELETE_USER to R.drawable.ic_delete_account,
-    FORGOT_PASS to R.drawable.ic_question,
-    SEND_REQUEST to R.drawable.ic_next,
-)
-
-val actionsLargeButton: Map<String, () -> Unit> = mapOf(
-    /* TODO Functions associate to a configuration */
-)
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
-fun LargeButton(configuration: String = "Sample Text") {
+fun LargeButton(configuration: LargeButtonConfiguration) {
     Button(
-        onClick = { /*TODO*/ },
+        onClick = {
+                  actionsLargeButton
+                      .getOrDefault(configuration)
+                      { invalidArgument() }
+        },
         modifier = Modifier
             .height(60.dp)
             .width(300.dp),
@@ -81,7 +63,7 @@ fun LargeButton(configuration: String = "Sample Text") {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = configuration,
+                text = configuration.toString(),
                 color = Color.Black,
                 fontSize = 28.sp,
                 textAlign = TextAlign.Justify,
@@ -99,8 +81,11 @@ fun LargeButton(configuration: String = "Sample Text") {
                 contentAlignment = Alignment.Center,
             ) {
                 Image(
-                    painter = painterResource(id = svgLargeButton.getOrDefault(configuration, -1)),
-                    contentDescription = "SVG FILE"
+                    painter = painterResource(
+                        id = svgLargeButton
+                            .getOrDefault(configuration, DEFAULT_INT)
+                    ),
+                    contentDescription = SVG_DESCRIPTION
                 )
             }
 
@@ -113,25 +98,25 @@ fun LargeButton(configuration: String = "Sample Text") {
 @Composable
 fun LargeButtonPreview() {
     Column {
-        LargeButton(ADD_EXCHANGE)
+        LargeButton(LargeButtonConfiguration.ADD_EXCHANGE)
         Spacer(modifier = Modifier.padding(5.dp))
-        LargeButton(CHANGE_NAME)
+        LargeButton(LargeButtonConfiguration.CHANGE_NAME)
         Spacer(modifier = Modifier.padding(5.dp))
-        LargeButton(CHANGE_EMAIL)
+        LargeButton(LargeButtonConfiguration.CHANGE_EMAIL)
         Spacer(modifier = Modifier.padding(5.dp))
-        LargeButton(SET_CURRENCY)
+        LargeButton(LargeButtonConfiguration.SET_CURRENCY)
         Spacer(modifier = Modifier.padding(5.dp))
-        LargeButton(SIGN_UP)
+        LargeButton(LargeButtonConfiguration.SIGN_UP)
         Spacer(modifier = Modifier.padding(5.dp))
-        LargeButton(LOG_IN)
+        LargeButton(LargeButtonConfiguration.LOG_IN)
         Spacer(modifier = Modifier.padding(5.dp))
-        LargeButton(LOG_OUT)
+        LargeButton(LargeButtonConfiguration.LOG_OUT)
         Spacer(modifier = Modifier.padding(5.dp))
-        LargeButton(DELETE_USER)
+        LargeButton(LargeButtonConfiguration.DELETE_USER)
         Spacer(modifier = Modifier.padding(5.dp))
-        LargeButton(FORGOT_PASS)
+        LargeButton(LargeButtonConfiguration.FORGOT_PASS)
         Spacer(modifier = Modifier.padding(5.dp))
-        LargeButton(SEND_REQUEST)
+        LargeButton(LargeButtonConfiguration.SEND_REQUEST)
     }
 
 }

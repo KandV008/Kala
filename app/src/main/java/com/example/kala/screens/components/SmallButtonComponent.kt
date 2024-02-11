@@ -22,25 +22,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.kala.R
+import com.example.kala.screens.configuration.DEFAULT_INT
+import com.example.kala.screens.configuration.SVG_DESCRIPTION
+import com.example.kala.screens.configuration.SmallButtonConfiguration
+import com.example.kala.screens.configuration.actionsSmallButton
+import com.example.kala.screens.configuration.invalidArgument
+import com.example.kala.screens.configuration.svgSmallButton
 
-const val SPANISH = "spanish_language"
-const val ENGLISH = "english_language"
-
-val svgSmallButton: Map<String, Int> = mapOf(
-    ENGLISH to R.drawable.ic_united_kingdom_flag,
-    SPANISH to R.drawable.ic_spain_flag,
-)
-
-val actionsSmallButton: Map<String, () -> Unit> = mapOf(
-    /* TODO Functions associate to a configuration */
-)
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
-fun SmallButton(configuration: String) {
+fun SmallButton(configuration: SmallButtonConfiguration) {
     Button(
-        onClick = { actionsSmallButton.getOrDefault(configuration) { println("NOT VALID CONFIGURATION") } },
+        onClick = {
+            actionsSmallButton
+                .getOrDefault(configuration)
+                { invalidArgument() }
+        },
         colors = ButtonDefaults.buttonColors(Color.White),
         shape = RoundedCornerShape(10.dp),
         modifier = Modifier
@@ -58,8 +56,11 @@ fun SmallButton(configuration: String) {
             contentAlignment = Alignment.Center,
         ) {
             Image(
-                painter = painterResource(id = svgSmallButton.getOrDefault(configuration, 0)),
-                contentDescription = "SVG FILE"
+                painter = painterResource(
+                    id = svgSmallButton
+                        .getOrDefault(configuration, DEFAULT_INT)
+                ),
+                contentDescription = SVG_DESCRIPTION
             )
         }
     }
@@ -70,8 +71,8 @@ fun SmallButton(configuration: String) {
 @Composable
 fun PreviewSmallButton() {
     Column {
-        SmallButton(ENGLISH)
+        SmallButton(SmallButtonConfiguration.ENGLISH)
         Spacer(modifier = Modifier.padding(5.dp))
-        SmallButton(SPANISH)
+        SmallButton(SmallButtonConfiguration.SPANISH)
     }
 }

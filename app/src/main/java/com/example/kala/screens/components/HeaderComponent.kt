@@ -23,36 +23,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.kala.screens.configuration.HeaderConfiguration
+import com.example.kala.screens.configuration.NavigationButtonConfiguration
+import com.example.kala.screens.configuration.displayCenterHeader
+import com.example.kala.screens.configuration.displayLeftHeader
+import com.example.kala.screens.configuration.displayRightHeader
 
-const val UNREGISTERED_USER = "Unregistered User"
-const val REGISTERED_USER = "Registered User"
-const val HELP_SCREEN = "Help Screen"
-const val LANGUAGE_SCREEN = "Language Screen"
-
-val displayLeftHeader: Map<String, Pair<String, Float>> = mapOf(
-    UNREGISTERED_USER to Pair(HELP, 1F),
-    REGISTERED_USER to Pair(HELP, 1F),
-    HELP_SCREEN to Pair(HELP, 0F),
-    LANGUAGE_SCREEN to Pair(HELP, 1F),
-)
-
-val displayCenterHeader: Map<String, Float> = mapOf(
-    UNREGISTERED_USER to 0F,
-    REGISTERED_USER to 1F,
-    HELP_SCREEN to 1F,
-    LANGUAGE_SCREEN to 1F,
-)
-
-val displayRightHeader: Map<String, Pair<String, Float>> = mapOf(
-    UNREGISTERED_USER to Pair(LANGUAGE, 1F),
-    REGISTERED_USER to Pair(OPTIONS, 1F),
-    HELP_SCREEN to Pair(LANGUAGE, 1F),
-    LANGUAGE_SCREEN to Pair(OPTIONS, 0F),
-)
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
-fun Header(configuration: String = "") {
+fun Header(configuration: HeaderConfiguration) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -68,7 +48,7 @@ fun Header(configuration: String = "") {
         ) {
             NavigationButton(
                 configuration = displayLeftHeader
-                    .getOrDefault(configuration, Pair("", 0F)).first,
+                    .getOrDefault(configuration, Pair(NavigationButtonConfiguration.HELP, 0F)).first,
                 alpha = displayLeftHeader
                     .getOrDefault(configuration, Pair("", 0F)).second,
             )
@@ -83,7 +63,7 @@ fun Header(configuration: String = "") {
             )
             NavigationButton(
                 configuration = displayRightHeader
-                    .getOrDefault(configuration, Pair("", 0F)).first,
+                    .getOrDefault(configuration, Pair(NavigationButtonConfiguration.OPTIONS, 0F)).first,
                 alpha = displayRightHeader
                     .getOrDefault(configuration, Pair("", 0F)).second,
             )
@@ -96,12 +76,12 @@ fun Header(configuration: String = "") {
 @Composable
 fun HeaderPreview() {
     Column {
-        Header(UNREGISTERED_USER)
+        Header(HeaderConfiguration.UNREGISTERED_USER)
         Spacer(modifier = Modifier.padding(5.dp))
-        Header(REGISTERED_USER)
+        Header(HeaderConfiguration.REGISTERED_USER)
         Spacer(modifier = Modifier.padding(5.dp))
-        Header(HELP_SCREEN)
+        Header(HeaderConfiguration.HELP_SCREEN)
         Spacer(modifier = Modifier.padding(5.dp))
-        Header(LANGUAGE_SCREEN)
+        Header(HeaderConfiguration.LANGUAGE_SCREEN)
     }
 }

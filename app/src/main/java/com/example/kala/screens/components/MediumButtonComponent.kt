@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -31,35 +30,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.kala.R
+import com.example.kala.screens.configuration.DEFAULT_INT
+import com.example.kala.screens.configuration.MediumButtonConfiguration
+import com.example.kala.screens.configuration.SVG_DESCRIPTION
+import com.example.kala.screens.configuration.actionsMediumButton
+import com.example.kala.screens.configuration.invalidArgument
+import com.example.kala.screens.configuration.svgMediumButton
 
-const val SEE_REPORT = "See report"
-const val SEE_RECORD = "See record"
-const val DELETE = "Delete Card"
-const val EDIT = "Edit Card"
-const val EXPENSE = "Expense Details"
-const val INCOME = "Income Details"
-
-val svgMediumButton: Map<String, Int> = mapOf(
-    SEE_REPORT to R.drawable.ic_see_report,
-    SEE_RECORD to R.drawable.ic_see_record,
-    DELETE to R.drawable.ic_delete,
-    EDIT to R.drawable.ic_edit,
-    EXPENSE to R.drawable.ic_expense,
-    INCOME to R.drawable.ic_income,
-)
-
-val actionsMediumButton: Map<String, () -> Unit> = mapOf(
-    /* TODO Functions associate to a configuration */
-)
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
-fun MediumButton(configuration: String) {
+fun MediumButton(configuration: MediumButtonConfiguration) {
     Button(
         onClick = {
             actionsMediumButton.getOrDefault(configuration)
-            { println("NOT VALID CONFIGURATION") }
+            { invalidArgument() }
         },
         modifier = Modifier
             .height(150.dp)
@@ -85,12 +70,15 @@ fun MediumButton(configuration: String) {
                 contentAlignment = Alignment.Center,
             ) {
                 Image(
-                    painter = painterResource(id = svgMediumButton.getOrDefault(configuration, -1)),
-                    contentDescription = "SVG FILE"
+                    painter = painterResource(
+                        id = svgMediumButton
+                            .getOrDefault(configuration, DEFAULT_INT)
+                    ),
+                    contentDescription = SVG_DESCRIPTION
                 )
             }
             Text(
-                text = configuration,
+                text = configuration.toString(),
                 color = Color.Black,
                 fontSize = 25.sp,
                 textAlign = TextAlign.Center,
@@ -105,17 +93,17 @@ fun MediumButton(configuration: String) {
 @Composable
 fun PreviewMediumButton() {
     Column {
-        MediumButton(SEE_REPORT)
-        Spacer(modifier = Modifier.padding(1.dp))
-        MediumButton(SEE_RECORD)
-        Spacer(modifier = Modifier.padding(1.dp))
-        MediumButton(DELETE)
-        Spacer(modifier = Modifier.padding(1.dp))
-        MediumButton(EDIT)
-        Spacer(modifier = Modifier.padding(1.dp))
-        MediumButton(EXPENSE)
-        Spacer(modifier = Modifier.padding(1.dp))
-        MediumButton(INCOME)
-        Spacer(modifier = Modifier.padding(1.dp))
+        MediumButton(MediumButtonConfiguration.SEE_REPORT)
+        Spacer(modifier = Modifier.padding(5.dp))
+        MediumButton(MediumButtonConfiguration.SEE_RECORD)
+        Spacer(modifier = Modifier.padding(5.dp))
+        MediumButton(MediumButtonConfiguration.DELETE)
+        Spacer(modifier = Modifier.padding(5.dp))
+        MediumButton(MediumButtonConfiguration.EDIT)
+        Spacer(modifier = Modifier.padding(5.dp))
+        MediumButton(MediumButtonConfiguration.EXPENSE)
+        Spacer(modifier = Modifier.padding(5.dp))
+        MediumButton(MediumButtonConfiguration.INCOME)
+        Spacer(modifier = Modifier.padding(5.dp))
     }
 }
