@@ -1,5 +1,7 @@
 package com.example.kala.configuration
 
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.example.kala.R
 
 /*
@@ -13,6 +15,7 @@ fun invalidArgument(){
 
 const val DEFAULT_INT = -1
 const val DEFAULT_FLOAT = 1F
+const val NAME_APPLICATION = "Kala"
 
 /*
     SmallButtonComponent
@@ -154,7 +157,7 @@ val displayRightHeader: Map<HeaderConfiguration, Pair<NavigationButtonConfigurat
     FooterComponent
  */
 
-enum class FooterConfiguration(){
+enum class FooterConfiguration{
     EMPTY, ONLY_BACK, ONLY_NEXT, BACK_AND_NEXT, BACK_AND_HOME, NEXT_AND_HOME, ALL
 }
 
@@ -187,3 +190,16 @@ val displayRightFooter: Map<FooterConfiguration, Float> = mapOf(
     FooterConfiguration.NEXT_AND_HOME to 1F,
     FooterConfiguration.ALL to 1F,
 )
+
+/*
+    LogoComponent
+ */
+
+enum class LogoConfiguration(private val size: Dp){
+    SMALL(150.dp),
+    LARGE(200.dp);
+
+    fun getSize(): Dp {
+        return size;
+    }
+}
