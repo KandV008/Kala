@@ -31,22 +31,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.kala.configuration.DEFAULT_INT
 import com.example.kala.configuration.LargeButtonConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
-import com.example.kala.configuration.actionsLargeButton
 import com.example.kala.configuration.invalidArgument
-import com.example.kala.configuration.svgLargeButton
-
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun LargeButton(configuration: LargeButtonConfiguration) {
     Button(
         onClick = {
-                  actionsLargeButton
-                      .getOrDefault(configuration)
-                      { invalidArgument() }
+            /* TODO */
+            invalidArgument()
         },
         modifier = Modifier
             .height(60.dp)
@@ -82,8 +77,7 @@ fun LargeButton(configuration: LargeButtonConfiguration) {
             ) {
                 Image(
                     painter = painterResource(
-                        id = svgLargeButton
-                            .getOrDefault(configuration, DEFAULT_INT)
+                        id = configuration.getSVGFile()
                     ),
                     contentDescription = SVG_DESCRIPTION
                 )

@@ -20,12 +20,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kala.configuration.DEFAULT_FLOAT
-import com.example.kala.configuration.DEFAULT_INT
 import com.example.kala.configuration.NavigationButtonConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
-import com.example.kala.configuration.actionsNavigationButton
 import com.example.kala.configuration.invalidArgument
-import com.example.kala.configuration.svgNavigationButton
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
@@ -35,9 +32,8 @@ fun NavigationButton(
 ) {
     Button(
         onClick = {
-            actionsNavigationButton
-                .getOrDefault(configuration)
-                { invalidArgument() }
+            /* TODO */
+            invalidArgument()
         },
         colors = ButtonDefaults.buttonColors(Color.White),
         shape = RoundedCornerShape(10.dp),
@@ -49,8 +45,7 @@ fun NavigationButton(
     ) {
         Image(
             painter = painterResource(
-                id = svgNavigationButton
-                    .getOrDefault(configuration, DEFAULT_INT)
+                id = configuration.getSVGFile()
             ),
             contentDescription = SVG_DESCRIPTION
         )
