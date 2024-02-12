@@ -1,5 +1,7 @@
 package com.example.kala.configuration
 
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.example.kala.R
 
 /*
@@ -13,177 +15,206 @@ fun invalidArgument(){
 
 const val DEFAULT_INT = -1
 const val DEFAULT_FLOAT = 1F
+const val NAME_APPLICATION = "Kala"
 
 /*
     SmallButtonComponent
  */
 
-enum class SmallButtonConfiguration {
-    ENGLISH, SPANISH;
+enum class SmallButtonConfiguration(
+    private val svgFile: Int,
+    //private val function: () -> Unit, TODO Functions associate to a configuration
+) {
+    ENGLISH(R.drawable.ic_united_kingdom_flag),
+    SPANISH(R.drawable.ic_spain_flag);
+
+    fun getSVGFile(): Int{
+        return svgFile
+    }
 }
-
-val svgSmallButton: Map<SmallButtonConfiguration, Int> = mapOf(
-    SmallButtonConfiguration.ENGLISH to R.drawable.ic_united_kingdom_flag,
-    SmallButtonConfiguration.SPANISH to R.drawable.ic_spain_flag,
-)
-
-val actionsSmallButton: Map<SmallButtonConfiguration, () -> Unit> = mapOf(
-    // TODO: Add functions associated with SmallButtonAction
-)
 
 /*
     MediumButtonComponent
  */
 
-enum class MediumButtonConfiguration(private val displayName: String) {
-    SEE_REPORT("See report"),
-    SEE_RECORD("See record"),
-    DELETE("Delete Card"),
-    EDIT("Edit Card"),
-    EXPENSE("Expense Details"),
-    INCOME("Income Details");
+enum class MediumButtonConfiguration(
+    private val displayName: String,
+    private val svgFile: Int,
+    //private val function: () -> Unit, TODO Functions associate to a configuration
+) {
+    SEE_REPORT("See report", R.drawable.ic_see_report),
+    SEE_RECORD("See record", R.drawable.ic_see_record),
+    DELETE("Delete Card",R.drawable.ic_delete),
+    EDIT("Edit Card",R.drawable.ic_edit),
+    EXPENSE("Expense Details", R.drawable.ic_expense),
+    INCOME("Income Details", R.drawable.ic_income);
 
     override fun toString(): String {
         return displayName
     }
+
+    fun getSVGFile(): Int{
+        return svgFile
+    }
 }
-
-val svgMediumButton: Map<MediumButtonConfiguration, Int> = mapOf(
-    MediumButtonConfiguration.SEE_REPORT to R.drawable.ic_see_report,
-    MediumButtonConfiguration.SEE_RECORD to R.drawable.ic_see_record,
-    MediumButtonConfiguration.DELETE to R.drawable.ic_delete,
-    MediumButtonConfiguration.EDIT to R.drawable.ic_edit,
-    MediumButtonConfiguration.EXPENSE to R.drawable.ic_expense,
-    MediumButtonConfiguration.INCOME to R.drawable.ic_income,
-)
-
-val actionsMediumButton: Map<MediumButtonConfiguration, () -> Unit> = mapOf(
-    // TODO: Add functions associated with MediumButtonAction
-)
-
 
 /*
     LargeButtonComponent
  */
 
-enum class LargeButtonConfiguration(private val displayName: String) {
-    ADD_EXCHANGE("Add exchange"),
-    CHANGE_NAME("Change name"),
-    CHANGE_EMAIL("Change email"),
-    SET_CURRENCY("Set currency"),
-    SIGN_UP("Sign Up"),
-    LOG_IN("Log In"),
-    LOG_OUT("Log Out"),
-    DELETE_USER("Delete User"),
-    FORGOT_PASS("Forgot Pass?"),
-    SEND_REQUEST("Send request");
+enum class LargeButtonConfiguration(
+    private val displayName: String,
+    private val svgFile: Int,
+    //private val function: () -> Unit, TODO Functions associate to a configuration
+) {
+    ADD_EXCHANGE("Add exchange", R.drawable.ic_exchange),
+    CHANGE_NAME("Change name", R.drawable.ic_account),
+    CHANGE_EMAIL("Change email",R.drawable.ic_email),
+    SET_CURRENCY("Set currency",R.drawable.ic_currency),
+    SIGN_UP("Sign Up", R.drawable.ic_sign_up),
+    LOG_IN("Log In", R.drawable.ic_log_in),
+    LOG_OUT("Log Out", R.drawable.ic_log_out),
+    DELETE_USER("Delete User", R.drawable.ic_delete_account),
+    FORGOT_PASS("Forgot Pass?", R.drawable.ic_question),
+    SEND_REQUEST("Send request", R.drawable.ic_next);
 
     override fun toString(): String {
         return displayName
     }
+
+    fun getSVGFile(): Int{
+        return svgFile
+    }
 }
-
-val svgLargeButton: Map<LargeButtonConfiguration, Int> = mapOf(
-    LargeButtonConfiguration.ADD_EXCHANGE to R.drawable.ic_exchange,
-    LargeButtonConfiguration.CHANGE_NAME to R.drawable.ic_account,
-    LargeButtonConfiguration.CHANGE_EMAIL to R.drawable.ic_email,
-    LargeButtonConfiguration.SET_CURRENCY to R.drawable.ic_currency,
-    LargeButtonConfiguration.SIGN_UP to R.drawable.ic_sign_up,
-    LargeButtonConfiguration.LOG_IN to R.drawable.ic_log_in,
-    LargeButtonConfiguration.LOG_OUT to R.drawable.ic_log_out,
-    LargeButtonConfiguration.DELETE_USER to R.drawable.ic_delete_account,
-    LargeButtonConfiguration.FORGOT_PASS to R.drawable.ic_question,
-    LargeButtonConfiguration.SEND_REQUEST to R.drawable.ic_next,
-)
-
-val actionsLargeButton: Map<LargeButtonConfiguration, () -> Unit> = mapOf(
-    // TODO: Add functions associated with LargeButtonAction
-)
 
 /*
     NavigationButtonComponent
  */
 
-enum class NavigationButtonConfiguration {
-    LANGUAGE, HELP, OPTIONS, BACK, HOME, NEXT;
+enum class NavigationButtonConfiguration(
+    private val svgFile: Int,
+    //private val function: () -> Unit, TODO Functions associate to a configuration
+) {
+    LANGUAGE(R.drawable.ic_united_kingdom_flag), /* TODO Dynamic Icon */
+    HELP(R.drawable.ic_question),
+    OPTIONS(R.drawable.ic_options),
+    BACK(R.drawable.ic_back),
+    HOME(R.drawable.ic_back),
+    NEXT(R.drawable.ic_next);
+
+    fun getSVGFile(): Int{
+        return svgFile
+    }
 }
-
-val svgNavigationButton: Map<NavigationButtonConfiguration, Int> = mapOf(
-    NavigationButtonConfiguration.LANGUAGE to R.drawable.ic_united_kingdom_flag, /* TODO Dynamic Icon */
-    NavigationButtonConfiguration.HELP to R.drawable.ic_question,
-    NavigationButtonConfiguration.OPTIONS to R.drawable.ic_options,
-    NavigationButtonConfiguration.BACK to R.drawable.ic_back,
-    NavigationButtonConfiguration.HOME to R.drawable.ic_home,
-    NavigationButtonConfiguration.NEXT to R.drawable.ic_next,
-)
-
-val actionsNavigationButton: Map<NavigationButtonConfiguration, () -> Unit> = mapOf(
-    /* TODO Functions associate to a configuration */
-)
 
 /*
     HeaderComponent
  */
 
-enum class HeaderConfiguration {
-    UNREGISTERED_USER, REGISTERED_USER, HELP_SCREEN, LANGUAGE_SCREEN;
+enum class HeaderConfiguration(
+    private val left: Pair<NavigationButtonConfiguration, Float>,
+    private val center: Float,
+    private val right: Pair<NavigationButtonConfiguration, Float>
+) {
+    UNREGISTERED_USER (
+        Pair(NavigationButtonConfiguration.HELP, 1F),
+        0F,
+        Pair(NavigationButtonConfiguration.LANGUAGE, 1F)
+    ),
+    REGISTERED_USER(
+        Pair(NavigationButtonConfiguration.HELP, 1F),
+        1F,
+        Pair(NavigationButtonConfiguration.OPTIONS, 1F)
+    ),
+    HELP_SCREEN(
+        Pair(NavigationButtonConfiguration.HELP, 0F),
+        1F,
+        Pair(NavigationButtonConfiguration.LANGUAGE, 1F)
+    ),
+    LANGUAGE_SCREEN(
+        Pair(NavigationButtonConfiguration.HELP, 1F),
+        1F,
+        Pair(NavigationButtonConfiguration.OPTIONS, 0F)
+    );
+
+    fun left(): Pair<NavigationButtonConfiguration, Float>{
+        return left
+    }
+
+    fun center(): Float{
+        return center
+    }
+
+    fun right(): Pair<NavigationButtonConfiguration, Float>{
+        return right
+    }
 }
-
-val displayLeftHeader: Map<HeaderConfiguration, Pair<NavigationButtonConfiguration, Float>> = mapOf(
-    HeaderConfiguration.UNREGISTERED_USER to Pair(NavigationButtonConfiguration.HELP, 1F),
-    HeaderConfiguration.REGISTERED_USER to Pair(NavigationButtonConfiguration.HELP, 1F),
-    HeaderConfiguration.HELP_SCREEN to Pair(NavigationButtonConfiguration.HELP, 0F),
-    HeaderConfiguration.LANGUAGE_SCREEN to Pair(NavigationButtonConfiguration.HELP, 1F),
-)
-
-val displayCenterHeader: Map<HeaderConfiguration, Float> = mapOf(
-    HeaderConfiguration.UNREGISTERED_USER to 0F,
-    HeaderConfiguration.REGISTERED_USER to 1F,
-    HeaderConfiguration.HELP_SCREEN to 1F,
-    HeaderConfiguration.LANGUAGE_SCREEN to 1F,
-)
-
-val displayRightHeader: Map<HeaderConfiguration, Pair<NavigationButtonConfiguration, Float>> = mapOf(
-    HeaderConfiguration.UNREGISTERED_USER to Pair(NavigationButtonConfiguration.LANGUAGE, 1F),
-    HeaderConfiguration.REGISTERED_USER to Pair(NavigationButtonConfiguration.OPTIONS, 1F),
-    HeaderConfiguration.HELP_SCREEN to Pair(NavigationButtonConfiguration.LANGUAGE, 1F),
-    HeaderConfiguration.LANGUAGE_SCREEN to Pair(NavigationButtonConfiguration.OPTIONS, 0F),
-)
 
 /*
     FooterComponent
  */
 
-enum class FooterConfiguration(){
-    EMPTY, ONLY_BACK, ONLY_NEXT, BACK_AND_NEXT, BACK_AND_HOME, NEXT_AND_HOME, ALL
+enum class FooterConfiguration(
+    private val left: Float,
+    private val center: Float,
+    private val right: Float,
+){
+    EMPTY(0F, 0F, 0F),
+    ONLY_BACK(1F, 0F, 0F),
+    ONLY_NEXT(0F, 0F, 1F),
+    BACK_AND_NEXT(1F, 0F, 1F),
+    BACK_AND_HOME(1F, 1F, 0F),
+    NEXT_AND_HOME(0F, 1F, 1F),
+    ALL(1F, 1F, 1F);
+
+    fun left(): Float{
+        return left
+    }
+
+    fun center(): Float{
+        return center
+    }
+
+    fun right(): Float{
+        return right
+    }
 }
 
-val displayLeftFooter: Map<FooterConfiguration, Float> = mapOf(
-    FooterConfiguration.EMPTY to 0F,
-    FooterConfiguration.ONLY_BACK to 1F,
-    FooterConfiguration.ONLY_NEXT to 0F,
-    FooterConfiguration.BACK_AND_NEXT to 1F,
-    FooterConfiguration.BACK_AND_HOME to 1F,
-    FooterConfiguration.NEXT_AND_HOME to 0F,
-    FooterConfiguration.ALL to 1F,
-)
+/*
+    LogoComponent
+ */
 
-val displayCenterFooter: Map<FooterConfiguration, Float> = mapOf(
-    FooterConfiguration.EMPTY to 0F,
-    FooterConfiguration.ONLY_BACK to 0F,
-    FooterConfiguration.ONLY_NEXT to 0F,
-    FooterConfiguration.BACK_AND_NEXT to 0F,
-    FooterConfiguration.BACK_AND_HOME to 1F,
-    FooterConfiguration.NEXT_AND_HOME to 1F,
-    FooterConfiguration.ALL to 1F,
-)
+enum class LogoConfiguration(private val size: Dp){
+    SMALL(150.dp),
+    LARGE(200.dp);
 
-val displayRightFooter: Map<FooterConfiguration, Float> = mapOf(
-    FooterConfiguration.EMPTY to 0F,
-    FooterConfiguration.ONLY_BACK to 0F,
-    FooterConfiguration.ONLY_NEXT to 1F,
-    FooterConfiguration.BACK_AND_NEXT to 1F,
-    FooterConfiguration.BACK_AND_HOME to 0F,
-    FooterConfiguration.NEXT_AND_HOME to 1F,
-    FooterConfiguration.ALL to 1F,
-)
+    fun getSize(): Dp {
+        return size;
+    }
+}
+
+/*
+    TitleComponent
+ */
+
+enum class TitleConfiguration(private val displayName: String){
+    SIGN_UP("Sign Up"),
+    LOG_IN("Log In"),
+    RECOVERY_PASS("Recovery pass"),
+    REQUEST_DONE("Request done"),
+    CHANGE_PASS("Change pass"),
+    CONFIRMATION("Confirmation"),
+    OPTIONS("Options"),
+    ADD_EXCHANGE("Add Exchange"),
+    LANGUAGES("Languages"),
+    RECORD("Record"),
+    MORE_INFO("More Info"),
+    HELP("Help"),
+    REPORT("Report"),
+    EXPENSE("Expense"),
+    INCOME("Income");
+
+    override fun toString(): String {
+        return displayName
+    }
+}

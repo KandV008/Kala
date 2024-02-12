@@ -20,9 +20,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.NavigationButtonConfiguration
-import com.example.kala.configuration.displayCenterFooter
-import com.example.kala.configuration.displayLeftFooter
-import com.example.kala.configuration.displayRightFooter
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
@@ -42,15 +39,15 @@ fun Footer(configuration: FooterConfiguration) {
         ) {
             NavigationButton(
                 configuration = NavigationButtonConfiguration.BACK,
-                alpha = displayLeftFooter.getOrDefault(configuration, 1F),
+                alpha = configuration.left(),
             )
             NavigationButton(
                 configuration = NavigationButtonConfiguration.HOME,
-                alpha = displayCenterFooter.getOrDefault(configuration, 1F),
+                alpha = configuration.center(),
             )
             NavigationButton(
                 configuration = NavigationButtonConfiguration.NEXT,
-                alpha = displayRightFooter.getOrDefault(configuration, 1F),
+                alpha = configuration.right(),
             )
         }
     }

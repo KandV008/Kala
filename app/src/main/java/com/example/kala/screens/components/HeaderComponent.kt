@@ -24,11 +24,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kala.configuration.HeaderConfiguration
-import com.example.kala.configuration.NavigationButtonConfiguration
-import com.example.kala.configuration.displayCenterHeader
-import com.example.kala.configuration.displayLeftHeader
-import com.example.kala.configuration.displayRightHeader
-
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
@@ -47,10 +42,8 @@ fun Header(configuration: HeaderConfiguration) {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             NavigationButton(
-                configuration = displayLeftHeader
-                    .getOrDefault(configuration, Pair(NavigationButtonConfiguration.HELP, 0F)).first,
-                alpha = displayLeftHeader
-                    .getOrDefault(configuration, Pair("", 0F)).second,
+                configuration = configuration.left().first,
+                alpha = configuration.left().second,
             )
             Text(
                 text = "Kala",
@@ -59,13 +52,11 @@ fun Header(configuration: HeaderConfiguration) {
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier
-                    .alpha(displayCenterHeader.getOrDefault(configuration, 1F))
+                    .alpha(configuration.center())
             )
             NavigationButton(
-                configuration = displayRightHeader
-                    .getOrDefault(configuration, Pair(NavigationButtonConfiguration.OPTIONS, 0F)).first,
-                alpha = displayRightHeader
-                    .getOrDefault(configuration, Pair("", 0F)).second,
+                configuration = configuration.right().first,
+                alpha = configuration.right().second,
             )
         }
     }

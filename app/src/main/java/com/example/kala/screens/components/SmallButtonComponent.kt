@@ -22,12 +22,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.kala.configuration.DEFAULT_INT
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.configuration.SmallButtonConfiguration
-import com.example.kala.configuration.actionsSmallButton
 import com.example.kala.configuration.invalidArgument
-import com.example.kala.configuration.svgSmallButton
 
 
 @RequiresApi(Build.VERSION_CODES.N)
@@ -35,9 +32,8 @@ import com.example.kala.configuration.svgSmallButton
 fun SmallButton(configuration: SmallButtonConfiguration) {
     Button(
         onClick = {
-            actionsSmallButton
-                .getOrDefault(configuration)
-                { invalidArgument() }
+            /* TODO */
+            invalidArgument()
         },
         colors = ButtonDefaults.buttonColors(Color.White),
         shape = RoundedCornerShape(10.dp),
@@ -57,8 +53,7 @@ fun SmallButton(configuration: SmallButtonConfiguration) {
         ) {
             Image(
                 painter = painterResource(
-                    id = svgSmallButton
-                        .getOrDefault(configuration, DEFAULT_INT)
+                    id = configuration.getSVGFile()
                 ),
                 contentDescription = SVG_DESCRIPTION
             )

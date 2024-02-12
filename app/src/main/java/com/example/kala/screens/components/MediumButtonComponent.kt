@@ -30,12 +30,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.kala.configuration.DEFAULT_INT
 import com.example.kala.configuration.MediumButtonConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
-import com.example.kala.configuration.actionsMediumButton
 import com.example.kala.configuration.invalidArgument
-import com.example.kala.configuration.svgMediumButton
 
 
 @RequiresApi(Build.VERSION_CODES.N)
@@ -43,8 +40,8 @@ import com.example.kala.configuration.svgMediumButton
 fun MediumButton(configuration: MediumButtonConfiguration) {
     Button(
         onClick = {
-            actionsMediumButton.getOrDefault(configuration)
-            { invalidArgument() }
+            /* TODO */
+            invalidArgument()
         },
         modifier = Modifier
             .height(150.dp)
@@ -71,8 +68,7 @@ fun MediumButton(configuration: MediumButtonConfiguration) {
             ) {
                 Image(
                     painter = painterResource(
-                        id = svgMediumButton
-                            .getOrDefault(configuration, DEFAULT_INT)
+                        id = configuration.getSVGFile()
                     ),
                     contentDescription = SVG_DESCRIPTION
                 )
