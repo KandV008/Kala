@@ -203,3 +203,29 @@ enum class LogoConfiguration(private val size: Dp){
         return size;
     }
 }
+
+/*
+    TitleComponent
+ */
+
+enum class TitleConfiguration(private val displayName: String){
+    SIGN_UP("Sign Up"),
+    LOG_IN("Log In"),
+    RECOVERY_PASS("Recovery pass"),
+    REQUEST_DONE("Request done"),
+    CHANGE_PASS("Change pass"),
+    CONFIRMATION("Confirmation"),
+    OPTIONS("Options"),
+    ADD_EXCHANGE("Add Exchange"),
+    LANGUAGES("Languages"),
+    RECORD("Record"),
+    MORE_INFO("More Info"),
+    HELP("Help"),
+    REPORT("Report"),
+    EXPENSE("Expense"),
+    INCOME("Income");
+
+    override fun toString(): String {
+        return displayName
+    }
+}
