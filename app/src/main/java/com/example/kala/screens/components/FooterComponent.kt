@@ -29,7 +29,7 @@ fun Footer(configuration: FooterConfiguration) {
             .fillMaxWidth()
             .border(1.dp, Color.Black, RectangleShape)
             .background(Color.White)
-            .padding(10.dp),
+            .padding(30.dp, 10.dp),
     ) {
         Row(
             modifier = Modifier

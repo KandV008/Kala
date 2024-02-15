@@ -99,7 +99,7 @@ enum class NavigationButtonConfiguration(
     HELP(R.drawable.ic_question),
     OPTIONS(R.drawable.ic_options),
     BACK(R.drawable.ic_back),
-    HOME(R.drawable.ic_back),
+    HOME(R.drawable.ic_home),
     NEXT(R.drawable.ic_next);
 
     fun getSVGFile(): Int{
