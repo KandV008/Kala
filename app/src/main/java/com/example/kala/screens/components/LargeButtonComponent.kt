@@ -8,7 +8,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,6 +17,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -38,7 +39,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kala.configuration.LargeButtonConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
-import com.example.kala.configuration.SmallButtonConfiguration
 import com.example.kala.configuration.invalidArgument
 import com.example.kala.ui.theme.BoneWhite
 
@@ -109,32 +109,19 @@ fun LargeButton(configuration: LargeButtonConfiguration) {
 @Composable
 fun LargeButtonPreview() {
     Scaffold {
-        Column (
+        LazyColumn (
             modifier = Modifier
                 .fillMaxSize()
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ){
-            LargeButton(LargeButtonConfiguration.ADD_EXCHANGE)
-            Spacer(modifier = Modifier.padding(5.dp))
-            LargeButton(LargeButtonConfiguration.CHANGE_NAME)
-            Spacer(modifier = Modifier.padding(5.dp))
-            LargeButton(LargeButtonConfiguration.CHANGE_EMAIL)
-            Spacer(modifier = Modifier.padding(5.dp))
-            LargeButton(LargeButtonConfiguration.SET_CURRENCY)
-            Spacer(modifier = Modifier.padding(5.dp))
-            LargeButton(LargeButtonConfiguration.SIGN_UP)
-            Spacer(modifier = Modifier.padding(5.dp))
-            LargeButton(LargeButtonConfiguration.LOG_IN)
-            Spacer(modifier = Modifier.padding(5.dp))
-            LargeButton(LargeButtonConfiguration.LOG_OUT)
-            Spacer(modifier = Modifier.padding(5.dp))
-            LargeButton(LargeButtonConfiguration.DELETE_USER)
-            Spacer(modifier = Modifier.padding(5.dp))
-            LargeButton(LargeButtonConfiguration.FORGOT_PASS)
-            Spacer(modifier = Modifier.padding(5.dp))
-            LargeButton(LargeButtonConfiguration.SEND_REQUEST)
+            items(LargeButtonConfiguration.entries.toTypedArray()){
+                value ->
+                    LargeButton(configuration = value)
+                Spacer(modifier = Modifier.padding(5.dp))
+
+            }
         }
     }
 
