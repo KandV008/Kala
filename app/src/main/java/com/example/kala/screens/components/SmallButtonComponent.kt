@@ -55,7 +55,7 @@ fun SmallButton(configuration: SmallButtonConfiguration) {
         ) {
             Box(
                 modifier = Modifier
-                    .border(1.dp, Color.Black, shape = CircleShape)
+                    .border(2.dp, Color.Black, shape = CircleShape)
                     .padding(8.dp)
                     .size(100.dp)
                     .padding(7.dp),

@@ -135,6 +135,11 @@ enum class HeaderConfiguration(
         Pair(NavigationButtonConfiguration.HELP, 1F),
         1F,
         Pair(NavigationButtonConfiguration.OPTIONS, 0F)
+    ),
+    OPTION_SCREEN(
+        Pair(NavigationButtonConfiguration.HELP, 1F),
+        1F,
+        Pair(NavigationButtonConfiguration.LANGUAGE, 1F)
     );
 
     fun left(): Pair<NavigationButtonConfiguration, Float>{
