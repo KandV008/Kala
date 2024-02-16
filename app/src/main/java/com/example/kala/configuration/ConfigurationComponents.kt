@@ -223,3 +223,24 @@ enum class TitleConfiguration(private val displayName: String){
         return displayName
     }
 }
+
+/*
+    ChartComponent
+ */
+
+enum class ChartConfiguration(
+    private val alpha: Float,
+    private val isHistogram: Boolean,
+){
+    HOME_PAGE(0F, true),
+    REPORT_PAGE(1F, true),
+    DETAILS_PAGE(1F, false);
+
+    fun alpha(): Float{
+        return alpha
+    }
+
+    fun isHistogram(): Boolean{
+        return isHistogram
+    }
+}
