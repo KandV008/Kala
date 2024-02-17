@@ -23,11 +23,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.kala.configuration.HeaderConfiguration
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
-fun Header(configuration: HeaderConfiguration) {
+fun Header(
+    configuration: HeaderConfiguration,
+    navController: NavController? = null,
+    ) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -44,6 +48,7 @@ fun Header(configuration: HeaderConfiguration) {
             NavigationButton(
                 configuration = configuration.left().first,
                 alpha = configuration.left().second,
+                navController = navController,
             )
             Text(
                 text = "Kala",
@@ -57,7 +62,8 @@ fun Header(configuration: HeaderConfiguration) {
             NavigationButton(
                 configuration = configuration.right().first,
                 alpha = configuration.right().second,
-            )
+                navController = navController,
+                )
         }
     }
 }

@@ -18,12 +18,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.NavigationButtonConfiguration
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
-fun Footer(configuration: FooterConfiguration) {
+fun Footer(
+    configuration: FooterConfiguration,
+    navController: NavController? = null,
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -40,14 +44,17 @@ fun Footer(configuration: FooterConfiguration) {
             NavigationButton(
                 configuration = NavigationButtonConfiguration.BACK,
                 alpha = configuration.left(),
+                navController = navController
             )
             NavigationButton(
                 configuration = NavigationButtonConfiguration.HOME,
                 alpha = configuration.center(),
+                navController = navController
             )
             NavigationButton(
                 configuration = NavigationButtonConfiguration.NEXT,
                 alpha = configuration.right(),
+                navController = navController
             )
         }
     }

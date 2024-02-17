@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.LargeButtonConfiguration
@@ -37,21 +38,28 @@ val typeButtons: List<LargeButtonConfiguration> = listOf(
 @RequiresApi(Build.VERSION_CODES.N)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun OptionScreen(){
-    Scaffold{
+fun OptionScreen(navController: NavController? = null){
+    Scaffold(
+        topBar = {
+            Header(configuration = HeaderConfiguration.OPTION_SCREEN, navController)
+        },
+        bottomBar = {
+            Footer(configuration = FooterConfiguration.BACK_AND_HOME, navController)
+        },
+    ){
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Header(configuration = HeaderConfiguration.OPTION_SCREEN)
-            Spacer(Modifier.padding(10.dp))
+            Spacer(Modifier.padding(50.dp))
             Title(configuration = TitleConfiguration.OPTIONS)
             Spacer(modifier = Modifier.weight(1f))
             OptionScreenBody()
             Spacer(modifier = Modifier.weight(1f))
-            Footer(configuration = FooterConfiguration.BACK_AND_HOME)
+            Spacer(modifier = Modifier.padding(50.dp))
+
         }
     }
 }

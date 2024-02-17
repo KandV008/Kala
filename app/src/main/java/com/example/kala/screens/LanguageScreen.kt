@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.SmallButtonConfiguration
@@ -28,21 +29,27 @@ import com.example.kala.ui.theme.BoneWhite
 @RequiresApi(Build.VERSION_CODES.N)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun LanguageScreen(){
-    Scaffold{
+fun LanguageScreen(navController: NavController? = null){
+    Scaffold(
+        topBar = {
+            Header(configuration = HeaderConfiguration.LANGUAGE_SCREEN, navController)
+        },
+        bottomBar = {
+            Footer(configuration = FooterConfiguration.BACK_AND_HOME, navController)
+        },
+    ){
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Header(configuration = HeaderConfiguration.LANGUAGE_SCREEN)
-            Spacer(Modifier.padding(10.dp))
+            Spacer(modifier = Modifier.padding(50.dp))
             Title(configuration = TitleConfiguration.LANGUAGES)
-            Spacer(modifier = Modifier.weight(0.7f))
+            Spacer(modifier = Modifier.weight(1f))
             LanguageScreenBody()
             Spacer(modifier = Modifier.weight(1f))
-            Footer(configuration = FooterConfiguration.BACK_AND_HOME)
+            Spacer(modifier = Modifier.padding(50.dp))
         }
     }
 }

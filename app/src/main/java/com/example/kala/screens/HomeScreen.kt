@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.kala.configuration.ChartConfiguration
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
@@ -30,21 +31,28 @@ import com.example.kala.ui.theme.BoneWhite
 @RequiresApi(Build.VERSION_CODES.N)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun HomeScreen(){
-    Scaffold{
+fun HomeScreen(
+    navController: NavController? = null
+){
+    Scaffold(
+        topBar = {
+            Header(configuration = HeaderConfiguration.REGISTERED_USER, navController)
+        },
+        bottomBar = {
+            Footer(configuration = FooterConfiguration.EMPTY, navController)
+        },
+    ){
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Header(configuration = HeaderConfiguration.REGISTERED_USER)
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.padding(50.dp))
             Chart(configuration = ChartConfiguration.HOME_PAGE)
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.weight(0.5f))
             HomeScreenBody()
-            Spacer(modifier = Modifier.weight(1f))
-            Footer(configuration = FooterConfiguration.EMPTY)
+            Spacer(modifier = Modifier.padding(50.dp))
         }
     }
 }

@@ -13,9 +13,9 @@ fun invalidArgument(){
     println("NOT VALID CONFIGURATION")
 }
 
-const val DEFAULT_INT = -1
 const val DEFAULT_FLOAT = 1F
 const val NAME_APPLICATION = "Kala"
+const val DEFAULT_STRING = "Sample Text"
 
 /*
     SmallButtonComponent
@@ -93,17 +93,39 @@ enum class LargeButtonConfiguration(
 
 enum class NavigationButtonConfiguration(
     private val svgFile: Int,
-    //private val function: () -> Unit, TODO Functions associate to a configuration
+    private val route: String,
 ) {
-    LANGUAGE(R.drawable.ic_united_kingdom_flag), /* TODO Dynamic Icon */
-    HELP(R.drawable.ic_question),
-    OPTIONS(R.drawable.ic_options),
-    BACK(R.drawable.ic_back),
-    HOME(R.drawable.ic_home),
-    NEXT(R.drawable.ic_next);
+    LANGUAGE(
+        R.drawable.ic_united_kingdom_flag,
+        LANGUAGE_SCREEN_ROUTE
+    ), /* TODO Dynamic Icon */
+    HELP(
+        R.drawable.ic_question,
+        HELP_SCREEN_ROUTE,
+    ),
+    OPTIONS(
+        R.drawable.ic_options,
+        OPTION_SCREEN_ROUTE
+    ),
+    BACK(
+        R.drawable.ic_back,
+        "DEFAULT_STRING"
+    ),
+    HOME(
+        R.drawable.ic_home,
+        HOME_SCREEN_ROUTE
+    ),
+    NEXT(
+        R.drawable.ic_next,
+        "" /* TODO */
+    );
 
     fun getSVGFile(): Int{
         return svgFile
+    }
+
+    fun getRoute(): String{
+        return route
     }
 }
 

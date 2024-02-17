@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.TitleConfiguration
@@ -33,21 +34,27 @@ import com.example.kala.ui.theme.BoneWhite
 @RequiresApi(Build.VERSION_CODES.N)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun HelpScreen(){
-    Scaffold{
+fun HelpScreen(navController: NavController? = null){
+    Scaffold(
+        topBar = {
+            Header(configuration = HeaderConfiguration.HELP_SCREEN, navController)
+        },
+        bottomBar = {
+            Footer(configuration = FooterConfiguration.BACK_AND_HOME, navController)
+        },
+    ){
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Header(configuration = HeaderConfiguration.HELP_SCREEN)
-            Spacer(Modifier.padding(10.dp))
+            Spacer(modifier = Modifier.padding(50.dp))
             Title(configuration = TitleConfiguration.HELP)
-            Spacer(Modifier.padding(30.dp))
+            Spacer(modifier = Modifier.weight(0.7F))
             HelpScreenBody(listOf("TO-DO", "Sample Text 1", "Sample Text 2"))
-            Spacer(modifier = Modifier.weight(1F))
-            Footer(configuration = FooterConfiguration.BACK_AND_HOME)
+            Spacer(modifier = Modifier.weight(0.7F))
+            Spacer(modifier = Modifier.padding(50.dp))
         }
     }
 }
