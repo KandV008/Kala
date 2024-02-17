@@ -1,23 +1,28 @@
 package com.example.kala.screens.components
 
+import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,49 +30,65 @@ import androidx.compose.ui.unit.dp
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.configuration.SmallButtonConfiguration
 import com.example.kala.configuration.invalidArgument
+import com.example.kala.ui.theme.BoneWhite
 
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun SmallButton(configuration: SmallButtonConfiguration) {
-    Button(
-        onClick = {
-            /* TODO */
-            invalidArgument()
-        },
-        colors = ButtonDefaults.buttonColors(Color.White),
-        shape = RoundedCornerShape(10.dp),
+    Box(
         modifier = Modifier
-            .size(100.dp),
-        contentPadding = PaddingValues(10.dp)
+            .size(100.dp)
+            .shadow(10.dp, shape = RoundedCornerShape(10.dp))
     ) {
-        Box(
+        Button(
+            onClick = {
+                /* TODO */
+                invalidArgument()
+            },
+            colors = ButtonDefaults.buttonColors(Color.White),
             modifier = Modifier
-                .border(1.dp, Color.Black, shape = CircleShape)
-                .padding(8.dp)
-                .clip(CircleShape)
-                .size(100.dp)
-                .clip(CircleShape)
-                .padding(7.dp),
-            contentAlignment = Alignment.Center,
+                .fillMaxSize()
+                .border(2.dp, Color.Black, RoundedCornerShape(10.dp))
+                .background(Color.White, RoundedCornerShape(10.dp)),
+            contentPadding = PaddingValues(10.dp)
         ) {
-            Image(
-                painter = painterResource(
-                    id = configuration.getSVGFile()
-                ),
-                contentDescription = SVG_DESCRIPTION
-            )
+            Box(
+                modifier = Modifier
+                    .border(2.dp, Color.Black, shape = CircleShape)
+                    .padding(8.dp)
+                    .size(100.dp)
+                    .padding(7.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                Image(
+                    painter = painterResource(
+                        id = configuration.getSVGFile()
+                    ),
+                    contentDescription = SVG_DESCRIPTION
+                )
+            }
         }
     }
 }
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.N)
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun PreviewSmallButton() {
-    Column {
-        SmallButton(SmallButtonConfiguration.ENGLISH)
-        Spacer(modifier = Modifier.padding(5.dp))
-        SmallButton(SmallButtonConfiguration.SPANISH)
+    Scaffold {
+        Column (
+            modifier = Modifier
+                .fillMaxSize()
+                .background(BoneWhite),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ){
+            SmallButton(SmallButtonConfiguration.ENGLISH)
+            Spacer(modifier = Modifier.padding(5.dp))
+            SmallButton(SmallButtonConfiguration.SPANISH)
+        }
     }
+
 }

@@ -13,9 +13,9 @@ fun invalidArgument(){
     println("NOT VALID CONFIGURATION")
 }
 
-const val DEFAULT_INT = -1
 const val DEFAULT_FLOAT = 1F
 const val NAME_APPLICATION = "Kala"
+const val DEFAULT_STRING = "Sample Text"
 
 /*
     SmallButtonComponent
@@ -93,17 +93,39 @@ enum class LargeButtonConfiguration(
 
 enum class NavigationButtonConfiguration(
     private val svgFile: Int,
-    //private val function: () -> Unit, TODO Functions associate to a configuration
+    private val route: String,
 ) {
-    LANGUAGE(R.drawable.ic_united_kingdom_flag), /* TODO Dynamic Icon */
-    HELP(R.drawable.ic_question),
-    OPTIONS(R.drawable.ic_options),
-    BACK(R.drawable.ic_back),
-    HOME(R.drawable.ic_back),
-    NEXT(R.drawable.ic_next);
+    LANGUAGE(
+        R.drawable.ic_united_kingdom_flag,
+        LANGUAGE_SCREEN_ROUTE
+    ), /* TODO Dynamic Icon */
+    HELP(
+        R.drawable.ic_question,
+        HELP_SCREEN_ROUTE,
+    ),
+    OPTIONS(
+        R.drawable.ic_options,
+        OPTION_SCREEN_ROUTE
+    ),
+    BACK(
+        R.drawable.ic_back,
+        "DEFAULT_STRING"
+    ),
+    HOME(
+        R.drawable.ic_home,
+        HOME_SCREEN_ROUTE
+    ),
+    NEXT(
+        R.drawable.ic_next,
+        "" /* TODO */
+    );
 
     fun getSVGFile(): Int{
         return svgFile
+    }
+
+    fun getRoute(): String{
+        return route
     }
 }
 
@@ -135,6 +157,11 @@ enum class HeaderConfiguration(
         Pair(NavigationButtonConfiguration.HELP, 1F),
         1F,
         Pair(NavigationButtonConfiguration.OPTIONS, 0F)
+    ),
+    OPTION_SCREEN(
+        Pair(NavigationButtonConfiguration.HELP, 1F),
+        1F,
+        Pair(NavigationButtonConfiguration.LANGUAGE, 1F)
     );
 
     fun left(): Pair<NavigationButtonConfiguration, Float>{
@@ -216,5 +243,26 @@ enum class TitleConfiguration(private val displayName: String){
 
     override fun toString(): String {
         return displayName
+    }
+}
+
+/*
+    ChartComponent
+ */
+
+enum class ChartConfiguration(
+    private val alpha: Float,
+    private val isHistogram: Boolean,
+){
+    HOME_PAGE(0F, true),
+    REPORT_PAGE(1F, true),
+    DETAILS_PAGE(1F, false);
+
+    fun alpha(): Float{
+        return alpha
+    }
+
+    fun isHistogram(): Boolean{
+        return isHistogram
     }
 }

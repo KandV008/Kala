@@ -1,8 +1,10 @@
 package com.example.kala.screens.components
 
+import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,15 +16,19 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -33,73 +39,85 @@ import androidx.compose.ui.unit.sp
 import com.example.kala.configuration.MediumButtonConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.configuration.invalidArgument
+import com.example.kala.ui.theme.BoneWhite
 
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun MediumButton(configuration: MediumButtonConfiguration) {
-    Button(
-        onClick = {
-            /* TODO */
-            invalidArgument()
-        },
+    Box(
         modifier = Modifier
             .height(150.dp)
-            .width(130.dp),
-        colors = ButtonDefaults.buttonColors(Color.White),
-        shape = RoundedCornerShape(10.dp),
-        contentPadding = PaddingValues(10.dp),
+            .width(130.dp)
+            .shadow(10.dp, shape = RoundedCornerShape(10.dp))
     ) {
-        Column(
+        Button(
+            onClick = {
+                /* TODO */
+                invalidArgument()
+            },
             modifier = Modifier
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+                .height(150.dp)
+                .width(130.dp)
+                .border(2.dp, Color.Black, RoundedCornerShape(10.dp)),
+            colors = ButtonDefaults.buttonColors(Color.White),
+            shape = RoundedCornerShape(10.dp),
+            contentPadding = PaddingValues(10.dp),
         ) {
-            Box(
+            Column(
                 modifier = Modifier
-                    .border(1.dp, Color.Black, shape = CircleShape)
-                    .padding(8.dp)
-                    .clip(CircleShape)
-                    .size(50.dp)
-                    .clip(CircleShape)
-                    .padding(7.dp),
-                contentAlignment = Alignment.Center,
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Image(
-                    painter = painterResource(
-                        id = configuration.getSVGFile()
-                    ),
-                    contentDescription = SVG_DESCRIPTION
+                Box(
+                    modifier = Modifier
+                        .border(2.dp, Color.Black, shape = CircleShape)
+                        .padding(8.dp)
+                        .clip(CircleShape)
+                        .size(50.dp)
+                        .clip(CircleShape)
+                        .padding(7.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Image(
+                        painter = painterResource(
+                            id = configuration.getSVGFile()
+                        ),
+                        contentDescription = SVG_DESCRIPTION
+                    )
+                }
+                Text(
+                    text = configuration.toString(),
+                    color = Color.Black,
+                    fontSize = 25.sp,
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Bold,
                 )
             }
-            Text(
-                text = configuration.toString(),
-                color = Color.Black,
-                fontSize = 25.sp,
-                textAlign = TextAlign.Center,
-                fontWeight = FontWeight.Bold,
-            )
         }
     }
 }
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview
 @Composable
 fun PreviewMediumButton() {
-    Column {
-        MediumButton(MediumButtonConfiguration.SEE_REPORT)
-        Spacer(modifier = Modifier.padding(5.dp))
-        MediumButton(MediumButtonConfiguration.SEE_RECORD)
-        Spacer(modifier = Modifier.padding(5.dp))
-        MediumButton(MediumButtonConfiguration.DELETE)
-        Spacer(modifier = Modifier.padding(5.dp))
-        MediumButton(MediumButtonConfiguration.EDIT)
-        Spacer(modifier = Modifier.padding(5.dp))
-        MediumButton(MediumButtonConfiguration.EXPENSE)
-        Spacer(modifier = Modifier.padding(5.dp))
-        MediumButton(MediumButtonConfiguration.INCOME)
-        Spacer(modifier = Modifier.padding(5.dp))
+    Scaffold {
+        LazyColumn (
+            modifier = Modifier
+                .fillMaxSize()
+                .background(BoneWhite),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ){
+            items(MediumButtonConfiguration.entries.toTypedArray()){
+                    value ->
+                MediumButton(configuration = value)
+                Spacer(modifier = Modifier.padding(5.dp))
+
+            }
+        }
     }
 }
