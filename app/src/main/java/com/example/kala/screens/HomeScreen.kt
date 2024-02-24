@@ -24,8 +24,8 @@ import com.example.kala.configuration.MediumButtonConfiguration
 import com.example.kala.screens.components.Chart
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
-import com.example.kala.screens.components.LargeButton
-import com.example.kala.screens.components.MediumButton
+import com.example.kala.screens.components.buttons.LargeButton
+import com.example.kala.screens.components.buttons.MediumButton
 import com.example.kala.ui.theme.BoneWhite
 
 @RequiresApi(Build.VERSION_CODES.N)

@@ -23,7 +23,7 @@ import com.example.kala.configuration.LargeButtonConfiguration
 import com.example.kala.configuration.TitleConfiguration
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
-import com.example.kala.screens.components.LargeButton
+import com.example.kala.screens.components.buttons.LargeButton
 import com.example.kala.screens.components.Title
 import com.example.kala.ui.theme.BoneWhite
 

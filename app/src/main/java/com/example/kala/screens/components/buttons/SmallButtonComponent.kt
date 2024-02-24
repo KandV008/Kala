@@ -1,4 +1,4 @@
-package com.example.kala.screens.components
+package com.example.kala.screens.components.buttons
 
 import android.annotation.SuppressLint
 import android.os.Build

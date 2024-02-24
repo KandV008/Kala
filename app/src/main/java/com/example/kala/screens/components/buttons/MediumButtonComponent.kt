@@ -1,4 +1,4 @@
-package com.example.kala.screens.components
+package com.example.kala.screens.components.buttons
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -8,11 +8,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -37,18 +36,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.kala.configuration.LargeButtonConfiguration
+import com.example.kala.configuration.MediumButtonConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.configuration.invalidArgument
 import com.example.kala.ui.theme.BoneWhite
 
+
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
-fun LargeButton(configuration: LargeButtonConfiguration) {
+fun MediumButton(configuration: MediumButtonConfiguration) {
     Box(
         modifier = Modifier
-            .height(60.dp)
-            .width(300.dp)
+            .height(150.dp)
+            .width(130.dp)
             .shadow(10.dp, shape = RoundedCornerShape(10.dp))
     ) {
         Button(
@@ -57,34 +57,25 @@ fun LargeButton(configuration: LargeButtonConfiguration) {
                 invalidArgument()
             },
             modifier = Modifier
-                .height(60.dp)
-                .width(300.dp)
+                .height(150.dp)
+                .width(130.dp)
                 .border(2.dp, Color.Black, RoundedCornerShape(10.dp)),
             colors = ButtonDefaults.buttonColors(Color.White),
             shape = RoundedCornerShape(10.dp),
             contentPadding = PaddingValues(10.dp),
-
-            ) {
-            Row(
+        ) {
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    text = configuration.toString(),
-                    color = Color.Black,
-                    fontSize = 28.sp,
-                    textAlign = TextAlign.Justify,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.weight(1f),
-                )
-
                 Box(
                     modifier = Modifier
                         .border(2.dp, Color.Black, shape = CircleShape)
+                        .padding(8.dp)
                         .clip(CircleShape)
-                        .size(40.dp)
+                        .size(50.dp)
                         .clip(CircleShape)
                         .padding(7.dp),
                     contentAlignment = Alignment.Center,
@@ -96,18 +87,23 @@ fun LargeButton(configuration: LargeButtonConfiguration) {
                         contentDescription = SVG_DESCRIPTION
                     )
                 }
-
+                Text(
+                    text = configuration.toString(),
+                    color = Color.Black,
+                    fontSize = 25.sp,
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Bold,
+                )
             }
         }
     }
-
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview
 @Composable
-fun LargeButtonPreview() {
+fun PreviewMediumButton() {
     Scaffold {
         LazyColumn (
             modifier = Modifier
@@ -116,13 +112,12 @@ fun LargeButtonPreview() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ){
-            items(LargeButtonConfiguration.entries.toTypedArray()){
-                value ->
-                    LargeButton(configuration = value)
+            items(MediumButtonConfiguration.entries.toTypedArray()){
+                    value ->
+                MediumButton(configuration = value)
                 Spacer(modifier = Modifier.padding(5.dp))
 
             }
         }
     }
-
 }

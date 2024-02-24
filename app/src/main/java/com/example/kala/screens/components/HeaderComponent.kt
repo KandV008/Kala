@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.kala.configuration.HeaderConfiguration
+import com.example.kala.screens.components.buttons.NavigationButton
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
