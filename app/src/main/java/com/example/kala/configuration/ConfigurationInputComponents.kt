@@ -49,4 +49,8 @@ enum class SmallTextInputConfiguration(
         return svgFile
     }
 
+    fun isPassword(): Boolean{
+        return (this == PASSWORD) || (this == NEW_PASSWORD) || (this == REPEAT_PASSWORD)
+    }
+
 }

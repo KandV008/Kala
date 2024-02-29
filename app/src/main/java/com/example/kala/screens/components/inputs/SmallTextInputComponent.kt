@@ -48,7 +48,7 @@ import com.example.kala.ui.theme.BoneWhite
 fun SmallTextInput(configuration: SmallTextInputConfiguration){
     var textFieldState  by remember { mutableStateOf(configuration.getPlaceholder()) }
     val keyboardOptions = KeyboardOptions.Default.copy(
-        keyboardType = KeyboardType.Number
+        keyboardType = if (configuration.isPassword()) KeyboardType.Password else KeyboardType.Number
     )
 
     Column(
@@ -113,7 +113,7 @@ fun SmallTextInput(configuration: SmallTextInputConfiguration){
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable
-fun PreiewSmallTextInput() {
+fun PreviewSmallTextInput() {
     Scaffold {
         LazyColumn (
             modifier = Modifier
