@@ -65,18 +65,18 @@ enum class MediumButtonConfiguration(
 enum class LargeButtonConfiguration(
     private val displayName: String,
     private val svgFile: Int,
-    //private val function: () -> Unit, TODO Functions associate to a configuration
+    private val route: String,
 ) {
-    ADD_EXCHANGE("Add exchange", R.drawable.ic_exchange),
-    CHANGE_NAME("Change name", R.drawable.ic_account),
-    CHANGE_EMAIL("Change email",R.drawable.ic_email),
-    SET_CURRENCY("Set currency",R.drawable.ic_currency),
-    SIGN_UP("Sign Up", R.drawable.ic_sign_up),
-    LOG_IN("Log In", R.drawable.ic_log_in),
-    LOG_OUT("Log Out", R.drawable.ic_log_out),
-    DELETE_USER("Delete User", R.drawable.ic_delete_account),
-    FORGOT_PASS("Forgot Pass?", R.drawable.ic_question),
-    SEND_REQUEST("Send request", R.drawable.ic_next);
+    ADD_EXCHANGE("Add exchange", R.drawable.ic_exchange, ADD_EXCHANGE_SCREEN_ROUTE),
+    CHANGE_NAME("Change name", R.drawable.ic_account, "" /* TODO */),
+    CHANGE_EMAIL("Change email",R.drawable.ic_email,  "" /* TODO */),
+    SET_CURRENCY("Set currency",R.drawable.ic_currency,  "" /* TODO */),
+    SIGN_UP("Sign Up", R.drawable.ic_sign_up, "" /* TODO */),
+    LOG_IN("Log In", R.drawable.ic_log_in,  "" /* TODO */),
+    LOG_OUT("Log Out", R.drawable.ic_log_out,  "" /* TODO */),
+    DELETE_USER("Delete User", R.drawable.ic_delete_account,  "" /* TODO */),
+    FORGOT_PASS("Forgot Pass?", R.drawable.ic_question,  "" /* TODO */),
+    SEND_REQUEST("Send request", R.drawable.ic_next,  "" /* TODO */);
 
     override fun toString(): String {
         return displayName
@@ -84,6 +84,10 @@ enum class LargeButtonConfiguration(
 
     fun getSVGFile(): Int{
         return svgFile
+    }
+
+    fun getRoute(): String{
+        return route
     }
 }
 

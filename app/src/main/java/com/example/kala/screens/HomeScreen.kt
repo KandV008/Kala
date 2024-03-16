@@ -51,7 +51,7 @@ fun HomeScreen(
             Spacer(modifier = Modifier.padding(50.dp))
             Chart(configuration = ChartConfiguration.HOME_PAGE)
             Spacer(modifier = Modifier.weight(0.5f))
-            HomeScreenBody()
+            HomeScreenBody(navController)
             Spacer(modifier = Modifier.padding(50.dp))
         }
     }
@@ -59,8 +59,13 @@ fun HomeScreen(
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
-fun HomeScreenBody(){
-    LargeButton(configuration = LargeButtonConfiguration.ADD_EXCHANGE)
+fun HomeScreenBody(
+    navController: NavController? = null
+){
+    LargeButton(
+        configuration = LargeButtonConfiguration.ADD_EXCHANGE,
+        navController = navController
+    )
     Spacer(modifier = Modifier.padding(10.dp))
     Row {
         MediumButton(configuration = MediumButtonConfiguration.SEE_REPORT)

@@ -37,14 +37,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.kala.configuration.LargeButtonConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
-import com.example.kala.configuration.invalidArgument
 import com.example.kala.ui.theme.BoneWhite
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
-fun LargeButton(configuration: LargeButtonConfiguration) {
+fun LargeButton(
+    configuration: LargeButtonConfiguration,
+    navController: NavController? = null
+) {
     Box(
         modifier = Modifier
             .height(60.dp)
@@ -53,8 +56,7 @@ fun LargeButton(configuration: LargeButtonConfiguration) {
     ) {
         Button(
             onClick = {
-                /* TODO */
-                invalidArgument()
+                navController?.navigate(route = configuration.getRoute())
             },
             modifier = Modifier
                 .height(60.dp)

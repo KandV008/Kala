@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.kala.screens.AddExchangeScreen
 import com.example.kala.screens.HelpScreen
 import com.example.kala.screens.HomeScreen
 import com.example.kala.screens.LanguageScreen
@@ -27,6 +28,9 @@ fun AppNavigation(){
         }
         composable(route = AppScreens.languageScreen.route){
             LanguageScreen(navController)
+        }
+        composable(route = AppScreens.addExchangeScreen.route){
+            AddExchangeScreen(navController)
         }
 
     }

@@ -28,6 +28,7 @@ import com.example.kala.screens.components.buttons.NavigationButton
 fun Footer(
     configuration: FooterConfiguration,
     navController: NavController? = null,
+    onAdviceTriggered: () -> Unit = {},
 ) {
     Box(
         modifier = Modifier
@@ -55,7 +56,8 @@ fun Footer(
             NavigationButton(
                 configuration = NavigationButtonConfiguration.NEXT,
                 alpha = configuration.right(),
-                navController = navController
+                navController = navController,
+                onAdviceTriggered = onAdviceTriggered,
             )
         }
     }

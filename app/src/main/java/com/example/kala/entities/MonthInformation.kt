@@ -7,8 +7,8 @@ import java.time.LocalDate
 @RequiresApi(Build.VERSION_CODES.O)
 class MonthInformation {
     private val id: String
-    var expensedMoney = 0
-    var incomedMoney = 0
+    var expensedMoney: Double = 0.0
+    var incomedMoney: Double = 0.0
     val summary: ArrayList<MoneyExchange> = ArrayList()
 
     init {

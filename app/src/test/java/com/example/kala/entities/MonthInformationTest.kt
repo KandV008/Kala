@@ -1,8 +1,8 @@
 package com.example.kala.entities
 
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.junit.Assert.*
 
 class MonthInformationTest{
 
@@ -16,7 +16,7 @@ class MonthInformationTest{
             val type: MoneyExchangeType = if (index % 2 == 0) MoneyExchangeType.EXPENSE
                                           else MoneyExchangeType.INCOME
             val scope: MoneyExchangeScope = MoneyExchangeScope.FOOD
-            this.monthInformation.addMoneyExchange(MoneyExchange(index, type, scope))
+            this.monthInformation.addMoneyExchange(MoneyExchange(index.toDouble(), type, scope))
         }
     }
 
@@ -37,13 +37,12 @@ class MonthInformationTest{
 
     @Test
     fun `Delete a MoneyExchange from MonthInformation`(){
-        val example1 = MoneyExchange(2, MoneyExchangeType.EXPENSE, MoneyExchangeScope.FOOD)
+        val example1 = MoneyExchange(2.0, MoneyExchangeType.EXPENSE, MoneyExchangeScope.FOOD)
         var expected = true
         var result = this.monthInformation.deleteMoneyExchange(example1)
         assertEquals(expected, result)
 
-
-        val example2 = MoneyExchange(11, MoneyExchangeType.INCOME, MoneyExchangeScope.OTHER)
+        val example2 = MoneyExchange(11.0, MoneyExchangeType.INCOME, MoneyExchangeScope.OTHER)
         expected = false
         result = this.monthInformation.deleteMoneyExchange(example2)
         assertEquals(expected, result)
