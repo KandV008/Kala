@@ -39,6 +39,7 @@ fun NavigationButton(
     configuration: NavigationButtonConfiguration,
     alpha: Float = DEFAULT_FLOAT,
     navController: NavController? = null,
+    onAdviceTriggered: () -> Unit = {}
 ) {
     Box(
         modifier = Modifier
@@ -50,6 +51,10 @@ fun NavigationButton(
             onClick = {
                 if (NavigationButtonConfiguration.BACK == configuration){
                     navController?.popBackStack()
+                    return@Button
+                }
+                if (NavigationButtonConfiguration.NEXT == configuration){
+                    onAdviceTriggered()
                     return@Button
                 }
                 navController?.navigate(route = configuration.getRoute())

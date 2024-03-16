@@ -28,6 +28,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -39,6 +40,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -52,101 +54,127 @@ import com.example.kala.ui.theme.BoneWhite
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
-fun MenuInput(configuration: MenuInputConfiguration){
+fun MenuInput(
+    configuration: MenuInputConfiguration,
+    valueInput: String,
+    onValueChange: (String) -> Unit
+) {
     var mExpanded by remember { mutableStateOf(false) }
     val options = configuration.getOptions()
-    var mSelectedText by remember { mutableStateOf("") }
-    var mTextFieldSize by remember { mutableStateOf(Size.Zero)}
-    var selectedImageResource: Int = R.drawable.ic_question
+    var mTextFieldSize by remember { mutableStateOf(Size.Zero) }
+    var selectedImageResource by remember { mutableIntStateOf(R.drawable.ic_question) }
 
     val icon = if (mExpanded)
         R.drawable.ic_up_square
     else
         R.drawable.ic_down_square
 
-    Row(
+    Column(
         modifier = Modifier
             .width(300.dp)
-            .height(60.dp)
     ) {
-        Column{
-            OutlinedTextField(
-                value = mSelectedText,
-                onValueChange = { mSelectedText = it },
-                modifier = Modifier
-                    .width(230.dp)
-                    .clip(RoundedCornerShape(10.dp))
-                    .background(Color.White)
-                    .border(2.dp, Color.Black, RoundedCornerShape(10.dp))
-                    .onGloballyPositioned { coordinates ->
-                        mTextFieldSize = coordinates.size.toSize()
+        Text(
+            text = configuration.getLabel(),
+            fontSize = 25.sp,
+            fontWeight = FontWeight.Bold,
+        )
+        Row(
+            modifier = Modifier
+                .width(300.dp)
+                .height(60.dp)
+        ) {
+            Column {
+                OutlinedTextField(
+                    value = valueInput,
+                    onValueChange = onValueChange,
+                    readOnly = true,
+                    modifier = Modifier
+                        .width(230.dp)
+                        .clip(RoundedCornerShape(10.dp))
+                        .background(Color.White)
+                        .border(2.dp, Color.Black, RoundedCornerShape(10.dp))
+                        .onGloballyPositioned { coordinates ->
+                            mTextFieldSize = coordinates.size.toSize()
+                        }
+                        ,
+                    placeholder = {
+                        Text(
+                            text = configuration.getPlaceholder(),
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Gray,
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .clickable { mExpanded = !mExpanded }
+                        )
+                    },
+                    trailingIcon = {
+                        Image(
+                            painter = painterResource(id = icon),
+                            contentDescription = "contentDescription",
+                            modifier = Modifier
+                                .size(35.dp)
+                                .clickable { mExpanded = !mExpanded }
+                        )
                     }
-                ,
-                label = {Text(text = configuration.getLabel(),
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Gray)},
-                trailingIcon = {
-                    Image(painter = painterResource(
-                        id = icon
-                    ),
-                        contentDescription = "contentDescription",
-                        modifier = Modifier
-                            .size(35.dp)
-                            .clickable { mExpanded = !mExpanded })
+                )
 
-                }
-            )
-
-            DropdownMenu(
-                expanded = mExpanded,
-                onDismissRequest = { mExpanded = false },
-                modifier = Modifier
-                    .width(with(LocalDensity.current){
-                        mTextFieldSize.width.toDp()}
-                    )
-                ,
-            ) {
-                options.forEach{
-                        label ->
-                    DropdownMenuItem(
-                        text = { Text(text = label) },
-                        onClick = {
-                            mSelectedText = label
-                            mExpanded = false
-                            selectedImageResource = configuration.getSVG(label)
+                DropdownMenu(
+                    expanded = mExpanded,
+                    onDismissRequest = { mExpanded = false },
+                    modifier = Modifier
+                        .width(with(LocalDensity.current) {
+                            mTextFieldSize.width.toDp()
                         })
+                ) {
+                    options.forEach { label ->
+                        DropdownMenuItem(
+                                text = { Text(
+                                    text = label,
+                                    style = TextStyle(
+                                        fontSize = 20.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        color = Color.Black
+                                    ),
+                                )
+                           },
+                            onClick = {
+                                onValueChange(label)
+                                mExpanded = false
+                                selectedImageResource = configuration.getSVG(label)
+                            }
+                        )
+                    }
                 }
             }
-        }
-        Spacer(modifier = Modifier.size(10.dp))
-        Box(
-            modifier = Modifier
-                .border(2.dp, Color.Black, shape = CircleShape)
-                .size(60.dp)
-                .clip(CircleShape)
-                .background(Color.White)
-                .padding(2.dp)
-                .padding(7.dp)
-            ,
-            contentAlignment = Alignment.Center,
-        ) {
-            Image(
-                painter = painterResource(
-                    id = selectedImageResource
-                ),
-                contentDescription = SVG_DESCRIPTION
-            )
+            Spacer(modifier = Modifier.size(10.dp))
+            Box(
+                modifier = Modifier
+                    .border(2.dp, Color.Black, shape = CircleShape)
+                    .size(60.dp)
+                    .clip(CircleShape)
+                    .background(Color.White)
+                    .padding(2.dp)
+                    .padding(7.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                Image(
+                    painter = painterResource(id = selectedImageResource),
+                    contentDescription = SVG_DESCRIPTION
+                )
+            }
         }
     }
-
 }
+
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable
 fun PreviewMenuInput() {
+    var enumExchange by remember { mutableStateOf("") }
+
     Scaffold {
         LazyColumn (
             modifier = Modifier
@@ -157,7 +185,7 @@ fun PreviewMenuInput() {
         ){
             items(MenuInputConfiguration.entries.toTypedArray()){
                     value ->
-                MenuInput(value)
+                MenuInput(value, enumExchange) { newValue -> enumExchange = newValue }
                 Spacer(modifier = Modifier.padding(5.dp))
             }
         }

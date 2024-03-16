@@ -43,8 +43,7 @@ import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
 
 @Composable
-fun NumberInput(){
-    var textFieldState  by remember { mutableStateOf("XX,XX") }
+fun NumberInput(valueInput: String, onValueChange: (String) -> Unit){
     val keyboardOptions = KeyboardOptions.Default.copy(
         keyboardType = KeyboardType.Number
     )
@@ -64,10 +63,8 @@ fun NumberInput(){
             ,
         ) {
             TextField(
-                value = textFieldState,
-                onValueChange = {
-                    textFieldState = it
-                },
+                value = valueInput,
+                onValueChange = onValueChange,
                 textStyle = TextStyle(
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
@@ -79,6 +76,16 @@ fun NumberInput(){
                     .height(60.dp)
                     .clip(RoundedCornerShape(10.dp))
                     .border(2.dp, Color.Black, RoundedCornerShape(10.dp)),
+                placeholder = {
+                    Text(
+                        text = "0.00",
+                        style = TextStyle(
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Gray
+                        ),
+                    )
+                }
             )
             Spacer(modifier = Modifier.size(10.dp))
             Box(
@@ -115,7 +122,10 @@ fun PreviewNumberInput() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ){
-            NumberInput()
+            var valueExchange by remember { mutableStateOf("0.00") }
+            NumberInput(valueInput = valueExchange) { newValue ->
+                valueExchange = newValue
+            }
         }
     }
 

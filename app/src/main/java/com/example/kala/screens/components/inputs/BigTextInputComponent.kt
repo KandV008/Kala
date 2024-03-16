@@ -33,8 +33,7 @@ import androidx.compose.ui.unit.sp
 import com.example.kala.ui.theme.BoneWhite
 
 @Composable
-fun BigTextInput(){
-    var textFieldState  by remember { mutableStateOf("Details about the exchange") }
+fun BigTextInput(valueInput: String, onValueChange: (String) -> Unit){
     val keyboardOptions = KeyboardOptions.Default.copy(
         keyboardType = KeyboardType.Text
     )
@@ -49,10 +48,8 @@ fun BigTextInput(){
             fontWeight = FontWeight.Bold,
         )
         TextField(
-            value = textFieldState,
-            onValueChange = {
-                textFieldState = it
-            },
+            value = valueInput,
+            onValueChange = onValueChange,
             textStyle = TextStyle(
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
@@ -65,6 +62,16 @@ fun BigTextInput(){
                 .clip(RoundedCornerShape(10.dp))
                 .border(2.dp, Color.Black, RoundedCornerShape(10.dp))
             ,
+            placeholder = {
+                Text(
+                    text = "Enter description...",
+                    style = TextStyle(
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Gray
+                    ),
+                )
+            }
         )
     }
 }
@@ -73,7 +80,9 @@ fun BigTextInput(){
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable
-fun PreiewBigTextInput() {
+fun PreviewBigTextInput() {
+    var descriptionExchange by remember { mutableStateOf("") }
+
     Scaffold {
         Column (
             modifier = Modifier
@@ -82,7 +91,8 @@ fun PreiewBigTextInput() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ){
-            BigTextInput()
+            BigTextInput(valueInput = descriptionExchange)
+            { newValue -> descriptionExchange = newValue }
         }
     }
 

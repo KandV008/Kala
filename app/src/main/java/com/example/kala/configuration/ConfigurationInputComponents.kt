@@ -65,10 +65,12 @@ enum class SmallTextInputConfiguration(
 
 enum class MenuInputConfiguration(
     private val label: String,
+    private val placeholder: String,
     private val options: List<String>,
     private val svgMap: Map<String, Int>,
 ){
     SCOPE(
+        "Scope of the exchange",
         "Select Scope",
         listOf(
             MoneyExchangeScope.FOOD.toString(),
@@ -86,6 +88,7 @@ enum class MenuInputConfiguration(
         )
     ),
     TYPE(
+        "Type of the exchange",
         "Select Type",
         listOf(
             MoneyExchangeType.INCOME.toString(),
@@ -97,12 +100,16 @@ enum class MenuInputConfiguration(
             )
     );
 
+    fun getLabel(): String{
+        return label
+    }
+
     fun getOptions(): List<String>{
         return options
     }
 
-    fun getLabel(): String{
-        return label
+    fun getPlaceholder(): String{
+        return placeholder
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
