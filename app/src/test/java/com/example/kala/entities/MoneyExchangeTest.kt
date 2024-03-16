@@ -1,8 +1,10 @@
 package com.example.kala.entities
 
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
-import org.junit.Assert.*
+
 class MoneyExchangeTest{
 
     private lateinit var moneyExchange: MoneyExchange
@@ -10,7 +12,7 @@ class MoneyExchangeTest{
 
     @Before
     fun onBefore(){
-        val value = 30
+        val value = 30.0
         val type: MoneyExchangeType = MoneyExchangeType.EXPENSE
         val scope: MoneyExchangeScope = MoneyExchangeScope.FOOD
         val description = "Compra semanal"
@@ -22,7 +24,7 @@ class MoneyExchangeTest{
 
     @Test
     fun `Create a New Money Exchange`(){
-        val value = 15
+        val value = 15.0
         val type: MoneyExchangeType = MoneyExchangeType.INCOME
         val scope: MoneyExchangeScope = MoneyExchangeScope.OTHER
         val newMoneyExchange = MoneyExchange(value, type, scope)
@@ -31,7 +33,7 @@ class MoneyExchangeTest{
 
     @Test
     fun  `Read a Money Exchange`(){
-        val expectedValue = 30
+        val expectedValue = 30.0
         assertEquals(expectedValue, moneyExchange.value)
 
         val expectedType: MoneyExchangeType = MoneyExchangeType.EXPENSE
@@ -46,7 +48,7 @@ class MoneyExchangeTest{
 
     @Test
     fun `Edit a Money Exchange`(){
-        val newValue = 50
+        val newValue = 50.0
         moneyExchange.value = newValue
         val expectedValue = 50
         assertEquals(expectedValue, moneyExchange.value)
