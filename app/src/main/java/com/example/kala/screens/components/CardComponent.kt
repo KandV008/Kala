@@ -24,6 +24,11 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -45,7 +50,7 @@ import com.example.kala.ui.theme.BoneWhite
 @Composable
 fun Card(
     moneyExchange: MoneyExchange,
-    onAdviceTriggered: () -> Unit = {}
+    onAdviceTriggered: (Int, String) -> Unit
 ){
     val svgFile = MoneyExchangeScope.getSVGFile(moneyExchange.scope)
     val valueSymbol = if (moneyExchange.type == MoneyExchangeType.EXPENSE) "-" else "+"
@@ -59,7 +64,7 @@ fun Card(
     ) {
         Button(
             onClick = {
-                onAdviceTriggered()
+                onAdviceTriggered(moneyExchange.id, moneyExchange.monthAssociated)
             },
             colors = ButtonDefaults.buttonColors(Color.White),
             modifier = Modifier
@@ -143,7 +148,18 @@ fun Card(
 @Preview(showBackground = true)
 @Composable
 fun CardPreview(){
-    var onAdvice = false;
+    var adviceTriggered by remember { mutableStateOf(false) }
+    var cardSelected by remember {
+        mutableIntStateOf(-1)
+    }
+    var monthSelected by remember {
+        mutableStateOf("")
+    }
+    val onAdviceTriggered: (Int, String) -> Unit = { idExchange, idMonth ->
+        adviceTriggered = true
+        cardSelected = idExchange
+        monthSelected = idMonth
+    }
     val value = 30.0
     val type: MoneyExchangeType = MoneyExchangeType.EXPENSE
     val scope: MoneyExchangeScope = MoneyExchangeScope.FOOD
@@ -158,7 +174,7 @@ fun CardPreview(){
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ){
-            Card(moneyExchange, ){ onAdvice = true}
+            Card(moneyExchange, onAdviceTriggered)
         }
     }
 }

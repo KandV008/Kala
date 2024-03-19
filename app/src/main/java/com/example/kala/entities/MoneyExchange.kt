@@ -11,6 +11,9 @@ data class MoneyExchange(
     val description: String? = null,
     val date: LocalDateTime = LocalDateTime.now()
 ) {
+    var id: Int = -1
+    var monthAssociated: String = ""
+
     fun getFormattedDate(): String {
         val formatter = DateTimeFormatter.ofPattern("dd MMM yy", Locale.ENGLISH)
         return date.format(formatter)

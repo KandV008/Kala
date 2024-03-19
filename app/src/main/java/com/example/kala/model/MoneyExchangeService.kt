@@ -13,4 +13,9 @@ class MoneyExchangeService {
 
         MoneyExchangeStorage.saveMoneyExchange(moneyExchange)
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getAllMoneyExchanges(): List<MoneyExchange> {
+        return MoneyExchangeStorage.getAllMoneyExchange();
+    }
 }

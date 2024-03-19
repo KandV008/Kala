@@ -34,8 +34,8 @@ import com.example.kala.screens.components.inputs.MenuInput
 import com.example.kala.screens.components.inputs.NumberInput
 import com.example.kala.ui.theme.BoneWhite
 
+@RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun AddExchangeScreen(
     navController: NavController? = null
@@ -108,7 +108,7 @@ fun AddExchangeScreen(
 }
 
 
-@RequiresApi(Build.VERSION_CODES.N)
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
 fun AddExchangeScreenPreview(){

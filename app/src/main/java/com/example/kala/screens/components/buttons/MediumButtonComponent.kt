@@ -38,13 +38,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kala.configuration.MediumButtonConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
-import com.example.kala.configuration.invalidArgument
 import com.example.kala.ui.theme.BoneWhite
 
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
-fun MediumButton(configuration: MediumButtonConfiguration) {
+fun MediumButton(
+    configuration: MediumButtonConfiguration,
+    onAdviceTriggered: () -> Unit
+) {
     Box(
         modifier = Modifier
             .height(150.dp)
@@ -53,8 +55,7 @@ fun MediumButton(configuration: MediumButtonConfiguration) {
     ) {
         Button(
             onClick = {
-                /* TODO */
-                invalidArgument()
+                      onAdviceTriggered()
             },
             modifier = Modifier
                 .height(150.dp)
@@ -114,7 +115,7 @@ fun PreviewMediumButton() {
         ){
             items(MediumButtonConfiguration.entries.toTypedArray()){
                     value ->
-                MediumButton(configuration = value)
+                MediumButton(configuration = value, onAdviceTriggered = {})
                 Spacer(modifier = Modifier.padding(5.dp))
 
             }
