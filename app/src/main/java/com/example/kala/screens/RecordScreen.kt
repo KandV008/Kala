@@ -77,6 +77,7 @@ fun RecordScreen(
         ) {
             Spacer(modifier = Modifier.padding(50.dp))
             Title(configuration = TitleConfiguration.RECORD)
+            Spacer(modifier = Modifier.padding(10.dp))
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()

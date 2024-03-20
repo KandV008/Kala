@@ -18,4 +18,16 @@ class MoneyExchangeService {
     fun getAllMoneyExchanges(): List<MoneyExchange> {
         return MoneyExchangeStorage.getAllMoneyExchange();
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getMoneyExchange(monthAssociated: String, exchange: Int): MoneyExchange {
+        val moneyExchange = MoneyExchangeStorage.getMoneyExchange(monthAssociated, exchange)
+
+        if (moneyExchange != null) {
+            return moneyExchange.copy()
+        }
+
+        // TODO Handler error
+        throw IllegalAccessError()
+    }
 }

@@ -45,7 +45,7 @@ enum class MediumButtonConfiguration(
     SEE_REPORT("See report", R.drawable.ic_see_report),
     SEE_RECORD("See record", R.drawable.ic_see_record),
     DELETE("Delete Card",R.drawable.ic_delete),
-    EDIT("Edit Card",R.drawable.ic_edit),
+    EDIT("Edit\nCard",R.drawable.ic_edit),
     EXPENSE("Expense Details", R.drawable.ic_expense),
     INCOME("Income Details", R.drawable.ic_income);
 

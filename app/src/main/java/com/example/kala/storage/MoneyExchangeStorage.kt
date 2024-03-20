@@ -3,10 +3,23 @@ package com.example.kala.storage
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.kala.entities.MoneyExchange
+import com.example.kala.entities.MoneyExchangeScope
+import com.example.kala.entities.MoneyExchangeType
 import com.example.kala.entities.MonthInformation
 
+@RequiresApi(Build.VERSION_CODES.O)
 object MoneyExchangeStorage {
+    @RequiresApi(Build.VERSION_CODES.O)
     private val monthInformationMap: MutableMap<String, MonthInformation> = mutableMapOf()
+    init {
+        val exampleMonthInformation = MonthInformation()
+        val exampleMoneyExchange =
+            MoneyExchange(10.0, MoneyExchangeType.EXPENSE, MoneyExchangeScope.FOOD, "example")
+        exampleMoneyExchange.id = 0
+        exampleMoneyExchange.monthAssociated = "example"
+        exampleMonthInformation.summary.add(exampleMoneyExchange)
+        this.monthInformationMap["example"] = exampleMonthInformation
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun saveMoneyExchange(moneyExchange: MoneyExchange): MonthInformation? {
@@ -39,5 +52,10 @@ object MoneyExchangeStorage {
         }
 
         return list
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getMoneyExchange(monthAssociated: String, exchange: Int): MoneyExchange? {
+        return this.monthInformationMap[monthAssociated]?.summary?.get(exchange)
     }
 }
