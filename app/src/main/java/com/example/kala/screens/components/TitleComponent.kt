@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,15 +20,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kala.configuration.TitleConfiguration
 
+/**
+ * Composable function for rendering a title component.
+ *
+ * @param configuration The configuration data for the title.
+ */
 @Composable
-fun Title(configuration: TitleConfiguration){
-    Box(modifier = Modifier
-        .height(50.dp)
-        .width(280.dp)
-        .border(2.dp, Color.Black)
-        .background(Color.White),
+fun Title(configuration: TitleConfiguration) {
+    Box(
+        modifier = Modifier
+            .height(50.dp)
+            .width(280.dp)
+            .border(2.dp, Color.Black)
+            .background(Color.White),
         contentAlignment = Alignment.Center,
-        ){
+    ) {
         Text(
             text = configuration.toString(),
             fontSize = 35.sp,
@@ -39,9 +44,13 @@ fun Title(configuration: TitleConfiguration){
     }
 }
 
+/**
+ * Composable function for previewing the Title component.
+ * This preview function is used for testing and visualizing the Title component.
+ */
 @Preview
 @Composable
-fun TitlePreview(){
+fun TitlePreview() {
     Column {
         Title(TitleConfiguration.RECOVERY_PASS)
         Spacer(modifier = Modifier.padding(5.dp))

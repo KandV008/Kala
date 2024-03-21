@@ -46,7 +46,13 @@ import com.example.kala.entities.MoneyExchangeScope
 import com.example.kala.entities.MoneyExchangeType
 import com.example.kala.ui.theme.BoneWhite
 
-@RequiresApi(Build.VERSION_CODES.N)
+/**
+ * Composable function for rendering a card representing a money exchange item.
+ *
+ * @param moneyExchange The money exchange item to display.
+ * @param onAdviceTriggered Callback function invoked when the advice is triggered.
+ */
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Card(
     moneyExchange: MoneyExchange,
@@ -56,6 +62,7 @@ fun Card(
     val valueSymbol = if (moneyExchange.type == MoneyExchangeType.EXPENSE) "-" else "+"
     val valueColor = if (moneyExchange.type == MoneyExchangeType.EXPENSE) Color.Red else Color.Green
     val valueText = valueSymbol + moneyExchange.getFormattedValue() + "€" //TODO € should be dynamic
+
     Box(
         modifier = Modifier
             .height(100.dp)
@@ -86,8 +93,7 @@ fun Card(
                         color = valueColor,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(50.dp)
-                        ,
+                            .height(50.dp),
                         textAlign = TextAlign.Center,
                         fontWeight = FontWeight.Bold,
                         fontSize = 30.sp,
@@ -95,9 +101,7 @@ fun Card(
                     Text(
                         text = moneyExchange.getFormattedDate(),
                         color = Color.Black,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                        ,
+                        modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp,
@@ -106,8 +110,7 @@ fun Card(
 
                 Column(
                     modifier = Modifier
-                        .width(140.dp)
-                    ,
+                        .width(140.dp),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
@@ -117,8 +120,7 @@ fun Card(
                             .size(50.dp)
                             .clip(CircleShape)
                             .background(Color.White)
-                            .padding(5.dp)
-                        ,
+                            .padding(5.dp),
                         contentAlignment = Alignment.Center,
                     ) {
                         Image(
@@ -130,40 +132,43 @@ fun Card(
                     Text(
                         text = moneyExchange.scope.toString(),
                         color = Color.Black,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                        ,
+                        modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp,
-                        )
+                    )
                 }
             }
         }
     }
 }
 
+/**
+ * Composable function for rendering a preview of the Card component.
+ * This preview function is used for testing and visualizing the Card component.
+ */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@RequiresApi(Build.VERSION_CODES.N)
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
 fun CardPreview(){
+    // Initializing state variables
     var adviceTriggered by remember { mutableStateOf(false) }
-    var cardSelected by remember {
-        mutableIntStateOf(-1)
-    }
-    var monthSelected by remember {
-        mutableStateOf("")
-    }
+    var cardSelected by remember { mutableIntStateOf(-1) }
+    var monthSelected by remember { mutableStateOf("") }
+
+    // Callback function for when advice is triggered
     val onAdviceTriggered: (Int, String) -> Unit = { idExchange, idMonth ->
         adviceTriggered = true
         cardSelected = idExchange
         monthSelected = idMonth
     }
+
+    // Sample data for the money exchange
     val value = 30.0
     val type: MoneyExchangeType = MoneyExchangeType.EXPENSE
     val scope: MoneyExchangeScope = MoneyExchangeScope.FOOD
-    val description = "Compra semanal"
+    val description = "Weekly purchase"
     val moneyExchange = MoneyExchange(value, type, scope, description)
 
     Scaffold {

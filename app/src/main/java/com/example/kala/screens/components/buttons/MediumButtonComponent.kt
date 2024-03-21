@@ -40,7 +40,12 @@ import com.example.kala.configuration.MediumButtonConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
 
-
+/**
+ * Composable function for rendering a medium-sized button with customizable configuration.
+ *
+ * @param configuration The configuration for the medium-sized button.
+ * @param onAdviceTriggered Callback function to be executed when the button is clicked.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun MediumButton(
@@ -55,7 +60,7 @@ fun MediumButton(
     ) {
         Button(
             onClick = {
-                      onAdviceTriggered()
+                onAdviceTriggered()
             },
             modifier = Modifier
                 .height(150.dp)
@@ -100,6 +105,10 @@ fun MediumButton(
     }
 }
 
+/**
+ * Composable function for rendering a preview of the MediumButton component.
+ * This preview function is used for testing and visualizing the MediumButton component.
+ */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview

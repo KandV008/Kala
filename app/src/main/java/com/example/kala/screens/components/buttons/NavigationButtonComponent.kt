@@ -33,6 +33,14 @@ import com.example.kala.configuration.NavigationButtonConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
 
+/**
+ * Composable function for rendering a navigation button with customizable configuration.
+ *
+ * @param configuration The configuration for the navigation button.
+ * @param alpha The alpha value to control the transparency of the button.
+ * @param navController The navigation controller used for navigating to a different screen.
+ * @param onAdviceTriggered Callback function to be executed when the button is clicked.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun NavigationButton(
@@ -46,7 +54,7 @@ fun NavigationButton(
             .size(60.dp)
             .alpha(alpha)
             .shadow(10.dp, shape = RoundedCornerShape(10.dp))
-            ){
+    ){
         Button(
             onClick = {
                 if (NavigationButtonConfiguration.BACK == configuration){
@@ -77,6 +85,10 @@ fun NavigationButton(
     }
 }
 
+/**
+ * Composable function for rendering a preview of the NavigationButton component.
+ * This preview function is used for testing and visualizing the NavigationButton component.
+ */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview

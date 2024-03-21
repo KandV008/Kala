@@ -44,6 +44,11 @@ import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.configuration.SmallTextInputConfiguration
 import com.example.kala.ui.theme.BoneWhite
 
+/**
+ * Composable function for rendering a small text input field.
+ *
+ * @param configuration The configuration for the small text input.
+ */
 @Composable
 fun SmallTextInput(configuration: SmallTextInputConfiguration){
     var textFieldState  by remember { mutableStateOf(configuration.getPlaceholder()) }
@@ -104,11 +109,13 @@ fun SmallTextInput(configuration: SmallTextInputConfiguration){
                 )
             }
         }
-
-
     }
 }
 
+/**
+ * Composable function for rendering a preview of the SmallTextInput component.
+ * This preview function is used for testing and visualizing the SmallTextInput component.
+ */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
@@ -129,5 +136,4 @@ fun PreviewSmallTextInput() {
             }
         }
     }
-
 }

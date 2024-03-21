@@ -27,12 +27,18 @@ import androidx.navigation.NavController
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.screens.components.buttons.NavigationButton
 
+/**
+ * Composable function for rendering the header component.
+ *
+ * @param configuration The configuration data for the header.
+ * @param navController The navigation controller to handle navigation actions.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun Header(
     configuration: HeaderConfiguration,
     navController: NavController? = null,
-    ) {
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -41,8 +47,7 @@ fun Header(
             .padding(30.dp, 10.dp)
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
@@ -57,18 +62,21 @@ fun Header(
                 fontSize = 34.sp,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier
-                    .alpha(configuration.center())
+                modifier = Modifier.alpha(configuration.center())
             )
             NavigationButton(
                 configuration = configuration.right().first,
                 alpha = configuration.right().second,
                 navController = navController,
-                )
+            )
         }
     }
 }
 
+/**
+ * Composable function for previewing the Header component.
+ * This preview function is used for testing and visualizing the Header component.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview
 @Composable

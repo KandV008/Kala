@@ -46,6 +46,11 @@ import com.example.kala.ui.theme.Green0
 import com.example.kala.ui.theme.Red0
 import com.example.kala.ui.theme.Yellow0
 
+/**
+ * Composable function for rendering a chart based on the provided configuration.
+ *
+ * @param configuration The configuration data for the chart.
+ */
 @Composable
 fun Chart(configuration: ChartConfiguration){
     Box(
@@ -53,7 +58,6 @@ fun Chart(configuration: ChartConfiguration){
             .height(370.dp)
             .width(320.dp)
             .shadow(10.dp, shape = RoundedCornerShape(10.dp))
-        ,
     ){
         Column(
             modifier = Modifier
@@ -62,8 +66,7 @@ fun Chart(configuration: ChartConfiguration){
                 .clip(RoundedCornerShape(10.dp))
                 .background(Color.White)
                 .border(2.dp, Color.Black, RoundedCornerShape(10.dp))
-                .padding(20.dp)
-            ,
+                .padding(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             ChartHeader(configuration)
@@ -75,16 +78,21 @@ fun Chart(configuration: ChartConfiguration){
     }
 }
 
+/**
+ * Composable function for rendering the header of the chart.
+ *
+ * @param configuration The configuration data for the chart.
+ */
 @Composable
 fun ChartHeader(configuration: ChartConfiguration){
     Row(
         modifier = Modifier
             .height(50.dp)
-            .width(250.dp)
-        ,
+            .width(250.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
+        // Button for navigating to previous data
         Box(
             modifier = Modifier
                 .alpha(configuration.alpha())
@@ -99,10 +107,8 @@ fun ChartHeader(configuration: ChartConfiguration){
                 },
                 colors = ButtonDefaults.buttonColors(Color.White),
                 shape = CircleShape,
-                modifier = Modifier
-                    .size(40.dp)
-                ,
-                ) {
+                modifier = Modifier.size(40.dp)
+            ) {
                 Image(
                     painter = painterResource(
                         id = R.drawable.ic_previous
@@ -118,6 +124,7 @@ fun ChartHeader(configuration: ChartConfiguration){
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
         )
+        // Button for navigating to next data
         Box(
             modifier = Modifier
                 .alpha(configuration.alpha())
@@ -132,33 +139,40 @@ fun ChartHeader(configuration: ChartConfiguration){
                 },
                 colors = ButtonDefaults.buttonColors(Color.White),
                 shape = CircleShape,
-                modifier = Modifier
-                    .size(40.dp)
-                ,
+                modifier = Modifier.size(40.dp)
             ) {
                 Image(
                     painter = painterResource(
                         id = R.drawable.ic_succesor
                     ),
-                    contentDescription = SVG_DESCRIPTION,
+                    contentDescription = SVG_DESCRIPTION
                 )
             }
         }
     }
 }
 
+/**
+ * Composable function for rendering the body of the chart.
+ *
+ * @param configuration The configuration data for the chart.
+ */
 @Composable
 fun ChartBody(configuration: ChartConfiguration){
     /* TODO */
 }
 
+/**
+ * Composable function for rendering the footer of the chart.
+ *
+ * @param configuration The configuration data for the chart.
+ */
 @Composable
 fun ChartFooter(configuration: ChartConfiguration){
     Row(
         modifier = Modifier
             .height(80.dp)
-            .width(300.dp)
-        ,
+            .width(300.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         ChartInfo(title = "Income", value = "+185", color = Green0)
@@ -167,16 +181,22 @@ fun ChartFooter(configuration: ChartConfiguration){
     }
 }
 
+/**
+ * Composable function for rendering chart information.
+ *
+ * @param title The title of the chart information.
+ * @param value The value of the chart information.
+ * @param color The color associated with the chart information.
+ */
 @Composable
 fun ChartInfo(title: String, value: String, color: Color){
     Column (
         modifier = Modifier
             .height(80.dp)
-            .width(90.dp)
-        ,
+            .width(90.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
-        ){
+    ){
         Text(
             text = title,
             color = color,
@@ -194,6 +214,10 @@ fun ChartInfo(title: String, value: String, color: Color){
     }
 }
 
+/**
+ * Composable function for previewing the Chart component.
+ * This preview function is used for testing and visualizing the Chart component.
+ */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview
@@ -208,11 +232,10 @@ fun ChartPreview() {
             verticalArrangement = Arrangement.Center,
         ){
             items(ChartConfiguration.entries.toTypedArray()){
-                value ->
-                    Chart(configuration = value)
-                    Spacer(modifier = Modifier.padding(10.dp))
+                    value ->
+                Chart(configuration = value)
+                Spacer(modifier = Modifier.padding(10.dp))
             }
         }
     }
-
 }

@@ -23,6 +23,13 @@ import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.NavigationButtonConfiguration
 import com.example.kala.screens.components.buttons.NavigationButton
 
+/**
+ * Composable function for rendering the footer component.
+ *
+ * @param configuration The configuration data for the footer.
+ * @param navController The navigation controller to handle navigation actions.
+ * @param onAdviceTriggered The callback for handling advice triggered event.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun Footer(
@@ -38,8 +45,7 @@ fun Footer(
             .padding(30.dp, 10.dp),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
@@ -63,6 +69,10 @@ fun Footer(
     }
 }
 
+/**
+ * Composable function for previewing the Footer component.
+ * This preview function is used for testing and visualizing the Footer component.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview
 @Composable
