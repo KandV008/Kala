@@ -34,6 +34,11 @@ import com.example.kala.screens.components.inputs.MenuInput
 import com.example.kala.screens.components.inputs.NumberInput
 import com.example.kala.ui.theme.BoneWhite
 
+/**
+ * Composable function for rendering the Add Exchange screen.
+ *
+ * @param navController The navigation controller for navigating between screens.
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -46,20 +51,19 @@ fun AddExchangeScreen(
     val onAdviceTriggered = {
         adviceTriggered = true
     }
-    var valueExchange by remember { mutableStateOf("") }
-    var typeExchange by remember { mutableStateOf("") }
-    var scopeExchange by remember { mutableStateOf("") }
-    var descriptionExchange by remember { mutableStateOf("") }
+    val valueExchange by remember { mutableStateOf("") }
+    val typeExchange by remember { mutableStateOf("") }
+    val scopeExchange by remember { mutableStateOf("") }
+    val descriptionExchange by remember { mutableStateOf("") }
 
     fun validateForm(): Boolean{
         val valueExchangeValidation = valueExchange.toDouble() > 0
-        val typeExchangeValidation = typeExchange != ""
-        val scopeExchangeValidation = scopeExchange != ""
+        val typeExchangeValidation = typeExchange.isNotBlank()
+        val scopeExchangeValidation = scopeExchange.isNotBlank()
         return valueExchangeValidation && typeExchangeValidation && scopeExchangeValidation
     }
 
     if (adviceTriggered && validateForm()) {
-        // TODO Alert the wrong text fields
         val newMoneyExchange = MoneyExchange(valueExchange.toDouble(), typeExchange, scopeExchange, descriptionExchange)
         moneyExchangeService.addMoneyExchange(newMoneyExchange)
         navController?.navigate(route = HOME_SCREEN_ROUTE)
@@ -83,34 +87,62 @@ fun AddExchangeScreen(
             Title(configuration = TitleConfiguration.ADD_EXCHANGE)
 
             Spacer(modifier = Modifier.padding(15.dp))
-            NumberInput(valueInput = valueExchange)
-            { newValue -> valueExchange = newValue }
-
-            Spacer(modifier = Modifier.padding(10.dp))
-            MenuInput(
-                configuration = MenuInputConfiguration.TYPE,
-                valueInput = typeExchange)
-            { newValue -> typeExchange = newValue }
-
-            Spacer(modifier = Modifier.padding(10.dp))
-            MenuInput(
-                configuration = MenuInputConfiguration.SCOPE,
-                valueInput = scopeExchange
-            ){ newValue -> scopeExchange = newValue }
-
-            Spacer(modifier = Modifier.padding(10.dp))
-            BigTextInput(valueInput = descriptionExchange)
-            { newValue -> descriptionExchange = newValue }
+            MoneyExchangeForm(valueExchange, typeExchange, scopeExchange, descriptionExchange)
 
             Spacer(modifier = Modifier.padding(50.dp))
         }
     }
 }
 
+/**
+ * Composable function for rendering the form for entering money exchange details.
+ *
+ * @param valueExchange The value of the exchange.
+ * @param typeExchange The type of the exchange.
+ * @param scopeExchange The scope of the exchange.
+ * @param descriptionExchange The description of the exchange.
+ */
+@RequiresApi(Build.VERSION_CODES.N)
+@Composable
+private fun MoneyExchangeForm(
+    valueExchange: String,
+    typeExchange: String,
+    scopeExchange: String,
+    descriptionExchange: String
+) {
+    var valueExchange1 = valueExchange
+    var typeExchange1 = typeExchange
+    var scopeExchange1 = scopeExchange
+    var descriptionExchange1 = descriptionExchange
+    NumberInput(valueInput = valueExchange1)
+    { newValue -> valueExchange1 = newValue }
 
+    Spacer(modifier = Modifier.padding(10.dp))
+    MenuInput(
+        configuration = MenuInputConfiguration.TYPE,
+        valueInput = typeExchange1
+    )
+    { newValue -> typeExchange1 = newValue }
+
+    Spacer(modifier = Modifier.padding(10.dp))
+    MenuInput(
+        configuration = MenuInputConfiguration.SCOPE,
+        valueInput = scopeExchange1
+    ) { newValue -> scopeExchange1 = newValue }
+
+    Spacer(modifier = Modifier.padding(10.dp))
+    BigTextInput(valueInput = descriptionExchange1)
+    { newValue -> descriptionExchange1 = newValue }
+}
+
+/**
+ * Composable function for previewing the Add Exchange screen.
+ * This preview function is used for testing and visualizing the Add Exchange screen.
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
 fun AddExchangeScreenPreview(){
     AddExchangeScreen()
 }
+

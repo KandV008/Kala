@@ -22,10 +22,15 @@ import com.example.kala.configuration.SmallButtonConfiguration
 import com.example.kala.configuration.TitleConfiguration
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
-import com.example.kala.screens.components.buttons.SmallButton
 import com.example.kala.screens.components.Title
+import com.example.kala.screens.components.buttons.SmallButton
 import com.example.kala.ui.theme.BoneWhite
 
+/**
+ * Composable function for rendering the Language screen.
+ *
+ * @param navController The navigation controller for navigating between screens.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -54,6 +59,9 @@ fun LanguageScreen(navController: NavController? = null){
     }
 }
 
+/**
+ * Composable function for rendering the body of the Language screen.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun LanguageScreenBody(){
@@ -64,6 +72,9 @@ fun LanguageScreenBody(){
     }
 }
 
+/**
+ * Preview function for testing and visualizing the Language screen.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable

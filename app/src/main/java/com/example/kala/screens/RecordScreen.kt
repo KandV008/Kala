@@ -35,6 +35,11 @@ import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.Title
 import com.example.kala.ui.theme.BoneWhite
 
+/**
+ * Composable function for rendering the Record screen.
+ *
+ * @param navController The navigation controller for navigating between screens.
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -77,25 +82,38 @@ fun RecordScreen(
         ) {
             Spacer(modifier = Modifier.padding(50.dp))
             Title(configuration = TitleConfiguration.RECORD)
-            Spacer(modifier = Modifier.padding(10.dp))
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                ,
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
-            ) {
-                items(moneyExchangeList){
-                        value ->
-                    Card(value, onAdviceTriggered)
-                    Spacer(modifier = Modifier.padding(5.dp))
-                }
-            }
+            RecordBody(moneyExchangeList, onAdviceTriggered)
             Spacer(modifier = Modifier.padding(50.dp))
         }
     }
 }
 
+/**
+ * Composable function for rendering the body content of the Record screen.
+ */
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
+private fun RecordBody(
+    moneyExchangeList: List<MoneyExchange>,
+    onAdviceTriggered: (Int, String) -> Unit
+) {
+    Spacer(modifier = Modifier.padding(10.dp))
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+    ) {
+        items(moneyExchangeList) { value ->
+            Card(value, onAdviceTriggered)
+            Spacer(modifier = Modifier.padding(5.dp))
+        }
+    }
+}
+
+/**
+ * Preview function for testing and visualizing the Record screen.
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable

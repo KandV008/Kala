@@ -33,6 +33,11 @@ import com.example.kala.screens.components.buttons.LargeButton
 import com.example.kala.screens.components.buttons.MediumButton
 import com.example.kala.ui.theme.BoneWhite
 
+/**
+ * Composable function for rendering the Home screen.
+ *
+ * @param navController The navigation controller for navigating between screens.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -62,6 +67,11 @@ fun HomeScreen(
     }
 }
 
+/**
+ * Composable function for rendering the body of the Home screen.
+ *
+ * @param navController The navigation controller for navigating between screens.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun HomeScreenBody(
@@ -73,14 +83,14 @@ fun HomeScreenBody(
     val onLeftTriggered = {
         leftButtonTriggered = true
     }
-    var rigthButtonTriggered by remember {
+    var rightButtonTriggered by remember {
         mutableStateOf(false)
     }
-    val onRigthTriggered = {
-        rigthButtonTriggered = true
+    val onRightTriggered = {
+        rightButtonTriggered = true
     }
 
-    if (rigthButtonTriggered){
+    if (rightButtonTriggered){
         navController?.navigate(route = RECORD_SCREEN_ROUTE)
     }
 
@@ -96,13 +106,18 @@ fun HomeScreenBody(
     Row {
         MediumButton(configuration = MediumButtonConfiguration.SEE_REPORT, onLeftTriggered)
         Spacer(modifier = Modifier.padding(10.dp))
-        MediumButton(configuration = MediumButtonConfiguration.SEE_RECORD, onRigthTriggered)
+        MediumButton(configuration = MediumButtonConfiguration.SEE_RECORD, onRightTriggered)
     }
 }
 
+/**
+ * Composable function for previewing the Home screen.
+ * This preview function is used for testing and visualizing the Home screen.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview(){
     HomeScreen()
 }
+

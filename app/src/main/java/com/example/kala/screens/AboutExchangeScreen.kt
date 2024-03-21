@@ -232,6 +232,7 @@ private fun ScopeSection(moneyExchange: MoneyExchange, svgFile: Int) {
  *
  * @param moneyExchange The money exchange object.
  */
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 private fun DateSection(moneyExchange: MoneyExchange) {
     Box(
