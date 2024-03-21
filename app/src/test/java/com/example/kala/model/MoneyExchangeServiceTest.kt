@@ -3,15 +3,22 @@ package com.example.kala.model
 import com.example.kala.entities.MoneyExchange
 import com.example.kala.entities.MoneyExchangeScope
 import com.example.kala.entities.MoneyExchangeType
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 
+/**
+ * Unit tests for MoneyExchangeService class.
+ */
 class MoneyExchangeServiceTest {
 
     private lateinit var moneyExchange: MoneyExchange
     private lateinit var service: MoneyExchangeService
 
-
+    /**
+     * Initializes test data before each test.
+     */
     @Before
     fun onBefore(){
         val value = 30.0
@@ -22,9 +29,35 @@ class MoneyExchangeServiceTest {
         service = MoneyExchangeService()
     }
 
+    /**
+     * Test case for adding a money exchange.
+     */
     @Test
     fun addMoneyExchange() {
         service.addMoneyExchange(moneyExchange)
         assert(true)
+    }
+
+    /**
+     * Test case for getting all money exchanges.
+     */
+    @Test
+    fun getAllMoneyExchanges() {
+        val expected = 1
+        val allMoneyExchanges = service.getAllMoneyExchanges()
+        val result = allMoneyExchanges.size
+        assertEquals(expected, result)
+    }
+
+    /**
+     * Test case for getting a specific money exchange.
+     */
+    @Test
+    fun getMoneyExchange() {
+        val idMonth = "example"
+        val idExchange = 0
+        val result = service.getMoneyExchange(idMonth, idExchange)
+
+        assertNotNull(result)
     }
 }
