@@ -4,10 +4,19 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.kala.R
 
+/**
+ * Enum representing the scope/category of a money exchange.
+ */
 enum class MoneyExchangeScope {
     FOOD, LEISURE, USEFUL, MEDICINE, OTHER;
 
     companion object {
+        /**
+         * Gets the SVG file associated with the given MoneyExchangeScope enum.
+         *
+         * @param enum The MoneyExchangeScope enum.
+         * @return The resource ID of the SVG file.
+         */
         @RequiresApi(Build.VERSION_CODES.N)
         fun getSVGFile(enum: MoneyExchangeScope): Int {
             val svgMap: Map<MoneyExchangeScope, Int> = mapOf(
@@ -21,4 +30,3 @@ enum class MoneyExchangeScope {
         }
     }
 }
-

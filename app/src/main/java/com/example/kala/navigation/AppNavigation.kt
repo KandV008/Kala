@@ -16,6 +16,9 @@ import com.example.kala.screens.LanguageScreen
 import com.example.kala.screens.OptionScreen
 import com.example.kala.screens.RecordScreen
 
+/**
+ * Composable function defining the app's navigation.
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun AppNavigation(){
@@ -50,9 +53,8 @@ fun AppNavigation(){
             if (month != null && exchange != null) {
                 AboutExchangeScreen(monthAssociated = month, exchange = exchange)
             } else {
-                // TODO Handle the case where the parameters are null
+                // TODO: Handle the case where the parameters are null
             }
         }
-
     }
 }
