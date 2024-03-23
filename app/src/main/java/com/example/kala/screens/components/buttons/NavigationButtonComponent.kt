@@ -27,7 +27,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.example.kala.configuration.DEFAULT_FLOAT
 import com.example.kala.configuration.NavigationButtonConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
@@ -38,7 +37,6 @@ import com.example.kala.ui.theme.BoneWhite
  *
  * @param configuration The configuration for the navigation button.
  * @param alpha The alpha value to control the transparency of the button.
- * @param navController The navigation controller used for navigating to a different screen.
  * @param onAdviceTriggered Callback function to be executed when the button is clicked.
  */
 @RequiresApi(Build.VERSION_CODES.N)
@@ -46,7 +44,6 @@ import com.example.kala.ui.theme.BoneWhite
 fun NavigationButton(
     configuration: NavigationButtonConfiguration,
     alpha: Float = DEFAULT_FLOAT,
-    navController: NavController? = null,
     onAdviceTriggered: () -> Unit = {}
 ) {
     Box(
@@ -56,17 +53,7 @@ fun NavigationButton(
             .shadow(10.dp, shape = RoundedCornerShape(10.dp))
     ){
         Button(
-            onClick = {
-                if (NavigationButtonConfiguration.BACK == configuration){
-                    navController?.popBackStack()
-                    return@Button
-                }
-                if (NavigationButtonConfiguration.NEXT == configuration){
-                    onAdviceTriggered()
-                    return@Button
-                }
-                navController?.navigate(route = configuration.getRoute())
-            },
+            onClick = onAdviceTriggered,
             colors = ButtonDefaults.buttonColors(Color.White),
             shape = RoundedCornerShape(10.dp),
             modifier = Modifier

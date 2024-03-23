@@ -54,7 +54,7 @@ fun Header(
             NavigationButton(
                 configuration = configuration.left().first,
                 alpha = configuration.left().second,
-                navController = navController,
+                //TODO Adapt Header from the Footer refactor
             )
             Text(
                 text = "Kala",
@@ -67,7 +67,6 @@ fun Header(
             NavigationButton(
                 configuration = configuration.right().first,
                 alpha = configuration.right().second,
-                navController = navController,
             )
         }
     }

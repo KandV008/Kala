@@ -43,7 +43,6 @@ fun BigTextInput(valueInput: String, onValueChange: (String) -> Unit){
     val keyboardOptions = KeyboardOptions.Default.copy(
         keyboardType = KeyboardType.Text
     )
-
     Column(
         modifier = Modifier
             .width(300.dp)
