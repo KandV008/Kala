@@ -46,8 +46,7 @@ import com.example.kala.ui.theme.BoneWhite
 fun RecordScreen(
     navController: NavController? = null
 ){
-    val moneyExchangeService = MoneyExchangeService()
-    val moneyExchangeList: List<MoneyExchange> = moneyExchangeService.getAllMoneyExchanges()
+    val moneyExchangeList: List<MoneyExchange> = MoneyExchangeService.getAllMoneyExchanges()
 
     var adviceTriggered by remember { mutableStateOf(false) }
     var cardSelected by remember {

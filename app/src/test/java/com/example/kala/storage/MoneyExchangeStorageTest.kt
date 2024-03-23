@@ -15,6 +15,7 @@ class MoneyExchangeStorageTest {
 
     private lateinit var moneyExchange: MoneyExchange
     private lateinit var listMoneyExchange: MutableList<MoneyExchange>
+    private val storage = MoneyExchangeStorage()
 
     /**
      * Initializes test data before each test.
@@ -37,14 +38,14 @@ class MoneyExchangeStorageTest {
     @Test
     fun `Add a new money exchange for the first time in a month`() {
         val id = "${moneyExchange.date.month}${moneyExchange.date.year}"
-        val expectedNumMonthInformation = MoneyExchangeStorage.getNumMonthInformation() + 1
-        val expectedNumMoneyExchange = MoneyExchangeStorage.getNumMoneyExchangeFromMonthInformation(id) + 1
+        val expectedNumMonthInformation = storage.getNumMonthInformation() + 1
+        val expectedNumMoneyExchange = storage.getNumMoneyExchangeFromMonthInformation(id) + 1
 
-        MoneyExchangeStorage.saveMoneyExchange(moneyExchange)
-        val resultNumMonthInformation = MoneyExchangeStorage.getNumMonthInformation()
+        storage.saveMoneyExchange(moneyExchange)
+        val resultNumMonthInformation = storage.getNumMonthInformation()
         assertEquals(expectedNumMonthInformation, resultNumMonthInformation)
 
-        val resultNumMoneyExchange = MoneyExchangeStorage.getNumMoneyExchangeFromMonthInformation(id)
+        val resultNumMoneyExchange = storage.getNumMoneyExchangeFromMonthInformation(id)
         assertEquals(expectedNumMoneyExchange, resultNumMoneyExchange)
     }
 
@@ -54,14 +55,14 @@ class MoneyExchangeStorageTest {
     @Test
     fun `Add a new money exchange`() {
         val id = "${moneyExchange.date.month}${moneyExchange.date.year}"
-        val expectedNumMonthInformation = MoneyExchangeStorage.getNumMonthInformation()
-        val expectedNumMoneyExchange = MoneyExchangeStorage.getNumMoneyExchangeFromMonthInformation(id) + 1
+        val expectedNumMonthInformation = storage.getNumMonthInformation()
+        val expectedNumMoneyExchange = storage.getNumMoneyExchangeFromMonthInformation(id) + 1
 
-        MoneyExchangeStorage.saveMoneyExchange(moneyExchange)
-        val resultNumMonthInformation = MoneyExchangeStorage.getNumMonthInformation()
+        storage.saveMoneyExchange(moneyExchange)
+        val resultNumMonthInformation = storage.getNumMonthInformation()
         assertEquals(expectedNumMonthInformation, resultNumMonthInformation)
 
-        val resultNumMoneyExchange = MoneyExchangeStorage.getNumMoneyExchangeFromMonthInformation(id)
+        val resultNumMoneyExchange = storage.getNumMoneyExchangeFromMonthInformation(id)
         assertEquals(expectedNumMoneyExchange, resultNumMoneyExchange)
     }
 
@@ -71,7 +72,7 @@ class MoneyExchangeStorageTest {
     @Test
     fun getAllMoneyExchange() {
         val expectedNumMoneyExchange = listMoneyExchange.size
-        val resultNumMoneyExchange = MoneyExchangeStorage.getAllMoneyExchange().size
+        val resultNumMoneyExchange = storage.getAllMoneyExchange().size
 
         assertEquals(expectedNumMoneyExchange, resultNumMoneyExchange)
     }
@@ -83,7 +84,7 @@ class MoneyExchangeStorageTest {
     fun getMoneyExchange() {
         val idMonth = "${moneyExchange.date.month}${moneyExchange.date.year}"
         val idExchange = 0
-        val resultMoneyExchange = MoneyExchangeStorage.getMoneyExchange(idMonth, idExchange)
+        val resultMoneyExchange = storage.getMoneyExchange(idMonth, idExchange)
 
         assertNull(resultMoneyExchange)
     }

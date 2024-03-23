@@ -14,7 +14,6 @@ import org.junit.Test
 class MoneyExchangeServiceTest {
 
     private lateinit var moneyExchange: MoneyExchange
-    private lateinit var service: MoneyExchangeService
 
     /**
      * Initializes test data before each test.
@@ -26,7 +25,6 @@ class MoneyExchangeServiceTest {
         val scope: MoneyExchangeScope = MoneyExchangeScope.FOOD
         val description = "Compra semanal"
         moneyExchange = MoneyExchange(value, type, scope, description)
-        service = MoneyExchangeService()
     }
 
     /**
@@ -34,7 +32,7 @@ class MoneyExchangeServiceTest {
      */
     @Test
     fun addMoneyExchange() {
-        service.addMoneyExchange(moneyExchange)
+        MoneyExchangeService.addMoneyExchange(moneyExchange)
         assert(true)
     }
 
@@ -44,7 +42,7 @@ class MoneyExchangeServiceTest {
     @Test
     fun getAllMoneyExchanges() {
         val expected = 1
-        val allMoneyExchanges = service.getAllMoneyExchanges()
+        val allMoneyExchanges = MoneyExchangeService.getAllMoneyExchanges()
         val result = allMoneyExchanges.size
         assertEquals(expected, result)
     }
@@ -56,7 +54,7 @@ class MoneyExchangeServiceTest {
     fun getMoneyExchange() {
         val idMonth = "example"
         val idExchange = 0
-        val result = service.getMoneyExchange(idMonth, idExchange)
+        val result = MoneyExchangeService.getMoneyExchange(idMonth, idExchange)
 
         assertNotNull(result)
     }

@@ -6,13 +6,14 @@ import com.example.kala.entities.MoneyExchange
 import com.example.kala.entities.MoneyExchangeScope
 import com.example.kala.entities.MoneyExchangeType
 import com.example.kala.entities.MonthInformation
+import java.util.TreeMap
 
 /**
  * Storage class for managing money exchange data.
  */
 @RequiresApi(Build.VERSION_CODES.O)
-object MoneyExchangeStorage {
-    private val monthInformationMap: MutableMap<String, MonthInformation> = mutableMapOf()
+class MoneyExchangeStorage {
+    private val monthInformationMap: TreeMap<String, MonthInformation> = TreeMap()
 
     init {
         // Initialize with an example month information

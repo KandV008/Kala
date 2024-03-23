@@ -8,7 +8,10 @@ import com.example.kala.storage.MoneyExchangeStorage
 /**
  * Service class for managing money exchanges.
  */
-class MoneyExchangeService {
+object MoneyExchangeService {
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    val moneyExchangeStorage = MoneyExchangeStorage()
 
     /**
      * Adds a new money exchange.
@@ -16,10 +19,11 @@ class MoneyExchangeService {
      * @param moneyExchange The money exchange to add.
      */
     @RequiresApi(Build.VERSION_CODES.O)
-    fun addMoneyExchange(moneyExchange: MoneyExchange){
+    fun addMoneyExchange(moneyExchange: MoneyExchange): Boolean{
         // TODO: Service validation
 
-        MoneyExchangeStorage.saveMoneyExchange(moneyExchange)
+        moneyExchangeStorage.saveMoneyExchange(moneyExchange)
+        return true
     }
 
     /**
@@ -29,7 +33,7 @@ class MoneyExchangeService {
      */
     @RequiresApi(Build.VERSION_CODES.O)
     fun getAllMoneyExchanges(): List<MoneyExchange> {
-        return MoneyExchangeStorage.getAllMoneyExchange();
+        return moneyExchangeStorage.getAllMoneyExchange().reversed()
     }
 
     /**
@@ -42,7 +46,7 @@ class MoneyExchangeService {
      */
     @RequiresApi(Build.VERSION_CODES.O)
     fun getMoneyExchange(monthAssociated: String, exchange: Int): MoneyExchange {
-        val moneyExchange = MoneyExchangeStorage.getMoneyExchange(monthAssociated, exchange)
+        val moneyExchange = moneyExchangeStorage.getMoneyExchange(monthAssociated, exchange)
 
         if (moneyExchange != null) {
             return moneyExchange.copy()
