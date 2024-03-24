@@ -51,7 +51,7 @@ fun AppNavigation(){
             val exchange = navBackStackEntry?.arguments?.getInt("exchange")
 
             if (month != null && exchange != null) {
-                AboutExchangeScreen(monthAssociated = month, exchange = exchange)
+                AboutExchangeScreen(navController, month, exchange)
             } else {
                 // TODO: Handle the case where the parameters are null
             }

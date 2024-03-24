@@ -69,8 +69,7 @@ fun AboutExchangeScreen(
     monthAssociated: String,
     exchange: Int,
 ){
-    val moneyExchangeService = MoneyExchangeService()
-    val moneyExchange = moneyExchangeService.getMoneyExchange(monthAssociated, exchange)
+    val moneyExchange = MoneyExchangeService.getMoneyExchange(monthAssociated, exchange)
 
     val svgFile = MoneyExchangeScope.getSVGFile(moneyExchange.scope)
     val valueSymbol = if (moneyExchange.type == MoneyExchangeType.EXPENSE) "-" else "+"
@@ -91,12 +90,14 @@ fun AboutExchangeScreen(
     }
 
     if (rigthButtonTriggered){
+        rigthButtonTriggered = false
         // TODO Send the money exchange
         navController?.navigate(route = ADD_EXCHANGE_SCREEN_ROUTE)
     }
 
     if (leftButtonTriggered){
-        // TODO Delete the money exchange
+        leftButtonTriggered = false
+        MoneyExchangeService.deleteMoneyExchange(monthAssociated, exchange)
         navController?.navigate(route = RECORD_SCREEN_ROUTE)
     }
 

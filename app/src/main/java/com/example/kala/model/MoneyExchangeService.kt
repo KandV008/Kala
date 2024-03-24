@@ -55,4 +55,23 @@ object MoneyExchangeService {
         // TODO: Handle error
         throw IllegalAccessError()
     }
+
+    /**
+     * Deletes a specific money exchange.
+     *
+     * @param monthAssociated The month associated with the money exchange.
+     * @param exchange The index of the money exchange to delete.
+     * @return The deleted money exchange.
+     * @throws IllegalAccessError if the requested money exchange is not found.
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun deleteMoneyExchange(monthAssociated: String, exchange: Int): MoneyExchange {
+        val deletedExchange =
+            this.moneyExchangeStorage.deleteMoneyExchange(monthAssociated, exchange)
+
+        deletedExchange?.let {
+            return it
+        } ?:
+         throw IllegalArgumentException()
+    }
 }

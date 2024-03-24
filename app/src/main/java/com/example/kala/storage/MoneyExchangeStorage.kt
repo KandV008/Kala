@@ -92,4 +92,22 @@ class MoneyExchangeStorage {
     fun getMoneyExchange(monthAssociated: String, exchange: Int): MoneyExchange? {
         return this.monthInformationMap[monthAssociated]?.summary?.get(exchange)
     }
+
+    /**
+     * Deletes a specific money exchange from a month.
+     *
+     * @param monthAssociated The month associated with the money exchange.
+     * @param exchange The index of the money exchange.
+     * @return The deleted money exchange object, or null if not found.
+     */
+    fun deleteMoneyExchange(monthAssociated: String, exchange: Int): MoneyExchange? {
+        val moneyExchange = this.getMoneyExchange(monthAssociated, exchange)
+        return moneyExchange?.let {
+            this.monthInformationMap[monthAssociated]?.deleteMoneyExchange(
+                it
+            )
+
+            return it
+        }
+    }
 }
