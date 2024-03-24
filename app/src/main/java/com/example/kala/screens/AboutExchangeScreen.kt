@@ -37,7 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.kala.configuration.ADD_EXCHANGE_SCREEN_ROUTE
+import com.example.kala.configuration.EDIT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.MediumButtonConfiguration
@@ -91,8 +91,7 @@ fun AboutExchangeScreen(
 
     if (rigthButtonTriggered){
         rigthButtonTriggered = false
-        // TODO Send the money exchange
-        navController?.navigate(route = ADD_EXCHANGE_SCREEN_ROUTE)
+        navController?.navigate(route = "$EDIT_EXCHANGE_SCREEN_ROUTE/$monthAssociated/$exchange")
     }
 
     if (leftButtonTriggered){

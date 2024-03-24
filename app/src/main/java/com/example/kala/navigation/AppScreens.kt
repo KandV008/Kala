@@ -2,6 +2,7 @@ package com.example.kala.navigation
 
 import com.example.kala.configuration.ABOUT_EXCHANGE_ROUTE
 import com.example.kala.configuration.ADD_EXCHANGE_SCREEN_ROUTE
+import com.example.kala.configuration.EDIT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.configuration.HELP_SCREEN_ROUTE
 import com.example.kala.configuration.HOME_SCREEN_ROUTE
 import com.example.kala.configuration.LANGUAGE_SCREEN_ROUTE
@@ -45,4 +46,9 @@ sealed class AppScreens(val route: String) {
      * Represents the screen showing details about a specific money exchange.
      */
     object aboutExchangeScreen: AppScreens(ABOUT_EXCHANGE_ROUTE)
+
+    /**
+     * Represents the screen for editing a existing money exchange.
+     */
+    object editExchangeScreen: AppScreens(EDIT_EXCHANGE_SCREEN_ROUTE)
 }

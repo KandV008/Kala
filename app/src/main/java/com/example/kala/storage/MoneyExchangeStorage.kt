@@ -110,4 +110,15 @@ class MoneyExchangeStorage {
             return it
         }
     }
+
+    /**
+     * Edits a specific money exchange.
+     *
+     * @param moneyExchange The updated money exchange.
+     */
+    fun editMoneyExchange(moneyExchange: MoneyExchange) {
+        this.monthInformationMap[moneyExchange.monthAssociated]?.summary?.set(moneyExchange.id,
+            moneyExchange
+        )
+    }
 }

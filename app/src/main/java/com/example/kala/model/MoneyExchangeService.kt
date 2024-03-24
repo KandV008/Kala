@@ -48,12 +48,10 @@ object MoneyExchangeService {
     fun getMoneyExchange(monthAssociated: String, exchange: Int): MoneyExchange {
         val moneyExchange = moneyExchangeStorage.getMoneyExchange(monthAssociated, exchange)
 
-        if (moneyExchange != null) {
-            return moneyExchange.copy()
-        }
-
-        // TODO: Handle error
-        throw IllegalAccessError()
+        moneyExchange?.let {
+            return it.copy()
+        } ?:
+            throw IllegalAccessError() // TODO: Handle error
     }
 
     /**
@@ -72,6 +70,33 @@ object MoneyExchangeService {
         deletedExchange?.let {
             return it
         } ?:
-         throw IllegalArgumentException()
+         throw IllegalArgumentException() //TODO Handle Error
+    }
+
+    /**
+     * Edits a specific money exchange.
+     *
+     * @param monthAssociated The month associated with the money exchange.
+     * @param exchange The index of the money exchange to edit.
+     * @param updatedMoneyExchange The updated money exchange object.
+     * @throws IllegalArgumentException if the requested money exchange is not found.
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun editMoneyExchange(
+        monthAssociated: String,
+        exchange: Int,
+        updatedMoneyExchange: MoneyExchange
+    ) {
+        val oldExchange = this.moneyExchangeStorage.getMoneyExchange(monthAssociated, exchange)
+
+        oldExchange?.let {
+            it.value = updatedMoneyExchange.value
+            it.type = updatedMoneyExchange.type
+            it.scope = updatedMoneyExchange.scope
+            it.description = updatedMoneyExchange.description
+
+            this.moneyExchangeStorage.editMoneyExchange(it)
+        } ?:
+            throw IllegalArgumentException() //TODO Handle Error
     }
 }

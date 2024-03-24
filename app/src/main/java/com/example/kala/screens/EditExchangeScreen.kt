@@ -19,8 +19,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.kala.configuration.ABOUT_EXCHANGE_ROUTE
 import com.example.kala.configuration.FooterConfiguration
-import com.example.kala.configuration.HOME_SCREEN_ROUTE
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.MenuInputConfiguration
 import com.example.kala.configuration.TitleConfiguration
@@ -35,22 +35,29 @@ import com.example.kala.screens.components.inputs.NumberInput
 import com.example.kala.ui.theme.BoneWhite
 
 /**
- * Composable function for adding a new money exchange.
+ * Composable function for editing a money exchange.
  *
- * @param navController The navigation controller for navigating between screens.
+ * @param navController The navigation controller.
+ * @param monthAssociated The month associated with the money exchange.
+ * @param exchange The index of the money exchange.
  */
 @RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun AddExchangeScreen(
-    navController: NavController? = null
+fun EditExchangeScreen(
+    navController: NavController? = null,
+    monthAssociated: String,
+    exchange: Int,
 ) {
+    val moneyExchange = MoneyExchangeService.getMoneyExchange(monthAssociated, exchange)
+
     var adviceTriggered by remember { mutableStateOf(false) }
 
-    var valueExchange by remember { mutableStateOf("") }
-    var typeExchange by remember { mutableStateOf("") }
-    var scopeExchange by remember { mutableStateOf("") }
-    var descriptionExchange by remember { mutableStateOf("") }
+    var valueExchange by remember { mutableStateOf(moneyExchange.value.toString()) }
+    var typeExchange by remember { mutableStateOf(moneyExchange.type.toString()) }
+    var scopeExchange by remember { mutableStateOf(moneyExchange.scope.toString()) }
+    val descriptionValue = moneyExchange.description ?: ""
+    var descriptionExchange by remember { mutableStateOf(descriptionValue) }
 
     val updateValueExchange: (String) -> Unit = { newValue ->
         valueExchange = newValue
@@ -66,15 +73,15 @@ fun AddExchangeScreen(
     }
 
     if (adviceTriggered) { // TODO Validate form
-        val newMoneyExchange = MoneyExchange(
+        val updatedMoneyExchange = MoneyExchange(
             valueExchange.toDouble(),
             typeExchange,
             scopeExchange,
             descriptionExchange
         )
-        MoneyExchangeService.addMoneyExchange(newMoneyExchange)
+        MoneyExchangeService.editMoneyExchange(monthAssociated, exchange, updatedMoneyExchange)
         adviceTriggered = false
-        navController?.navigate(route = HOME_SCREEN_ROUTE)
+        navController?.navigate(route = "$ABOUT_EXCHANGE_ROUTE/$monthAssociated/$exchange")
     }
 
     Scaffold(
@@ -121,13 +128,11 @@ fun AddExchangeScreen(
 }
 
 /**
- * Composable function for adding a new money exchange.
- *
- * @param navController The navigation controller for navigating between screens.
+ * Preview function for the EditExchangeScreen composable.
  */
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
-fun AddExchangeScreenPreview() {
+fun EditExchangeScreenPreview() {
     AddExchangeScreen()
 }

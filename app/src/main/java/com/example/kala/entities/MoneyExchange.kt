@@ -19,9 +19,9 @@ import java.util.Locale
  */
 data class MoneyExchange(
     var value: Double,
-    val type: MoneyExchangeType,
-    val scope: MoneyExchangeScope,
-    val description: String? = null,
+    var type: MoneyExchangeType,
+    var scope: MoneyExchangeScope,
+    var description: String? = null,
 ) {
     var id: Int = -1
     var monthAssociated: String = ""
