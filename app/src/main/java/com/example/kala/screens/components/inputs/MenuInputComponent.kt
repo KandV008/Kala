@@ -51,7 +51,13 @@ import com.example.kala.configuration.MenuInputConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
 
-
+/**
+ * Composable function for rendering a menu input with customizable configuration.
+ *
+ * @param configuration The configuration for the menu input.
+ * @param valueInput The current value of the menu input.
+ * @param onValueChange Callback function to be executed when the value of the menu input changes.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun MenuInput(
@@ -96,7 +102,7 @@ fun MenuInput(
                         .onGloballyPositioned { coordinates ->
                             mTextFieldSize = coordinates.size.toSize()
                         }
-                        ,
+                    ,
                     placeholder = {
                         Text(
                             text = configuration.getPlaceholder(),
@@ -129,7 +135,8 @@ fun MenuInput(
                 ) {
                     options.forEach { label ->
                         DropdownMenuItem(
-                                text = { Text(
+                            text = {
+                                Text(
                                     text = label,
                                     style = TextStyle(
                                         fontSize = 20.sp,
@@ -137,7 +144,7 @@ fun MenuInput(
                                         color = Color.Black
                                     ),
                                 )
-                           },
+                            },
                             onClick = {
                                 onValueChange(label)
                                 mExpanded = false
@@ -167,7 +174,10 @@ fun MenuInput(
     }
 }
 
-
+/**
+ * Composable function for rendering a preview of the MenuInput component.
+ * This preview function is used for testing and visualizing the MenuInput component.
+ */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
@@ -190,5 +200,4 @@ fun PreviewMenuInput() {
             }
         }
     }
-
 }

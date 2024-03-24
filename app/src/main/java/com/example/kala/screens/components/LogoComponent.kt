@@ -21,14 +21,19 @@ import androidx.compose.ui.unit.sp
 import com.example.kala.configuration.LogoConfiguration
 import com.example.kala.configuration.NAME_APPLICATION
 
+/**
+ * Composable function for rendering the logo component.
+ *
+ * @param configuration The configuration data for the logo.
+ */
 @Composable
-fun Logo(configuration: LogoConfiguration){
+fun Logo(configuration: LogoConfiguration) {
     Box(
         modifier = Modifier
             .background(Color.White)
             .size(configuration.getSize())
             .border(2.dp, Color.Black)
-    ){
+    ) {
         Text(
             text = NAME_APPLICATION,
             Modifier
@@ -36,14 +41,17 @@ fun Logo(configuration: LogoConfiguration){
                 .wrapContentSize(Alignment.Center),
             fontSize = 48.sp,
             textAlign = TextAlign.Center,
-
         )
     }
 }
 
+/**
+ * Composable function for previewing the Logo component.
+ * This preview function is used for testing and visualizing the Logo component.
+ */
 @Preview
 @Composable
-fun LogoPreview(){
+fun LogoPreview() {
     Column {
         Logo(LogoConfiguration.SMALL)
         Spacer(modifier = Modifier.padding(5.dp))

@@ -42,6 +42,12 @@ import com.example.kala.R
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
 
+/**
+ * Composable function for rendering a number input field.
+ *
+ * @param valueInput The current value of the number input field.
+ * @param onValueChange Callback function to be executed when the value of the number input field changes.
+ */
 @Composable
 fun NumberInput(valueInput: String, onValueChange: (String) -> Unit){
     val keyboardOptions = KeyboardOptions.Default.copy(
@@ -109,6 +115,10 @@ fun NumberInput(valueInput: String, onValueChange: (String) -> Unit){
     }
 }
 
+/**
+ * Composable function for rendering a preview of the NumberInput component.
+ * This preview function is used for testing and visualizing the NumberInput component.
+ */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
@@ -128,5 +138,4 @@ fun PreviewNumberInput() {
             }
         }
     }
-
 }

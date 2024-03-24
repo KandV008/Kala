@@ -5,11 +5,17 @@ import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 
-class MoneyExchangeTest{
+/**
+ * Unit tests for MoneyExchange class.
+ */
+class MoneyExchangeTest {
 
     private lateinit var moneyExchange: MoneyExchange
-    private val listMoneyExchange: ArrayList<MoneyExchange> = ArrayList();
+    private val listMoneyExchange: ArrayList<MoneyExchange> = ArrayList()
 
+    /**
+     * Initializes test data before each test.
+     */
     @Before
     fun onBefore(){
         val value = 30.0
@@ -18,10 +24,14 @@ class MoneyExchangeTest{
         val description = "Compra semanal"
         moneyExchange = MoneyExchange(value, type, scope, description)
 
+        // Populate listMoneyExchange with moneyExchange objects for testing
         for (index in 1..4)
             listMoneyExchange.add(moneyExchange)
     }
 
+    /**
+     * Test case for creating a new MoneyExchange object.
+     */
     @Test
     fun `Create a New Money Exchange`(){
         val value = 15.0
@@ -31,6 +41,9 @@ class MoneyExchangeTest{
         assertNotNull(newMoneyExchange)
     }
 
+    /**
+     * Test case for reading a MoneyExchange object.
+     */
     @Test
     fun  `Read a Money Exchange`(){
         val expectedValue = 30.0
@@ -46,6 +59,9 @@ class MoneyExchangeTest{
         assertNotNull(moneyExchange.date)
     }
 
+    /**
+     * Test case for editing a MoneyExchange object.
+     */
     @Test
     fun `Edit a Money Exchange`(){
         val newValue = 50.0
@@ -54,6 +70,9 @@ class MoneyExchangeTest{
         assertEquals(expectedValue, moneyExchange.value)
     }
 
+    /**
+     * Test case for deleting a MoneyExchange object from an array.
+     */
     @Test
     fun `Delete a Money Exchange from an array`(){
         val startValue = listMoneyExchange.size

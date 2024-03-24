@@ -23,10 +23,13 @@ import com.example.kala.configuration.LargeButtonConfiguration
 import com.example.kala.configuration.TitleConfiguration
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
-import com.example.kala.screens.components.buttons.LargeButton
 import com.example.kala.screens.components.Title
+import com.example.kala.screens.components.buttons.LargeButton
 import com.example.kala.ui.theme.BoneWhite
 
+/**
+ * List of configurations for the type buttons in the Option screen.
+ */
 val typeButtons: List<LargeButtonConfiguration> = listOf(
     LargeButtonConfiguration.CHANGE_NAME,
     LargeButtonConfiguration.CHANGE_EMAIL,
@@ -35,6 +38,11 @@ val typeButtons: List<LargeButtonConfiguration> = listOf(
     LargeButtonConfiguration.DELETE_USER,
 )
 
+/**
+ * Composable function for rendering the Option screen.
+ *
+ * @param navController The navigation controller for navigating between screens.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -59,23 +67,27 @@ fun OptionScreen(navController: NavController? = null){
             OptionScreenBody()
             Spacer(modifier = Modifier.weight(1f))
             Spacer(modifier = Modifier.padding(50.dp))
-
         }
     }
 }
 
+/**
+ * Composable function for rendering the body of the Option screen.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun OptionScreenBody(){
     LazyColumn{
-        items(typeButtons) {
-            type ->
-                LargeButton(configuration = type)
+        items(typeButtons) { type ->
+            LargeButton(configuration = type)
             Spacer(modifier = Modifier.padding(10.dp))
         }
     }
 }
 
+/**
+ * Preview function for testing and visualizing the Option screen.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable

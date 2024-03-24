@@ -32,7 +32,11 @@ import com.example.kala.configuration.SmallButtonConfiguration
 import com.example.kala.configuration.invalidArgument
 import com.example.kala.ui.theme.BoneWhite
 
-
+/**
+ * Composable function for rendering a small-sized button with customizable configuration.
+ *
+ * @param configuration The configuration for the small-sized button.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun SmallButton(configuration: SmallButtonConfiguration) {
@@ -43,7 +47,7 @@ fun SmallButton(configuration: SmallButtonConfiguration) {
     ) {
         Button(
             onClick = {
-                /* TODO */
+                /* TODO: Implement onClick behavior */
                 invalidArgument()
             },
             colors = ButtonDefaults.buttonColors(Color.White),
@@ -72,6 +76,10 @@ fun SmallButton(configuration: SmallButtonConfiguration) {
     }
 }
 
+/**
+ * Composable function for rendering a preview of the SmallButton component.
+ * This preview function is used for testing and visualizing the SmallButton component.
+ */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
@@ -90,5 +98,4 @@ fun PreviewSmallButton() {
             SmallButton(SmallButtonConfiguration.SPANISH)
         }
     }
-
 }

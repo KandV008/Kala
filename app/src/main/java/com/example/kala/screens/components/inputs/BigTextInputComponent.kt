@@ -32,12 +32,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kala.ui.theme.BoneWhite
 
+/**
+ * Composable function for rendering a big text input field.
+ *
+ * @param valueInput The current value of the input field.
+ * @param onValueChange Callback function to be executed when the value of the input field changes.
+ */
 @Composable
 fun BigTextInput(valueInput: String, onValueChange: (String) -> Unit){
     val keyboardOptions = KeyboardOptions.Default.copy(
         keyboardType = KeyboardType.Text
     )
-
     Column(
         modifier = Modifier
             .width(300.dp)
@@ -76,6 +81,10 @@ fun BigTextInput(valueInput: String, onValueChange: (String) -> Unit){
     }
 }
 
+/**
+ * Composable function for rendering a preview of the BigTextInput component.
+ * This preview function is used for testing and visualizing the BigTextInput component.
+ */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
@@ -95,5 +104,4 @@ fun PreviewBigTextInput() {
             { newValue -> descriptionExchange = newValue }
         }
     }
-
 }

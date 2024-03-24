@@ -42,6 +42,12 @@ import com.example.kala.configuration.LargeButtonConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
 
+/**
+ * Composable function for rendering a large button with customizable configuration.
+ *
+ * @param configuration The configuration for the large button.
+ * @param navController The navigation controller used for navigating to a different screen.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun LargeButton(
@@ -64,9 +70,8 @@ fun LargeButton(
                 .border(2.dp, Color.Black, RoundedCornerShape(10.dp)),
             colors = ButtonDefaults.buttonColors(Color.White),
             shape = RoundedCornerShape(10.dp),
-            contentPadding = PaddingValues(10.dp),
-
-            ) {
+            contentPadding = PaddingValues(10.dp)
+        ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth(),
@@ -98,13 +103,15 @@ fun LargeButton(
                         contentDescription = SVG_DESCRIPTION
                     )
                 }
-
             }
         }
     }
-
 }
 
+/**
+ * Composable function for rendering a preview of the LargeButton component.
+ * This preview function is used for testing and visualizing the LargeButton component.
+ */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview
@@ -119,12 +126,11 @@ fun LargeButtonPreview() {
             verticalArrangement = Arrangement.Center,
         ){
             items(LargeButtonConfiguration.entries.toTypedArray()){
-                value ->
-                    LargeButton(configuration = value)
+                    value ->
+                LargeButton(configuration = value)
                 Spacer(modifier = Modifier.padding(5.dp))
-
             }
         }
     }
-
 }
+

@@ -31,6 +31,11 @@ import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.Title
 import com.example.kala.ui.theme.BoneWhite
 
+/**
+ * Composable function for rendering the Help screen.
+ *
+ * @param navController The navigation controller for navigating between screens.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -59,6 +64,11 @@ fun HelpScreen(navController: NavController? = null){
     }
 }
 
+/**
+ * Composable function for rendering the body of the Help screen.
+ *
+ * @param advices The list of advices to display in the Help screen.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun HelpScreenBody(advices: List<String>){
@@ -71,17 +81,21 @@ fun HelpScreenBody(advices: List<String>){
             .padding(20.dp),
     ){
         items(advices){
-            advice ->
-                Text(
-                    text = advice,
-                    color = Color.Black,
-                    fontSize = 25.sp
-                )
+                advice ->
+            Text(
+                text = advice,
+                color = Color.Black,
+                fontSize = 25.sp
+            )
             Spacer(modifier = Modifier.padding(10.dp))
         }
     }
 }
 
+/**
+ * Composable function for previewing the Help screen.
+ * This preview function is used for testing and visualizing the Help screen.
+ */
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable
