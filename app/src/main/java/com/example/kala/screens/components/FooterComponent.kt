@@ -58,18 +58,18 @@ fun Footer(
     }
 
     if (leftTriggered){
-        navController?.popBackStack()
         leftTriggered = false
+        navController?.popBackStack()
     }
 
     if (centerTriggered){
-        navController?.navigate(route = HOME_SCREEN_ROUTE)
         centerTriggered = false
+        navController?.navigate(route = HOME_SCREEN_ROUTE)
     }
 
     if (rightTriggered){
-        onAdviceTriggered()
         rightTriggered = false
+        onAdviceTriggered()
     }
 
     Box(

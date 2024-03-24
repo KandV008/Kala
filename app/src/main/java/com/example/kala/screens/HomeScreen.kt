@@ -91,10 +91,12 @@ fun HomeScreenBody(
     }
 
     if (rightButtonTriggered){
+        rightButtonTriggered = false
         navController?.navigate(route = RECORD_SCREEN_ROUTE)
     }
 
     if (leftButtonTriggered){
+        leftButtonTriggered = false
         // TODO Report Screen
     }
 

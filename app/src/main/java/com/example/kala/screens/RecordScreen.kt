@@ -62,6 +62,7 @@ fun RecordScreen(
     }
 
     if (adviceTriggered){
+        adviceTriggered = false
         navController?.navigate(route = "$ABOUT_EXCHANGE_ROUTE/$monthSelected/$cardSelected")
     }
 
