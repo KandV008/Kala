@@ -23,34 +23,39 @@ import androidx.navigation.NavController
 import com.example.kala.configuration.ChartConfiguration
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
-import com.example.kala.configuration.LargeButtonConfiguration
 import com.example.kala.configuration.MediumButtonConfiguration
-import com.example.kala.configuration.RECORD_SCREEN_ROUTE
 import com.example.kala.configuration.REPORT_SCREEN_ROUTE
+import com.example.kala.configuration.TitleConfiguration
+import com.example.kala.entities.MoneyExchangeType
 import com.example.kala.screens.components.Chart
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
-import com.example.kala.screens.components.buttons.LargeButton
+import com.example.kala.screens.components.Title
 import com.example.kala.screens.components.buttons.MediumButton
 import com.example.kala.ui.theme.BoneWhite
 
 /**
- * Composable function for rendering the Home screen.
+ * Composable function for rendering the Report screen.
  *
  * @param navController The navigation controller for navigating between screens.
  */
 @RequiresApi(Build.VERSION_CODES.N)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun HomeScreen(
+fun ReportScreen(
     navController: NavController? = null
 ){
+
+    var currentMonth by remember {
+        mutableStateOf("THE MONTH")
+    }
+
     Scaffold(
         topBar = {
             Header(configuration = HeaderConfiguration.REGISTERED_USER, navController)
         },
         bottomBar = {
-            Footer(configuration = FooterConfiguration.EMPTY, navController)
+            Footer(configuration = FooterConfiguration.BACK_AND_HOME, navController)
         },
     ){
         Column(
@@ -60,23 +65,26 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(modifier = Modifier.padding(50.dp))
-            Chart(configuration = ChartConfiguration.HOME_PAGE)
-            Spacer(modifier = Modifier.weight(0.5f))
-            HomeScreenBody(navController)
+            Title(configuration = TitleConfiguration.REPORT)
+            Spacer(modifier = Modifier.padding(10.dp))
+            Chart(configuration = ChartConfiguration.REPORT_PAGE)
+            Spacer(modifier = Modifier.padding(20.dp))
+            ReportScreenBody(navController, currentMonth)
             Spacer(modifier = Modifier.padding(50.dp))
         }
     }
 }
 
 /**
- * Composable function for rendering the body of the Home screen.
+ * Composable function for rendering the body of the Report screen.
  *
  * @param navController The navigation controller for navigating between screens.
  */
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
-fun HomeScreenBody(
-    navController: NavController? = null
+fun ReportScreenBody(
+    navController: NavController? = null,
+    currentMonth: String
 ){
     var leftButtonTriggered by remember {
         mutableStateOf(false)
@@ -93,34 +101,29 @@ fun HomeScreenBody(
 
     if (rightButtonTriggered){
         rightButtonTriggered = false
-        navController?.navigate(route = RECORD_SCREEN_ROUTE)
+        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/${MoneyExchangeType.INCOME}/$currentMonth")
     }
 
     if (leftButtonTriggered){
         leftButtonTriggered = false
-        navController?.navigate(route = REPORT_SCREEN_ROUTE)
+        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/${MoneyExchangeType.EXPENSE}/$currentMonth")
     }
 
-    LargeButton(
-        configuration = LargeButtonConfiguration.ADD_EXCHANGE,
-        navController = navController
-    )
-    Spacer(modifier = Modifier.padding(10.dp))
     Row {
-        MediumButton(configuration = MediumButtonConfiguration.SEE_REPORT, onLeftTriggered)
+        MediumButton(configuration = MediumButtonConfiguration.INCOME, onLeftTriggered)
         Spacer(modifier = Modifier.padding(10.dp))
-        MediumButton(configuration = MediumButtonConfiguration.SEE_RECORD, onRightTriggered)
+        MediumButton(configuration = MediumButtonConfiguration.EXPENSE, onRightTriggered)
     }
 }
 
 /**
- * Composable function for previewing the Home screen.
- * This preview function is used for testing and visualizing the Home screen.
+ * Composable function for previewing the Report screen.
+ * This preview function is used for testing and visualizing the Report screen.
  */
 @RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable
-fun HomeScreenPreview(){
-    HomeScreen()
+fun ReportScreenPreview(){
+    ReportScreen()
 }
 

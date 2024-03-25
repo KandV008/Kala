@@ -8,6 +8,7 @@ import com.example.kala.configuration.HOME_SCREEN_ROUTE
 import com.example.kala.configuration.LANGUAGE_SCREEN_ROUTE
 import com.example.kala.configuration.OPTION_SCREEN_ROUTE
 import com.example.kala.configuration.RECORD_SCREEN_ROUTE
+import com.example.kala.configuration.REPORT_SCREEN_ROUTE
 
 /**
  * Sealed class representing different screens/routes in the app.
@@ -51,4 +52,9 @@ sealed class AppScreens(val route: String) {
      * Represents the screen for editing a existing money exchange.
      */
     object editExchangeScreen: AppScreens(EDIT_EXCHANGE_SCREEN_ROUTE)
+
+    /**
+     * Represents the report screen.
+     */
+    object reportExchangeScreen: AppScreens(REPORT_SCREEN_ROUTE)
 }

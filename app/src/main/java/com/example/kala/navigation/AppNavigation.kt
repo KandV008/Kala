@@ -16,6 +16,7 @@ import com.example.kala.screens.HomeScreen
 import com.example.kala.screens.LanguageScreen
 import com.example.kala.screens.OptionScreen
 import com.example.kala.screens.RecordScreen
+import com.example.kala.screens.ReportScreen
 
 /**
  * Composable function defining the app's navigation.
@@ -70,6 +71,9 @@ fun AppNavigation(){
             } else {
                 // TODO: Handle the case where the parameters are null
             }
+        }
+        composable(route = AppScreens.reportExchangeScreen.route){
+            ReportScreen(navController)
         }
     }
 }
