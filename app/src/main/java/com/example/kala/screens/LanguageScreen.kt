@@ -1,8 +1,6 @@
 package com.example.kala.screens
 
 import android.annotation.SuppressLint
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,7 +29,6 @@ import com.example.kala.ui.theme.BoneWhite
  *
  * @param navController The navigation controller for navigating between screens.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun LanguageScreen(navController: NavController? = null){
@@ -62,7 +59,6 @@ fun LanguageScreen(navController: NavController? = null){
 /**
  * Composable function for rendering the body of the Language screen.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun LanguageScreenBody(){
     Row {
@@ -75,7 +71,6 @@ fun LanguageScreenBody(){
 /**
  * Preview function for testing and visualizing the Language screen.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable
 fun LanguageScreenPreview(){

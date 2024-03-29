@@ -1,8 +1,6 @@
 package com.example.kala.screens
 
 import android.annotation.SuppressLint
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -41,7 +39,6 @@ import com.example.kala.ui.theme.BoneWhite
  * @param monthAssociated The month associated with the money exchange.
  * @param exchange The index of the money exchange.
  */
-@RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun EditExchangeScreen(
@@ -130,7 +127,6 @@ fun EditExchangeScreen(
 /**
  * Preview function for the EditExchangeScreen composable.
  */
-@RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
 fun EditExchangeScreenPreview() {

@@ -1,7 +1,5 @@
 package com.example.kala.navigation
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.navigation.compose.NavHost
@@ -21,7 +19,6 @@ import com.example.kala.screens.ReportScreen
 /**
  * Composable function defining the app's navigation.
  */
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun AppNavigation(){
     val navController = rememberNavController()

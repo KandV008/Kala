@@ -1,8 +1,6 @@
 package com.example.kala.screens
 
 import android.annotation.SuppressLint
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -40,7 +38,6 @@ import com.example.kala.ui.theme.BoneWhite
  *
  * @param navController The navigation controller for navigating between screens.
  */
-@RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun RecordScreen(
@@ -91,7 +88,6 @@ fun RecordScreen(
 /**
  * Composable function for rendering the body content of the Record screen.
  */
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 private fun RecordBody(
     moneyExchangeList: List<MoneyExchange>,
@@ -114,7 +110,6 @@ private fun RecordBody(
 /**
  * Preview function for testing and visualizing the Record screen.
  */
-@RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
 fun RecordScreenPreview(){

@@ -1,8 +1,6 @@
 package com.example.kala.screens
 
 import android.annotation.SuppressLint
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -53,6 +51,8 @@ import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.Title
 import com.example.kala.screens.components.buttons.MediumButton
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.Green0
+import com.example.kala.ui.theme.Red0
 
 /**
  * Composable function for displaying the About Exchange screen.
@@ -61,7 +61,6 @@ import com.example.kala.ui.theme.BoneWhite
  * @param monthAssociated The month associated with the exchange.
  * @param exchange The exchange value.
  */
-@RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun AboutExchangeScreen(
@@ -73,7 +72,7 @@ fun AboutExchangeScreen(
 
     val svgFile = MoneyExchangeScope.getSVGFile(moneyExchange.scope)
     val valueSymbol = if (moneyExchange.type == MoneyExchangeType.EXPENSE) "-" else "+"
-    val valueColor = if (moneyExchange.type == MoneyExchangeType.EXPENSE) Color.Red else Color.Green
+    val valueColor = if (moneyExchange.type == MoneyExchangeType.EXPENSE) Red0 else Green0
     val valueText = valueSymbol + moneyExchange.getFormattedValue() + "€" //TODO € should be dynamic
 
     var leftButtonTriggered by remember {
@@ -232,7 +231,6 @@ private fun ScopeSection(moneyExchange: MoneyExchange, svgFile: Int) {
  *
  * @param moneyExchange The money exchange object.
  */
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 private fun DateSection(moneyExchange: MoneyExchange) {
     Box(
@@ -294,7 +292,6 @@ private fun DescriptionSection(moneyExchange: MoneyExchange) {
  * @param onLeftTriggered Callback for left button action.
  * @param onRigthTriggered Callback for right button action.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 private fun OptionSection(onLeftTriggered: () -> Unit, onRigthTriggered: () -> Unit) {
     Row {
@@ -307,7 +304,6 @@ private fun OptionSection(onLeftTriggered: () -> Unit, onRigthTriggered: () -> U
 /**
  * Composable function for previewing the AboutExchangeScreen.
  */
-@RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
 fun AboutExchangeScreenPreview(){

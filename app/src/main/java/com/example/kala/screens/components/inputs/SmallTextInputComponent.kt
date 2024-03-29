@@ -1,8 +1,6 @@
 package com.example.kala.screens.components.inputs
 
 import android.annotation.SuppressLint
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -117,7 +115,6 @@ fun SmallTextInput(configuration: SmallTextInputConfiguration){
  * This preview function is used for testing and visualizing the SmallTextInput component.
  */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable
 fun PreviewSmallTextInput() {

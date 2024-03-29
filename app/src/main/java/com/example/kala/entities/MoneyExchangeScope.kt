@@ -1,7 +1,5 @@
 package com.example.kala.entities
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.kala.R
 
 /**
@@ -17,7 +15,6 @@ enum class MoneyExchangeScope {
          * @param enum The MoneyExchangeScope enum.
          * @return The resource ID of the SVG file.
          */
-        @RequiresApi(Build.VERSION_CODES.N)
         fun getSVGFile(enum: MoneyExchangeScope): Int {
             val svgMap: Map<MoneyExchangeScope, Int> = mapOf(
                 FOOD to R.drawable.ic_food_scope,

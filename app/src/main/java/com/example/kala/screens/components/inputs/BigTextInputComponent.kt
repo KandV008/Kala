@@ -1,8 +1,6 @@
 package com.example.kala.screens.components.inputs
 
 import android.annotation.SuppressLint
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -86,7 +84,6 @@ fun BigTextInput(valueInput: String, onValueChange: (String) -> Unit){
  * This preview function is used for testing and visualizing the BigTextInput component.
  */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable
 fun PreviewBigTextInput() {

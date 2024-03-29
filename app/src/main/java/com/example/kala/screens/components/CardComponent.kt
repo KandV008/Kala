@@ -1,8 +1,6 @@
 package com.example.kala.screens.components
 
 import android.annotation.SuppressLint
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -45,6 +43,8 @@ import com.example.kala.entities.MoneyExchange
 import com.example.kala.entities.MoneyExchangeScope
 import com.example.kala.entities.MoneyExchangeType
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.Green0
+import com.example.kala.ui.theme.Red0
 
 /**
  * Composable function for rendering a card representing a money exchange item.
@@ -52,7 +52,6 @@ import com.example.kala.ui.theme.BoneWhite
  * @param moneyExchange The money exchange item to display.
  * @param onAdviceTriggered Callback function invoked when the advice is triggered.
  */
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Card(
     moneyExchange: MoneyExchange,
@@ -60,7 +59,7 @@ fun Card(
 ){
     val svgFile = MoneyExchangeScope.getSVGFile(moneyExchange.scope)
     val valueSymbol = if (moneyExchange.type == MoneyExchangeType.EXPENSE) "-" else "+"
-    val valueColor = if (moneyExchange.type == MoneyExchangeType.EXPENSE) Color.Red else Color.Green
+    val valueColor = if (moneyExchange.type == MoneyExchangeType.EXPENSE) Red0 else Green0
     val valueText = valueSymbol + moneyExchange.getFormattedValue() + "€" //TODO € should be dynamic
 
     Box(
@@ -148,7 +147,6 @@ fun Card(
  * This preview function is used for testing and visualizing the Card component.
  */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
 fun CardPreview(){

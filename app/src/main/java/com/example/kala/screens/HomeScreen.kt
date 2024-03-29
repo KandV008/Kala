@@ -1,8 +1,6 @@
 package com.example.kala.screens
 
 import android.annotation.SuppressLint
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -39,7 +37,6 @@ import com.example.kala.ui.theme.BoneWhite
  *
  * @param navController The navigation controller for navigating between screens.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(
@@ -60,7 +57,7 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(modifier = Modifier.padding(50.dp))
-            Chart(configuration = ChartConfiguration.HOME_PAGE)
+            Chart(configuration = ChartConfiguration.HOME_PAGE, "example")
             Spacer(modifier = Modifier.weight(0.5f))
             HomeScreenBody(navController)
             Spacer(modifier = Modifier.padding(50.dp))
@@ -73,7 +70,6 @@ fun HomeScreen(
  *
  * @param navController The navigation controller for navigating between screens.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun HomeScreenBody(
     navController: NavController? = null
@@ -117,7 +113,6 @@ fun HomeScreenBody(
  * Composable function for previewing the Home screen.
  * This preview function is used for testing and visualizing the Home screen.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview(){

@@ -2,7 +2,6 @@ package com.example.kala.configuration
 
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.kala.R
 
 /*
     General
@@ -16,122 +15,6 @@ fun invalidArgument(){
 const val DEFAULT_FLOAT = 1F
 const val NAME_APPLICATION = "Kala"
 const val DEFAULT_STRING = "Sample Text"
-
-/*
-    SmallButtonComponent
- */
-
-enum class SmallButtonConfiguration(
-    private val svgFile: Int,
-    //private val function: () -> Unit, TODO Functions associate to a configuration
-) {
-    ENGLISH(R.drawable.ic_united_kingdom_flag),
-    SPANISH(R.drawable.ic_spain_flag);
-
-    fun getSVGFile(): Int{
-        return svgFile
-    }
-}
-
-/*
-    MediumButtonComponent
- */
-
-enum class MediumButtonConfiguration(
-    private val displayName: String,
-    private val svgFile: Int,
-    //private val function: () -> Unit, TODO Functions associate to a configuration
-) {
-    SEE_REPORT("See report", R.drawable.ic_see_report),
-    SEE_RECORD("See record", R.drawable.ic_see_record),
-    DELETE("Delete Card",R.drawable.ic_delete),
-    EDIT("Edit\nCard",R.drawable.ic_edit),
-    EXPENSE("Expense Details", R.drawable.ic_expense),
-    INCOME("Income Details", R.drawable.ic_income);
-
-    override fun toString(): String {
-        return displayName
-    }
-
-    fun getSVGFile(): Int{
-        return svgFile
-    }
-}
-
-/*
-    LargeButtonComponent
- */
-
-enum class LargeButtonConfiguration(
-    private val displayName: String,
-    private val svgFile: Int,
-    private val route: String,
-) {
-    ADD_EXCHANGE("Add exchange", R.drawable.ic_exchange, ADD_EXCHANGE_SCREEN_ROUTE),
-    CHANGE_NAME("Change name", R.drawable.ic_account, "" /* TODO */),
-    CHANGE_EMAIL("Change email",R.drawable.ic_email,  "" /* TODO */),
-    SET_CURRENCY("Set currency",R.drawable.ic_currency,  "" /* TODO */),
-    SIGN_UP("Sign Up", R.drawable.ic_sign_up, "" /* TODO */),
-    LOG_IN("Log In", R.drawable.ic_log_in,  "" /* TODO */),
-    LOG_OUT("Log Out", R.drawable.ic_log_out,  "" /* TODO */),
-    DELETE_USER("Delete User", R.drawable.ic_delete_account,  "" /* TODO */),
-    FORGOT_PASS("Forgot Pass?", R.drawable.ic_question,  "" /* TODO */),
-    SEND_REQUEST("Send request", R.drawable.ic_next,  "" /* TODO */);
-
-    override fun toString(): String {
-        return displayName
-    }
-
-    fun getSVGFile(): Int{
-        return svgFile
-    }
-
-    fun getRoute(): String{
-        return route
-    }
-}
-
-/*
-    NavigationButtonComponent
- */
-
-enum class NavigationButtonConfiguration(
-    private val svgFile: Int,
-    private val route: String,
-) {
-    LANGUAGE(
-        R.drawable.ic_united_kingdom_flag,
-        LANGUAGE_SCREEN_ROUTE
-    ), /* TODO Dynamic Icon */
-    HELP(
-        R.drawable.ic_question,
-        HELP_SCREEN_ROUTE,
-    ),
-    OPTIONS(
-        R.drawable.ic_options,
-        OPTION_SCREEN_ROUTE
-    ),
-    BACK(
-        R.drawable.ic_back,
-        "DEFAULT_STRING"
-    ),
-    HOME(
-        R.drawable.ic_home,
-        HOME_SCREEN_ROUTE
-    ),
-    NEXT(
-        R.drawable.ic_next,
-        "" /* TODO */
-    );
-
-    fun getSVGFile(): Int{
-        return svgFile
-    }
-
-    fun getRoute(): String{
-        return route
-    }
-}
 
 /*
     HeaderComponent
@@ -220,7 +103,7 @@ enum class LogoConfiguration(private val size: Dp){
     LARGE(200.dp);
 
     fun getSize(): Dp {
-        return size;
+        return size
     }
 }
 
@@ -260,7 +143,7 @@ enum class ChartConfiguration(
 ){
     HOME_PAGE(0F, true),
     REPORT_PAGE(1F, true),
-    DETAILS_PAGE(1F, false);
+    ;
 
     fun alpha(): Float{
         return alpha

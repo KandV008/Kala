@@ -1,8 +1,6 @@
 package com.example.kala.screens.components.buttons
 
 import android.annotation.SuppressLint
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -46,7 +44,6 @@ import com.example.kala.ui.theme.BoneWhite
  * @param configuration The configuration for the medium-sized button.
  * @param onAdviceTriggered Callback function to be executed when the button is clicked.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun MediumButton(
     configuration: MediumButtonConfiguration,
@@ -110,7 +107,6 @@ fun MediumButton(
  * This preview function is used for testing and visualizing the MediumButton component.
  */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@RequiresApi(Build.VERSION_CODES.N)
 @Preview
 @Composable
 fun PreviewMediumButton() {
