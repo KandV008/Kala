@@ -25,7 +25,7 @@ import com.example.kala.configuration.LargeButtonConfiguration
 import com.example.kala.configuration.MediumButtonConfiguration
 import com.example.kala.configuration.RECORD_SCREEN_ROUTE
 import com.example.kala.configuration.REPORT_SCREEN_ROUTE
-import com.example.kala.screens.components.Chart
+import com.example.kala.screens.components.BarChartInfo
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.buttons.LargeButton
@@ -57,7 +57,7 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(modifier = Modifier.padding(50.dp))
-            Chart(configuration = ChartConfiguration.HOME_PAGE, "example")
+            BarChartInfo(configuration = ChartConfiguration.HOME_PAGE, "example")
             Spacer(modifier = Modifier.weight(0.5f))
             HomeScreenBody(navController)
             Spacer(modifier = Modifier.padding(50.dp))

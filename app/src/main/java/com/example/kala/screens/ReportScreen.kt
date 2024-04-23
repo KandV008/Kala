@@ -1,8 +1,6 @@
 package com.example.kala.screens
 
 import android.annotation.SuppressLint
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,7 +25,7 @@ import com.example.kala.configuration.MediumButtonConfiguration
 import com.example.kala.configuration.REPORT_SCREEN_ROUTE
 import com.example.kala.configuration.TitleConfiguration
 import com.example.kala.entities.MoneyExchangeType
-import com.example.kala.screens.components.Chart
+import com.example.kala.screens.components.BarChartInfo
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.Title
@@ -39,7 +37,6 @@ import com.example.kala.ui.theme.BoneWhite
  *
  * @param navController The navigation controller for navigating between screens.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ReportScreen(
@@ -67,7 +64,7 @@ fun ReportScreen(
             Spacer(modifier = Modifier.padding(50.dp))
             Title(configuration = TitleConfiguration.REPORT)
             Spacer(modifier = Modifier.padding(10.dp))
-            Chart(configuration = ChartConfiguration.REPORT_PAGE)
+            BarChartInfo(configuration = ChartConfiguration.REPORT_PAGE, "example")
             Spacer(modifier = Modifier.padding(20.dp))
             ReportScreenBody(navController, currentMonth)
             Spacer(modifier = Modifier.padding(50.dp))
@@ -80,7 +77,6 @@ fun ReportScreen(
  *
  * @param navController The navigation controller for navigating between screens.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun ReportScreenBody(
     navController: NavController? = null,
@@ -120,7 +116,6 @@ fun ReportScreenBody(
  * Composable function for previewing the Report screen.
  * This preview function is used for testing and visualizing the Report screen.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable
 fun ReportScreenPreview(){

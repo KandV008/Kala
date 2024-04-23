@@ -139,17 +139,12 @@ enum class TitleConfiguration(private val displayName: String){
 
 enum class ChartConfiguration(
     private val alpha: Float,
-    private val isHistogram: Boolean,
 ){
-    HOME_PAGE(0F, true),
-    REPORT_PAGE(1F, true),
+    HOME_PAGE(0F),
+    REPORT_PAGE(1F),
     ;
 
     fun alpha(): Float{
         return alpha
-    }
-
-    fun isHistogram(): Boolean{
-        return isHistogram
     }
 }

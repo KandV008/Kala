@@ -1,8 +1,6 @@
 package com.example.kala.screens
 
 import android.annotation.SuppressLint
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -42,7 +40,7 @@ import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.configuration.TitleConfiguration
 import com.example.kala.entities.MoneyExchangeScope
 import com.example.kala.entities.MoneyExchangeType
-import com.example.kala.screens.components.Chart
+import com.example.kala.screens.components.BarChartInfo
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.Title
@@ -53,7 +51,6 @@ import com.example.kala.ui.theme.BoneWhite
  *
  * @param navController The navigation controller for navigating between screens.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun AboutMonthScreen(
@@ -85,7 +82,7 @@ fun AboutMonthScreen(
             Spacer(modifier = Modifier.padding(50.dp))
             Title(configuration = titleConfiguration)
             Spacer(modifier = Modifier.padding(10.dp))
-            Chart(configuration = ChartConfiguration.REPORT_PAGE)
+            BarChartInfo(configuration = ChartConfiguration.REPORT_PAGE,"example")
             Spacer(modifier = Modifier.padding(5.dp))
             Box(
                 modifier = Modifier
@@ -151,7 +148,6 @@ fun AboutMonthScreen(
  * Composable function for previewing the About month screen.
  * This preview function is used for testing and visualizing the About month screen.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable
 fun AboutMonthScreenPreview(){

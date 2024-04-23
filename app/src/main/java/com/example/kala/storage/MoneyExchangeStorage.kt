@@ -15,11 +15,15 @@ class MoneyExchangeStorage {
     init {
         // Initialize with an example month information
         val exampleMonthInformation = MonthInformation()
-        val exampleMoneyExchange =
+        val exampleMoneyExchange1 =
             MoneyExchange(10.0, MoneyExchangeType.EXPENSE, MoneyExchangeScope.FOOD, "example")
-        exampleMoneyExchange.id = 0
-        exampleMoneyExchange.monthAssociated = "example"
-        exampleMonthInformation.summary[exampleMoneyExchange.id] = exampleMoneyExchange
+        exampleMoneyExchange1.id = 0
+        exampleMoneyExchange1.monthAssociated = "example"
+        exampleMonthInformation.addMoneyExchange(exampleMoneyExchange1)
+        val exampleMoneyExchange2 =
+            MoneyExchange(34.0, MoneyExchangeType.INCOME, MoneyExchangeScope.LEISURE, "example")
+        exampleMoneyExchange2.id = 1
+        exampleMonthInformation.addMoneyExchange(exampleMoneyExchange2)
         this.monthInformationMap["example"] = exampleMonthInformation
     }
 

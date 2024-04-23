@@ -1,9 +1,6 @@
 package com.example.kala.screens.components
 
 import android.annotation.SuppressLint
-import android.os.Build
-import androidx.annotation.RequiresApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -18,41 +15,42 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.kala.R
+import co.yml.charts.axis.AxisData
+import co.yml.charts.common.model.Point
+import co.yml.charts.ui.barchart.BarChart
+import co.yml.charts.ui.barchart.models.BarChartData
+import co.yml.charts.ui.barchart.models.BarData
+import com.example.kala.configuration.ChartButtonConfiguration
 import com.example.kala.configuration.ChartConfiguration
-import com.example.kala.configuration.SVG_DESCRIPTION
-import com.example.kala.configuration.invalidArgument
+import com.example.kala.entities.MonthInformation
+import com.example.kala.model.MoneyExchangeService
+import com.example.kala.screens.components.buttons.ChartButton
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.Green0
 import com.example.kala.ui.theme.Red0
 import com.example.kala.ui.theme.Yellow0
 
-/**
- * Composable function for rendering a chart based on the provided configuration.
- *
- * @param configuration The configuration data for the chart.
- */
 @Composable
-fun Chart(configuration: ChartConfiguration){
+fun BarChartInfo(
+    configuration: ChartConfiguration,
+    month: String,
+){
+    val currentMonth = MoneyExchangeService.getMonthInformation(month)
+
     Box(
         modifier = Modifier
             .height(370.dp)
@@ -69,22 +67,27 @@ fun Chart(configuration: ChartConfiguration){
                 .padding(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            ChartHeader(configuration)
+            ChartHeader(configuration, currentMonth)
             Spacer(modifier = Modifier.weight(1F))
-            ChartBody(configuration)
+            Spacer(modifier = Modifier.padding(10.dp))
+            Box(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(20.dp))
+                    .size(200.dp)
+            ){
+                ChartBody(currentMonth)
+            }
             Spacer(modifier = Modifier.weight(1F))
-            ChartFooter(configuration)
+            ChartFooter(currentMonth)
         }
     }
 }
 
-/**
- * Composable function for rendering the header of the chart.
- *
- * @param configuration The configuration data for the chart.
- */
 @Composable
-fun ChartHeader(configuration: ChartConfiguration){
+fun ChartHeader(
+    configuration: ChartConfiguration,
+    currentMonth: MonthInformation,
+){
     Row(
         modifier = Modifier
             .height(50.dp)
@@ -92,92 +95,89 @@ fun ChartHeader(configuration: ChartConfiguration){
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        // Button for navigating to previous data
-        Box(
-            modifier = Modifier
-                .alpha(configuration.alpha())
-                .size(40.dp)
-                .shadow(10.dp, shape = CircleShape)
-                .border(2.dp, Color.Black, CircleShape)
-        ) {
-            Button(
-                onClick = {
-                    /* TODO */
-                    invalidArgument()
-                },
-                colors = ButtonDefaults.buttonColors(Color.White),
-                shape = CircleShape,
-                modifier = Modifier.size(40.dp)
-            ) {
-                Image(
-                    painter = painterResource(
-                        id = R.drawable.ic_previous
-                    ),
-                    contentDescription = SVG_DESCRIPTION
-                )
-            }
-        }
+        ChartButton(
+            configuration = ChartButtonConfiguration.LEFT,
+            alpha = configuration.alpha(),
+        )
         Text(
-            text = "January",
+            text = currentMonth.dateCreation.month.toString(),
             color = Color.Black,
-            fontSize = 34.sp,
+            fontSize = 30.sp,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
         )
-        // Button for navigating to next data
-        Box(
-            modifier = Modifier
-                .alpha(configuration.alpha())
-                .size(40.dp)
-                .shadow(10.dp, shape = CircleShape)
-                .border(2.dp, Color.Black, CircleShape)
-        ) {
-            Button(
-                onClick = {
-                    /* TODO */
-                    invalidArgument()
-                },
-                colors = ButtonDefaults.buttonColors(Color.White),
-                shape = CircleShape,
-                modifier = Modifier.size(40.dp)
-            ) {
-                Image(
-                    painter = painterResource(
-                        id = R.drawable.ic_succesor
-                    ),
-                    contentDescription = SVG_DESCRIPTION
-                )
-            }
-        }
+        ChartButton(
+            configuration = ChartButtonConfiguration.RIGHT,
+            alpha = configuration.alpha(),
+        )
     }
 }
 
-/**
- * Composable function for rendering the body of the chart.
- *
- * @param configuration The configuration data for the chart.
- */
 @Composable
-fun ChartBody(configuration: ChartConfiguration){
-    /* TODO */
+fun ChartBody(
+    currentMonth: MonthInformation
+){
+    val barsData = listOf(
+        BarData(Point(0F, 0F), Color.White),
+        BarData(Point(1.75F, currentMonth.incomeMoney.toFloat()), Green0),
+        BarData(Point(2.5F, currentMonth.expensedMoney.toFloat()), Red0),
+        BarData(Point(4F, 0F), Color.White),
+        )
+
+    val xAxisData = AxisData.Builder()
+        .axisLineColor(Color.Black)
+        .axisLineThickness(5.dp)
+        .backgroundColor(Color.White)
+        .build()
+
+    val yAxisData = AxisData.Builder()
+        .labelAndAxisLinePadding(1.dp)
+        .axisLineColor(Color.White)
+        .backgroundColor(Color.White)
+        .build()
+
+    val barChartData = BarChartData(
+        chartData = barsData,
+        xAxisData = xAxisData,
+        yAxisData = yAxisData,
+        backgroundColor = Color.White,
+        showYAxis = false,
+        showXAxis = false,
+        paddingTop = 0.dp,
+
+    )
+
+    BarChart(
+        modifier = Modifier
+            .background(Color.White)
+        //.border(2.dp, Color.Black, RoundedCornerShape(20.dp))
+        ,
+        barChartData = barChartData,
+    )
 }
 
-/**
- * Composable function for rendering the footer of the chart.
- *
- * @param configuration The configuration data for the chart.
- */
+
 @Composable
-fun ChartFooter(configuration: ChartConfiguration){
+fun ChartFooter(
+    currentMonth: MonthInformation
+){
+    val incomeValue = currentMonth.incomeMoney
+    val expenseValue = currentMonth.expensedMoney
+    val balanceValue = incomeValue - expenseValue
+
     Row(
         modifier = Modifier
             .height(80.dp)
             .width(300.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        ChartInfo(title = "Income", value = "+185", color = Green0)
-        ChartInfo(title = "Balance", value = "+35", color = Yellow0)
-        ChartInfo(title = "Expense", value = "-150", color = Red0)
+        ChartInfo(title = "Income", value = "+$incomeValue", color = Green0)
+        ChartInfo(
+            title = "Balance",
+            value = if (balanceValue >= 0) "+$balanceValue" else balanceValue.toString(),
+            color = Yellow0
+        )
+        ChartInfo(title = "Expense", value = "-$expenseValue", color = Red0)
     }
 }
 
@@ -219,10 +219,11 @@ fun ChartInfo(title: String, value: String, color: Color){
  * This preview function is used for testing and visualizing the Chart component.
  */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@RequiresApi(Build.VERSION_CODES.N)
 @Preview
 @Composable
 fun ChartPreview() {
+    val idMonth = "example"
+
     Scaffold {
         LazyColumn (
             modifier = Modifier
@@ -233,7 +234,7 @@ fun ChartPreview() {
         ){
             items(ChartConfiguration.entries.toTypedArray()){
                     value ->
-                Chart(configuration = value)
+                BarChartInfo(configuration = value, month = idMonth)
                 Spacer(modifier = Modifier.padding(10.dp))
             }
         }
