@@ -120,6 +120,20 @@ class MoneyExchangeStorage {
     }
 
     fun getMonthInformation(id: String): MonthInformation {
-        return this.monthInformationMap[id]!!
+        val monthInformation = this.monthInformationMap[id]
+        monthInformation?.let {
+            return it
+        } ?:
+            return createMonthInformation(id)
+    }
+
+    private fun createMonthInformation(id: String): MonthInformation{
+        val newMonthInformation = MonthInformation()
+        this.monthInformationMap[id] = newMonthInformation
+        return newMonthInformation
+    }
+
+    fun existMonthInformation(idMonth: String): Boolean {
+        return this.monthInformationMap.containsKey(idMonth)
     }
 }

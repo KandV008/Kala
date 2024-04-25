@@ -48,6 +48,8 @@ import com.example.kala.ui.theme.Yellow0
 fun BarChartInfo(
     configuration: ChartConfiguration,
     month: String,
+    onLeftTriggered: () -> Unit = {},
+    onRightTriggered: () -> Unit = {},
 ){
     val currentMonth = MoneyExchangeService.getMonthInformation(month)
 
@@ -67,7 +69,7 @@ fun BarChartInfo(
                 .padding(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            ChartHeader(configuration, currentMonth)
+            ChartHeader(configuration, currentMonth, onLeftTriggered, onRightTriggered)
             Spacer(modifier = Modifier.weight(1F))
             Spacer(modifier = Modifier.padding(10.dp))
             Box(
@@ -87,7 +89,12 @@ fun BarChartInfo(
 fun ChartHeader(
     configuration: ChartConfiguration,
     currentMonth: MonthInformation,
+    onLeftTriggered: () -> Unit = {},
+    onRigthTriggered: () -> Unit = {},
 ){
+    val leftChartButtonAlpha: Int = MoneyExchangeService.hasNextMonth(currentMonth)
+    val rightChartButtonAlpha: Int = MoneyExchangeService.hasPrevMonth(currentMonth)
+
     Row(
         modifier = Modifier
             .height(50.dp)
@@ -97,7 +104,8 @@ fun ChartHeader(
     ) {
         ChartButton(
             configuration = ChartButtonConfiguration.LEFT,
-            alpha = configuration.alpha(),
+            alpha = configuration.alpha() * leftChartButtonAlpha,
+            onAdviceTriggered = onLeftTriggered,
         )
         Text(
             text = currentMonth.dateCreation.month.toString(),
@@ -108,7 +116,8 @@ fun ChartHeader(
         )
         ChartButton(
             configuration = ChartButtonConfiguration.RIGHT,
-            alpha = configuration.alpha(),
+            alpha = configuration.alpha() * rightChartButtonAlpha,
+            onAdviceTriggered = onRigthTriggered,
         )
     }
 }
@@ -144,7 +153,6 @@ fun ChartBody(
         showYAxis = false,
         showXAxis = false,
         paddingTop = 0.dp,
-
     )
 
     BarChart(

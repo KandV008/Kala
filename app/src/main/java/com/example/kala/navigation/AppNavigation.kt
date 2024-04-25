@@ -69,8 +69,15 @@ fun AppNavigation(){
                 // TODO: Handle the case where the parameters are null
             }
         }
-        composable(route = AppScreens.reportExchangeScreen.route){
-            ReportScreen(navController)
+        composable(route = AppScreens.reportScreen.route + "/{month}"){
+            val navBackStackEntry by navController.currentBackStackEntryAsState()
+            val month = navBackStackEntry?.arguments?.getString("month")
+
+            if (month != null ) {
+                ReportScreen(navController, month)
+            } else {
+                // TODO: Handle the case where the parameters are null
+            }
         }
     }
 }

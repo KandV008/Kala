@@ -96,4 +96,20 @@ object MoneyExchangeService {
     fun getMonthInformation(id: String): MonthInformation {
         return this.moneyExchangeStorage.getMonthInformation(id)
     }
+
+    fun hasNextMonth(currentMonth: MonthInformation): Int {
+        val nextMonth = currentMonth.dateCreation.plusMonths(1L)
+        val idMonth = "${nextMonth.month}${nextMonth.year}"
+
+        val hasNextMonth: Boolean = this.moneyExchangeStorage.existMonthInformation(idMonth)
+        return hasNextMonth.compareTo(true)
+    }
+
+    fun hasPrevMonth(currentMonth: MonthInformation): Int {
+        val prevMonth = currentMonth.dateCreation.plusMonths(1L)
+        val idMonth = "${prevMonth.month}${prevMonth.year}"
+
+        val hasPrevMonth: Boolean = this.moneyExchangeStorage.existMonthInformation(idMonth)
+        return hasPrevMonth.compareTo(true)
+    }
 }

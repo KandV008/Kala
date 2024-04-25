@@ -40,12 +40,33 @@ import com.example.kala.ui.theme.BoneWhite
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ReportScreen(
-    navController: NavController? = null
+    navController: NavController? = null,
+    currentMonth: String,
 ){
 
-    var currentMonth by remember {
-        mutableStateOf("THE MONTH")
+    var leftButtonTriggered by remember {
+        mutableStateOf(false)
     }
+    val onLeftTriggered = {
+        leftButtonTriggered = true
+    }
+    var rightButtonTriggered by remember {
+        mutableStateOf(false)
+    }
+    val onRightTriggered = {
+        rightButtonTriggered = true
+    }
+
+    if (rightButtonTriggered){
+        rightButtonTriggered = false
+        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$currentMonth")
+    }
+
+    if (leftButtonTriggered){
+        leftButtonTriggered = false
+        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$currentMonth")
+    }
+
 
     Scaffold(
         topBar = {
@@ -64,7 +85,12 @@ fun ReportScreen(
             Spacer(modifier = Modifier.padding(50.dp))
             Title(configuration = TitleConfiguration.REPORT)
             Spacer(modifier = Modifier.padding(10.dp))
-            BarChartInfo(configuration = ChartConfiguration.REPORT_PAGE, "example")
+            BarChartInfo(
+                configuration = ChartConfiguration.REPORT_PAGE,
+                month = currentMonth,
+                onLeftTriggered = onLeftTriggered,
+                onRightTriggered = onRightTriggered,
+                )
             Spacer(modifier = Modifier.padding(20.dp))
             ReportScreenBody(navController, currentMonth)
             Spacer(modifier = Modifier.padding(50.dp))
@@ -119,6 +145,6 @@ fun ReportScreenBody(
 @Preview(showBackground = true)
 @Composable
 fun ReportScreenPreview(){
-    ReportScreen()
+    ReportScreen(currentMonth = "example")
 }
 

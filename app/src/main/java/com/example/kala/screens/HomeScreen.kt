@@ -31,6 +31,7 @@ import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.buttons.LargeButton
 import com.example.kala.screens.components.buttons.MediumButton
 import com.example.kala.ui.theme.BoneWhite
+import java.time.LocalDateTime
 
 /**
  * Composable function for rendering the Home screen.
@@ -42,6 +43,9 @@ import com.example.kala.ui.theme.BoneWhite
 fun HomeScreen(
     navController: NavController? = null
 ){
+    val today = LocalDateTime.now()
+    val currentMonth = "${today.month}${today.year}"
+
     Scaffold(
         topBar = {
             Header(configuration = HeaderConfiguration.REGISTERED_USER, navController)
@@ -57,9 +61,9 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(modifier = Modifier.padding(50.dp))
-            BarChartInfo(configuration = ChartConfiguration.HOME_PAGE, "example")
+            BarChartInfo(configuration = ChartConfiguration.HOME_PAGE, currentMonth)
             Spacer(modifier = Modifier.weight(0.5f))
-            HomeScreenBody(navController)
+            HomeScreenBody(navController, currentMonth)
             Spacer(modifier = Modifier.padding(50.dp))
         }
     }
@@ -72,7 +76,8 @@ fun HomeScreen(
  */
 @Composable
 fun HomeScreenBody(
-    navController: NavController? = null
+    navController: NavController? = null,
+    currentMont: String
 ){
     var leftButtonTriggered by remember {
         mutableStateOf(false)
@@ -94,7 +99,7 @@ fun HomeScreenBody(
 
     if (leftButtonTriggered){
         leftButtonTriggered = false
-        navController?.navigate(route = REPORT_SCREEN_ROUTE)
+        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$currentMont")
     }
 
     LargeButton(

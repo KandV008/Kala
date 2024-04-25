@@ -56,5 +56,5 @@ sealed class AppScreens(val route: String) {
     /**
      * Represents the report screen.
      */
-    object reportExchangeScreen: AppScreens(REPORT_SCREEN_ROUTE)
+    object reportScreen: AppScreens(REPORT_SCREEN_ROUTE)
 }
