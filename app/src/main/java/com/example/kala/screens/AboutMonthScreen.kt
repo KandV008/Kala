@@ -22,6 +22,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -33,16 +37,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.kala.configuration.ChartConfiguration
+import com.example.kala.configuration.ABOUT_MONTH_ROUTE
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.configuration.TitleConfiguration
 import com.example.kala.entities.MoneyExchangeScope
 import com.example.kala.entities.MoneyExchangeType
-import com.example.kala.screens.components.BarChartInfo
+import com.example.kala.entities.MonthInformation
+import com.example.kala.model.MoneyExchangeService
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
+import com.example.kala.screens.components.PieChartInfo
 import com.example.kala.screens.components.Title
 import com.example.kala.ui.theme.BoneWhite
 
@@ -55,15 +61,40 @@ import com.example.kala.ui.theme.BoneWhite
 @Composable
 fun AboutMonthScreen(
     navController: NavController? = null,
-    moneyExchangeType: MoneyExchangeType? = null,
-    currentMonth: String? = null,
+    type: String,
+    month: String,
 ){
+    val currentMonth = MoneyExchangeService.getMonthInformation(month)
+    val currentType = MoneyExchangeType.valueOf(type)
 
     val titleConfiguration =
-        if (moneyExchangeType == MoneyExchangeType.EXPENSE)
+        if (currentType == MoneyExchangeType.EXPENSE)
             TitleConfiguration.EXPENSE
         else
             TitleConfiguration.INCOME
+
+    var leftButtonTriggered by remember {
+        mutableStateOf(false)
+    }
+    val onLeftTriggered = {
+        leftButtonTriggered = true
+    }
+    var rightButtonTriggered by remember {
+        mutableStateOf(false)
+    }
+    val onRightTriggered = {
+        rightButtonTriggered = true
+    }
+
+    if (rightButtonTriggered){
+        rightButtonTriggered = false
+        navController?.navigate(route = "$ABOUT_MONTH_ROUTE/$currentMonth/${MoneyExchangeType.INCOME}")
+    }
+
+    if (leftButtonTriggered){
+        leftButtonTriggered = false
+        navController?.navigate(route = "$ABOUT_MONTH_ROUTE/$currentMonth/${MoneyExchangeType.EXPENSE}")
+    }
 
     Scaffold(
         topBar = {
@@ -82,7 +113,12 @@ fun AboutMonthScreen(
             Spacer(modifier = Modifier.padding(50.dp))
             Title(configuration = titleConfiguration)
             Spacer(modifier = Modifier.padding(10.dp))
-            BarChartInfo(configuration = ChartConfiguration.REPORT_PAGE,"example")
+            PieChartInfo(
+                month = month,
+                type = type,
+                onLeftTriggered = onLeftTriggered,
+                onRightTriggered = onRightTriggered
+            )
             Spacer(modifier = Modifier.padding(5.dp))
             Box(
                 modifier = Modifier
@@ -94,54 +130,60 @@ fun AboutMonthScreen(
                 ,
                 contentAlignment = Alignment.Center
             ){
-                LazyColumn{
-                    items(
-                        MoneyExchangeScope.entries.toTypedArray()
-                    ){
-                        value ->
-                            val svgFile = MoneyExchangeScope.getSVGFile(value)
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(40.dp)
-                                    .padding(horizontal = 15.dp, vertical = 5.dp)
-                                ,
-                                Arrangement.SpaceBetween,
-                            ) {
-                                Box(
-                                    modifier = Modifier
-                                        .border(2.dp, Color.Black, shape = CircleShape)
-                                        .size(30.dp)
-                                        .clip(CircleShape)
-                                        .background(Color.White)
-                                        .padding(5.dp),
-                                    contentAlignment = Alignment.Center,
-                                ) {
-                                    Image(
-                                        painter = painterResource(id = svgFile),
-                                        contentDescription = SVG_DESCRIPTION
-                                    )
-                                }
-                                Text(text = value.toString(),
-                                    color = Color.Black,
-                                    textAlign = TextAlign.Center,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 20.sp,
-                                )
-                                Text(text = "10",
-                                    color = Color.Black,
-                                    textAlign = TextAlign.Center,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 20.sp,)
-                            }
-                    }
-                }
+                SummaryScope(currentMonth, currentType)
             }
             Spacer(modifier = Modifier.padding(50.dp))
         }
     }
 }
 
+@Composable
+fun SummaryScope(currentMonth: MonthInformation, currentType: MoneyExchangeType){
+    LazyColumn{
+        items(
+            MoneyExchangeScope.entries.toTypedArray()
+        ){
+                value ->
+            val svgFile = MoneyExchangeScope.getSVGFile(value)
+            val sumValue = MoneyExchangeService
+                .getSumOfMoneyExchangeByScopeAndType(currentMonth, currentType,value)
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(40.dp)
+                    .padding(horizontal = 15.dp, vertical = 5.dp)
+                ,
+                Arrangement.SpaceBetween,
+            ) {
+                Box(
+                    modifier = Modifier
+                        .border(2.dp, Color.Black, shape = CircleShape)
+                        .size(30.dp)
+                        .clip(CircleShape)
+                        .background(Color.White)
+                        .padding(5.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Image(
+                        painter = painterResource(id = svgFile),
+                        contentDescription = SVG_DESCRIPTION
+                    )
+                }
+                Text(text = value.toString(),
+                    color = Color.Black,
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
+                )
+                Text(text = sumValue.toString(),
+                    color = Color.Black,
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,)
+            }
+        }
+    }
+}
 
 
 /**
@@ -151,6 +193,6 @@ fun AboutMonthScreen(
 @Preview(showBackground = true)
 @Composable
 fun AboutMonthScreenPreview(){
-    AboutMonthScreen()
+    AboutMonthScreen(month = "example", type = "EXPENSE")
 }
 

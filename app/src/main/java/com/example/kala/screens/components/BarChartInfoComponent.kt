@@ -69,7 +69,7 @@ fun BarChartInfo(
                 .padding(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            ChartHeader(configuration, currentMonth, onLeftTriggered, onRightTriggered)
+            BarChartHeader(configuration, currentMonth, onLeftTriggered, onRightTriggered)
             Spacer(modifier = Modifier.weight(1F))
             Spacer(modifier = Modifier.padding(10.dp))
             Box(
@@ -77,16 +77,16 @@ fun BarChartInfo(
                     .clip(RoundedCornerShape(20.dp))
                     .size(200.dp)
             ){
-                ChartBody(currentMonth)
+                BarChartBody(currentMonth)
             }
             Spacer(modifier = Modifier.weight(1F))
-            ChartFooter(currentMonth)
+            BarChartFooter(currentMonth)
         }
     }
 }
 
 @Composable
-fun ChartHeader(
+fun BarChartHeader(
     configuration: ChartConfiguration,
     currentMonth: MonthInformation,
     onLeftTriggered: () -> Unit = {},
@@ -123,7 +123,7 @@ fun ChartHeader(
 }
 
 @Composable
-fun ChartBody(
+fun BarChartBody(
     currentMonth: MonthInformation
 ){
     val barsData = listOf(
@@ -166,7 +166,7 @@ fun ChartBody(
 
 
 @Composable
-fun ChartFooter(
+fun BarChartFooter(
     currentMonth: MonthInformation
 ){
     val incomeValue = currentMonth.incomeMoney
@@ -179,13 +179,13 @@ fun ChartFooter(
             .width(300.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        ChartInfo(title = "Income", value = "+$incomeValue", color = Green0)
-        ChartInfo(
+        BarChartSummary(title = "Income", value = "+$incomeValue", color = Green0)
+        BarChartSummary(
             title = "Balance",
             value = if (balanceValue >= 0) "+$balanceValue" else balanceValue.toString(),
             color = Yellow0
         )
-        ChartInfo(title = "Expense", value = "-$expenseValue", color = Red0)
+        BarChartSummary(title = "Expense", value = "-$expenseValue", color = Red0)
     }
 }
 
@@ -197,7 +197,7 @@ fun ChartFooter(
  * @param color The color associated with the chart information.
  */
 @Composable
-fun ChartInfo(title: String, value: String, color: Color){
+fun BarChartSummary(title: String, value: String, color: Color){
     Column (
         modifier = Modifier
             .height(80.dp)
@@ -229,7 +229,7 @@ fun ChartInfo(title: String, value: String, color: Color){
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Preview
 @Composable
-fun ChartPreview() {
+fun BarChartInfoPreview() {
     val idMonth = "example"
 
     Scaffold {

@@ -1,6 +1,8 @@
 package com.example.kala.model
 
 import com.example.kala.entities.MoneyExchange
+import com.example.kala.entities.MoneyExchangeScope
+import com.example.kala.entities.MoneyExchangeType
 import com.example.kala.entities.MonthInformation
 import com.example.kala.storage.MoneyExchangeStorage
 
@@ -111,5 +113,16 @@ object MoneyExchangeService {
 
         val hasPrevMonth: Boolean = this.moneyExchangeStorage.existMonthInformation(idMonth)
         return hasPrevMonth.compareTo(true)
+    }
+
+    fun getSumOfMoneyExchangeByScopeAndType(
+        currentMonth: MonthInformation,
+        currentType: MoneyExchangeType,
+        currentScope: MoneyExchangeScope
+    ): Double {
+        return currentMonth.summary.values
+            .filter { acc -> acc.type == currentType }
+            .filter { acc -> acc.scope == currentScope }
+            .sumOf { acc -> acc.value }
     }
 }

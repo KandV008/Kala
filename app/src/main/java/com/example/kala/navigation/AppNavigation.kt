@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.kala.screens.AboutExchangeScreen
+import com.example.kala.screens.AboutMonthScreen
 import com.example.kala.screens.AddExchangeScreen
 import com.example.kala.screens.EditExchangeScreen
 import com.example.kala.screens.HelpScreen
@@ -75,6 +76,18 @@ fun AppNavigation(){
 
             if (month != null ) {
                 ReportScreen(navController, month)
+            } else {
+                // TODO: Handle the case where the parameters are null
+            }
+        }
+        composable(route = AppScreens.aboutMonthScreen.route + "/{month}/{type}"){
+            val navBackStackEntry by navController.currentBackStackEntryAsState()
+
+            val month = navBackStackEntry?.arguments?.getString("month")
+            val type = navBackStackEntry?.arguments?.getString("type")
+
+            if (month != null && type != null) {
+                AboutMonthScreen(navController, month, type)
             } else {
                 // TODO: Handle the case where the parameters are null
             }

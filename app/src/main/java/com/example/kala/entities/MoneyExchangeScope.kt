@@ -1,12 +1,23 @@
 package com.example.kala.entities
 
+import androidx.compose.ui.graphics.Color
 import com.example.kala.R
 
 /**
  * Enum representing the scope/category of a money exchange.
  */
-enum class MoneyExchangeScope {
-    FOOD, LEISURE, USEFUL, MEDICINE, OTHER;
+enum class MoneyExchangeScope(
+    private val color: Color,
+) {
+    FOOD(Color.Cyan),
+    LEISURE(Color.Magenta),
+    USEFUL(Color.Yellow),
+    MEDICINE(Color.Red),
+    OTHER(Color.Green);
+
+    fun getColor(): Color{
+        return color
+    }
 
     companion object {
         /**

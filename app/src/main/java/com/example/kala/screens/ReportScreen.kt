@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.kala.configuration.ABOUT_MONTH_ROUTE
 import com.example.kala.configuration.ChartConfiguration
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
@@ -123,12 +124,12 @@ fun ReportScreenBody(
 
     if (rightButtonTriggered){
         rightButtonTriggered = false
-        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/${MoneyExchangeType.INCOME}/$currentMonth")
+        navController?.navigate(route = "$ABOUT_MONTH_ROUTE/$currentMonth/${MoneyExchangeType.INCOME}")
     }
 
     if (leftButtonTriggered){
         leftButtonTriggered = false
-        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/${MoneyExchangeType.EXPENSE}/$currentMonth")
+        navController?.navigate(route = "$ABOUT_MONTH_ROUTE/$currentMonth/${MoneyExchangeType.EXPENSE}")
     }
 
     Row {

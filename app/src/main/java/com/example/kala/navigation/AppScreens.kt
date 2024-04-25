@@ -57,4 +57,9 @@ sealed class AppScreens(val route: String) {
      * Represents the report screen.
      */
     object reportScreen: AppScreens(REPORT_SCREEN_ROUTE)
+
+    /**
+     * Represent the screen showing details about a month
+     */
+    object aboutMonthScreen: AppScreens(ABOUT_EXCHANGE_ROUTE)
 }
