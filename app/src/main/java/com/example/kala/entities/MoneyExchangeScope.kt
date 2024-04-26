@@ -1,14 +1,23 @@
 package com.example.kala.entities
 
-import android.os.Build
-import androidx.annotation.RequiresApi
+import androidx.compose.ui.graphics.Color
 import com.example.kala.R
 
 /**
  * Enum representing the scope/category of a money exchange.
  */
-enum class MoneyExchangeScope {
-    FOOD, LEISURE, USEFUL, MEDICINE, OTHER;
+enum class MoneyExchangeScope(
+    private val color: Color,
+) {
+    FOOD(Color.Cyan),
+    LEISURE(Color.Magenta),
+    USEFUL(Color.Yellow),
+    MEDICINE(Color.Red),
+    OTHER(Color.Green);
+
+    fun getColor(): Color{
+        return color
+    }
 
     companion object {
         /**
@@ -17,7 +26,6 @@ enum class MoneyExchangeScope {
          * @param enum The MoneyExchangeScope enum.
          * @return The resource ID of the SVG file.
          */
-        @RequiresApi(Build.VERSION_CODES.N)
         fun getSVGFile(enum: MoneyExchangeScope): Int {
             val svgMap: Map<MoneyExchangeScope, Int> = mapOf(
                 FOOD to R.drawable.ic_food_scope,

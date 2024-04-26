@@ -1,7 +1,5 @@
 package com.example.kala.entities
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import java.time.LocalDate
 import java.util.TreeMap
 
@@ -13,20 +11,19 @@ import java.util.TreeMap
  * @property incomeMoney The total amount of money earned in the month.
  * @property summary A TreeMap containing the money exchanges for the month.
  */
-@RequiresApi(Build.VERSION_CODES.O)
 class MonthInformation {
     private val id: String
     var expensedMoney: Double = 0.0
     var incomeMoney: Double = 0.0
     val summary: TreeMap<Int, MoneyExchange> = TreeMap()
+    val dateCreation: LocalDate = LocalDate.now()
 
     /**
      * Initializes the MonthInformation object and sets its ID based on the current month and year.
      */
     init {
-        val date = LocalDate.now()
-        val month = date.month.toString()
-        val year = date.year.toString()
+        val month = dateCreation.month.toString()
+        val year = dateCreation.year.toString()
         this.id = month + year
     }
 

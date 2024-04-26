@@ -1,7 +1,5 @@
 package com.example.kala.configuration
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.kala.R
 import com.example.kala.entities.MoneyExchangeScope
 import com.example.kala.entities.MoneyExchangeType
@@ -112,7 +110,6 @@ enum class MenuInputConfiguration(
         return placeholder
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     fun getSVG(option: String): Int{
         return svgMap.getOrDefault(option, R.drawable.ic_question)
     }

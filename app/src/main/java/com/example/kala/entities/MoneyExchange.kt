@@ -1,7 +1,5 @@
 package com.example.kala.entities
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -25,7 +23,6 @@ data class MoneyExchange(
 ) {
     var id: Int = -1
     var monthAssociated: String = ""
-    @RequiresApi(Build.VERSION_CODES.O)
     val date: LocalDateTime = LocalDateTime.now()
 
     /**
@@ -43,7 +40,6 @@ data class MoneyExchange(
      *
      * @return The formatted date string.
      */
-    @RequiresApi(Build.VERSION_CODES.O)
     fun getFormattedDate(): String {
         val formatter = DateTimeFormatter.ofPattern("dd MMM yy", Locale.ENGLISH)
         return date.format(formatter)
@@ -63,7 +59,6 @@ data class MoneyExchange(
      *
      * @return True if the objects have the same date, false otherwise.
      */
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun equals(other: Any?): Boolean {
         val otherMoneyExchange: MoneyExchange = other as MoneyExchange
         return date == otherMoneyExchange.date
@@ -74,7 +69,6 @@ data class MoneyExchange(
      *
      * @return The hash code.
      */
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun hashCode(): Int {
         var result = value.hashCode()
         result = 31 * result + type.hashCode()

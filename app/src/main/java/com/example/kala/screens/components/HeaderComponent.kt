@@ -1,7 +1,5 @@
 package com.example.kala.screens.components
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -40,7 +38,6 @@ import com.example.kala.screens.components.buttons.NavigationButton
  * @param configuration The configuration data for the header.
  * @param navController The navigation controller to handle navigation actions.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun Header(
     configuration: HeaderConfiguration,
@@ -108,7 +105,6 @@ fun Header(
  * Composable function for previewing the Header component.
  * This preview function is used for testing and visualizing the Header component.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Preview
 @Composable
 fun HeaderPreview() {

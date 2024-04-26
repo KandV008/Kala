@@ -1,7 +1,5 @@
 package com.example.kala.screens.components
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -35,7 +33,6 @@ import com.example.kala.screens.components.buttons.NavigationButton
  * @param navController The navigation controller to handle navigation actions.
  * @param onAdviceTriggered The callback for handling advice triggered event.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun Footer(
     configuration: FooterConfiguration,
@@ -107,7 +104,6 @@ fun Footer(
  * Composable function for previewing the Footer component.
  * This preview function is used for testing and visualizing the Footer component.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Preview
 @Composable
 fun FooterPreview() {

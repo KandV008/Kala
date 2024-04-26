@@ -1,8 +1,6 @@
 package com.example.kala.screens
 
 import android.annotation.SuppressLint
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
@@ -36,7 +34,6 @@ import com.example.kala.ui.theme.BoneWhite
  *
  * @param navController The navigation controller for navigating between screens.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HelpScreen(navController: NavController? = null){
@@ -69,7 +66,6 @@ fun HelpScreen(navController: NavController? = null){
  *
  * @param advices The list of advices to display in the Help screen.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun HelpScreenBody(advices: List<String>){
     LazyColumn(
@@ -96,7 +92,6 @@ fun HelpScreenBody(advices: List<String>){
  * Composable function for previewing the Help screen.
  * This preview function is used for testing and visualizing the Help screen.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable
 fun HelpScreenPreview(){

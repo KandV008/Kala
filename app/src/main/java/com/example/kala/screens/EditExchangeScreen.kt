@@ -1,8 +1,6 @@
 package com.example.kala.screens
 
 import android.annotation.SuppressLint
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.kala.configuration.ABOUT_EXCHANGE_ROUTE
+import com.example.kala.configuration.ABOUT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.MenuInputConfiguration
@@ -41,7 +39,6 @@ import com.example.kala.ui.theme.BoneWhite
  * @param monthAssociated The month associated with the money exchange.
  * @param exchange The index of the money exchange.
  */
-@RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun EditExchangeScreen(
@@ -81,7 +78,7 @@ fun EditExchangeScreen(
         )
         MoneyExchangeService.editMoneyExchange(monthAssociated, exchange, updatedMoneyExchange)
         adviceTriggered = false
-        navController?.navigate(route = "$ABOUT_EXCHANGE_ROUTE/$monthAssociated/$exchange")
+        navController?.navigate(route = "$ABOUT_EXCHANGE_SCREEN_ROUTE/$monthAssociated/$exchange")
     }
 
     Scaffold(
@@ -130,7 +127,6 @@ fun EditExchangeScreen(
 /**
  * Preview function for the EditExchangeScreen composable.
  */
-@RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
 fun EditExchangeScreenPreview() {

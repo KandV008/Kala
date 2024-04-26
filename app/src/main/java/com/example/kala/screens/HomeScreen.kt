@@ -1,8 +1,6 @@
 package com.example.kala.screens
 
 import android.annotation.SuppressLint
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,24 +24,28 @@ import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.LargeButtonConfiguration
 import com.example.kala.configuration.MediumButtonConfiguration
 import com.example.kala.configuration.RECORD_SCREEN_ROUTE
-import com.example.kala.screens.components.Chart
+import com.example.kala.configuration.REPORT_SCREEN_ROUTE
+import com.example.kala.screens.components.BarChartInfo
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.buttons.LargeButton
 import com.example.kala.screens.components.buttons.MediumButton
 import com.example.kala.ui.theme.BoneWhite
+import java.time.LocalDateTime
 
 /**
  * Composable function for rendering the Home screen.
  *
  * @param navController The navigation controller for navigating between screens.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(
     navController: NavController? = null
 ){
+    val today = LocalDateTime.now()
+    val currentMonth = "${today.month}${today.year}"
+
     Scaffold(
         topBar = {
             Header(configuration = HeaderConfiguration.REGISTERED_USER, navController)
@@ -59,9 +61,9 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(modifier = Modifier.padding(50.dp))
-            Chart(configuration = ChartConfiguration.HOME_PAGE)
+            BarChartInfo(configuration = ChartConfiguration.HOME_PAGE, currentMonth)
             Spacer(modifier = Modifier.weight(0.5f))
-            HomeScreenBody(navController)
+            HomeScreenBody(navController, currentMonth)
             Spacer(modifier = Modifier.padding(50.dp))
         }
     }
@@ -72,10 +74,10 @@ fun HomeScreen(
  *
  * @param navController The navigation controller for navigating between screens.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun HomeScreenBody(
-    navController: NavController? = null
+    navController: NavController? = null,
+    currentMont: String
 ){
     var leftButtonTriggered by remember {
         mutableStateOf(false)
@@ -97,7 +99,7 @@ fun HomeScreenBody(
 
     if (leftButtonTriggered){
         leftButtonTriggered = false
-        // TODO Report Screen
+        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$currentMont")
     }
 
     LargeButton(
@@ -116,7 +118,6 @@ fun HomeScreenBody(
  * Composable function for previewing the Home screen.
  * This preview function is used for testing and visualizing the Home screen.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview(){

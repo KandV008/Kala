@@ -1,7 +1,5 @@
 package com.example.kala.storage
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.kala.entities.MoneyExchange
 import com.example.kala.entities.MoneyExchangeScope
 import com.example.kala.entities.MoneyExchangeType
@@ -11,18 +9,21 @@ import java.util.TreeMap
 /**
  * Storage class for managing money exchange data.
  */
-@RequiresApi(Build.VERSION_CODES.O)
 class MoneyExchangeStorage {
     private val monthInformationMap: TreeMap<String, MonthInformation> = TreeMap()
 
     init {
         // Initialize with an example month information
         val exampleMonthInformation = MonthInformation()
-        val exampleMoneyExchange =
+        val exampleMoneyExchange1 =
             MoneyExchange(10.0, MoneyExchangeType.EXPENSE, MoneyExchangeScope.FOOD, "example")
-        exampleMoneyExchange.id = 0
-        exampleMoneyExchange.monthAssociated = "example"
-        exampleMonthInformation.summary[exampleMoneyExchange.id] = exampleMoneyExchange
+        exampleMoneyExchange1.id = 0
+        exampleMoneyExchange1.monthAssociated = "example"
+        exampleMonthInformation.addMoneyExchange(exampleMoneyExchange1)
+        val exampleMoneyExchange2 =
+            MoneyExchange(34.0, MoneyExchangeType.INCOME, MoneyExchangeScope.LEISURE, "example")
+        exampleMoneyExchange2.id = 1
+        exampleMonthInformation.addMoneyExchange(exampleMoneyExchange2)
         this.monthInformationMap["example"] = exampleMonthInformation
     }
 
@@ -32,7 +33,6 @@ class MoneyExchangeStorage {
      * @param moneyExchange The money exchange to be saved.
      * @return The month information after saving the money exchange.
      */
-    @RequiresApi(Build.VERSION_CODES.O)
     fun saveMoneyExchange(moneyExchange: MoneyExchange): MonthInformation {
         val idMonth = "${moneyExchange.date.month}${moneyExchange.date.year}"
 
@@ -59,7 +59,6 @@ class MoneyExchangeStorage {
      * @param id The identifier of the month.
      * @return The number of money exchanges from the specified month.
      */
-    @RequiresApi(Build.VERSION_CODES.O)
     fun getNumMoneyExchangeFromMonthInformation(id: String): Int {
         return this.monthInformationMap[id]?.summary?.size ?: 0
     }
@@ -69,7 +68,6 @@ class MoneyExchangeStorage {
      *
      * @return List of all money exchanges.
      */
-    @RequiresApi(Build.VERSION_CODES.O)
     fun getAllMoneyExchange(): List<MoneyExchange> {
         val list: MutableList<MoneyExchange> = mutableListOf()
         val allMonths = this.monthInformationMap.values
@@ -88,7 +86,6 @@ class MoneyExchangeStorage {
      * @param exchange The index of the money exchange.
      * @return The money exchange object, or null if not found.
      */
-    @RequiresApi(Build.VERSION_CODES.O)
     fun getMoneyExchange(monthAssociated: String, exchange: Int): MoneyExchange? {
         return this.monthInformationMap[monthAssociated]?.summary?.get(exchange)
     }
@@ -120,5 +117,23 @@ class MoneyExchangeStorage {
         this.monthInformationMap[moneyExchange.monthAssociated]?.summary?.set(moneyExchange.id,
             moneyExchange
         )
+    }
+
+    fun getMonthInformation(id: String): MonthInformation {
+        val monthInformation = this.monthInformationMap[id]
+        monthInformation?.let {
+            return it
+        } ?:
+            return createMonthInformation(id)
+    }
+
+    private fun createMonthInformation(id: String): MonthInformation{
+        val newMonthInformation = MonthInformation()
+        this.monthInformationMap[id] = newMonthInformation
+        return newMonthInformation
+    }
+
+    fun existMonthInformation(idMonth: String): Boolean {
+        return this.monthInformationMap.containsKey(idMonth)
     }
 }

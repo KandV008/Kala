@@ -43,7 +43,6 @@ val typeButtons: List<LargeButtonConfiguration> = listOf(
  *
  * @param navController The navigation controller for navigating between screens.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun OptionScreen(navController: NavController? = null){
@@ -74,7 +73,6 @@ fun OptionScreen(navController: NavController? = null){
 /**
  * Composable function for rendering the body of the Option screen.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun OptionScreenBody(){
     LazyColumn{
@@ -88,7 +86,6 @@ fun OptionScreenBody(){
 /**
  * Preview function for testing and visualizing the Option screen.
  */
-@RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable
 fun OptionScreenPreview(){
