@@ -80,7 +80,7 @@ fun AppNavigation(){
                 // TODO: Handle the case where the parameters are null
             }
         }
-        composable(route = AppScreens.aboutMonthScreen.route + "/{month}/{type}"){
+        composable(route = AppScreens.aboutMonthScreen.route + "/{month}" + "/{type}"){
             val navBackStackEntry by navController.currentBackStackEntryAsState()
 
             val month = navBackStackEntry?.arguments?.getString("month")

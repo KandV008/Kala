@@ -21,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.kala.configuration.ABOUT_EXCHANGE_ROUTE
+import com.example.kala.configuration.ABOUT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.TitleConfiguration
@@ -60,7 +60,7 @@ fun RecordScreen(
 
     if (adviceTriggered){
         adviceTriggered = false
-        navController?.navigate(route = "$ABOUT_EXCHANGE_ROUTE/$monthSelected/$cardSelected")
+        navController?.navigate(route = "$ABOUT_EXCHANGE_SCREEN_ROUTE/$monthSelected/$cardSelected")
     }
 
     Scaffold(

@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.kala.configuration.ABOUT_MONTH_ROUTE
+import com.example.kala.configuration.ABOUT_MONTH_SCREEN_ROUTE
 import com.example.kala.configuration.ChartConfiguration
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
@@ -45,29 +45,22 @@ fun ReportScreen(
     currentMonth: String,
 ){
 
-    var leftButtonTriggered by remember {
-        mutableStateOf(false)
-    }
-    val onLeftTriggered = {
-        leftButtonTriggered = true
-    }
-    var rightButtonTriggered by remember {
-        mutableStateOf(false)
-    }
-    val onRightTriggered = {
-        rightButtonTriggered = true
+    var leftButtonTriggered by remember { mutableStateOf(false) }
+    val onLeftTriggered = { leftButtonTriggered = true }
+    var rightButtonTriggered by remember { mutableStateOf(false) }
+    val onRightTriggered = { rightButtonTriggered = true }
+
+    if (leftButtonTriggered){
+        leftButtonTriggered = false
+        //TODO Change Month
+        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$currentMonth")
     }
 
     if (rightButtonTriggered){
         rightButtonTriggered = false
+        //TODO Change Month
         navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$currentMonth")
     }
-
-    if (leftButtonTriggered){
-        leftButtonTriggered = false
-        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$currentMonth")
-    }
-
 
     Scaffold(
         topBar = {
@@ -109,27 +102,19 @@ fun ReportScreenBody(
     navController: NavController? = null,
     currentMonth: String
 ){
-    var leftButtonTriggered by remember {
-        mutableStateOf(false)
-    }
-    val onLeftTriggered = {
-        leftButtonTriggered = true
-    }
-    var rightButtonTriggered by remember {
-        mutableStateOf(false)
-    }
-    val onRightTriggered = {
-        rightButtonTriggered = true
+    var leftButtonTriggered by remember { mutableStateOf(false) }
+    val onLeftTriggered = { leftButtonTriggered = true }
+    var rightButtonTriggered by remember { mutableStateOf(false) }
+    val onRightTriggered = { rightButtonTriggered = true }
+
+    if (leftButtonTriggered){
+        leftButtonTriggered = false
+        navController?.navigate(route = "$ABOUT_MONTH_SCREEN_ROUTE/$currentMonth/${MoneyExchangeType.INCOME}")
     }
 
     if (rightButtonTriggered){
         rightButtonTriggered = false
-        navController?.navigate(route = "$ABOUT_MONTH_ROUTE/$currentMonth/${MoneyExchangeType.INCOME}")
-    }
-
-    if (leftButtonTriggered){
-        leftButtonTriggered = false
-        navController?.navigate(route = "$ABOUT_MONTH_ROUTE/$currentMonth/${MoneyExchangeType.EXPENSE}")
+        navController?.navigate(route = "$ABOUT_MONTH_SCREEN_ROUTE/$currentMonth/${MoneyExchangeType.EXPENSE}")
     }
 
     Row {

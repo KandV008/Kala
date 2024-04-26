@@ -37,7 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.kala.configuration.ABOUT_MONTH_ROUTE
+import com.example.kala.configuration.ABOUT_MONTH_SCREEN_ROUTE
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
@@ -61,9 +61,10 @@ import com.example.kala.ui.theme.BoneWhite
 @Composable
 fun AboutMonthScreen(
     navController: NavController? = null,
-    type: String,
     month: String,
-){
+    type: String,
+
+    ){
     val currentMonth = MoneyExchangeService.getMonthInformation(month)
     val currentType = MoneyExchangeType.valueOf(type)
 
@@ -88,12 +89,12 @@ fun AboutMonthScreen(
 
     if (rightButtonTriggered){
         rightButtonTriggered = false
-        navController?.navigate(route = "$ABOUT_MONTH_ROUTE/$currentMonth/${MoneyExchangeType.INCOME}")
+        navController?.navigate(route = "$ABOUT_MONTH_SCREEN_ROUTE/$currentMonth/${MoneyExchangeType.INCOME}")
     }
 
     if (leftButtonTriggered){
         leftButtonTriggered = false
-        navController?.navigate(route = "$ABOUT_MONTH_ROUTE/$currentMonth/${MoneyExchangeType.EXPENSE}")
+        navController?.navigate(route = "$ABOUT_MONTH_SCREEN_ROUTE/$currentMonth/${MoneyExchangeType.EXPENSE}")
     }
 
     Scaffold(
