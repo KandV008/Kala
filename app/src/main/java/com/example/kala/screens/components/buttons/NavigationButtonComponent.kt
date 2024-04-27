@@ -24,11 +24,11 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.kala.configuration.DEFAULT_FLOAT
 import com.example.kala.configuration.NavigationButtonConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.dimens
 
 /**
  * Composable function for rendering a navigation button with customizable configuration.
@@ -45,19 +45,19 @@ fun NavigationButton(
 ) {
     Box(
         modifier = Modifier
-            .size(60.dp)
+            .size(dimens.image4)
             .alpha(alpha)
-            .shadow(10.dp, shape = RoundedCornerShape(10.dp))
+            .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
     ){
         Button(
             onClick = onAdviceTriggered,
             colors = ButtonDefaults.buttonColors(Color.White),
-            shape = RoundedCornerShape(10.dp),
+            shape = RoundedCornerShape(dimens.rounded),
             modifier = Modifier
-                .size(60.dp)
+                .fillMaxSize()
                 .alpha(alpha),
-            contentPadding = PaddingValues(10.dp),
-            border = BorderStroke(2.dp, Color.Black)
+            contentPadding = PaddingValues(dimens.padding3),
+            border = BorderStroke(dimens.border, Color.Black)
         ) {
             Image(
                 painter = painterResource(
@@ -86,15 +86,15 @@ fun NavigationButtonPreview() {
             verticalArrangement = Arrangement.Center,
         ){
             NavigationButton(NavigationButtonConfiguration.LANGUAGE)
-            Spacer(modifier = Modifier.padding(5.dp))
+            Spacer(modifier = Modifier.padding(dimens.space0))
             NavigationButton(NavigationButtonConfiguration.HOME)
-            Spacer(modifier = Modifier.padding(5.dp))
+            Spacer(modifier = Modifier.padding(dimens.space0))
             NavigationButton(NavigationButtonConfiguration.HELP)
-            Spacer(modifier = Modifier.padding(5.dp))
+            Spacer(modifier = Modifier.padding(dimens.space0))
             NavigationButton(NavigationButtonConfiguration.BACK)
-            Spacer(modifier = Modifier.padding(5.dp))
+            Spacer(modifier = Modifier.padding(dimens.space0))
             NavigationButton(NavigationButtonConfiguration.NEXT)
-            Spacer(modifier = Modifier.padding(5.dp))
+            Spacer(modifier = Modifier.padding(dimens.space0))
             NavigationButton(NavigationButtonConfiguration.OPTIONS)
         }
     }

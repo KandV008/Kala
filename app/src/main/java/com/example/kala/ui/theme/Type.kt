@@ -32,3 +32,78 @@ val Typography = Typography(
     )
     */
 )
+
+val CompactSmallTypography = Typography(
+    headlineLarge = TextStyle(
+
+    ),
+    headlineMedium = TextStyle(
+
+    ),
+    titleMedium = TextStyle(
+
+    ),
+    labelMedium = TextStyle(
+
+    ),
+)
+
+val CompactMediumTypography = Typography(
+    headlineLarge = TextStyle(
+
+    ),
+    headlineMedium = TextStyle(
+
+    ),
+    titleMedium = TextStyle(
+
+    ),
+    labelMedium = TextStyle(
+
+    ),
+)
+
+val CompactTypography = Typography(
+    headlineLarge = TextStyle(
+
+    ),
+    headlineMedium = TextStyle(
+
+    ),
+    titleMedium = TextStyle(
+
+    ),
+    labelMedium = TextStyle(
+
+    ),
+)
+
+val MediumTypography = Typography( //Original
+    headlineLarge = TextStyle(
+
+    ),
+    headlineMedium = TextStyle(
+
+    ),
+    titleMedium = TextStyle(
+
+    ),
+    labelMedium = TextStyle(
+
+    ),
+)
+
+val ExpandedTypography = Typography(
+    headlineLarge = TextStyle(
+
+    ),
+    headlineMedium = TextStyle(
+
+    ),
+    titleMedium = TextStyle(
+
+    ),
+    labelMedium = TextStyle(
+
+    ),
+)

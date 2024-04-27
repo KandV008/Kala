@@ -34,8 +34,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.kala.configuration.ABOUT_MONTH_SCREEN_ROUTE
 import com.example.kala.configuration.FooterConfiguration
@@ -51,6 +49,7 @@ import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.PieChartInfo
 import com.example.kala.screens.components.Title
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.dimens
 
 /**
  * Composable function for rendering the About month screen.
@@ -111,29 +110,29 @@ fun AboutMonthScreen(
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Spacer(modifier = Modifier.padding(50.dp))
+            Spacer(modifier = Modifier.padding(dimens.space4))
             Title(configuration = titleConfiguration)
-            Spacer(modifier = Modifier.padding(10.dp))
+            Spacer(modifier = Modifier.padding(dimens.space1))
             PieChartInfo(
                 month = month,
                 type = type,
                 onLeftTriggered = onLeftTriggered,
                 onRightTriggered = onRightTriggered
             )
-            Spacer(modifier = Modifier.padding(5.dp))
+            Spacer(modifier = Modifier.padding(dimens.space0))
             Box(
                 modifier = Modifier
-                    .width(300.dp)
-                    .height(200.dp)
-                    .clip(RoundedCornerShape(10.dp))
+                    .width(dimens.width8)
+                    .height(dimens.height7)
+                    .clip(RoundedCornerShape(dimens.rounded))
                     .background(Color.White)
-                    .border(2.dp, Color.Black, RoundedCornerShape(10.dp))
+                    .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
                 ,
                 contentAlignment = Alignment.Center
             ){
                 SummaryScope(currentMonth, currentType)
             }
-            Spacer(modifier = Modifier.padding(50.dp))
+            Spacer(modifier = Modifier.padding(dimens.space4))
         }
     }
 }
@@ -151,18 +150,18 @@ fun SummaryScope(currentMonth: MonthInformation, currentType: MoneyExchangeType)
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(40.dp)
-                    .padding(horizontal = 15.dp, vertical = 5.dp)
+                    .height(dimens.height0)
+                    .padding(horizontal = dimens.padding4, vertical = dimens.padding0)
                 ,
                 Arrangement.SpaceBetween,
             ) {
                 Box(
                     modifier = Modifier
-                        .border(2.dp, Color.Black, shape = CircleShape)
-                        .size(30.dp)
+                        .border(dimens.border, Color.Black, shape = CircleShape)
+                        .size(dimens.image0)
                         .clip(CircleShape)
                         .background(Color.White)
-                        .padding(5.dp),
+                        .padding(dimens.padding0),
                     contentAlignment = Alignment.Center,
                 ) {
                     Image(
@@ -174,13 +173,13 @@ fun SummaryScope(currentMonth: MonthInformation, currentType: MoneyExchangeType)
                     color = Color.Black,
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 20.sp,
+                    fontSize = dimens.fontSize0,
                 )
                 Text(text = sumValue.toString(),
                     color = Color.Black,
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 20.sp,)
+                    fontSize = dimens.fontSize0,)
             }
         }
     }

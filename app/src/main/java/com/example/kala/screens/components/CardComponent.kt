@@ -36,8 +36,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.entities.MoneyExchange
 import com.example.kala.entities.MoneyExchangeScope
@@ -45,6 +43,7 @@ import com.example.kala.entities.MoneyExchangeType
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.Green0
 import com.example.kala.ui.theme.Red0
+import com.example.kala.ui.theme.dimens
 
 /**
  * Composable function for rendering a card representing a money exchange item.
@@ -64,9 +63,9 @@ fun Card(
 
     Box(
         modifier = Modifier
-            .height(100.dp)
-            .width(280.dp)
-            .shadow(10.dp, shape = RoundedCornerShape(10.dp))
+            .height(dimens.height4)
+            .width(dimens.width8)
+            .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
     ) {
         Button(
             onClick = {
@@ -75,9 +74,9 @@ fun Card(
             colors = ButtonDefaults.buttonColors(Color.White),
             modifier = Modifier
                 .fillMaxSize()
-                .border(2.dp, Color.Black, RoundedCornerShape(10.dp))
-                .background(Color.White, RoundedCornerShape(10.dp)),
-            contentPadding = PaddingValues(10.dp)
+                .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
+                .background(Color.White, RoundedCornerShape(dimens.rounded)),
+            contentPadding = PaddingValues(dimens.padding3)
         ) {
             Row(
                 modifier = Modifier
@@ -85,17 +84,17 @@ fun Card(
             ) {
                 Column(
                     modifier = Modifier
-                        .width(140.dp)
+                        .width(dimens.width4)
                 ) {
                     Text(
                         text = valueText,
                         color = valueColor,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(50.dp),
+                            .height(dimens.height1),
                         textAlign = TextAlign.Center,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 30.sp,
+                        fontSize = dimens.fontSize3,
                     )
                     Text(
                         text = moneyExchange.getFormattedDate(),
@@ -103,23 +102,23 @@ fun Card(
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp,
+                        fontSize = dimens.fontSize0,
                     )
                 }
 
                 Column(
                     modifier = Modifier
-                        .width(140.dp),
+                        .width(dimens.width4),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Box(
                         modifier = Modifier
-                            .border(2.dp, Color.Black, shape = CircleShape)
-                            .size(50.dp)
+                            .border(dimens.border, Color.Black, shape = CircleShape)
+                            .size(dimens.image3)
                             .clip(CircleShape)
                             .background(Color.White)
-                            .padding(5.dp),
+                            .padding(dimens.padding0),
                         contentAlignment = Alignment.Center,
                     ) {
                         Image(
@@ -134,7 +133,7 @@ fun Card(
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp,
+                        fontSize = dimens.fontSize0,
                     )
                 }
             }

@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -16,7 +18,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.kala.configuration.ChartConfiguration
 import com.example.kala.configuration.FooterConfiguration
@@ -31,6 +32,7 @@ import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.buttons.LargeButton
 import com.example.kala.screens.components.buttons.MediumButton
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.dimens
 import java.time.LocalDateTime
 
 /**
@@ -57,15 +59,16 @@ fun HomeScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(BoneWhite),
+                .background(BoneWhite)
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Spacer(modifier = Modifier.padding(50.dp))
+            Spacer(modifier = Modifier.padding(dimens.space4))
             BarChartInfo(configuration = ChartConfiguration.HOME_PAGE, currentMonth)
-            Spacer(modifier = Modifier.weight(0.5f))
+            Spacer(modifier = Modifier.padding(dimens.padding2))
             HomeScreenBody(navController, currentMonth)
-            Spacer(modifier = Modifier.padding(50.dp))
         }
+        Spacer(modifier = Modifier.padding(dimens.space4))
     }
 }
 
@@ -106,10 +109,10 @@ fun HomeScreenBody(
         configuration = LargeButtonConfiguration.ADD_EXCHANGE,
         navController = navController
     )
-    Spacer(modifier = Modifier.padding(10.dp))
+    Spacer(modifier = Modifier.padding(dimens.space1))
     Row {
         MediumButton(configuration = MediumButtonConfiguration.SEE_REPORT, onLeftTriggered)
-        Spacer(modifier = Modifier.padding(10.dp))
+        Spacer(modifier = Modifier.padding(dimens.space1))
         MediumButton(configuration = MediumButtonConfiguration.SEE_RECORD, onRightTriggered)
     }
 }

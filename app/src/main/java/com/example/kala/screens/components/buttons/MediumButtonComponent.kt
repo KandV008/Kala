@@ -32,11 +32,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.kala.configuration.MediumButtonConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.dimens
 
 /**
  * Composable function for rendering a medium-sized button with customizable configuration.
@@ -51,21 +50,20 @@ fun MediumButton(
 ) {
     Box(
         modifier = Modifier
-            .height(150.dp)
-            .width(130.dp)
-            .shadow(10.dp, shape = RoundedCornerShape(10.dp))
+            .height(dimens.height5)
+            .width(dimens.width3)
+            .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
     ) {
         Button(
             onClick = {
                 onAdviceTriggered()
             },
             modifier = Modifier
-                .height(150.dp)
-                .width(130.dp)
-                .border(2.dp, Color.Black, RoundedCornerShape(10.dp)),
+                .fillMaxSize()
+                .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded)),
             colors = ButtonDefaults.buttonColors(Color.White),
-            shape = RoundedCornerShape(10.dp),
-            contentPadding = PaddingValues(10.dp),
+            shape = RoundedCornerShape(dimens.rounded),
+            contentPadding = PaddingValues(dimens.padding3),
         ) {
             Column(
                 modifier = Modifier
@@ -75,12 +73,12 @@ fun MediumButton(
             ) {
                 Box(
                     modifier = Modifier
-                        .border(2.dp, Color.Black, shape = CircleShape)
-                        .padding(8.dp)
+                        .border(dimens.border, Color.Black, shape = CircleShape)
+                        .padding(dimens.padding2)
                         .clip(CircleShape)
-                        .size(50.dp)
+                        .size(dimens.image3)
                         .clip(CircleShape)
-                        .padding(7.dp),
+                        .padding(dimens.padding1),
                     contentAlignment = Alignment.Center,
                 ) {
                     Image(
@@ -93,7 +91,7 @@ fun MediumButton(
                 Text(
                     text = configuration.toString(),
                     color = Color.Black,
-                    fontSize = 25.sp,
+                    fontSize = dimens.fontSize1,
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Bold,
                 )
@@ -121,7 +119,7 @@ fun PreviewMediumButton() {
             items(MediumButtonConfiguration.entries.toTypedArray()){
                     value ->
                 MediumButton(configuration = value, onAdviceTriggered = {})
-                Spacer(modifier = Modifier.padding(5.dp))
+                Spacer(modifier = Modifier.padding(dimens.padding0))
 
             }
         }

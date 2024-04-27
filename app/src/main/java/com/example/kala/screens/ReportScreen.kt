@@ -16,7 +16,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.kala.configuration.ABOUT_MONTH_SCREEN_ROUTE
 import com.example.kala.configuration.ChartConfiguration
@@ -32,6 +31,7 @@ import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.Title
 import com.example.kala.screens.components.buttons.MediumButton
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.dimens
 
 /**
  * Composable function for rendering the Report screen.
@@ -76,18 +76,18 @@ fun ReportScreen(
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Spacer(modifier = Modifier.padding(50.dp))
+            Spacer(modifier = Modifier.padding(dimens.space4))
             Title(configuration = TitleConfiguration.REPORT)
-            Spacer(modifier = Modifier.padding(10.dp))
+            Spacer(modifier = Modifier.padding(dimens.space1))
             BarChartInfo(
                 configuration = ChartConfiguration.REPORT_PAGE,
                 month = currentMonth,
                 onLeftTriggered = onLeftTriggered,
                 onRightTriggered = onRightTriggered,
-                )
-            Spacer(modifier = Modifier.padding(20.dp))
+            )
+            Spacer(modifier = Modifier.padding(dimens.space3))
             ReportScreenBody(navController, currentMonth)
-            Spacer(modifier = Modifier.padding(50.dp))
+            Spacer(modifier = Modifier.padding(dimens.space4))
         }
     }
 }
@@ -119,7 +119,7 @@ fun ReportScreenBody(
 
     Row {
         MediumButton(configuration = MediumButtonConfiguration.INCOME, onLeftTriggered)
-        Spacer(modifier = Modifier.padding(10.dp))
+        Spacer(modifier = Modifier.padding(dimens.space1))
         MediumButton(configuration = MediumButtonConfiguration.EXPENSE, onRightTriggered)
     }
 }

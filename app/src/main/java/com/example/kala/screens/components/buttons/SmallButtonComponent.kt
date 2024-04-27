@@ -24,11 +24,11 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.configuration.SmallButtonConfiguration
 import com.example.kala.configuration.invalidArgument
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.dimens
 
 /**
  * Composable function for rendering a small-sized button with customizable configuration.
@@ -39,8 +39,8 @@ import com.example.kala.ui.theme.BoneWhite
 fun SmallButton(configuration: SmallButtonConfiguration) {
     Box(
         modifier = Modifier
-            .size(100.dp)
-            .shadow(10.dp, shape = RoundedCornerShape(10.dp))
+            .size(dimens.image5)
+            .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
     ) {
         Button(
             onClick = {
@@ -50,16 +50,16 @@ fun SmallButton(configuration: SmallButtonConfiguration) {
             colors = ButtonDefaults.buttonColors(Color.White),
             modifier = Modifier
                 .fillMaxSize()
-                .border(2.dp, Color.Black, RoundedCornerShape(10.dp))
-                .background(Color.White, RoundedCornerShape(10.dp)),
-            contentPadding = PaddingValues(10.dp)
+                .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
+                .background(Color.White, RoundedCornerShape(dimens.rounded)),
+            contentPadding = PaddingValues(dimens.padding3)
         ) {
             Box(
                 modifier = Modifier
-                    .border(2.dp, Color.Black, shape = CircleShape)
-                    .padding(8.dp)
-                    .size(100.dp)
-                    .padding(7.dp),
+                    .border(dimens.border, Color.Black, shape = CircleShape)
+                    .padding(dimens.padding2)
+                    .fillMaxSize()
+                    .padding(dimens.padding1),
                 contentAlignment = Alignment.Center,
             ) {
                 Image(
@@ -90,7 +90,7 @@ fun PreviewSmallButton() {
             verticalArrangement = Arrangement.Center,
         ){
             SmallButton(SmallButtonConfiguration.ENGLISH)
-            Spacer(modifier = Modifier.padding(5.dp))
+            Spacer(modifier = Modifier.padding(dimens.space0))
             SmallButton(SmallButtonConfiguration.SPANISH)
         }
     }

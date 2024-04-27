@@ -53,6 +53,7 @@ import com.example.kala.screens.components.buttons.MediumButton
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.Green0
 import com.example.kala.ui.theme.Red0
+import com.example.kala.ui.theme.dimens
 
 /**
  * Composable function for displaying the About Exchange screen.
@@ -81,15 +82,15 @@ fun AboutExchangeScreen(
     val onLeftTriggered = {
         leftButtonTriggered = true
     }
-    var rigthButtonTriggered by remember {
+    var rightButtonTriggered by remember {
         mutableStateOf(false)
     }
-    val onRigthTriggered = {
-        rigthButtonTriggered = true
+    val onRightTriggered = {
+        rightButtonTriggered = true
     }
 
-    if (rigthButtonTriggered){
-        rigthButtonTriggered = false
+    if (rightButtonTriggered){
+        rightButtonTriggered = false
         navController?.navigate(route = "$EDIT_EXCHANGE_SCREEN_ROUTE/$monthAssociated/$exchange")
     }
 
@@ -113,19 +114,19 @@ fun AboutExchangeScreen(
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Spacer(modifier = Modifier.padding(50.dp))
+            Spacer(modifier = Modifier.padding(dimens.space4))
             Title(configuration = TitleConfiguration.MORE_INFO)
-            Spacer(modifier = Modifier.padding(10.dp))
+            Spacer(modifier = Modifier.padding(dimens.space1))
             ValueSection(valueText, valueColor)
-            Spacer(modifier = Modifier.padding(10.dp))
+            Spacer(modifier = Modifier.padding(dimens.space1))
             ScopeSection(moneyExchange, svgFile)
-            Spacer(modifier = Modifier.padding(10.dp))
+            Spacer(modifier = Modifier.padding(dimens.space1))
             DateSection(moneyExchange)
-            Spacer(modifier = Modifier.padding(10.dp))
+            Spacer(modifier = Modifier.padding(dimens.space1))
             DescriptionSection(moneyExchange)
-            Spacer(modifier = Modifier.padding(10.dp))
-            OptionSection(onLeftTriggered, onRigthTriggered)
-            Spacer(modifier = Modifier.padding(50.dp))
+            Spacer(modifier = Modifier.padding(dimens.space1))
+            OptionSection(onLeftTriggered, onRightTriggered)
+            Spacer(modifier = Modifier.padding(dimens.space4))
         }
     }
 }
@@ -140,11 +141,11 @@ fun AboutExchangeScreen(
 private fun ValueSection(valueText: String, valueColor: Color) {
     Box(
         modifier = Modifier
-            .width(250.dp)
-            .height(50.dp)
-            .clip(RoundedCornerShape(10.dp))
+            .width(dimens.width6)
+            .height(dimens.height1)
+            .clip(RoundedCornerShape(dimens.rounded))
             .background(Color.White)
-            .border(2.dp, Color.Black, RoundedCornerShape(10.dp))
+            .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
         ,
         contentAlignment = Alignment.Center
 
@@ -172,11 +173,11 @@ private fun ValueSection(valueText: String, valueColor: Color) {
 private fun ScopeSection(moneyExchange: MoneyExchange, svgFile: Int) {
     Box(
         modifier = Modifier
-            .height(80.dp)
-            .width(250.dp)
-            .clip(RoundedCornerShape(10.dp))
+            .height(dimens.height3)
+            .width(dimens.width6)
+            .clip(RoundedCornerShape(dimens.rounded))
             .background(Color.White)
-            .border(2.dp, Color.Black, RoundedCornerShape(10.dp)),
+            .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded)),
         contentAlignment = Alignment.Center
     ) {
         Row(
@@ -186,7 +187,7 @@ private fun ScopeSection(moneyExchange: MoneyExchange, svgFile: Int) {
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .width(125.dp)
+                    .width(dimens.width2)
                 ,
                 contentAlignment = Alignment.Center
             ){
@@ -201,14 +202,14 @@ private fun ScopeSection(moneyExchange: MoneyExchange, svgFile: Int) {
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .width(125.dp)
+                    .width(dimens.width2)
                 ,
                 contentAlignment = Alignment.Center
             ){
                 Box(
                     modifier = Modifier
-                        .border(2.dp, Color.Black, shape = CircleShape)
-                        .size(50.dp)
+                        .border(dimens.border, Color.Black, shape = CircleShape)
+                        .size(dimens.image3)
                         .clip(CircleShape)
                         .background(Color.White)
                         .padding(5.dp),
@@ -235,11 +236,11 @@ private fun ScopeSection(moneyExchange: MoneyExchange, svgFile: Int) {
 private fun DateSection(moneyExchange: MoneyExchange) {
     Box(
         modifier = Modifier
-            .height(60.dp)
-            .width(250.dp)
-            .clip(RoundedCornerShape(10.dp))
+            .height(dimens.height2)
+            .width(dimens.width6)
+            .clip(RoundedCornerShape(dimens.rounded))
             .background(Color.White)
-            .border(2.dp, Color.Black, RoundedCornerShape(10.dp))
+            .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
         ,
         contentAlignment = Alignment.Center
     ) {
@@ -265,11 +266,11 @@ private fun DateSection(moneyExchange: MoneyExchange) {
 private fun DescriptionSection(moneyExchange: MoneyExchange) {
     Box(
         modifier = Modifier
-            .height(150.dp)
-            .width(250.dp)
-            .clip(RoundedCornerShape(10.dp))
+            .height(dimens.height5)
+            .width(dimens.width6)
+            .clip(RoundedCornerShape(dimens.rounded))
             .background(Color.White)
-            .border(2.dp, Color.Black, RoundedCornerShape(10.dp))
+            .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
             .padding(10.dp)
     ) {
         moneyExchange.description?.let { it1 ->
@@ -290,14 +291,14 @@ private fun DescriptionSection(moneyExchange: MoneyExchange) {
  * Composable function for displaying the option section.
  *
  * @param onLeftTriggered Callback for left button action.
- * @param onRigthTriggered Callback for right button action.
+ * @param onRightTriggered Callback for right button action.
  */
 @Composable
-private fun OptionSection(onLeftTriggered: () -> Unit, onRigthTriggered: () -> Unit) {
+private fun OptionSection(onLeftTriggered: () -> Unit, onRightTriggered: () -> Unit) {
     Row {
         MediumButton(configuration = MediumButtonConfiguration.DELETE, onLeftTriggered)
         Spacer(modifier = Modifier.padding(10.dp))
-        MediumButton(configuration = MediumButtonConfiguration.EDIT, onRigthTriggered)
+        MediumButton(configuration = MediumButtonConfiguration.EDIT, onRightTriggered)
     }
 }
 

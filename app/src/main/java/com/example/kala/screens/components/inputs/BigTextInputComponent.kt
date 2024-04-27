@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,9 +27,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.dimens
 
 /**
  * Composable function for rendering a big text input field.
@@ -43,33 +43,33 @@ fun BigTextInput(valueInput: String, onValueChange: (String) -> Unit){
     )
     Column(
         modifier = Modifier
-            .width(300.dp)
+            .width(dimens.width8)
     ){
         Text(
             text = "Description",
-            fontSize = 25.sp,
+            fontSize = dimens.fontSize1,
             fontWeight = FontWeight.Bold,
         )
         TextField(
             value = valueInput,
             onValueChange = onValueChange,
             textStyle = TextStyle(
-                fontSize = 20.sp,
+                fontSize = dimens.fontSize0,
                 fontWeight = FontWeight.Bold,
                 color = Color.Gray
             ),
             keyboardOptions = keyboardOptions,
             modifier = Modifier
-                .width(300.dp)
-                .height(180.dp)
-                .clip(RoundedCornerShape(10.dp))
-                .border(2.dp, Color.Black, RoundedCornerShape(10.dp))
+                .fillMaxWidth()
+                .height(dimens.height6)
+                .clip(RoundedCornerShape(dimens.rounded))
+                .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
             ,
             placeholder = {
                 Text(
                     text = "Enter description...",
                     style = TextStyle(
-                        fontSize = 20.sp,
+                        fontSize = dimens.fontSize0,
                         fontWeight = FontWeight.Bold,
                         color = Color.Gray
                     ),

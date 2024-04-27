@@ -15,7 +15,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.kala.configuration.ABOUT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.configuration.FooterConfiguration
@@ -31,6 +30,7 @@ import com.example.kala.screens.components.inputs.BigTextInput
 import com.example.kala.screens.components.inputs.MenuInput
 import com.example.kala.screens.components.inputs.NumberInput
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.dimens
 
 /**
  * Composable function for editing a money exchange.
@@ -97,29 +97,29 @@ fun EditExchangeScreen(
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Spacer(modifier = Modifier.padding(50.dp))
+            Spacer(modifier = Modifier.padding(dimens.space4))
             Title(configuration = TitleConfiguration.ADD_EXCHANGE)
 
-            Spacer(modifier = Modifier.padding(15.dp))
+            Spacer(modifier = Modifier.padding(dimens.space2))
             NumberInput(valueInput = valueExchange, onValueChange = updateValueExchange)
 
-            Spacer(modifier = Modifier.padding(10.dp))
+            Spacer(modifier = Modifier.padding(dimens.space1))
             MenuInput(
                 configuration = MenuInputConfiguration.TYPE,
                 valueInput = typeExchange,
                 onValueChange = updateTypeExchange
             )
 
-            Spacer(modifier = Modifier.padding(10.dp))
+            Spacer(modifier = Modifier.padding(dimens.space1))
             MenuInput(
                 configuration = MenuInputConfiguration.SCOPE,
                 valueInput = scopeExchange,
                 onValueChange = updateScopeExchange
             )
 
-            Spacer(modifier = Modifier.padding(10.dp))
+            Spacer(modifier = Modifier.padding(dimens.space1))
             BigTextInput(valueInput = descriptionExchange, onValueChange = updateDescriptionExchange)
-            Spacer(modifier = Modifier.padding(50.dp))
+            Spacer(modifier = Modifier.padding(dimens.space4))
         }
     }
 }

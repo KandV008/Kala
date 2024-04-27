@@ -34,11 +34,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.kala.R
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.dimens
 
 /**
  * Composable function for rendering a number input field.
@@ -54,52 +53,52 @@ fun NumberInput(valueInput: String, onValueChange: (String) -> Unit){
 
     Column(
         modifier = Modifier
-            .width(300.dp)
+            .width(dimens.width8)
     ){
         Text(
             text = "Value of the exchange",
-            fontSize = 25.sp,
+            fontSize = dimens.fontSize1,
             fontWeight = FontWeight.Bold,
         )
         Row(
             modifier = Modifier
-                .height(60.dp)
+                .height(dimens.height2)
             ,
         ) {
             TextField(
                 value = valueInput,
                 onValueChange = onValueChange,
                 textStyle = TextStyle(
-                    fontSize = 20.sp,
+                    fontSize = dimens.fontSize0,
                     fontWeight = FontWeight.Bold,
                     color = Color.Gray
                 ),
                 keyboardOptions = keyboardOptions,
                 modifier = Modifier
-                    .width(230.dp)
-                    .height(60.dp)
-                    .clip(RoundedCornerShape(10.dp))
-                    .border(2.dp, Color.Black, RoundedCornerShape(10.dp)),
+                    .width(dimens.width5)
+                    .height(dimens.height2)
+                    .clip(RoundedCornerShape(dimens.rounded))
+                    .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded)),
                 placeholder = {
                     Text(
                         text = "0.00",
                         style = TextStyle(
-                            fontSize = 20.sp,
+                            fontSize = dimens.fontSize0,
                             fontWeight = FontWeight.Bold,
                             color = Color.Gray
                         ),
                     )
                 }
             )
-            Spacer(modifier = Modifier.size(10.dp))
+            Spacer(modifier = Modifier.size(dimens.space1))
             Box(
                 modifier = Modifier
-                    .border(2.dp, Color.Black, shape = CircleShape)
-                    .size(60.dp)
+                    .border(dimens.border, Color.Black, shape = CircleShape)
+                    .size(dimens.image4)
                     .clip(CircleShape)
                     .background(Color.White)
-                    .padding(2.dp)
-                    .padding(7.dp),
+                    .padding(dimens.padding2)
+                ,
                 contentAlignment = Alignment.Center,
             ) {
                 Image(

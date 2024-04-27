@@ -28,7 +28,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import co.yml.charts.axis.AxisData
 import co.yml.charts.common.model.Point
 import co.yml.charts.ui.barchart.BarChart
@@ -43,6 +42,7 @@ import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.Green0
 import com.example.kala.ui.theme.Red0
 import com.example.kala.ui.theme.Yellow0
+import com.example.kala.ui.theme.dimens
 
 @Composable
 fun BarChartInfo(
@@ -55,27 +55,26 @@ fun BarChartInfo(
 
     Box(
         modifier = Modifier
-            .height(370.dp)
-            .width(320.dp)
-            .shadow(10.dp, shape = RoundedCornerShape(10.dp))
+            .height(dimens.height8)
+            .width(dimens.width9)
+            .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
     ){
         Column(
             modifier = Modifier
-                .height(370.dp)
-                .width(320.dp)
-                .clip(RoundedCornerShape(10.dp))
+                .fillMaxSize()
+                .clip(RoundedCornerShape(dimens.rounded))
                 .background(Color.White)
-                .border(2.dp, Color.Black, RoundedCornerShape(10.dp))
-                .padding(20.dp),
+                .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
+                .padding(dimens.padding5),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             BarChartHeader(configuration, currentMonth, onLeftTriggered, onRightTriggered)
             Spacer(modifier = Modifier.weight(1F))
-            Spacer(modifier = Modifier.padding(10.dp))
+            Spacer(modifier = Modifier.padding(dimens.space1))
             Box(
                 modifier = Modifier
-                    .clip(RoundedCornerShape(20.dp))
-                    .size(200.dp)
+                    .clip(RoundedCornerShape(50.dp))
+                    .size(dimens.height7)
             ){
                 BarChartBody(currentMonth)
             }
@@ -90,15 +89,15 @@ fun BarChartHeader(
     configuration: ChartConfiguration,
     currentMonth: MonthInformation,
     onLeftTriggered: () -> Unit = {},
-    onRigthTriggered: () -> Unit = {},
+    onRightTriggered: () -> Unit = {},
 ){
     val leftChartButtonAlpha: Int = MoneyExchangeService.hasNextMonth(currentMonth)
     val rightChartButtonAlpha: Int = MoneyExchangeService.hasPrevMonth(currentMonth)
 
     Row(
         modifier = Modifier
-            .height(50.dp)
-            .width(250.dp),
+            .height(dimens.height1)
+            .width(dimens.width6),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
@@ -110,14 +109,14 @@ fun BarChartHeader(
         Text(
             text = currentMonth.dateCreation.month.toString(),
             color = Color.Black,
-            fontSize = 30.sp,
+            fontSize = dimens.fontSize3,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
         )
         ChartButton(
             configuration = ChartButtonConfiguration.RIGHT,
             alpha = configuration.alpha() * rightChartButtonAlpha,
-            onAdviceTriggered = onRigthTriggered,
+            onAdviceTriggered = onRightTriggered,
         )
     }
 }
@@ -158,12 +157,10 @@ fun BarChartBody(
     BarChart(
         modifier = Modifier
             .background(Color.White)
-        //.border(2.dp, Color.Black, RoundedCornerShape(20.dp))
         ,
         barChartData = barChartData,
     )
 }
-
 
 @Composable
 fun BarChartFooter(
@@ -175,8 +172,8 @@ fun BarChartFooter(
 
     Row(
         modifier = Modifier
-            .height(80.dp)
-            .width(300.dp),
+            .height(dimens.height3)
+            .width(dimens.width8),
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         BarChartSummary(title = "Income", value = "+$incomeValue", color = Green0)
@@ -200,22 +197,22 @@ fun BarChartFooter(
 fun BarChartSummary(title: String, value: String, color: Color){
     Column (
         modifier = Modifier
-            .height(80.dp)
-            .width(90.dp),
+            .height(dimens.height3)
+            .width(dimens.width1),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ){
         Text(
             text = title,
             color = color,
-            fontSize = 20.sp,
+            fontSize = dimens.fontSize0,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
         )
         Text(
             text = value,
             color = color,
-            fontSize = 20.sp,
+            fontSize = dimens.fontSize0,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
         )
@@ -243,7 +240,7 @@ fun BarChartInfoPreview() {
             items(ChartConfiguration.entries.toTypedArray()){
                     value ->
                 BarChartInfo(configuration = value, month = idMonth)
-                Spacer(modifier = Modifier.padding(10.dp))
+                Spacer(modifier = Modifier.padding(dimens.space1))
             }
         }
     }

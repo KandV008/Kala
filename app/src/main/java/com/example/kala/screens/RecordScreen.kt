@@ -19,7 +19,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.kala.configuration.ABOUT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.configuration.FooterConfiguration
@@ -32,6 +31,7 @@ import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.Title
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.dimens
 
 /**
  * Composable function for rendering the Record screen.
@@ -77,10 +77,10 @@ fun RecordScreen(
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Spacer(modifier = Modifier.padding(50.dp))
+            Spacer(modifier = Modifier.padding(dimens.space4))
             Title(configuration = TitleConfiguration.RECORD)
             RecordBody(moneyExchangeList, onAdviceTriggered)
-            Spacer(modifier = Modifier.padding(50.dp))
+            Spacer(modifier = Modifier.padding(dimens.space4))
         }
     }
 }
@@ -93,7 +93,7 @@ private fun RecordBody(
     moneyExchangeList: List<MoneyExchange>,
     onAdviceTriggered: (Int, String) -> Unit
 ) {
-    Spacer(modifier = Modifier.padding(10.dp))
+    Spacer(modifier = Modifier.padding(dimens.space1))
     LazyColumn(
         modifier = Modifier
             .fillMaxSize(),
@@ -102,7 +102,7 @@ private fun RecordBody(
     ) {
         items(moneyExchangeList) { value ->
             Card(value, onAdviceTriggered)
-            Spacer(modifier = Modifier.padding(5.dp))
+            Spacer(modifier = Modifier.padding(dimens.space0))
         }
     }
 }
