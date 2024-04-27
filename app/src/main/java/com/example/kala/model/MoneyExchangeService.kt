@@ -31,7 +31,7 @@ object MoneyExchangeService {
      * @return A list of all money exchanges.
      */
     fun getAllMoneyExchanges(): List<MoneyExchange> {
-        return moneyExchangeStorage.getAllMoneyExchange().reversed()
+        return moneyExchangeStorage.getAllMoneyExchange()
     }
 
     /**

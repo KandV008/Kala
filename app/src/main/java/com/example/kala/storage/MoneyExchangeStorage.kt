@@ -73,7 +73,7 @@ class MoneyExchangeStorage {
         val allMonths = this.monthInformationMap.values
 
         allMonths.forEach{
-            list.addAll(it.summary.values)
+            list.addAll(it.summary.values.reversed())
         }
 
         return list
