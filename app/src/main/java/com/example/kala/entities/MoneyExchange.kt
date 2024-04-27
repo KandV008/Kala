@@ -79,4 +79,14 @@ data class MoneyExchange(
         result = 31 * result + date.hashCode()
         return result
     }
+
+    /**
+     * Overrides the toString function to generate a string based on the object's properties.
+     *
+     * @return The string.
+     */
+    override fun toString(): String {
+        return "Money Exchange $id from $monthAssociated: \n" +
+                "\t value = $value; type = $type; scope = $scope; description = $description; date = $date"
+    }
 }

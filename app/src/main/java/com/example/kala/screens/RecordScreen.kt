@@ -120,6 +120,7 @@ private fun RecordBody(
             verticalArrangement = Arrangement.Center,
         ) {
             items(moneyExchangeList) { value ->
+                println(value.toString())
                 Card(value, onAdviceTriggered)
                 Spacer(modifier = Modifier.padding(dimens.space0))
             }

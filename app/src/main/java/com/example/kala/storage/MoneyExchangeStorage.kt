@@ -43,6 +43,7 @@ class MoneyExchangeStorage {
         val exampleMoneyExchange2 =
             MoneyExchange(34.0, MoneyExchangeType.INCOME, MoneyExchangeScope.LEISURE, "example")
         exampleMoneyExchange2.id = 1
+        exampleMoneyExchange2.monthAssociated = "example"
         exampleMonthInformation.addMoneyExchange(exampleMoneyExchange2)
         this.monthInformationMap["example"] = exampleMonthInformation
     }

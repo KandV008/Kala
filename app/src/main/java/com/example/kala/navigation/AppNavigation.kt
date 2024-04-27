@@ -72,10 +72,10 @@ fun AppNavigation(){
             val navBackStackEntry by navController.currentBackStackEntryAsState()
 
             val month = navBackStackEntry?.arguments?.getString("month")
-            val exchange = navBackStackEntry?.arguments?.getInt("exchange")
+            val exchange = navBackStackEntry?.arguments?.getString("exchange")
 
             if (month != null && exchange != null) {
-                AboutExchangeScreen(navController, month, exchange)
+                AboutExchangeScreen(navController, month, exchange.toInt())
             }
         }
         composable(
@@ -85,10 +85,10 @@ fun AppNavigation(){
             val navBackStackEntry by navController.currentBackStackEntryAsState()
 
             val month = navBackStackEntry?.arguments?.getString("month")
-            val exchange = navBackStackEntry?.arguments?.getInt("exchange")
+            val exchange = navBackStackEntry?.arguments?.getString("exchange")
 
             if (month != null && exchange != null) {
-                EditExchangeScreen(navController, month, exchange)
+                EditExchangeScreen(navController, month, exchange.toInt())
             }
         }
         composable(route = AppScreens.reportScreen.route + "/{month}"){
