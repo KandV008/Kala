@@ -85,7 +85,7 @@ fun ReportScreen(
                 onLeftTriggered = onLeftTriggered,
                 onRightTriggered = onRightTriggered,
             )
-            Spacer(modifier = Modifier.padding(dimens.space3))
+            Spacer(modifier = Modifier.padding(dimens.space1))
             ReportScreenBody(navController, currentMonth)
             Spacer(modifier = Modifier.padding(dimens.space4))
         }

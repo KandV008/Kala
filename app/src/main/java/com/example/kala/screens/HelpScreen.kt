@@ -70,7 +70,7 @@ fun HelpScreenBody(advices: List<String>){
     LazyColumn(
         modifier = Modifier
             .width(dimens.width7)
-            .height(dimens.height9)
+            .height(dimens.height10)
             .background(Color.White)
             .border(dimens.border, Color.Black)
             .padding(dimens.padding5),

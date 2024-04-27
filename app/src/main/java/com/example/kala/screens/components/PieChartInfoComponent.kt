@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -65,7 +66,7 @@ fun PieChartInfo(
             Spacer(modifier = Modifier.padding(dimens.padding3))
             Box(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .size(dimens.height7)
             ){
                 PieChartBody(currentMonth, currentType)
             }
@@ -85,7 +86,7 @@ fun PieChartHeader(
 
     Row(
         modifier = Modifier
-            .height(dimens.height1)
+            .height(dimens.height0)
             .width(dimens.width6),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -164,7 +165,6 @@ fun PieChartBody(
 
     PieChart(
         modifier = Modifier
-            .padding(dimens.padding0)
         ,
         pieChartData = pieChartData,
         pieChartConfig = pieChartConfig

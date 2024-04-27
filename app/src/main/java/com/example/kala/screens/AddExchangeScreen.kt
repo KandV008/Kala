@@ -93,24 +93,24 @@ fun AddExchangeScreen(
             Spacer(modifier = Modifier.padding(dimens.space4))
             Title(configuration = TitleConfiguration.ADD_EXCHANGE)
 
-            Spacer(modifier = Modifier.padding(dimens.space2))
+            Spacer(modifier = Modifier.padding(dimens.space1))
             NumberInput(valueInput = valueExchange, onValueChange = updateValueExchange)
 
-            Spacer(modifier = Modifier.padding(dimens.space1))
+            Spacer(modifier = Modifier.padding(dimens.space0))
             MenuInput(
                 configuration = MenuInputConfiguration.TYPE,
                 valueInput = typeExchange,
                 onValueChange = updateTypeExchange
             )
 
-            Spacer(modifier = Modifier.padding(dimens.space1))
+            Spacer(modifier = Modifier.padding(dimens.space0))
             MenuInput(
                 configuration = MenuInputConfiguration.SCOPE,
                 valueInput = scopeExchange,
                 onValueChange = updateScopeExchange
             )
 
-            Spacer(modifier = Modifier.padding(dimens.space1))
+            Spacer(modifier = Modifier.padding(dimens.space0))
             BigTextInput(valueInput = descriptionExchange, onValueChange = updateDescriptionExchange)
             Spacer(modifier = Modifier.padding(dimens.space4))
         }

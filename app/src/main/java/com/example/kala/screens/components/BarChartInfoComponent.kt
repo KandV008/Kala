@@ -55,7 +55,7 @@ fun BarChartInfo(
 
     Box(
         modifier = Modifier
-            .height(dimens.height8)
+            .height(dimens.height9)
             .width(dimens.width9)
             .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
     ){
@@ -96,7 +96,7 @@ fun BarChartHeader(
 
     Row(
         modifier = Modifier
-            .height(dimens.height1)
+            .height(dimens.height0)
             .width(dimens.width6),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -172,7 +172,7 @@ fun BarChartFooter(
 
     Row(
         modifier = Modifier
-            .height(dimens.height3)
+            .height(dimens.height1)
             .width(dimens.width8),
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {

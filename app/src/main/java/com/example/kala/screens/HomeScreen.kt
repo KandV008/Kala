@@ -109,7 +109,7 @@ fun HomeScreenBody(
         configuration = LargeButtonConfiguration.ADD_EXCHANGE,
         navController = navController
     )
-    Spacer(modifier = Modifier.padding(dimens.space1))
+    Spacer(modifier = Modifier.padding(dimens.space0))
     Row {
         MediumButton(configuration = MediumButtonConfiguration.SEE_REPORT, onLeftTriggered)
         Spacer(modifier = Modifier.padding(dimens.space1))
