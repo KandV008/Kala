@@ -6,6 +6,26 @@ import com.example.kala.entities.MoneyExchangeType
 import com.example.kala.entities.MonthInformation
 import java.util.TreeMap
 
+private const val SAVE_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Save Money Exchange"
+private const val CREATE_NEW_MONTH_INFORMATION_ADVICE_MESSAGE = "[MoneyExchangeStorage][ADVICE] Creating a new Month Information"
+private const val SAVE_MONEY_EXCHANGE_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] "
+private const val GET_NUM_MONTH_INFORMATION_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Get Num of Month Information"
+private const val GET_NUM_MONTH_INFORMATION_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] Num: "
+private const val GET_NUM_MONEY_EXCHANGE_FROM_MONTH_INFORMATION_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Get Num Money Exchanges From Month Information"
+private const val GET_NUM_MONEY_EXCHANGE_FROM_MONTH_INFORMATION_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] Num: "
+private const val GET_ALL_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Get All Money Exchanges"
+private const val GET_ALL_MONEY_EXCHANGE_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] Num of all money exchanges: "
+private const val GET_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Get Money Exchange"
+private const val GET_MONEY_EXCHANGE_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] "
+private const val DELETE_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Delete Money Exchange"
+private const val DELETE_MONEY_EXCHANGE_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] "
+private const val EDIT_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Edit Money Exchange"
+private const val EDIT_MONEY_EXCHANGE_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] "
+private const val GET_MONTH_INFORMATION_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Get Month Information"
+private const val GET_MONTH_INFORMATION_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] "
+private const val EXIST_MONTH_INFORMATION_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Exist Month Information"
+private const val EXIST_MONTH_INFORMATION_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] "
+
 /**
  * Storage class for managing money exchange data.
  */
@@ -33,14 +53,20 @@ class MoneyExchangeStorage {
      * @param moneyExchange The money exchange to be saved.
      * @return The month information after saving the money exchange.
      */
-    fun saveMoneyExchange(moneyExchange: MoneyExchange): MonthInformation {
+    fun saveMoneyExchange(moneyExchange: MoneyExchange): MoneyExchange {
+        println(SAVE_MONEY_EXCHANGE_ACTION_MESSAGE)
         val idMonth = "${moneyExchange.date.month}${moneyExchange.date.year}"
 
-        return monthInformationMap.getOrPut(idMonth) { MonthInformation() }.apply {
+        monthInformationMap.getOrPut(idMonth) {
+            println(CREATE_NEW_MONTH_INFORMATION_ADVICE_MESSAGE)
+            MonthInformation()
+        }.apply {
             val idExchange = this.summary.size
             moneyExchange.id = idExchange
             moneyExchange.monthAssociated = idMonth
-            addMoneyExchange(moneyExchange)
+            val newMoneyExchange = addMoneyExchange(moneyExchange)
+            println(SAVE_MONEY_EXCHANGE_RESULT_MESSAGE + newMoneyExchange)
+            return newMoneyExchange
         }
     }
 
@@ -50,7 +76,10 @@ class MoneyExchangeStorage {
      * @return The number of month information entries.
      */
     fun getNumMonthInformation(): Int {
-        return this.monthInformationMap.size
+        println(GET_NUM_MONTH_INFORMATION_ACTION_MESSAGE)
+        val size = this.monthInformationMap.size
+        println(GET_NUM_MONTH_INFORMATION_RESULT_MESSAGE + size)
+        return size
     }
 
     /**
@@ -60,7 +89,10 @@ class MoneyExchangeStorage {
      * @return The number of money exchanges from the specified month.
      */
     fun getNumMoneyExchangeFromMonthInformation(id: String): Int {
-        return this.monthInformationMap[id]?.summary?.size ?: 0
+        println(GET_NUM_MONEY_EXCHANGE_FROM_MONTH_INFORMATION_ACTION_MESSAGE)
+        val size = this.monthInformationMap[id]?.summary?.size ?: 0
+        println(GET_NUM_MONEY_EXCHANGE_FROM_MONTH_INFORMATION_RESULT_MESSAGE + size)
+        return size
     }
 
     /**
@@ -69,6 +101,7 @@ class MoneyExchangeStorage {
      * @return List of all money exchanges.
      */
     fun getAllMoneyExchange(): List<MoneyExchange> {
+        println(GET_ALL_MONEY_EXCHANGE_ACTION_MESSAGE)
         val list: MutableList<MoneyExchange> = mutableListOf()
         val allMonths = this.monthInformationMap.values
 
@@ -76,6 +109,7 @@ class MoneyExchangeStorage {
             list.addAll(it.summary.values.reversed())
         }
 
+        println(GET_ALL_MONEY_EXCHANGE_RESULT_MESSAGE + list.size)
         return list
     }
 
@@ -87,7 +121,10 @@ class MoneyExchangeStorage {
      * @return The money exchange object, or null if not found.
      */
     fun getMoneyExchange(monthAssociated: String, exchange: Int): MoneyExchange? {
-        return this.monthInformationMap[monthAssociated]?.summary?.get(exchange)
+        println(GET_MONEY_EXCHANGE_ACTION_MESSAGE)
+        val moneyExchange = this.monthInformationMap[monthAssociated]?.summary?.get(exchange)
+        println(GET_MONEY_EXCHANGE_RESULT_MESSAGE + moneyExchange)
+        return moneyExchange
     }
 
     /**
@@ -98,12 +135,13 @@ class MoneyExchangeStorage {
      * @return The deleted money exchange object, or null if not found.
      */
     fun deleteMoneyExchange(monthAssociated: String, exchange: Int): MoneyExchange? {
+        println(DELETE_MONEY_EXCHANGE_ACTION_MESSAGE)
         val moneyExchange = this.getMoneyExchange(monthAssociated, exchange)
         return moneyExchange?.let {
             this.monthInformationMap[monthAssociated]?.deleteMoneyExchange(
                 it
             )
-
+            println(DELETE_MONEY_EXCHANGE_RESULT_MESSAGE + it)
             return it
         }
     }
@@ -113,27 +151,58 @@ class MoneyExchangeStorage {
      *
      * @param moneyExchange The updated money exchange.
      */
-    fun editMoneyExchange(moneyExchange: MoneyExchange) {
+    fun editMoneyExchange(moneyExchange: MoneyExchange): MoneyExchange {
+        println(EDIT_MONEY_EXCHANGE_ACTION_MESSAGE)
         this.monthInformationMap[moneyExchange.monthAssociated]?.summary?.set(moneyExchange.id,
             moneyExchange
         )
+        println(EDIT_MONEY_EXCHANGE_RESULT_MESSAGE + moneyExchange)
+        return moneyExchange
     }
 
+    /**
+     * Retrieves information about a specific month from the storage.
+     *
+     * If the month information does not exist, a new one is created.
+     *
+     * @param id The unique identifier of the month.
+     * @return The information about the specified month.
+     */
     fun getMonthInformation(id: String): MonthInformation {
+        println(GET_MONTH_INFORMATION_ACTION_MESSAGE)
         val monthInformation = this.monthInformationMap[id]
         monthInformation?.let {
+            println(GET_MONTH_INFORMATION_RESULT_MESSAGE + it)
             return it
-        } ?:
+        } ?: run {
+            println(CREATE_NEW_MONTH_INFORMATION_ADVICE_MESSAGE)
             return createMonthInformation(id)
+        }
     }
 
+    /**
+     * Creates a new month information entry.
+     *
+     * @param id The unique identifier of the month.
+     * @return The newly created month information.
+     */
     private fun createMonthInformation(id: String): MonthInformation{
         val newMonthInformation = MonthInformation()
         this.monthInformationMap[id] = newMonthInformation
         return newMonthInformation
     }
 
+    /**
+     * Checks if month information with the given ID exists.
+     *
+     * @param idMonth The unique identifier of the month.
+     * @return `true` if month information exists, `false` otherwise.
+     */
     fun existMonthInformation(idMonth: String): Boolean {
-        return this.monthInformationMap.containsKey(idMonth)
+        println(EXIST_MONTH_INFORMATION_ACTION_MESSAGE)
+        val containsKey = this.monthInformationMap.containsKey(idMonth)
+        println(EXIST_MONTH_INFORMATION_RESULT_MESSAGE + containsKey)
+        return containsKey
     }
+
 }

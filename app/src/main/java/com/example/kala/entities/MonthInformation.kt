@@ -32,13 +32,15 @@ class MonthInformation {
      *
      * @param newMoneyExchange The new money exchange to add.
      */
-    fun addMoneyExchange(newMoneyExchange: MoneyExchange) {
+    fun addMoneyExchange(newMoneyExchange: MoneyExchange): MoneyExchange {
         this.summary[newMoneyExchange.id] = newMoneyExchange
 
         when (newMoneyExchange.type) {
             MoneyExchangeType.EXPENSE -> expensedMoney += newMoneyExchange.value
             MoneyExchangeType.INCOME -> incomeMoney += newMoneyExchange.value
         }
+
+        return newMoneyExchange
     }
 
     /**
