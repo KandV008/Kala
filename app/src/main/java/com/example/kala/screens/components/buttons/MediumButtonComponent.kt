@@ -36,6 +36,7 @@ import com.example.kala.configuration.MediumButtonConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
+import com.example.kala.ui.theme.fontFamily
 
 /**
  * Composable function for rendering a medium-sized button with customizable configuration.
@@ -94,6 +95,7 @@ fun MediumButton(
                     fontSize = dimens.fontSize1,
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Bold,
+                    fontFamily = fontFamily
                 )
             }
         }

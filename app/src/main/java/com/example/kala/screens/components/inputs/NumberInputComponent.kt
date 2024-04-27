@@ -38,6 +38,7 @@ import com.example.kala.R
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
+import com.example.kala.ui.theme.fontFamily
 
 /**
  * Composable function for rendering a number input field.
@@ -85,7 +86,8 @@ fun NumberInput(valueInput: String, onValueChange: (String) -> Unit){
                         style = TextStyle(
                             fontSize = dimens.fontSize0,
                             fontWeight = FontWeight.Bold,
-                            color = Color.Gray
+                            color = Color.Gray,
+                            fontFamily = fontFamily
                         ),
                     )
                 }

@@ -65,7 +65,7 @@ fun BarChartInfo(
                 .clip(RoundedCornerShape(dimens.rounded))
                 .background(Color.White)
                 .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
-                .padding(dimens.padding5),
+                .padding(dimens.padding4),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             BarChartHeader(configuration, currentMonth, onLeftTriggered, onRightTriggered)

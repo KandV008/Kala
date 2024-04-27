@@ -38,6 +38,7 @@ import com.example.kala.configuration.LargeButtonConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
+import com.example.kala.ui.theme.fontFamily
 
 /**
  * Composable function for rendering a large button with customizable configuration.
@@ -80,6 +81,7 @@ fun LargeButton(
                     textAlign = TextAlign.Justify,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.weight(1f),
+                    fontFamily = fontFamily
                 )
 
                 Box(

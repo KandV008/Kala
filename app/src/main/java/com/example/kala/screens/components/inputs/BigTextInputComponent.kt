@@ -29,6 +29,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
+import com.example.kala.ui.theme.fontFamily
 
 /**
  * Composable function for rendering a big text input field.
@@ -71,7 +72,8 @@ fun BigTextInput(valueInput: String, onValueChange: (String) -> Unit){
                     style = TextStyle(
                         fontSize = dimens.fontSize0,
                         fontWeight = FontWeight.Bold,
-                        color = Color.Gray
+                        color = Color.Gray,
+                        fontFamily = fontFamily
                     ),
                 )
             }

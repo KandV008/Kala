@@ -48,6 +48,7 @@ import com.example.kala.configuration.MenuInputConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
+import com.example.kala.ui.theme.fontFamily
 
 /**
  * Composable function for rendering a menu input with customizable configuration.
@@ -138,7 +139,8 @@ fun MenuInput(
                                     style = TextStyle(
                                         fontSize = dimens.fontSize0,
                                         fontWeight = FontWeight.Bold,
-                                        color = Color.Black
+                                        color = Color.Black,
+                                        fontFamily = fontFamily
                                     ),
                                 )
                             },
