@@ -25,6 +25,7 @@ import com.example.kala.entities.MoneyExchange
 import com.example.kala.model.MoneyExchangeService
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
+import com.example.kala.screens.components.InvalidFormPopUp
 import com.example.kala.screens.components.Title
 import com.example.kala.screens.components.inputs.BigTextInput
 import com.example.kala.screens.components.inputs.MenuInput
@@ -46,6 +47,11 @@ fun EditExchangeScreen(
     monthAssociated: String,
     exchange: Int,
 ) {
+    var isPopUpVisible by remember { mutableStateOf(false) }
+    val hidePopUp: () -> Unit = {
+        isPopUpVisible = false
+    }
+
     val moneyExchange = MoneyExchangeService.getMoneyExchange(monthAssociated, exchange)
 
     var adviceTriggered by remember { mutableStateOf(false) }
@@ -57,7 +63,8 @@ fun EditExchangeScreen(
     var descriptionExchange by remember { mutableStateOf(descriptionValue) }
 
     val updateValueExchange: (String) -> Unit = { newValue ->
-        valueExchange = newValue
+        val replace = newValue.replace(",", ".")
+        valueExchange = replace
     }
     val updateTypeExchange: (String) -> Unit = { newValue ->
         typeExchange = newValue
@@ -69,16 +76,28 @@ fun EditExchangeScreen(
         descriptionExchange = newValue
     }
 
-    if (adviceTriggered) { // TODO Validate form
-        val updatedMoneyExchange = MoneyExchange(
-            valueExchange.toDouble(),
-            typeExchange,
-            scopeExchange,
-            descriptionExchange
-        )
-        MoneyExchangeService.editMoneyExchange(monthAssociated, exchange, updatedMoneyExchange)
+    if (adviceTriggered) {
         adviceTriggered = false
-        navController?.navigate(route = "$ABOUT_EXCHANGE_SCREEN_ROUTE/$monthAssociated/$exchange")
+        errorMessageList.clear()
+        val validForm = isValidForm(valueExchange, typeExchange, scopeExchange)
+
+        if (validForm){
+            val updatedMoneyExchange = MoneyExchange(
+                valueExchange.toDouble(),
+                typeExchange,
+                scopeExchange,
+                descriptionExchange
+            )
+            MoneyExchangeService.editMoneyExchange(monthAssociated, exchange, updatedMoneyExchange)
+            adviceTriggered = false
+            navController?.navigate(route = "$ABOUT_EXCHANGE_SCREEN_ROUTE/$monthAssociated/$exchange")
+        } else {
+            isPopUpVisible = true
+        }
+    }
+
+    if(isPopUpVisible){
+        InvalidFormPopUp(messageList = errorMessageList, onConfirmButton = hidePopUp)
     }
 
     Scaffold(
