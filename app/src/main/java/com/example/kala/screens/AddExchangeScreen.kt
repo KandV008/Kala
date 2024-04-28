@@ -22,15 +22,24 @@ import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.MenuInputConfiguration
 import com.example.kala.configuration.TitleConfiguration
 import com.example.kala.entities.MoneyExchange
+import com.example.kala.entities.MoneyExchangeScope
+import com.example.kala.entities.MoneyExchangeType
 import com.example.kala.model.MoneyExchangeService
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
+import com.example.kala.screens.components.InvalidFormPopUp
 import com.example.kala.screens.components.Title
 import com.example.kala.screens.components.inputs.BigTextInput
 import com.example.kala.screens.components.inputs.MenuInput
 import com.example.kala.screens.components.inputs.NumberInput
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
+
+val errorMessageList: MutableList<String> = mutableListOf()
+
+private const val INVALID_VALUE_ERROR_MESSAGE = "Value of the exchange must be higher than Zero"
+private const val INVALID_TYPE_ERROR_MESSAGE = "Invalid Type of the exchange"
+private const val INVALID_SCOPE_ERROR_MESSAGE = "Invalid Scope of the exchange"
 
 /**
  * Composable function for adding a new money exchange.
@@ -42,6 +51,11 @@ import com.example.kala.ui.theme.dimens
 fun AddExchangeScreen(
     navController: NavController? = null
 ) {
+    var isPopUpVisible by remember { mutableStateOf(false) }
+    val hidePopUp: () -> Unit = {
+        isPopUpVisible = false
+    }
+
     var adviceTriggered by remember { mutableStateOf(false) }
 
     var valueExchange by remember { mutableStateOf("") }
@@ -50,7 +64,8 @@ fun AddExchangeScreen(
     var descriptionExchange by remember { mutableStateOf("") }
 
     val updateValueExchange: (String) -> Unit = { newValue ->
-        valueExchange = newValue
+        val replace = newValue.replace(",", ".")
+        valueExchange = replace
     }
     val updateTypeExchange: (String) -> Unit = { newValue ->
         typeExchange = newValue
@@ -62,16 +77,27 @@ fun AddExchangeScreen(
         descriptionExchange = newValue
     }
 
-    if (adviceTriggered) { // TODO Validate form
-        val newMoneyExchange = MoneyExchange(
-            valueExchange.toDouble(),
-            typeExchange,
-            scopeExchange,
-            descriptionExchange
-        )
-        MoneyExchangeService.addMoneyExchange(newMoneyExchange)
+    if (adviceTriggered) {
         adviceTriggered = false
-        navController?.navigate(route = HOME_SCREEN_ROUTE)
+        errorMessageList.clear()
+        val validForm = isValidForm(valueExchange, typeExchange, scopeExchange)
+
+        if (validForm){
+            val newMoneyExchange = MoneyExchange(
+                valueExchange.toDouble(),
+                typeExchange,
+                scopeExchange,
+                descriptionExchange
+            )
+            MoneyExchangeService.addMoneyExchange(newMoneyExchange)
+            navController?.navigate(route = HOME_SCREEN_ROUTE)
+        } else {
+            isPopUpVisible = true
+        }
+    }
+
+    if(isPopUpVisible){
+        InvalidFormPopUp(messageList = errorMessageList, onConfirmButton = hidePopUp)
     }
 
     Scaffold(
@@ -116,6 +142,44 @@ fun AddExchangeScreen(
         }
     }
 }
+
+/**
+ * Checks if the provided values for exchange are valid.
+ *
+ * @param valueExchange The value of the exchange as a string.
+ * @param typeExchange The type of exchange as a string.
+ * @param scopeExchange The scope of exchange as a string.
+ * @return `true` if all values are valid, `false` otherwise.
+ */
+fun isValidForm(
+    valueExchange: String,
+    typeExchange: String,
+    scopeExchange: String,
+): Boolean {
+    try {
+        val toDouble = valueExchange.toDouble()
+        if (toDouble <= 0) {
+            errorMessageList.add(INVALID_VALUE_ERROR_MESSAGE)
+        }
+    } catch (e: NumberFormatException){
+        errorMessageList.add(INVALID_VALUE_ERROR_MESSAGE)
+    }
+
+    try {
+        MoneyExchangeType.valueOf(typeExchange)
+    } catch (e: IllegalArgumentException) {
+        errorMessageList.add(INVALID_TYPE_ERROR_MESSAGE)
+    }
+
+    try {
+        MoneyExchangeScope.valueOf(scopeExchange)
+    } catch (e: IllegalArgumentException) {
+        errorMessageList.add(INVALID_SCOPE_ERROR_MESSAGE)
+    }
+
+    return errorMessageList.isEmpty()
+}
+
 
 /**
  * Composable function for previewing adding a new money exchange.
