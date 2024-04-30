@@ -1,8 +1,61 @@
 package com.example.kala.configuration
 
+import androidx.compose.foundation.text.selection.TextSelectionColors
+import androidx.compose.material3.TextFieldColors
+import androidx.compose.ui.graphics.Color
 import com.example.kala.R
 import com.example.kala.entities.MoneyExchangeScope
 import com.example.kala.entities.MoneyExchangeType
+
+/*
+    General
+ */
+
+val inputTextColor = TextFieldColors(
+    focusedTextColor = Color.Unspecified,
+    unfocusedTextColor = Color.Unspecified,
+    disabledTextColor = Color.Unspecified,
+    errorTextColor = Color.Unspecified,
+    focusedContainerColor = Color.White,
+    unfocusedContainerColor = Color.White,
+    disabledContainerColor = Color.White,
+    errorContainerColor = Color.White,
+    cursorColor = Color.Unspecified,
+    errorCursorColor = Color.Unspecified,
+    textSelectionColors = TextSelectionColors(Color.White, Color.White),
+    focusedIndicatorColor = Color.Unspecified,
+    unfocusedIndicatorColor = Color.Unspecified,
+    disabledIndicatorColor = Color.Unspecified,
+    errorIndicatorColor = Color.Unspecified,
+    focusedLeadingIconColor = Color.Unspecified,
+    unfocusedLeadingIconColor = Color.Unspecified,
+    disabledLeadingIconColor = Color.Unspecified,
+    errorLeadingIconColor = Color.Unspecified,
+    focusedTrailingIconColor = Color.Unspecified,
+    unfocusedTrailingIconColor = Color.Unspecified,
+    disabledTrailingIconColor = Color.Unspecified,
+    errorTrailingIconColor = Color.Unspecified,
+    focusedLabelColor = Color.Unspecified,
+    unfocusedLabelColor = Color.Unspecified,
+    disabledLabelColor = Color.Unspecified,
+    errorLabelColor = Color.Unspecified,
+    focusedPlaceholderColor = Color.Unspecified,
+    unfocusedPlaceholderColor = Color.Unspecified,
+    disabledPlaceholderColor = Color.Unspecified,
+    errorPlaceholderColor = Color.Unspecified,
+    focusedSupportingTextColor = Color.Unspecified,
+    unfocusedSupportingTextColor = Color.Unspecified,
+    disabledSupportingTextColor = Color.Unspecified,
+    errorSupportingTextColor = Color.Unspecified,
+    focusedPrefixColor = Color.Unspecified,
+    unfocusedPrefixColor = Color.Unspecified,
+    disabledPrefixColor = Color.Unspecified,
+    errorPrefixColor = Color.Unspecified,
+    focusedSuffixColor = Color.Unspecified,
+    unfocusedSuffixColor = Color.Unspecified,
+    disabledSuffixColor = Color.Unspecified,
+    errorSuffixColor = Color.Unspecified
+)
 
 /*
     SmallTextInputComponent
@@ -114,3 +167,4 @@ enum class MenuInputConfiguration(
         return svgMap.getOrDefault(option, R.drawable.ic_question)
     }
 }
+

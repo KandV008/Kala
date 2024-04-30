@@ -37,6 +37,7 @@ fun Title(configuration: TitleConfiguration) {
         Text(
             text = configuration.toString(),
             fontSize = dimens.fontSize5,
+            color = Color.Black,
             textAlign = TextAlign.Justify,
             fontWeight = FontWeight.Bold,
         )

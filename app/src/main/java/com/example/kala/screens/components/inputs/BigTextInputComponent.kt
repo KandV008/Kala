@@ -27,6 +27,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.kala.configuration.inputTextColor
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 import com.example.kala.ui.theme.fontFamily
@@ -42,6 +43,7 @@ fun BigTextInput(valueInput: String, onValueChange: (String) -> Unit){
     val keyboardOptions = KeyboardOptions.Default.copy(
         keyboardType = KeyboardType.Text
     )
+
     Column(
         modifier = Modifier
             .width(dimens.width8)
@@ -49,6 +51,7 @@ fun BigTextInput(valueInput: String, onValueChange: (String) -> Unit){
         Text(
             text = "Description",
             fontSize = dimens.fontSize1,
+            color = Color.Black,
             fontWeight = FontWeight.Bold,
         )
         TextField(
@@ -76,7 +79,8 @@ fun BigTextInput(valueInput: String, onValueChange: (String) -> Unit){
                         fontFamily = fontFamily
                     ),
                 )
-            }
+            },
+            colors = inputTextColor
         )
     }
 }

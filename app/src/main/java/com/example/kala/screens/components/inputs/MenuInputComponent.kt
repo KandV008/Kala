@@ -80,6 +80,7 @@ fun MenuInput(
         Text(
             text = configuration.getLabel(),
             fontSize = dimens.fontSize1,
+            color = Color.Black,
             fontWeight = FontWeight.Bold,
         )
         Row(
@@ -130,9 +131,12 @@ fun MenuInput(
                         .width(with(LocalDensity.current) {
                             mTextFieldSize.width.toDp()
                         })
+                        .background(Color.White)
                 ) {
                     options.forEach { label ->
                         DropdownMenuItem(
+                            modifier = Modifier
+                                .background(Color.White),
                             text = {
                                 Text(
                                     text = label,

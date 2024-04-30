@@ -38,6 +38,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.configuration.SmallTextInputConfiguration
+import com.example.kala.configuration.inputTextColor
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 
@@ -60,6 +61,7 @@ fun SmallTextInput(configuration: SmallTextInputConfiguration){
         Text(
             text = configuration.getLayer(),
             fontSize = dimens.fontSize1,
+            color = Color.Black,
             fontWeight = FontWeight.Bold,
         )
 
@@ -85,6 +87,7 @@ fun SmallTextInput(configuration: SmallTextInputConfiguration){
                     .clip(RoundedCornerShape(dimens.rounded))
                     .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
                 ,
+                colors = inputTextColor
             )
             Spacer(modifier = Modifier.size(dimens.space1))
             Box(

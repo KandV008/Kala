@@ -36,6 +36,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.kala.R
 import com.example.kala.configuration.SVG_DESCRIPTION
+import com.example.kala.configuration.inputTextColor
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 import com.example.kala.ui.theme.fontFamily
@@ -59,6 +60,7 @@ fun NumberInput(valueInput: String, onValueChange: (String) -> Unit){
         Text(
             text = "Value of the exchange",
             fontSize = dimens.fontSize1,
+            color = Color.Black,
             fontWeight = FontWeight.Bold,
         )
         Row(
@@ -90,7 +92,8 @@ fun NumberInput(valueInput: String, onValueChange: (String) -> Unit){
                             fontFamily = fontFamily
                         ),
                     )
-                }
+                },
+                colors = inputTextColor
             )
             Spacer(modifier = Modifier.size(dimens.space1))
             Box(
