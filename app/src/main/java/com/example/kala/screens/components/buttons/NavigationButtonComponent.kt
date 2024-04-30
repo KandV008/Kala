@@ -57,7 +57,8 @@ fun NavigationButton(
                 .fillMaxSize()
                 .alpha(alpha),
             contentPadding = PaddingValues(dimens.padding3),
-            border = BorderStroke(dimens.border, Color.Black)
+            border = BorderStroke(dimens.border, Color.Black),
+            enabled = alpha > 0F
         ) {
             Image(
                 painter = painterResource(

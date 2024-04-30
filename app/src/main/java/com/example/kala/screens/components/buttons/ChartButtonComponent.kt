@@ -60,6 +60,7 @@ fun ChartButton(
                 .fillMaxSize()
                 .padding(horizontal = dimens.padding0)
             ,
+            enabled = alpha > 0F,
         ) {
             Image(
                 painter = painterResource(
