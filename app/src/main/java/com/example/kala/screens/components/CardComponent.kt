@@ -41,7 +41,7 @@ import com.example.kala.entities.MoneyExchange
 import com.example.kala.entities.MoneyExchangeScope
 import com.example.kala.entities.MoneyExchangeType
 import com.example.kala.ui.theme.BoneWhite
-import com.example.kala.ui.theme.Green0
+import com.example.kala.ui.theme.Green1
 import com.example.kala.ui.theme.Red0
 import com.example.kala.ui.theme.dimens
 
@@ -58,7 +58,7 @@ fun Card(
 ){
     val svgFile = MoneyExchangeScope.getSVGFile(moneyExchange.scope)
     val valueSymbol = if (moneyExchange.type == MoneyExchangeType.EXPENSE) "-" else "+"
-    val valueColor = if (moneyExchange.type == MoneyExchangeType.EXPENSE) Red0 else Green0
+    val valueColor = if (moneyExchange.type == MoneyExchangeType.EXPENSE) Red0 else Green1
     val valueText = valueSymbol + moneyExchange.getFormattedValue() + "€" //TODO € should be dynamic
 
     Box(

@@ -52,7 +52,7 @@ import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.Title
 import com.example.kala.screens.components.buttons.MediumButton
 import com.example.kala.ui.theme.BoneWhite
-import com.example.kala.ui.theme.Green0
+import com.example.kala.ui.theme.Green1
 import com.example.kala.ui.theme.Red0
 import com.example.kala.ui.theme.dimens
 
@@ -74,7 +74,7 @@ fun AboutExchangeScreen(
 
     val svgFile = MoneyExchangeScope.getSVGFile(moneyExchange.scope)
     val valueSymbol = if (moneyExchange.type == MoneyExchangeType.EXPENSE) "-" else "+"
-    val valueColor = if (moneyExchange.type == MoneyExchangeType.EXPENSE) Red0 else Green0
+    val valueColor = if (moneyExchange.type == MoneyExchangeType.EXPENSE) Red0 else Green1
     val valueText = valueSymbol + moneyExchange.getFormattedValue() + "€" //TODO € should be dynamic
 
     var leftButtonTriggered by remember {

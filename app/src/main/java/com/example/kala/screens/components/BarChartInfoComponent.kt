@@ -39,9 +39,9 @@ import com.example.kala.entities.MonthInformation
 import com.example.kala.model.MoneyExchangeService
 import com.example.kala.screens.components.buttons.ChartButton
 import com.example.kala.ui.theme.BoneWhite
-import com.example.kala.ui.theme.Green0
+import com.example.kala.ui.theme.Green1
+import com.example.kala.ui.theme.Orange0
 import com.example.kala.ui.theme.Red0
-import com.example.kala.ui.theme.Yellow0
 import com.example.kala.ui.theme.dimens
 import com.example.kala.ui.theme.fontFamily
 
@@ -132,7 +132,7 @@ fun BarChartBody(
 ){
     val barsData = listOf(
         BarData(Point(0F, 0F), Color.White),
-        BarData(Point(1.75F, currentMonth.incomeMoney.toFloat()), Green0),
+        BarData(Point(1.75F, currentMonth.incomeMoney.toFloat()), Green1),
         BarData(Point(2.5F, currentMonth.expensedMoney.toFloat()), Red0),
         BarData(Point(4F, 0F), Color.White),
         )
@@ -156,7 +156,7 @@ fun BarChartBody(
         backgroundColor = Color.White,
         showYAxis = false,
         showXAxis = false,
-        paddingTop = 0.dp,
+        paddingEnd = 0.dp
     )
 
     BarChart(
@@ -201,11 +201,11 @@ fun BarChartFooter(
             .width(dimens.width8),
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        BarChartSummary(title = "Income", value = "+$incomeValue", color = Green0)
+        BarChartSummary(title = "Income", value = "+$incomeValue", color = Green1)
         BarChartSummary(
             title = "Balance",
             value = if (balanceValue >= 0) "+$balanceValue" else balanceValue.toString(),
-            color = Yellow0
+            color = Orange0
         )
         BarChartSummary(title = "Expense", value = "-$expenseValue", color = Red0)
     }

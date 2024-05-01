@@ -12,5 +12,11 @@ val Pink40 = Color(0xFF7D5260)
 
 val BoneWhite = Color(0xFFF3F2D0)
 val Red0 = Color(0xFFCA3C5B)
-val Green0 = Color(0xFF69983B)
-val Yellow0 = Color(0xFFEFAD4A)
+val Green1 = Color(0xFF69983B)
+val Orange0 = Color(0xFFEFAD4A)
+
+val Blue0 = Color(0xff5297b8)
+val Pink0 = Color(0xffff6284)
+val Purple0 = Color(0xff9b5cff)
+val Yellow0 = Color(0xffffd04e)
+val Green0 = Color(0xff9de458)
