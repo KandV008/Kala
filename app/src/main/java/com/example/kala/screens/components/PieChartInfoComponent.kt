@@ -68,7 +68,11 @@ fun PieChartInfo(
                 modifier = Modifier
                     .size(dimens.height7)
             ){
-                PieChartBody(currentMonth, currentType)
+                if (currentMonth.summary.size != 0){
+                    PieChartBody(currentMonth, currentType)
+                } else {
+                    EmptyBarChartAdvice()
+                }
             }
             Spacer(modifier = Modifier.weight(1F))
         }

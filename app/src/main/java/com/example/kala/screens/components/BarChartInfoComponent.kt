@@ -43,6 +43,7 @@ import com.example.kala.ui.theme.Green0
 import com.example.kala.ui.theme.Red0
 import com.example.kala.ui.theme.Yellow0
 import com.example.kala.ui.theme.dimens
+import com.example.kala.ui.theme.fontFamily
 
 @Composable
 fun BarChartInfo(
@@ -76,7 +77,11 @@ fun BarChartInfo(
                     .clip(RoundedCornerShape(50.dp))
                     .size(dimens.height7)
             ){
-                BarChartBody(currentMonth)
+                if (currentMonth.summary.size != 0){
+                    BarChartBody(currentMonth)
+                } else {
+                    EmptyBarChartAdvice()
+                }
             }
             Spacer(modifier = Modifier.weight(1F))
             BarChartFooter(currentMonth)
@@ -160,6 +165,26 @@ fun BarChartBody(
         ,
         barChartData = barChartData,
     )
+}
+
+@Composable
+fun EmptyBarChartAdvice(){
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+        ,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = "Nothing has been added yet",
+            color = Color.Black,
+            fontSize = dimens.fontSize2,
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.Bold,
+            fontFamily = fontFamily,
+        )
+    }
+
 }
 
 @Composable
