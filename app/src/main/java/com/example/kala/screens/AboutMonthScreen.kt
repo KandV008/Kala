@@ -98,7 +98,11 @@ fun AboutMonthScreen(
 
     Scaffold(
         topBar = {
-            Header(configuration = HeaderConfiguration.REGISTERED_USER, navController)
+            Header(
+                configuration = HeaderConfiguration.REGISTERED_USER,
+                navController = navController,
+                triggerScreen = ABOUT_MONTH_SCREEN_ROUTE,
+            )
         },
         bottomBar = {
             Footer(configuration = FooterConfiguration.BACK_AND_HOME, navController)

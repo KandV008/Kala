@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import com.example.kala.configuration.ADD_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HOME_SCREEN_ROUTE
 import com.example.kala.configuration.HeaderConfiguration
@@ -102,7 +103,11 @@ fun AddExchangeScreen(
 
     Scaffold(
         topBar = {
-            Header(configuration = HeaderConfiguration.REGISTERED_USER, navController)
+            Header(
+                configuration = HeaderConfiguration.REGISTERED_USER,
+                navController = navController,
+                triggerScreen = ADD_EXCHANGE_SCREEN_ROUTE,
+            )
         },
         bottomBar = {
             Footer(configuration = FooterConfiguration.ALL, navController) {

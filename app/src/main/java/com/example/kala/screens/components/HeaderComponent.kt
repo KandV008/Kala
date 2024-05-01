@@ -41,6 +41,7 @@ import com.example.kala.ui.theme.dimens
 fun Header(
     configuration: HeaderConfiguration,
     navController: NavController? = null,
+    triggerScreen: String = "",
     ) {
     val rightRoute =
         if (HeaderConfiguration.REGISTERED_USER == configuration)
@@ -58,7 +59,7 @@ fun Header(
 
     if (leftTriggered){
         leftTriggered = false
-        navController?.navigate(route = HELP_SCREEN_ROUTE)
+        navController?.navigate(route = "$HELP_SCREEN_ROUTE/$triggerScreen")
     }
 
     if (rightTriggered){

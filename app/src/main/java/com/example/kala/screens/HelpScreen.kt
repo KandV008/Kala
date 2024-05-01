@@ -20,8 +20,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.kala.configuration.FooterConfiguration
+import com.example.kala.configuration.HOME_SCREEN_ROUTE
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.TitleConfiguration
+import com.example.kala.model.HelpService
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.Title
@@ -35,7 +37,10 @@ import com.example.kala.ui.theme.dimens
  */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun HelpScreen(navController: NavController? = null){
+fun HelpScreen(
+    navController: NavController? = null,
+    triggerScreen: String,
+){
     Scaffold(
         topBar = {
             Header(configuration = HeaderConfiguration.HELP_SCREEN, navController)
@@ -53,7 +58,7 @@ fun HelpScreen(navController: NavController? = null){
             Spacer(modifier = Modifier.padding(dimens.space4))
             Title(configuration = TitleConfiguration.HELP)
             Spacer(modifier = Modifier.weight(0.7F))
-            HelpScreenBody(listOf("TO-DO", "Sample Text 1", "Sample Text 2"))
+            HelpScreenBody(HelpService.getTextAdviceScreen(triggerScreen))
             Spacer(modifier = Modifier.weight(0.7F))
             Spacer(modifier = Modifier.padding(dimens.space4))
         }
@@ -80,7 +85,7 @@ fun HelpScreenBody(advices: List<String>){
             Text(
                 text = advice,
                 color = Color.Black,
-                fontSize = dimens.fontSize1
+                fontSize = dimens.fontSize0
             )
             Spacer(modifier = Modifier.padding(dimens.space1))
         }
@@ -94,5 +99,5 @@ fun HelpScreenBody(advices: List<String>){
 @Preview(showBackground = true)
 @Composable
 fun HelpScreenPreview(){
-    HelpScreen()
+    HelpScreen(triggerScreen = HOME_SCREEN_ROUTE)
 }

@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.kala.configuration.ChartConfiguration
 import com.example.kala.configuration.FooterConfiguration
+import com.example.kala.configuration.HOME_SCREEN_ROUTE
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.LargeButtonConfiguration
 import com.example.kala.configuration.MediumButtonConfiguration
@@ -50,7 +51,11 @@ fun HomeScreen(
 
     Scaffold(
         topBar = {
-            Header(configuration = HeaderConfiguration.REGISTERED_USER, navController)
+            Header(
+                configuration = HeaderConfiguration.REGISTERED_USER,
+                navController = navController,
+                triggerScreen = HOME_SCREEN_ROUTE,
+            )
         },
         bottomBar = {
             Footer(configuration = FooterConfiguration.EMPTY, navController)

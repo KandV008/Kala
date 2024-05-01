@@ -17,6 +17,7 @@ import androidx.navigation.NavController
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.LargeButtonConfiguration
+import com.example.kala.configuration.OPTION_SCREEN_ROUTE
 import com.example.kala.configuration.TitleConfiguration
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
@@ -46,7 +47,11 @@ val typeButtons: List<LargeButtonConfiguration> = listOf(
 fun OptionScreen(navController: NavController? = null){
     Scaffold(
         topBar = {
-            Header(configuration = HeaderConfiguration.OPTION_SCREEN, navController)
+            Header(
+                configuration = HeaderConfiguration.OPTION_SCREEN,
+                navController = navController,
+                triggerScreen = OPTION_SCREEN_ROUTE,
+            )
         },
         bottomBar = {
             Footer(configuration = FooterConfiguration.BACK_AND_HOME, navController)

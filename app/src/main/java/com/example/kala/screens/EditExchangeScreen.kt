@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.kala.configuration.ABOUT_EXCHANGE_SCREEN_ROUTE
+import com.example.kala.configuration.EDIT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.MenuInputConfiguration
@@ -102,7 +103,11 @@ fun EditExchangeScreen(
 
     Scaffold(
         topBar = {
-            Header(configuration = HeaderConfiguration.REGISTERED_USER, navController)
+            Header(
+                configuration = HeaderConfiguration.REGISTERED_USER,
+                navController = navController,
+                triggerScreen = EDIT_EXCHANGE_SCREEN_ROUTE,
+            )
         },
         bottomBar = {
             Footer(configuration = FooterConfiguration.ALL, navController) {

@@ -32,6 +32,7 @@ import androidx.navigation.NavController
 import com.example.kala.configuration.ABOUT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
+import com.example.kala.configuration.RECORD_SCREEN_ROUTE
 import com.example.kala.configuration.TitleConfiguration
 import com.example.kala.entities.MoneyExchange
 import com.example.kala.model.MoneyExchangeService
@@ -74,7 +75,11 @@ fun RecordScreen(
 
     Scaffold(
         topBar = {
-            Header(configuration = HeaderConfiguration.REGISTERED_USER, navController)
+            Header(
+                configuration = HeaderConfiguration.REGISTERED_USER,
+                navController = navController,
+                triggerScreen = RECORD_SCREEN_ROUTE,
+            )
         },
         bottomBar = {
             Footer(configuration = FooterConfiguration.BACK_AND_HOME, navController)

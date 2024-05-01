@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
+import com.example.kala.configuration.LANGUAGE_SCREEN_ROUTE
 import com.example.kala.configuration.SmallButtonConfiguration
 import com.example.kala.configuration.TitleConfiguration
 import com.example.kala.screens.components.Footer
@@ -34,7 +35,11 @@ import com.example.kala.ui.theme.dimens
 fun LanguageScreen(navController: NavController? = null){
     Scaffold(
         topBar = {
-            Header(configuration = HeaderConfiguration.LANGUAGE_SCREEN, navController)
+            Header(
+                configuration = HeaderConfiguration.LANGUAGE_SCREEN,
+                navController = navController,
+                triggerScreen = LANGUAGE_SCREEN_ROUTE,
+            )
         },
         bottomBar = {
             Footer(configuration = FooterConfiguration.BACK_AND_HOME, navController)

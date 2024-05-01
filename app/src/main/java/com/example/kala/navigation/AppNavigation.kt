@@ -27,12 +27,6 @@ private const val ABOUT_EXCHANGE_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][AC
 private const val EDIT_EXCHANGE_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTION] Navigate to Edit Exchange Screen"
 private const val REPORT_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTION] Navigate to Report Screen"
 private const val ABOUT_MONTH_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTION] Navigate to About Month Screen"
-private const val MONTH_ARGUMENT_ADVICE_MESSAGE = "[AppNavigation][ADVICE] Month: "
-private const val EXCHANGE_ARGUMENT_ADVICE_MESSAGE = "[AppNavigation][ADVICE] Exchange: "
-private const val TYPE_ARGUMENT_ADVICE_MESSAGE = "[AppNavigation][ADVICE] Type: "
-private const val MONTH_ID_OR_EXCHANGE_ID_ERROR_MESSAGE = "[AppNavigation][ERROR] Month Id or/and Exchange Id are null"
-private const val MONTH_ID_ERROR_MESSAGE = "[AppNavigation][ERROR] Month Id is null"
-private const val MONTH_ID_OR_TYPE_ERROR_MESSAGE = "[AppNavigation][ERROR] Month Id or/and Type are null"
 
 /**
  * Composable function defining the app's navigation.
@@ -45,9 +39,16 @@ fun AppNavigation(){
             println(HOME_SCREEN_NAVIGATION_MESSAGE)
             HomeScreen(navController)
         }
-        composable(route = AppScreens.helpScreen.route){
+        composable(route = AppScreens.helpScreen.route + "/{triggerScreen}"){
             println(HELP_SCREEN_NAVIGATION_MESSAGE)
-            HelpScreen(navController)
+            val navBackStackEntry by navController.currentBackStackEntryAsState()
+
+            val triggerScreen = navBackStackEntry?.arguments?.getString("triggerScreen")
+
+            if (triggerScreen != null){
+                HelpScreen(navController, triggerScreen)
+
+            }
         }
         composable(route = AppScreens.optionScreen.route){
             println(OPTION_SCREEN_NAVIGATION_MESSAGE)
