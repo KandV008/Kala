@@ -31,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.kala.configuration.ABOUT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.configuration.FooterConfiguration
+import com.example.kala.configuration.HOME_SCREEN_ROUTE
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.RECORD_SCREEN_ROUTE
 import com.example.kala.configuration.TitleConfiguration
@@ -73,6 +74,10 @@ fun RecordScreen(
         navController?.navigate(route = "$ABOUT_EXCHANGE_SCREEN_ROUTE/$monthSelected/$cardSelected")
     }
 
+    val goBackTriggered = {
+        navController?.navigate(route = HOME_SCREEN_ROUTE)
+    }
+
     Scaffold(
         topBar = {
             Header(
@@ -82,7 +87,12 @@ fun RecordScreen(
             )
         },
         bottomBar = {
-            Footer(configuration = FooterConfiguration.BACK_AND_HOME, navController)
+            Footer(
+                configuration = FooterConfiguration.BACK_AND_HOME,
+                navController = navController,
+                changeGoBackButton = true,
+                goBackTriggered = goBackTriggered,
+            )
         },
     ){
         Column(

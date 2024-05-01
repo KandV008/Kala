@@ -38,6 +38,7 @@ fun InvalidFormPopUp(
     onConfirmButton: () -> Unit,
 ) {
     AlertDialog(
+        containerColor = Color.White,
         onDismissRequest = {  },
         title = {
             Text(

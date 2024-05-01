@@ -38,6 +38,8 @@ fun Footer(
     configuration: FooterConfiguration,
     navController: NavController? = null,
     onAdviceTriggered: () -> Unit = {},
+    changeGoBackButton: Boolean = false,
+    goBackTriggered: () -> Unit? = {},
 ) {
 
     var leftTriggered by remember { mutableStateOf(false) }
@@ -56,7 +58,12 @@ fun Footer(
 
     if (leftTriggered){
         leftTriggered = false
-        navController?.popBackStack()
+
+        if (changeGoBackButton){
+            goBackTriggered()
+        } else {
+            navController?.popBackStack()
+        }
     }
 
     if (centerTriggered){

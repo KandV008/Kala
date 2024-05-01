@@ -110,9 +110,11 @@ fun EditExchangeScreen(
             )
         },
         bottomBar = {
-            Footer(configuration = FooterConfiguration.ALL, navController) {
-                adviceTriggered = true
-            }
+            Footer(
+                configuration = FooterConfiguration.ALL,
+                navController = navController,
+                onAdviceTriggered = { adviceTriggered = true }
+            )
         },
     ) {
         Column(
