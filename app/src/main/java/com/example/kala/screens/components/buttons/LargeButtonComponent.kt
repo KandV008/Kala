@@ -33,12 +33,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.kala.configuration.LargeButtonConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.dimens
+import com.example.kala.ui.theme.fontFamily
 
 /**
  * Composable function for rendering a large button with customizable configuration.
@@ -53,21 +53,20 @@ fun LargeButton(
 ) {
     Box(
         modifier = Modifier
-            .height(60.dp)
-            .width(300.dp)
-            .shadow(10.dp, shape = RoundedCornerShape(10.dp))
+            .height(dimens.height2)
+            .width(dimens.width8)
+            .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
     ) {
         Button(
             onClick = {
                 navController?.navigate(route = configuration.getRoute())
             },
             modifier = Modifier
-                .height(60.dp)
-                .width(300.dp)
-                .border(2.dp, Color.Black, RoundedCornerShape(10.dp)),
+                .fillMaxSize()
+                .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded)),
             colors = ButtonDefaults.buttonColors(Color.White),
-            shape = RoundedCornerShape(10.dp),
-            contentPadding = PaddingValues(10.dp)
+            shape = RoundedCornerShape(dimens.rounded),
+            contentPadding = PaddingValues(dimens.padding3)
         ) {
             Row(
                 modifier = Modifier
@@ -78,19 +77,20 @@ fun LargeButton(
                 Text(
                     text = configuration.toString(),
                     color = Color.Black,
-                    fontSize = 28.sp,
+                    fontSize = dimens.fontSize2,
                     textAlign = TextAlign.Justify,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.weight(1f),
+                    fontFamily = fontFamily
                 )
 
                 Box(
                     modifier = Modifier
-                        .border(2.dp, Color.Black, shape = CircleShape)
+                        .border(dimens.border, Color.Black, shape = CircleShape)
                         .clip(CircleShape)
-                        .size(40.dp)
+                        .size(dimens.image2)
                         .clip(CircleShape)
-                        .padding(7.dp),
+                        .padding(dimens.padding1),
                     contentAlignment = Alignment.Center,
                 ) {
                     Image(
@@ -124,7 +124,7 @@ fun LargeButtonPreview() {
             items(LargeButtonConfiguration.entries.toTypedArray()){
                     value ->
                 LargeButton(configuration = value)
-                Spacer(modifier = Modifier.padding(5.dp))
+                Spacer(modifier = Modifier.padding(dimens.padding0))
             }
         }
     }

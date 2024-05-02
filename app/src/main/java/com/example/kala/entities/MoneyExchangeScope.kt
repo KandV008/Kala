@@ -2,6 +2,11 @@ package com.example.kala.entities
 
 import androidx.compose.ui.graphics.Color
 import com.example.kala.R
+import com.example.kala.ui.theme.Blue0
+import com.example.kala.ui.theme.Green0
+import com.example.kala.ui.theme.Pink0
+import com.example.kala.ui.theme.Purple0
+import com.example.kala.ui.theme.Yellow0
 
 /**
  * Enum representing the scope/category of a money exchange.
@@ -9,11 +14,11 @@ import com.example.kala.R
 enum class MoneyExchangeScope(
     private val color: Color,
 ) {
-    FOOD(Color.Cyan),
-    LEISURE(Color.Magenta),
-    USEFUL(Color.Yellow),
-    MEDICINE(Color.Red),
-    OTHER(Color.Green);
+    FOOD(Pink0),
+    LEISURE(Purple0),
+    USEFUL(Blue0),
+    MEDICINE(Green0),
+    OTHER(Yellow0);
 
     fun getColor(): Color{
         return color

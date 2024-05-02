@@ -25,10 +25,10 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.kala.configuration.ChartButtonConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.dimens
 
 /**
  * Composable function to display a chart button.
@@ -46,20 +46,21 @@ fun ChartButton(
     Box(
         modifier = Modifier
             .alpha(alpha)
-            .size(50.dp)
-            .shadow(10.dp, shape = CircleShape)
-            .border(2.dp, Color.Black, CircleShape)
+            .size(dimens.image3)
+            .shadow(dimens.shadow, shape = CircleShape)
+            .border(dimens.border, Color.Black, CircleShape)
             .background(Color.White)
     ) {
         Button(
             onClick = onAdviceTriggered,
             colors = ButtonDefaults.buttonColors(Color.White),
             shape = CircleShape,
-            contentPadding = PaddingValues(5.dp),
+            contentPadding = PaddingValues(dimens.padding0),
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 5.dp)
+                .padding(horizontal = dimens.padding0)
             ,
+            enabled = alpha > 0F,
         ) {
             Image(
                 painter = painterResource(
@@ -90,7 +91,7 @@ fun ChartButtonPreview() {
             items(ChartButtonConfiguration.entries.toTypedArray()){
                     value ->
                 ChartButton(configuration = value)
-                Spacer(modifier = Modifier.padding(10.dp))
+                Spacer(modifier = Modifier.padding(dimens.space1))
             }
         }
     }

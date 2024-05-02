@@ -16,22 +16,24 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.kala.configuration.ABOUT_MONTH_SCREEN_ROUTE
 import com.example.kala.configuration.ChartConfiguration
 import com.example.kala.configuration.FooterConfiguration
+import com.example.kala.configuration.HOME_SCREEN_ROUTE
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.MediumButtonConfiguration
 import com.example.kala.configuration.REPORT_SCREEN_ROUTE
 import com.example.kala.configuration.TitleConfiguration
 import com.example.kala.entities.MoneyExchangeType
+import com.example.kala.model.MoneyExchangeService
 import com.example.kala.screens.components.BarChartInfo
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.Title
 import com.example.kala.screens.components.buttons.MediumButton
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.dimens
 
 /**
  * Composable function for rendering the Report screen.
@@ -44,30 +46,44 @@ fun ReportScreen(
     navController: NavController? = null,
     currentMonth: String,
 ){
+    val monthInformation = MoneyExchangeService.getMonthInformation(currentMonth)
 
     var leftButtonTriggered by remember { mutableStateOf(false) }
     val onLeftTriggered = { leftButtonTriggered = true }
     var rightButtonTriggered by remember { mutableStateOf(false) }
     val onRightTriggered = { rightButtonTriggered = true }
 
-    if (leftButtonTriggered){
-        leftButtonTriggered = false
-        //TODO Change Month
-        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$currentMonth")
-    }
-
     if (rightButtonTriggered){
         rightButtonTriggered = false
-        //TODO Change Month
-        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$currentMonth")
+        val nextMonth = MoneyExchangeService.getNextMonth(monthInformation)
+        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$nextMonth")
+    }
+
+    if (leftButtonTriggered){
+        leftButtonTriggered = false
+        val prevMonth = MoneyExchangeService.getPrevMonth(monthInformation)
+        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$prevMonth")
+    }
+
+    val goBackTriggered = {
+        navController?.navigate(route = HOME_SCREEN_ROUTE)
     }
 
     Scaffold(
         topBar = {
-            Header(configuration = HeaderConfiguration.REGISTERED_USER, navController)
+            Header(
+                configuration = HeaderConfiguration.REGISTERED_USER,
+                navController = navController,
+                triggerScreen = REPORT_SCREEN_ROUTE,
+            )
         },
         bottomBar = {
-            Footer(configuration = FooterConfiguration.BACK_AND_HOME, navController)
+            Footer(
+                configuration = FooterConfiguration.BACK_AND_HOME,
+                navController = navController,
+                changeGoBackButton = true,
+                goBackTriggered = goBackTriggered,
+            )
         },
     ){
         Column(
@@ -76,18 +92,18 @@ fun ReportScreen(
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Spacer(modifier = Modifier.padding(50.dp))
+            Spacer(modifier = Modifier.padding(dimens.space4))
             Title(configuration = TitleConfiguration.REPORT)
-            Spacer(modifier = Modifier.padding(10.dp))
+            Spacer(modifier = Modifier.padding(dimens.space1))
             BarChartInfo(
                 configuration = ChartConfiguration.REPORT_PAGE,
                 month = currentMonth,
                 onLeftTriggered = onLeftTriggered,
                 onRightTriggered = onRightTriggered,
-                )
-            Spacer(modifier = Modifier.padding(20.dp))
+            )
+            Spacer(modifier = Modifier.padding(dimens.space1))
             ReportScreenBody(navController, currentMonth)
-            Spacer(modifier = Modifier.padding(50.dp))
+            Spacer(modifier = Modifier.padding(dimens.space4))
         }
     }
 }
@@ -119,7 +135,7 @@ fun ReportScreenBody(
 
     Row {
         MediumButton(configuration = MediumButtonConfiguration.INCOME, onLeftTriggered)
-        Spacer(modifier = Modifier.padding(10.dp))
+        Spacer(modifier = Modifier.padding(dimens.space1))
         MediumButton(configuration = MediumButtonConfiguration.EXPENSE, onRightTriggered)
     }
 }

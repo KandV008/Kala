@@ -18,16 +18,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.kala.configuration.FooterConfiguration
+import com.example.kala.configuration.HOME_SCREEN_ROUTE
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.TitleConfiguration
+import com.example.kala.model.HelpService
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.Title
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.dimens
 
 /**
  * Composable function for rendering the Help screen.
@@ -36,7 +37,10 @@ import com.example.kala.ui.theme.BoneWhite
  */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun HelpScreen(navController: NavController? = null){
+fun HelpScreen(
+    navController: NavController? = null,
+    triggerScreen: String,
+){
     Scaffold(
         topBar = {
             Header(configuration = HeaderConfiguration.HELP_SCREEN, navController)
@@ -51,12 +55,12 @@ fun HelpScreen(navController: NavController? = null){
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Spacer(modifier = Modifier.padding(50.dp))
+            Spacer(modifier = Modifier.padding(dimens.space4))
             Title(configuration = TitleConfiguration.HELP)
             Spacer(modifier = Modifier.weight(0.7F))
-            HelpScreenBody(listOf("TO-DO", "Sample Text 1", "Sample Text 2"))
+            HelpScreenBody(HelpService.getTextAdviceScreen(triggerScreen))
             Spacer(modifier = Modifier.weight(0.7F))
-            Spacer(modifier = Modifier.padding(50.dp))
+            Spacer(modifier = Modifier.padding(dimens.space4))
         }
     }
 }
@@ -70,20 +74,20 @@ fun HelpScreen(navController: NavController? = null){
 fun HelpScreenBody(advices: List<String>){
     LazyColumn(
         modifier = Modifier
-            .width(280.dp)
-            .height(500.dp)
+            .width(dimens.width7)
+            .height(dimens.height10)
             .background(Color.White)
-            .border(2.dp, Color.Black)
-            .padding(20.dp),
+            .border(dimens.border, Color.Black)
+            .padding(dimens.padding5),
     ){
         items(advices){
                 advice ->
             Text(
                 text = advice,
                 color = Color.Black,
-                fontSize = 25.sp
+                fontSize = dimens.fontSize0
             )
-            Spacer(modifier = Modifier.padding(10.dp))
+            Spacer(modifier = Modifier.padding(dimens.space1))
         }
     }
 }
@@ -95,5 +99,5 @@ fun HelpScreenBody(advices: List<String>){
 @Preview(showBackground = true)
 @Composable
 fun HelpScreenPreview(){
-    HelpScreen()
+    HelpScreen(triggerScreen = HOME_SCREEN_ROUTE)
 }

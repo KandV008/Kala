@@ -23,14 +23,13 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.kala.configuration.HELP_SCREEN_ROUTE
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.LANGUAGE_SCREEN_ROUTE
 import com.example.kala.configuration.OPTION_SCREEN_ROUTE
 import com.example.kala.screens.components.buttons.NavigationButton
+import com.example.kala.ui.theme.dimens
 
 /**
  * Composable function for rendering the header component.
@@ -42,6 +41,7 @@ import com.example.kala.screens.components.buttons.NavigationButton
 fun Header(
     configuration: HeaderConfiguration,
     navController: NavController? = null,
+    triggerScreen: String = "",
     ) {
     val rightRoute =
         if (HeaderConfiguration.REGISTERED_USER == configuration)
@@ -59,7 +59,7 @@ fun Header(
 
     if (leftTriggered){
         leftTriggered = false
-        navController?.navigate(route = HELP_SCREEN_ROUTE)
+        navController?.navigate(route = "$HELP_SCREEN_ROUTE/$triggerScreen")
     }
 
     if (rightTriggered){
@@ -70,9 +70,9 @@ fun Header(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .border(1.dp, Color.Black, RectangleShape)
+            .border(dimens.border, Color.Black, RectangleShape)
             .background(Color.White)
-            .padding(30.dp, 10.dp)
+            .padding(dimens.padding6, dimens.padding3)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -87,7 +87,7 @@ fun Header(
             Text(
                 text = "Kala",
                 color = Color.Black,
-                fontSize = 34.sp,
+                fontSize = dimens.fontSize4,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.alpha(configuration.center())
@@ -110,11 +110,11 @@ fun Header(
 fun HeaderPreview() {
     Column {
         Header(HeaderConfiguration.UNREGISTERED_USER)
-        Spacer(modifier = Modifier.padding(5.dp))
+        Spacer(modifier = Modifier.padding(dimens.space0))
         Header(HeaderConfiguration.REGISTERED_USER)
-        Spacer(modifier = Modifier.padding(5.dp))
+        Spacer(modifier = Modifier.padding(dimens.space0))
         Header(HeaderConfiguration.HELP_SCREEN)
-        Spacer(modifier = Modifier.padding(5.dp))
+        Spacer(modifier = Modifier.padding(dimens.space0))
         Header(HeaderConfiguration.LANGUAGE_SCREEN)
     }
 }

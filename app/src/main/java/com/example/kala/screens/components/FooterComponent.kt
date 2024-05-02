@@ -19,12 +19,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HOME_SCREEN_ROUTE
 import com.example.kala.configuration.NavigationButtonConfiguration
 import com.example.kala.screens.components.buttons.NavigationButton
+import com.example.kala.ui.theme.dimens
 
 /**
  * Composable function for rendering the footer component.
@@ -38,6 +38,8 @@ fun Footer(
     configuration: FooterConfiguration,
     navController: NavController? = null,
     onAdviceTriggered: () -> Unit = {},
+    changeGoBackButton: Boolean = false,
+    goBackTriggered: () -> Unit? = {},
 ) {
 
     var leftTriggered by remember { mutableStateOf(false) }
@@ -56,7 +58,12 @@ fun Footer(
 
     if (leftTriggered){
         leftTriggered = false
-        navController?.popBackStack()
+
+        if (changeGoBackButton){
+            goBackTriggered()
+        } else {
+            navController?.popBackStack()
+        }
     }
 
     if (centerTriggered){
@@ -72,9 +79,9 @@ fun Footer(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .border(1.dp, Color.Black, RectangleShape)
+            .border(dimens.border, Color.Black, RectangleShape)
             .background(Color.White)
-            .padding(30.dp, 10.dp),
+            .padding(dimens.padding6, dimens.padding3)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -109,17 +116,17 @@ fun Footer(
 fun FooterPreview() {
     Column {
         Footer(FooterConfiguration.EMPTY)
-        Spacer(modifier = Modifier.padding(5.dp))
+        Spacer(modifier = Modifier.padding(dimens.space0))
         Footer(FooterConfiguration.ONLY_BACK)
-        Spacer(modifier = Modifier.padding(5.dp))
+        Spacer(modifier = Modifier.padding(dimens.space0))
         Footer(FooterConfiguration.ONLY_NEXT)
-        Spacer(modifier = Modifier.padding(5.dp))
+        Spacer(modifier = Modifier.padding(dimens.space0))
         Footer(FooterConfiguration.BACK_AND_NEXT)
-        Spacer(modifier = Modifier.padding(5.dp))
+        Spacer(modifier = Modifier.padding(dimens.space0))
         Footer(FooterConfiguration.BACK_AND_HOME)
-        Spacer(modifier = Modifier.padding(5.dp))
+        Spacer(modifier = Modifier.padding(dimens.space0))
         Footer(FooterConfiguration.NEXT_AND_HOME)
-        Spacer(modifier = Modifier.padding(5.dp))
+        Spacer(modifier = Modifier.padding(dimens.space0))
         Footer(FooterConfiguration.ALL)
     }
 }

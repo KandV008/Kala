@@ -17,6 +17,17 @@ import com.example.kala.screens.OptionScreen
 import com.example.kala.screens.RecordScreen
 import com.example.kala.screens.ReportScreen
 
+private const val HOME_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTION] Navigate to Home Screen"
+private const val HELP_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTION] Navigate to Help Screen"
+private const val OPTION_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTION] Navigate to Option Screen"
+private const val LANGUAGE_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTION] Navigate to Language Screen"
+private const val ADD_EXCHANGE_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTION] Navigate to Add Exchange Screen"
+private const val RECORD_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTION] Navigate to Record Screen"
+private const val ABOUT_EXCHANGE_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTION] Navigate to About Exchange Screen"
+private const val EDIT_EXCHANGE_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTION] Navigate to Edit Exchange Screen"
+private const val REPORT_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTION] Navigate to Report Screen"
+private const val ABOUT_MONTH_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTION] Navigate to About Month Screen"
+
 /**
  * Composable function defining the app's navigation.
  */
@@ -25,62 +36,73 @@ fun AppNavigation(){
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = AppScreens.homeScreen.route){
         composable(route = AppScreens.homeScreen.route){
+            println(HOME_SCREEN_NAVIGATION_MESSAGE)
             HomeScreen(navController)
         }
-        composable(route = AppScreens.helpScreen.route){
-            HelpScreen(navController)
+        composable(route = AppScreens.helpScreen.route + "/{triggerScreen}"){
+            println(HELP_SCREEN_NAVIGATION_MESSAGE)
+            val navBackStackEntry by navController.currentBackStackEntryAsState()
+
+            val triggerScreen = navBackStackEntry?.arguments?.getString("triggerScreen")
+
+            if (triggerScreen != null){
+                HelpScreen(navController, triggerScreen)
+
+            }
         }
         composable(route = AppScreens.optionScreen.route){
+            println(OPTION_SCREEN_NAVIGATION_MESSAGE)
             OptionScreen(navController)
         }
         composable(route = AppScreens.languageScreen.route){
+            println(LANGUAGE_SCREEN_NAVIGATION_MESSAGE)
             LanguageScreen(navController)
         }
         composable(route = AppScreens.addExchangeScreen.route){
+            println(ADD_EXCHANGE_SCREEN_NAVIGATION_MESSAGE)
             AddExchangeScreen(navController)
         }
         composable(route = AppScreens.recordScreen.route){
+            println(RECORD_SCREEN_NAVIGATION_MESSAGE)
             RecordScreen(navController)
         }
         composable(
             route = AppScreens.aboutExchangeScreen.route + "/{month}" + "/{exchange}",
         ){
+            println(ABOUT_EXCHANGE_SCREEN_NAVIGATION_MESSAGE)
             val navBackStackEntry by navController.currentBackStackEntryAsState()
 
             val month = navBackStackEntry?.arguments?.getString("month")
-            val exchange = navBackStackEntry?.arguments?.getInt("exchange")
+            val exchange = navBackStackEntry?.arguments?.getString("exchange")
 
             if (month != null && exchange != null) {
-                AboutExchangeScreen(navController, month, exchange)
-            } else {
-                // TODO: Handle the case where the parameters are null
+                AboutExchangeScreen(navController, month, exchange.toInt())
             }
         }
         composable(
             route = AppScreens.editExchangeScreen.route + "/{month}" + "/{exchange}",
         ){
+            println(EDIT_EXCHANGE_SCREEN_NAVIGATION_MESSAGE)
             val navBackStackEntry by navController.currentBackStackEntryAsState()
 
             val month = navBackStackEntry?.arguments?.getString("month")
-            val exchange = navBackStackEntry?.arguments?.getInt("exchange")
+            val exchange = navBackStackEntry?.arguments?.getString("exchange")
 
             if (month != null && exchange != null) {
-                EditExchangeScreen(navController, month, exchange)
-            } else {
-                // TODO: Handle the case where the parameters are null
+                EditExchangeScreen(navController, month, exchange.toInt())
             }
         }
         composable(route = AppScreens.reportScreen.route + "/{month}"){
+            println(REPORT_SCREEN_NAVIGATION_MESSAGE)
             val navBackStackEntry by navController.currentBackStackEntryAsState()
             val month = navBackStackEntry?.arguments?.getString("month")
 
-            if (month != null ) {
+            if (month != null) {
                 ReportScreen(navController, month)
-            } else {
-                // TODO: Handle the case where the parameters are null
             }
         }
         composable(route = AppScreens.aboutMonthScreen.route + "/{month}" + "/{type}"){
+            println(ABOUT_MONTH_SCREEN_NAVIGATION_MESSAGE)
             val navBackStackEntry by navController.currentBackStackEntryAsState()
 
             val month = navBackStackEntry?.arguments?.getString("month")
@@ -88,8 +110,6 @@ fun AppNavigation(){
 
             if (month != null && type != null) {
                 AboutMonthScreen(navController, month, type)
-            } else {
-                // TODO: Handle the case where the parameters are null
             }
         }
     }

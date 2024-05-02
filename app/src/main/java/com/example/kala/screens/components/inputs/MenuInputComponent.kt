@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -41,13 +42,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
 import com.example.kala.R
 import com.example.kala.configuration.MenuInputConfiguration
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.dimens
+import com.example.kala.ui.theme.fontFamily
 
 /**
  * Composable function for rendering a menu input with customizable configuration.
@@ -74,17 +75,18 @@ fun MenuInput(
 
     Column(
         modifier = Modifier
-            .width(300.dp)
+            .width(dimens.width8)
     ) {
         Text(
             text = configuration.getLabel(),
-            fontSize = 25.sp,
+            fontSize = dimens.fontSize1,
+            color = Color.Black,
             fontWeight = FontWeight.Bold,
         )
         Row(
             modifier = Modifier
-                .width(300.dp)
-                .height(60.dp)
+                .fillMaxWidth()
+                .height(dimens.height2)
         ) {
             Column {
                 OutlinedTextField(
@@ -92,10 +94,10 @@ fun MenuInput(
                     onValueChange = onValueChange,
                     readOnly = true,
                     modifier = Modifier
-                        .width(230.dp)
-                        .clip(RoundedCornerShape(10.dp))
+                        .width(dimens.width5)
+                        .clip(RoundedCornerShape(dimens.rounded))
                         .background(Color.White)
-                        .border(2.dp, Color.Black, RoundedCornerShape(10.dp))
+                        .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
                         .onGloballyPositioned { coordinates ->
                             mTextFieldSize = coordinates.size.toSize()
                         }
@@ -103,7 +105,7 @@ fun MenuInput(
                     placeholder = {
                         Text(
                             text = configuration.getPlaceholder(),
-                            fontSize = 20.sp,
+                            fontSize = dimens.fontSize0,
                             fontWeight = FontWeight.Bold,
                             color = Color.Gray,
                             modifier = Modifier
@@ -116,7 +118,7 @@ fun MenuInput(
                             painter = painterResource(id = icon),
                             contentDescription = "contentDescription",
                             modifier = Modifier
-                                .size(35.dp)
+                                .size(dimens.image1)
                                 .clickable { mExpanded = !mExpanded }
                         )
                     }
@@ -129,16 +131,20 @@ fun MenuInput(
                         .width(with(LocalDensity.current) {
                             mTextFieldSize.width.toDp()
                         })
+                        .background(Color.White)
                 ) {
                     options.forEach { label ->
                         DropdownMenuItem(
+                            modifier = Modifier
+                                .background(Color.White),
                             text = {
                                 Text(
                                     text = label,
                                     style = TextStyle(
-                                        fontSize = 20.sp,
+                                        fontSize = dimens.fontSize0,
                                         fontWeight = FontWeight.Bold,
-                                        color = Color.Black
+                                        color = Color.Black,
+                                        fontFamily = fontFamily
                                     ),
                                 )
                             },
@@ -151,15 +157,15 @@ fun MenuInput(
                     }
                 }
             }
-            Spacer(modifier = Modifier.size(10.dp))
+            Spacer(modifier = Modifier.size(dimens.space1))
             Box(
                 modifier = Modifier
-                    .border(2.dp, Color.Black, shape = CircleShape)
-                    .size(60.dp)
+                    .border(dimens.border, Color.Black, shape = CircleShape)
+                    .size(dimens.image4)
                     .clip(CircleShape)
                     .background(Color.White)
-                    .padding(2.dp)
-                    .padding(7.dp),
+                    .padding(dimens.padding2)
+                ,
                 contentAlignment = Alignment.Center,
             ) {
                 Image(
@@ -192,7 +198,7 @@ fun PreviewMenuInput() {
             items(MenuInputConfiguration.entries.toTypedArray()){
                     value ->
                 MenuInput(value, enumExchange) { newValue -> enumExchange = newValue }
-                Spacer(modifier = Modifier.padding(5.dp))
+                Spacer(modifier = Modifier.padding(dimens.space0))
             }
         }
     }

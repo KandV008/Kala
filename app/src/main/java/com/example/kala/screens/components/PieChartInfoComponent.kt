@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -22,8 +23,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import co.yml.charts.common.model.PlotType
 import co.yml.charts.ui.piechart.charts.PieChart
 import co.yml.charts.ui.piechart.models.PieChartConfig
@@ -35,6 +34,7 @@ import com.example.kala.entities.MonthInformation
 import com.example.kala.model.MoneyExchangeService
 import com.example.kala.screens.components.buttons.ChartButton
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.dimens
 
 @Composable
 fun PieChartInfo(
@@ -45,32 +45,38 @@ fun PieChartInfo(
 ){
     val currentMonth = MoneyExchangeService.getMonthInformation(month)
     val currentType = MoneyExchangeType.valueOf(type)
+    val showPieChart = if (MoneyExchangeType.INCOME == currentType)
+        currentMonth.incomeMoney != 0.0
+    else
+        currentMonth.expensedMoney != 0.0
 
     Box(
         modifier = Modifier
-            .height(370.dp)
-            .width(320.dp)
-            .shadow(10.dp, shape = RoundedCornerShape(10.dp))
+            .height(dimens.height8)
+            .width(dimens.width9)
+            .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
     ){
         Column(
             modifier = Modifier
-                .height(370.dp)
-                .width(320.dp)
-                .clip(RoundedCornerShape(10.dp))
+                .fillMaxSize()
+                .clip(RoundedCornerShape(dimens.rounded))
                 .background(Color.White)
-                .border(2.dp, Color.Black, RoundedCornerShape(10.dp))
-                .padding(20.dp),
+                .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
+                .padding(dimens.padding5),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             PieChartHeader(currentMonth, onLeftTriggered, onRightTriggered)
             Spacer(modifier = Modifier.weight(1F))
-            Spacer(modifier = Modifier.padding(10.dp))
+            Spacer(modifier = Modifier.padding(dimens.padding3))
             Box(
                 modifier = Modifier
-                    .clip(RoundedCornerShape(20.dp))
-                    .fillMaxSize()
+                    .size(dimens.height7)
             ){
-                PieChartBody(currentMonth, currentType)
+                if (showPieChart){
+                    PieChartBody(currentMonth, currentType)
+                } else {
+                    EmptyBarChartAdvice()
+                }
             }
             Spacer(modifier = Modifier.weight(1F))
         }
@@ -81,15 +87,15 @@ fun PieChartInfo(
 fun PieChartHeader(
     currentMonth: MonthInformation,
     onLeftTriggered: () -> Unit = {},
-    onRigthTriggered: () -> Unit = {},
+    onRightTriggered: () -> Unit = {},
 ){
-    val leftChartButtonAlpha: Int = MoneyExchangeService.hasNextMonth(currentMonth)
-    val rightChartButtonAlpha: Int = MoneyExchangeService.hasPrevMonth(currentMonth)
+    val leftChartButtonAlpha: Int = MoneyExchangeService.hasPrevMonth(currentMonth)
+    val rightChartButtonAlpha: Int = MoneyExchangeService.hasNextMonth(currentMonth)
 
     Row(
         modifier = Modifier
-            .height(50.dp)
-            .width(250.dp),
+            .height(dimens.height0)
+            .width(dimens.width6),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
@@ -101,14 +107,14 @@ fun PieChartHeader(
         Text(
             text = currentMonth.dateCreation.month.toString(),
             color = Color.Black,
-            fontSize = 30.sp,
+            fontSize = dimens.fontSize3,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
         )
         ChartButton(
             configuration = ChartButtonConfiguration.RIGHT,
             alpha = rightChartButtonAlpha.toFloat(),
-            onAdviceTriggered = onRigthTriggered,
+            onAdviceTriggered = onRightTriggered,
         )
     }
 }
@@ -161,13 +167,12 @@ fun PieChartBody(
 
     val pieChartConfig = PieChartConfig(
         sliceLabelTextColor = Color.Black,
-        sliceLabelTextSize = 20.sp
+        sliceLabelTextSize = dimens.fontSize0
 
     )
 
     PieChart(
         modifier = Modifier
-            .padding(10.dp)
         ,
         pieChartData = pieChartData,
         pieChartConfig = pieChartConfig

@@ -16,10 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.kala.configuration.LogoConfiguration
 import com.example.kala.configuration.NAME_APPLICATION
+import com.example.kala.ui.theme.dimens
 
 /**
  * Composable function for rendering the logo component.
@@ -32,14 +31,14 @@ fun Logo(configuration: LogoConfiguration) {
         modifier = Modifier
             .background(Color.White)
             .size(configuration.getSize())
-            .border(2.dp, Color.Black)
+            .border(dimens.border, Color.Black)
     ) {
         Text(
             text = NAME_APPLICATION,
             Modifier
                 .fillMaxSize()
                 .wrapContentSize(Alignment.Center),
-            fontSize = 48.sp,
+            fontSize = dimens.fontSize6,
             textAlign = TextAlign.Center,
         )
     }
@@ -54,7 +53,7 @@ fun Logo(configuration: LogoConfiguration) {
 fun LogoPreview() {
     Column {
         Logo(LogoConfiguration.SMALL)
-        Spacer(modifier = Modifier.padding(5.dp))
+        Spacer(modifier = Modifier.padding(dimens.space0))
         Logo(LogoConfiguration.LARGE)
     }
 }
