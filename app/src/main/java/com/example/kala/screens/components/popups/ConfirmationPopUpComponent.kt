@@ -1,4 +1,4 @@
-package com.example.kala.screens.components
+package com.example.kala.screens.components.popups
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -8,11 +8,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
@@ -29,20 +27,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.theme.Green1
+import com.example.kala.ui.theme.Red0
 import com.example.kala.ui.theme.dimens
 import com.example.kala.ui.theme.fontFamily
 
 @Composable
-fun InvalidFormPopUp(
-    messageList: MutableList<String>,
-    onConfirmButton: () -> Unit,
+fun ConfirmationPopUp(
+    onConfirmButton: () -> Unit = {},
+    onDismissButton: () -> Unit = {},
 ) {
     AlertDialog(
         containerColor = Color.White,
         onDismissRequest = {  },
         title = {
             Text(
-                text = "Invalid Formulation",
+                text = "Are you sure you want to continue?",
                 color = Color.Black,
                 fontSize = dimens.fontSize3,
                 textAlign = TextAlign.Center,
@@ -51,34 +51,24 @@ fun InvalidFormPopUp(
             )
         },
         text = {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = dimens.padding2)
-            ) {
-                messageList.forEach { errorMessage ->
-                    Text(
-                        text = "• $errorMessage",
-                        color = Color.Black,
-                        fontSize = dimens.fontSize0,
-                        textAlign = TextAlign.Start,
-                        fontFamily = fontFamily
-                    )
-                    Spacer(modifier = Modifier.padding(dimens.space0))
-                }
-            }
+            Text(
+                text = "Think carefully. The action of erasing is irreversible.",
+                color = Color.Black,
+                fontSize = dimens.fontSize0,
+                textAlign = TextAlign.Center,
+                fontFamily = fontFamily
+            )
         },
         confirmButton = {
-            Column(
+            Row(
                 modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.Center
+                horizontalArrangement = Arrangement.Center
             ) {
                 Box(
                     modifier = Modifier
                         .height(dimens.height2)
                         .width(dimens.width5)
                         .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
-                        .align(Alignment.CenterHorizontally)
                     ,
                 ) {
                     Button(
@@ -86,7 +76,7 @@ fun InvalidFormPopUp(
                         modifier = Modifier
                             .fillMaxSize()
                             .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded)),
-                        colors = ButtonDefaults.buttonColors(Color.White),
+                        colors = ButtonDefaults.buttonColors(Green1),
                         shape = RoundedCornerShape(dimens.rounded),
                         contentPadding = PaddingValues(dimens.padding3)
                     ) {
@@ -107,6 +97,45 @@ fun InvalidFormPopUp(
                 }
             }
         },
+        dismissButton = {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Box(
+                    modifier = Modifier
+                        .height(dimens.height2)
+                        .width(dimens.width5)
+                        .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
+
+                    ,
+                ) {
+                    Button(
+                        onClick = onDismissButton,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded)),
+                        colors = ButtonDefaults.buttonColors(Red0),
+                        shape = RoundedCornerShape(dimens.rounded),
+                        contentPadding = PaddingValues(dimens.padding3)
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Text(
+                                text = "Cancel",
+                                color = Color.Black,
+                                fontSize = dimens.fontSize3,
+                                modifier = Modifier
+                            )
+                        }
+                    }
+                }
+            }
+        }
     )
 
 }
@@ -114,14 +143,7 @@ fun InvalidFormPopUp(
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Preview
 @Composable
-fun PreviewMediumButton() {
-
-    val exampleList: MutableList<String> = mutableListOf(
-        "Value of the exchange must be higher than Zero",
-        "Invalid Type of the exchange",
-        "Invalid Scope of the exchange",
-    )
-
+fun ConfirmationButton() {
     Scaffold {
         Column (
             modifier = Modifier
@@ -130,7 +152,7 @@ fun PreviewMediumButton() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ){
-            InvalidFormPopUp(exampleList){}
+            ConfirmationPopUp()
         }
     }
 }

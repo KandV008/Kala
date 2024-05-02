@@ -18,13 +18,17 @@ private const val INVALID_MONTH_ID_OR_EXCHANGE_ID_ERROR_MESSAGE = "[MoneyExchang
 private const val EDIT_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Edit Money Exchange"
 private const val EDIT_MONEY_EXCHANGE_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Edited Money Exchange"
 private const val GET_MONTH_INFORMATION_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Get Month Information"
-private const val GET_MONTH_INFORMATION_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] "
+private const val GET_MONTH_INFORMATION_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Month id: "
 private const val HAS_NEXT_MONTH_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Has Next Month"
-private const val HAS_NEXT_MONTH_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] "
+private const val HAS_NEXT_MONTH_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Exist next month: "
 private const val HAS_PREV_MONTH_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Has Prev Month"
-private const val HAS_PREV_MONTH_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] "
+private const val HAS_PREV_MONTH_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Exist prev month: "
 private const val GET_SUM_OF_MONEY_EXCHANGE_BY_SCOPE_AND_TYPE_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Get Sum Of Money Exchange By Scope And Type"
-private const val GET_SUM_OF_MONEY_EXCHANGE_BY_SCOPE_AND_TYPE_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Sum Of Money Exchange By Scope And Type"
+private const val GET_SUM_OF_MONEY_EXCHANGE_BY_SCOPE_AND_TYPE_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Sum Of Money Exchange By Scope And Type: "
+private const val GET_NEXT_MONTH_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Get Next Month"
+private const val GET_NEXT_MONTH_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Next Month Id: "
+private const val GET_PREV_MONTH_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Get Prev Month"
+private const val GET_PREV_MONTH_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Prev Month Id: "
 
 /**
  * Service class for managing money exchanges.
@@ -129,7 +133,7 @@ object MoneyExchangeService {
     fun getMonthInformation(id: String): MonthInformation {
         println(GET_MONTH_INFORMATION_ACTION_MESSAGE)
         val monthInformation = this.moneyExchangeStorage.getMonthInformation(id)
-        println(GET_MONTH_INFORMATION_RESULT_MESSAGE)
+        println(GET_MONTH_INFORMATION_RESULT_MESSAGE + monthInformation)
         return monthInformation
     }
 
@@ -145,7 +149,8 @@ object MoneyExchangeService {
         val idMonth = "${nextMonth.month}${nextMonth.year}"
         val hasNextMonth: Boolean = this.moneyExchangeStorage.existMonthInformation(idMonth)
         println(HAS_NEXT_MONTH_RESULT_MESSAGE + hasNextMonth)
-        return hasNextMonth.compareTo(true)
+        return if (hasNextMonth) 1 else 0
+
     }
 
     /**
@@ -156,11 +161,11 @@ object MoneyExchangeService {
      */
     fun hasPrevMonth(currentMonth: MonthInformation): Int {
         println(HAS_PREV_MONTH_ACTION_MESSAGE)
-        val prevMonth = currentMonth.dateCreation.plusMonths(1L)
+        val prevMonth = currentMonth.dateCreation.plusMonths(-1L)
         val idMonth = "${prevMonth.month}${prevMonth.year}"
         val hasPrevMonth: Boolean = this.moneyExchangeStorage.existMonthInformation(idMonth)
-        println(HAS_PREV_MONTH_RESULT_MESSAGE)
-        return hasPrevMonth.compareTo(true)
+        println(HAS_PREV_MONTH_RESULT_MESSAGE + hasPrevMonth)
+        return if (hasPrevMonth) 1 else 0
     }
 
     /**
@@ -181,8 +186,36 @@ object MoneyExchangeService {
             .filter { acc -> acc.type == currentType }
             .filter { acc -> acc.scope == currentScope }
             .sumOf { acc -> acc.value }
-        println(GET_SUM_OF_MONEY_EXCHANGE_BY_SCOPE_AND_TYPE_RESULT_MESSAGE)
+        println(GET_SUM_OF_MONEY_EXCHANGE_BY_SCOPE_AND_TYPE_RESULT_MESSAGE + sumOf)
         return sumOf
+    }
+
+    /**
+     * Get the next month in the storage.
+     *
+     * @param currentMonth The current month information.
+     * @return Next Month Information.
+     */
+    fun getNextMonth(currentMonth: MonthInformation): String {
+        println(GET_NEXT_MONTH_ACTION_MESSAGE)
+        val nextMonth = currentMonth.dateCreation.plusMonths(1L)
+        val idMonth = "${nextMonth.month}${nextMonth.year}"
+        println(GET_NEXT_MONTH_RESULT_MESSAGE + idMonth)
+        return idMonth
+    }
+
+    /**
+     * Get the previous month in the storage.
+     *
+     * @param currentMonth The current month information.
+     * @return Previous Month Information.
+     */
+    fun getPrevMonth(currentMonth: MonthInformation): String {
+        println(GET_PREV_MONTH_ACTION_MESSAGE)
+        val prevMonth = currentMonth.dateCreation.plusMonths(-1L)
+        val idMonth = "${prevMonth.month}${prevMonth.year}"
+        println(GET_PREV_MONTH_RESULT_MESSAGE + idMonth)
+        return idMonth
     }
 
 }

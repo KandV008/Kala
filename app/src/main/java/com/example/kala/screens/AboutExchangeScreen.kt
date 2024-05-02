@@ -51,6 +51,7 @@ import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.Title
 import com.example.kala.screens.components.buttons.MediumButton
+import com.example.kala.screens.components.popups.ConfirmationPopUp
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.Green1
 import com.example.kala.ui.theme.Red0
@@ -96,9 +97,14 @@ fun AboutExchangeScreen(
     }
 
     if (leftButtonTriggered){
-        leftButtonTriggered = false
-        MoneyExchangeService.deleteMoneyExchange(monthAssociated, exchange)
-        navController?.navigate(route = RECORD_SCREEN_ROUTE)
+        ConfirmationPopUp(
+            onConfirmButton = {
+                leftButtonTriggered = false
+                MoneyExchangeService.deleteMoneyExchange(monthAssociated, exchange)
+                navController?.navigate(route = RECORD_SCREEN_ROUTE)
+            },
+            onDismissButton = { leftButtonTriggered = false },
+        )
     }
 
     val goBackTriggered = {

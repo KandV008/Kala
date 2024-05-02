@@ -45,6 +45,10 @@ fun PieChartInfo(
 ){
     val currentMonth = MoneyExchangeService.getMonthInformation(month)
     val currentType = MoneyExchangeType.valueOf(type)
+    val showPieChart = if (MoneyExchangeType.INCOME == currentType)
+        currentMonth.incomeMoney != 0.0
+    else
+        currentMonth.expensedMoney != 0.0
 
     Box(
         modifier = Modifier
@@ -68,7 +72,7 @@ fun PieChartInfo(
                 modifier = Modifier
                     .size(dimens.height7)
             ){
-                if (currentMonth.summary.size != 0){
+                if (showPieChart){
                     PieChartBody(currentMonth, currentType)
                 } else {
                     EmptyBarChartAdvice()
@@ -85,8 +89,8 @@ fun PieChartHeader(
     onLeftTriggered: () -> Unit = {},
     onRightTriggered: () -> Unit = {},
 ){
-    val leftChartButtonAlpha: Int = MoneyExchangeService.hasNextMonth(currentMonth)
-    val rightChartButtonAlpha: Int = MoneyExchangeService.hasPrevMonth(currentMonth)
+    val leftChartButtonAlpha: Int = MoneyExchangeService.hasPrevMonth(currentMonth)
+    val rightChartButtonAlpha: Int = MoneyExchangeService.hasNextMonth(currentMonth)
 
     Row(
         modifier = Modifier

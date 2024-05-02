@@ -20,11 +20,13 @@ import androidx.navigation.NavController
 import com.example.kala.configuration.ABOUT_MONTH_SCREEN_ROUTE
 import com.example.kala.configuration.ChartConfiguration
 import com.example.kala.configuration.FooterConfiguration
+import com.example.kala.configuration.HOME_SCREEN_ROUTE
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.MediumButtonConfiguration
 import com.example.kala.configuration.REPORT_SCREEN_ROUTE
 import com.example.kala.configuration.TitleConfiguration
 import com.example.kala.entities.MoneyExchangeType
+import com.example.kala.model.MoneyExchangeService
 import com.example.kala.screens.components.BarChartInfo
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
@@ -44,22 +46,27 @@ fun ReportScreen(
     navController: NavController? = null,
     currentMonth: String,
 ){
+    val monthInformation = MoneyExchangeService.getMonthInformation(currentMonth)
 
     var leftButtonTriggered by remember { mutableStateOf(false) }
     val onLeftTriggered = { leftButtonTriggered = true }
     var rightButtonTriggered by remember { mutableStateOf(false) }
     val onRightTriggered = { rightButtonTriggered = true }
 
-    if (leftButtonTriggered){
-        leftButtonTriggered = false
-        //TODO Change Month
-        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$currentMonth")
-    }
-
     if (rightButtonTriggered){
         rightButtonTriggered = false
-        //TODO Change Month
-        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$currentMonth")
+        val nextMonth = MoneyExchangeService.getNextMonth(monthInformation)
+        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$nextMonth")
+    }
+
+    if (leftButtonTriggered){
+        leftButtonTriggered = false
+        val prevMonth = MoneyExchangeService.getPrevMonth(monthInformation)
+        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$prevMonth")
+    }
+
+    val goBackTriggered = {
+        navController?.navigate(route = HOME_SCREEN_ROUTE)
     }
 
     Scaffold(
@@ -71,7 +78,12 @@ fun ReportScreen(
             )
         },
         bottomBar = {
-            Footer(configuration = FooterConfiguration.BACK_AND_HOME, navController)
+            Footer(
+                configuration = FooterConfiguration.BACK_AND_HOME,
+                navController = navController,
+                changeGoBackButton = true,
+                goBackTriggered = goBackTriggered,
+            )
         },
     ){
         Column(

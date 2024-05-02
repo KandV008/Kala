@@ -96,8 +96,8 @@ fun BarChartHeader(
     onLeftTriggered: () -> Unit = {},
     onRightTriggered: () -> Unit = {},
 ){
-    val leftChartButtonAlpha: Int = MoneyExchangeService.hasNextMonth(currentMonth)
-    val rightChartButtonAlpha: Int = MoneyExchangeService.hasPrevMonth(currentMonth)
+    val leftChartButtonAlpha: Int = MoneyExchangeService.hasPrevMonth(currentMonth)
+    val rightChartButtonAlpha: Int = MoneyExchangeService.hasNextMonth(currentMonth)
 
     Row(
         modifier = Modifier

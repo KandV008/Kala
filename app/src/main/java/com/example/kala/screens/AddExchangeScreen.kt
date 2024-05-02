@@ -28,11 +28,11 @@ import com.example.kala.entities.MoneyExchangeType
 import com.example.kala.model.MoneyExchangeService
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
-import com.example.kala.screens.components.InvalidFormPopUp
 import com.example.kala.screens.components.Title
 import com.example.kala.screens.components.inputs.BigTextInput
 import com.example.kala.screens.components.inputs.MenuInput
 import com.example.kala.screens.components.inputs.NumberInput
+import com.example.kala.screens.components.popups.InvalidFormPopUp
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 

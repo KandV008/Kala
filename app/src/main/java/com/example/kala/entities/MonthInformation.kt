@@ -16,7 +16,7 @@ class MonthInformation {
     var expensedMoney: Double = 0.0
     var incomeMoney: Double = 0.0
     val summary: TreeMap<Int, MoneyExchange> = TreeMap()
-    val dateCreation: LocalDate = LocalDate.now()
+    var dateCreation: LocalDate = LocalDate.now()
 
     /**
      * Initializes the MonthInformation object and sets its ID based on the current month and year.
@@ -60,5 +60,11 @@ class MonthInformation {
             }
             true
         } ?: false
+    }
+
+    override fun toString(): String {
+        return "Month Information with the id: $id\n" +
+                "Date Creation = $dateCreation; Size of money exchange associated = ${summary.size}; " +
+                "Total expense money = $expensedMoney; Total income money = $incomeMoney"
     }
 }
