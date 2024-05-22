@@ -1,5 +1,6 @@
 package com.example.kala.entities
 
+import android.annotation.SuppressLint
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -50,6 +51,7 @@ data class MoneyExchange(
      *
      * @return The formatted value string.
      */
+    @SuppressLint("DefaultLocale")
     fun getFormattedValue(): String {
         return String.format("%.2f", value)
     }

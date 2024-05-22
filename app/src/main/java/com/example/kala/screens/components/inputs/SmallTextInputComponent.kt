@@ -32,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -41,6 +42,7 @@ import com.example.kala.configuration.SmallTextInputConfiguration
 import com.example.kala.configuration.inputTextColor
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
+import com.example.kala.ui.theme.fontFamily
 
 /**
  * Composable function for rendering a small text input field.
@@ -49,7 +51,7 @@ import com.example.kala.ui.theme.dimens
  */
 @Composable
 fun SmallTextInput(configuration: SmallTextInputConfiguration){
-    var textFieldState  by remember { mutableStateOf(configuration.getPlaceholder()) }
+    var textFieldState  by remember { mutableStateOf("") }
     val keyboardOptions = KeyboardOptions.Default.copy(
         keyboardType = if (configuration.isPassword()) KeyboardType.Password else KeyboardType.Number
     )
@@ -59,10 +61,11 @@ fun SmallTextInput(configuration: SmallTextInputConfiguration){
             .width(dimens.width8)
     ){
         Text(
-            text = configuration.getLayer(),
+            text = stringResource(id = configuration.getLayer()),
             fontSize = dimens.fontSize1,
             color = Color.Black,
             fontWeight = FontWeight.Bold,
+            fontFamily = fontFamily,
         )
 
         Row(
@@ -87,7 +90,16 @@ fun SmallTextInput(configuration: SmallTextInputConfiguration){
                     .clip(RoundedCornerShape(dimens.rounded))
                     .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
                 ,
-                colors = inputTextColor
+                colors = inputTextColor,
+                placeholder = {
+                    Text(
+                        text = stringResource(id = configuration.getPlaceholder()),
+                        fontSize = dimens.fontSize0,
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold,
+                        fontFamily = fontFamily,
+                    )
+                }
             )
             Spacer(modifier = Modifier.size(dimens.space1))
             Box(

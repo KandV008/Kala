@@ -95,7 +95,7 @@ object MoneyExchangeService {
             println(DELETE_MONEY_EXCHANGE_RESULT_MESSAGE)
             return it
         } ?:
-         throw IllegalArgumentException(INVALID_MONTH_ID_OR_EXCHANGE_ID_ERROR_MESSAGE) //TODO Handle Error
+         throw IllegalArgumentException(INVALID_MONTH_ID_OR_EXCHANGE_ID_ERROR_MESSAGE)
     }
 
     /**

@@ -26,7 +26,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.configuration.SmallButtonConfiguration
-import com.example.kala.configuration.invalidArgument
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 
@@ -36,7 +35,10 @@ import com.example.kala.ui.theme.dimens
  * @param configuration The configuration for the small-sized button.
  */
 @Composable
-fun SmallButton(configuration: SmallButtonConfiguration) {
+fun SmallButton(
+    configuration: SmallButtonConfiguration,
+    onAdviceTriggered: (String) -> Unit
+) {
     Box(
         modifier = Modifier
             .size(dimens.image5)
@@ -44,8 +46,7 @@ fun SmallButton(configuration: SmallButtonConfiguration) {
     ) {
         Button(
             onClick = {
-                /* TODO: Implement onClick behavior */
-                invalidArgument()
+                onAdviceTriggered(configuration.getAction())
             },
             colors = ButtonDefaults.buttonColors(Color.White),
             modifier = Modifier
@@ -89,9 +90,9 @@ fun PreviewSmallButton() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ){
-            SmallButton(SmallButtonConfiguration.ENGLISH)
+            SmallButton(SmallButtonConfiguration.ENGLISH){}
             Spacer(modifier = Modifier.padding(dimens.space0))
-            SmallButton(SmallButtonConfiguration.SPANISH)
+            SmallButton(SmallButtonConfiguration.SPANISH){}
         }
     }
 }

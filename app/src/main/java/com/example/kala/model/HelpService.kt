@@ -26,7 +26,7 @@ private const val GET_TEXT_ADVICE_SCREEN_RESULT_MESSAGE = "[HelpService][RESULT]
  * Service class for managing the messages for the help screen.
  */
 object HelpService {
-    private var textAdviceScreen: Map<String, List<String>> = mapOf(
+    private var textAdviceScreen: Map<String, List<Int>> = mapOf(
         HOME_SCREEN_ROUTE to HOME_SCREEN_HELP,
         ADD_EXCHANGE_SCREEN_ROUTE to ADD_EXCHANGE_SCREEN_HELP,
         EDIT_EXCHANGE_SCREEN_ROUTE to EDIT_EXCHANGE_SCREEN_HELP,
@@ -43,7 +43,7 @@ object HelpService {
      * @param screen The route of the screen for which help text is requested.
      * @return The list of help text associated with the specified screen, or an empty list if no help text is found.
      */
-    fun getTextAdviceScreen(screen: String): List<String>{
+    fun getTextAdviceScreen(screen: String): List<Int>{
         println(GET_TEXT_ADVICE_SCREEN_ACTION_MESSAGE)
         val textForHelpScreen = textAdviceScreen[screen].orEmpty()
         println(GET_TEXT_ADVICE_SCREEN_RESULT_MESSAGE)

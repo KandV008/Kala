@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.kala.configuration.LogoConfiguration
 import com.example.kala.configuration.NAME_APPLICATION
 import com.example.kala.ui.theme.dimens
+import com.example.kala.ui.theme.fontFamily
 
 /**
  * Composable function for rendering the logo component.
@@ -40,6 +41,7 @@ fun Logo(configuration: LogoConfiguration) {
                 .wrapContentSize(Alignment.Center),
             fontSize = dimens.fontSize6,
             textAlign = TextAlign.Center,
+            fontFamily = fontFamily
         )
     }
 }

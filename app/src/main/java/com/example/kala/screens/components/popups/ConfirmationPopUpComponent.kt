@@ -23,14 +23,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.kala.R
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.Green1
 import com.example.kala.ui.theme.Red0
 import com.example.kala.ui.theme.dimens
 import com.example.kala.ui.theme.fontFamily
+
+val CONFIRMATION_TITLE_POP_UP = R.string.confirmation_title_pop_up
+val CONFIRMATION_TEXT_POP_UP = R.string.confirmation_text_pop_up
+val CONFIRMATION_BUTTON_POP_UP = R.string.confirmation_button_pop_up
+val CONFIRMATION_DISMISS_POP_UP = R.string.confirmation_dismiss_pop_up
 
 @Composable
 fun ConfirmationPopUp(
@@ -42,7 +49,7 @@ fun ConfirmationPopUp(
         onDismissRequest = {  },
         title = {
             Text(
-                text = "Are you sure you want to continue?",
+                text = stringResource(id = CONFIRMATION_TITLE_POP_UP),
                 color = Color.Black,
                 fontSize = dimens.fontSize3,
                 textAlign = TextAlign.Center,
@@ -52,7 +59,7 @@ fun ConfirmationPopUp(
         },
         text = {
             Text(
-                text = "Think carefully. The action of erasing is irreversible.",
+                text = stringResource(id = CONFIRMATION_TEXT_POP_UP),
                 color = Color.Black,
                 fontSize = dimens.fontSize0,
                 textAlign = TextAlign.Center,
@@ -87,7 +94,7 @@ fun ConfirmationPopUp(
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Text(
-                                text = "Continue",
+                                text = stringResource(id = CONFIRMATION_BUTTON_POP_UP),
                                 color = Color.Black,
                                 fontSize = dimens.fontSize3,
                                 modifier = Modifier
@@ -107,7 +114,6 @@ fun ConfirmationPopUp(
                         .height(dimens.height2)
                         .width(dimens.width5)
                         .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
-
                     ,
                 ) {
                     Button(
@@ -126,7 +132,7 @@ fun ConfirmationPopUp(
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Text(
-                                text = "Cancel",
+                                text = stringResource(id = CONFIRMATION_DISMISS_POP_UP),
                                 color = Color.Black,
                                 fontSize = dimens.fontSize3,
                                 modifier = Modifier

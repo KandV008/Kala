@@ -25,10 +25,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import com.example.kala.R
 import com.example.kala.configuration.ABOUT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HOME_SCREEN_ROUTE
@@ -43,6 +45,8 @@ import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.Title
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
+
+val NO_MONEY_EXCHANGE_ADDED = R.string.no_money_exchange_added
 
 /**
  * Composable function for rendering the Record screen.
@@ -154,11 +158,10 @@ fun EmptyAdvice(){
             .padding(dimens.padding3)
     ) {
         Text(
-            text = "No money exchange has been added",
+            text = stringResource(id = NO_MONEY_EXCHANGE_ADDED),
             color = Color.Black,
             modifier = Modifier
-                .fillMaxSize()
-            ,
+                .fillMaxSize(),
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
             fontSize = dimens.fontSize3,

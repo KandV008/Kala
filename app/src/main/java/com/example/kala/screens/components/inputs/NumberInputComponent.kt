@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -40,6 +41,8 @@ import com.example.kala.configuration.inputTextColor
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 import com.example.kala.ui.theme.fontFamily
+
+val NUMBER_INPUT_LABEL = R.string.number_input_label
 
 /**
  * Composable function for rendering a number input field.
@@ -58,7 +61,7 @@ fun NumberInput(valueInput: String, onValueChange: (String) -> Unit){
             .width(dimens.width8)
     ){
         Text(
-            text = "Value of the exchange",
+            text = stringResource(id = NUMBER_INPUT_LABEL),
             fontSize = dimens.fontSize1,
             color = Color.Black,
             fontWeight = FontWeight.Bold,

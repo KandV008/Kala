@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import com.example.kala.R
 import com.example.kala.configuration.ADD_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HOME_SCREEN_ROUTE
@@ -36,11 +37,11 @@ import com.example.kala.screens.components.popups.InvalidFormPopUp
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 
-val errorMessageList: MutableList<String> = mutableListOf()
+val errorMessageList: MutableList<Int> = mutableListOf()
 
-private const val INVALID_VALUE_ERROR_MESSAGE = "Value of the exchange must be higher than Zero"
-private const val INVALID_TYPE_ERROR_MESSAGE = "Invalid Type of the exchange"
-private const val INVALID_SCOPE_ERROR_MESSAGE = "Invalid Scope of the exchange"
+private val INVALID_VALUE_ERROR_MESSAGE = R.string.invalid_value_error_message
+private val INVALID_TYPE_ERROR_MESSAGE = R.string.invalid_type_error_message
+private val INVALID_SCOPE_ERROR_MESSAGE = R.string.invalid_scope_error_message
 
 /**
  * Composable function for adding a new money exchange.
