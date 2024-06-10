@@ -61,42 +61,51 @@ val inputTextColor = TextFieldColors(
     SmallTextInputComponent
  */
 
+val USERNAME_LAYER_STI = R.string.username_layer_sti
+val USERNAME_PLACEHOLDER_STI = R.string.username_placeholder_sti
+val EMAIL_LAYER_STI = R.string.email_layer_sti
+val EMAIL_PLACEHOLDER_STI = R.string.email_placeholder_sti
+val PASSWORD_LAYER_STI = R.string.password_layer_sti
+val PASSWORD_PLACEHOLDER_STI = R.string.password_placeholder_sti
+val NEW_PASSWORD_LAYER_STI = R.string.new_password_layer_sti
+val RESET_PASSWORD_LAYER_STI = R.string.reset_password_layer_sti
+
 enum class SmallTextInputConfiguration(
-    private val layer: String,
-    private val placeholder: String,
+    private val layer: Int,
+    private val placeholder: Int,
     private val svgFile: Int,
 ){
     USERNAME(
-        "Username",
-        "exampleUser",
+        USERNAME_LAYER_STI,
+        USERNAME_PLACEHOLDER_STI,
         R.drawable.ic_account,
     ),
     EMAIL(
-        "Email",
-        "youremail@email.com",
+        EMAIL_LAYER_STI,
+        EMAIL_PLACEHOLDER_STI,
         R.drawable.ic_email,
     ),
     PASSWORD(
-        "Password",
-        "******",
+        PASSWORD_LAYER_STI,
+        PASSWORD_PLACEHOLDER_STI,
         R.drawable.ic_password,
     ),
     NEW_PASSWORD(
-        "New password",
-        "******",
+        NEW_PASSWORD_LAYER_STI,
+        PASSWORD_PLACEHOLDER_STI,
         R.drawable.ic_password,
     ),
     REPEAT_PASSWORD(
-        "Repeat password",
-        "******",
+        RESET_PASSWORD_LAYER_STI,
+        PASSWORD_PLACEHOLDER_STI,
         R.drawable.ic_password,
     );
 
-    fun getLayer(): String{
+    fun getLayer(): Int{
         return layer
     }
 
-    fun getPlaceholder(): String{
+    fun getPlaceholder(): Int{
         return placeholder
     }
 
@@ -114,21 +123,26 @@ enum class SmallTextInputConfiguration(
     MenuInputComponent
  */
 
+val SCOPE_LABEL_MI = R.string.scope_label_mi
+val SCOPE_PLACEHOLDER_MI = R.string.scope_placeholder_mi
+val TYPE_LABEL_MI = R.string.type_label_mi
+val TYPE_PLACEHOLDER_MI = R.string.type_placeholder_mi
+
 enum class MenuInputConfiguration(
-    private val label: String,
-    private val placeholder: String,
-    private val options: List<String>,
+    private val label: Int,
+    private val placeholder: Int,
+    private val options: List<Pair<String, Int>>,
     private val svgMap: Map<String, Int>,
 ){
     SCOPE(
-        "Scope of the exchange",
-        "Select Scope",
+        SCOPE_LABEL_MI,
+        SCOPE_PLACEHOLDER_MI,
         listOf(
-            MoneyExchangeScope.FOOD.toString(),
-            MoneyExchangeScope.LEISURE.toString(),
-            MoneyExchangeScope.MEDICINE.toString(),
-            MoneyExchangeScope.USEFUL.toString(),
-            MoneyExchangeScope.OTHER.toString(),
+            Pair(MoneyExchangeScope.FOOD.toString(), MoneyExchangeScope.FOOD.getLabel()) ,
+            Pair(MoneyExchangeScope.LEISURE.toString(), MoneyExchangeScope.LEISURE.getLabel()),
+            Pair(MoneyExchangeScope.MEDICINE.toString(), MoneyExchangeScope.MEDICINE.getLabel()),
+            Pair(MoneyExchangeScope.USEFUL.toString(), MoneyExchangeScope.USEFUL.getLabel()),
+            Pair(MoneyExchangeScope.OTHER.toString(), MoneyExchangeScope.OTHER.getLabel()),
         ),
         mapOf(
             MoneyExchangeScope.FOOD.toString() to R.drawable.ic_food_scope,
@@ -139,11 +153,11 @@ enum class MenuInputConfiguration(
         )
     ),
     TYPE(
-        "Type of the exchange",
-        "Select Type",
+        TYPE_LABEL_MI,
+        TYPE_PLACEHOLDER_MI,
         listOf(
-            MoneyExchangeType.INCOME.toString(),
-            MoneyExchangeType.EXPENSE.toString(),
+            Pair(MoneyExchangeType.INCOME.toString(), MoneyExchangeType.INCOME.getLabel()),
+            Pair(MoneyExchangeType.EXPENSE.toString(), MoneyExchangeType.EXPENSE.getLabel()),
         ),
         mapOf(
             MoneyExchangeType.INCOME.toString() to R.drawable.ic_income,
@@ -151,15 +165,15 @@ enum class MenuInputConfiguration(
             )
     );
 
-    fun getLabel(): String{
+    fun getLabel(): Int{
         return label
     }
 
-    fun getOptions(): List<String>{
+    fun getOptions(): List<Pair<String, Int>>{
         return options
     }
 
-    fun getPlaceholder(): String{
+    fun getPlaceholder(): Int{
         return placeholder
     }
 

@@ -39,6 +39,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -78,7 +79,7 @@ fun MenuInput(
             .width(dimens.width8)
     ) {
         Text(
-            text = configuration.getLabel(),
+            text = stringResource(id = configuration.getLabel()),
             fontSize = dimens.fontSize1,
             color = Color.Black,
             fontWeight = FontWeight.Bold,
@@ -104,7 +105,7 @@ fun MenuInput(
                     ,
                     placeholder = {
                         Text(
-                            text = configuration.getPlaceholder(),
+                            text = stringResource(id = configuration.getPlaceholder()),
                             fontSize = dimens.fontSize0,
                             fontWeight = FontWeight.Bold,
                             color = Color.Gray,
@@ -139,7 +140,7 @@ fun MenuInput(
                                 .background(Color.White),
                             text = {
                                 Text(
-                                    text = label,
+                                    text = stringResource(id = label.second),
                                     style = TextStyle(
                                         fontSize = dimens.fontSize0,
                                         fontWeight = FontWeight.Bold,
@@ -149,9 +150,9 @@ fun MenuInput(
                                 )
                             },
                             onClick = {
-                                onValueChange(label)
+                                onValueChange(label.first)
                                 mExpanded = false
-                                selectedImageResource = configuration.getSVG(label)
+                                selectedImageResource = configuration.getSVG(label.first)
                             }
                         )
                     }

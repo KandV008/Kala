@@ -23,14 +23,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.kala.R
 import com.example.kala.configuration.inputTextColor
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 import com.example.kala.ui.theme.fontFamily
+
+val DESCRIPTION_LABEL_BTI = R.string.description_label_bti
+val DESCRIPTION_PLACEHOLDER_BTI = R.string.description_placeholder_bti
 
 /**
  * Composable function for rendering a big text input field.
@@ -49,7 +54,7 @@ fun BigTextInput(valueInput: String, onValueChange: (String) -> Unit){
             .width(dimens.width8)
     ){
         Text(
-            text = "Description",
+            text = stringResource(id = DESCRIPTION_LABEL_BTI),
             fontSize = dimens.fontSize1,
             color = Color.Black,
             fontWeight = FontWeight.Bold,
@@ -71,7 +76,7 @@ fun BigTextInput(valueInput: String, onValueChange: (String) -> Unit){
             ,
             placeholder = {
                 Text(
-                    text = "Enter description...",
+                    text = stringResource(id = DESCRIPTION_PLACEHOLDER_BTI),
                     style = TextStyle(
                         fontSize = dimens.fontSize0,
                         fontWeight = FontWeight.Bold,

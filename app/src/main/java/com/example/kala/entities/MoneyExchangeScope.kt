@@ -11,17 +11,29 @@ import com.example.kala.ui.theme.Yellow0
 /**
  * Enum representing the scope/category of a money exchange.
  */
+
+val FOOD_SCOPE_LABEL = R.string.food_scope_label
+val LEISURE_SCOPE_LABEL = R.string.leisure_scope_label
+val USEFUL_SCOPE_LABEL = R.string.useful_scope_label
+val MEDICINE_SCOPE_LABEL = R.string.medicine_scope_label
+val OTHER_SCOPE_LABEL = R.string.other_scope_label
+
 enum class MoneyExchangeScope(
     private val color: Color,
+    private val label: Int,
 ) {
-    FOOD(Pink0),
-    LEISURE(Purple0),
-    USEFUL(Blue0),
-    MEDICINE(Green0),
-    OTHER(Yellow0);
+    FOOD(Pink0, FOOD_SCOPE_LABEL),
+    LEISURE(Purple0, LEISURE_SCOPE_LABEL),
+    USEFUL(Blue0, USEFUL_SCOPE_LABEL),
+    MEDICINE(Green0, MEDICINE_SCOPE_LABEL),
+    OTHER(Yellow0, OTHER_SCOPE_LABEL);
 
     fun getColor(): Color{
         return color
+    }
+
+    fun getLabel(): Int{
+        return label
     }
 
     companion object {

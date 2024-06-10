@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,6 +34,7 @@ import co.yml.charts.common.model.Point
 import co.yml.charts.ui.barchart.BarChart
 import co.yml.charts.ui.barchart.models.BarChartData
 import co.yml.charts.ui.barchart.models.BarData
+import com.example.kala.R
 import com.example.kala.configuration.ChartButtonConfiguration
 import com.example.kala.configuration.ChartConfiguration
 import com.example.kala.entities.MonthInformation
@@ -44,6 +46,11 @@ import com.example.kala.ui.theme.Orange0
 import com.example.kala.ui.theme.Red0
 import com.example.kala.ui.theme.dimens
 import com.example.kala.ui.theme.fontFamily
+
+val EMPTY_CHART_ADVICE = R.string.empty_chart_advice
+val INCOME_TITLE_CHART = R.string.income_title_chart
+val BALANCE_TITLE_CHART = R.string.balance_title_chart
+val EXPENSE_TITLE_CHART = R.string.expense_title_chart
 
 @Composable
 fun BarChartInfo(
@@ -176,7 +183,7 @@ fun EmptyBarChartAdvice(){
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Nothing has been added yet",
+            text = stringResource(id = EMPTY_CHART_ADVICE),
             color = Color.Black,
             fontSize = dimens.fontSize2,
             textAlign = TextAlign.Center,
@@ -201,13 +208,13 @@ fun BarChartFooter(
             .width(dimens.width8),
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        BarChartSummary(title = "Income", value = "+$incomeValue", color = Green1)
+        BarChartSummary(title = INCOME_TITLE_CHART, value = "+$incomeValue", color = Green1)
         BarChartSummary(
-            title = "Balance",
+            title = BALANCE_TITLE_CHART,
             value = if (balanceValue >= 0) "+$balanceValue" else balanceValue.toString(),
             color = Orange0
         )
-        BarChartSummary(title = "Expense", value = "-$expenseValue", color = Red0)
+        BarChartSummary(title = EXPENSE_TITLE_CHART, value = "-$expenseValue", color = Red0)
     }
 }
 
@@ -219,7 +226,7 @@ fun BarChartFooter(
  * @param color The color associated with the chart information.
  */
 @Composable
-fun BarChartSummary(title: String, value: String, color: Color){
+fun BarChartSummary(title: Int, value: String, color: Color){
     Column (
         modifier = Modifier
             .height(dimens.height3)
@@ -228,7 +235,7 @@ fun BarChartSummary(title: String, value: String, color: Color){
         verticalArrangement = Arrangement.Center,
     ){
         Text(
-            text = title,
+            text = stringResource(id = title),
             color = color,
             fontSize = dimens.fontSize0,
             textAlign = TextAlign.Center,

@@ -27,6 +27,7 @@ import androidx.navigation.NavController
 import com.example.kala.configuration.HELP_SCREEN_ROUTE
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.LANGUAGE_SCREEN_ROUTE
+import com.example.kala.configuration.NAME_APPLICATION
 import com.example.kala.configuration.OPTION_SCREEN_ROUTE
 import com.example.kala.screens.components.buttons.NavigationButton
 import com.example.kala.ui.theme.dimens
@@ -85,7 +86,7 @@ fun Header(
                 onAdviceTriggered = onLeftTriggered,
             )
             Text(
-                text = "Kala",
+                text = NAME_APPLICATION,
                 color = Color.Black,
                 fontSize = dimens.fontSize4,
                 textAlign = TextAlign.Center,

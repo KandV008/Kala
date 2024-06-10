@@ -25,16 +25,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.kala.R
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 import com.example.kala.ui.theme.fontFamily
 
+val INVALID_FORM_TITLE_POP_UP = R.string.invalid_form_title_pop_up
+val INVALID_FORM_BUTTON_POP_UP = R.string.invalid_form_button_pop_up
+
 @Composable
 fun InvalidFormPopUp(
-    messageList: MutableList<String>,
+    messageList: MutableList<Int>,
     onConfirmButton: () -> Unit,
 ) {
     AlertDialog(
@@ -42,7 +47,7 @@ fun InvalidFormPopUp(
         onDismissRequest = {  },
         title = {
             Text(
-                text = "Invalid Formulation",
+                text = stringResource(id = INVALID_FORM_TITLE_POP_UP),
                 color = Color.Black,
                 fontSize = dimens.fontSize3,
                 textAlign = TextAlign.Center,
@@ -58,7 +63,7 @@ fun InvalidFormPopUp(
             ) {
                 messageList.forEach { errorMessage ->
                     Text(
-                        text = "• $errorMessage",
+                        text = "• " + stringResource(id = errorMessage),
                         color = Color.Black,
                         fontSize = dimens.fontSize0,
                         textAlign = TextAlign.Start,
@@ -97,7 +102,7 @@ fun InvalidFormPopUp(
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Text(
-                                text = "Continue",
+                                text = stringResource(id = INVALID_FORM_BUTTON_POP_UP),
                                 color = Color.Black,
                                 fontSize = dimens.fontSize3,
                                 modifier = Modifier
@@ -116,11 +121,7 @@ fun InvalidFormPopUp(
 @Composable
 fun InvalidFormPopUpButton() {
 
-    val exampleList: MutableList<String> = mutableListOf(
-        "Value of the exchange must be higher than Zero",
-        "Invalid Type of the exchange",
-        "Invalid Scope of the exchange",
-    )
+    val exampleList: MutableList<Int> = mutableListOf()
 
     Scaffold {
         Column (
