@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,6 +17,7 @@ import androidx.navigation.NavController
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.LargeButtonConfiguration
+import com.example.kala.configuration.MAIN_SCREEN_ROUTE
 import com.example.kala.configuration.OPTION_SCREEN_ROUTE
 import com.example.kala.configuration.TitleConfiguration
 import com.example.kala.screens.components.Footer
@@ -25,6 +26,7 @@ import com.example.kala.screens.components.Title
 import com.example.kala.screens.components.buttons.LargeButton
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
+import com.google.firebase.auth.FirebaseAuth
 
 /**
  * List of configurations for the type buttons in the Option screen.
@@ -66,7 +68,7 @@ fun OptionScreen(navController: NavController? = null){
             Spacer(Modifier.padding(dimens.space4))
             Title(configuration = TitleConfiguration.OPTIONS)
             Spacer(modifier = Modifier.weight(1f))
-            OptionScreenBody()
+            OptionScreenBody(navController)
             Spacer(modifier = Modifier.weight(1f))
             Spacer(modifier = Modifier.padding(dimens.space4))
         }
@@ -77,10 +79,21 @@ fun OptionScreen(navController: NavController? = null){
  * Composable function for rendering the body of the Option screen.
  */
 @Composable
-fun OptionScreenBody(){
+fun OptionScreenBody(navController: NavController? = null){
+    val optionFunctions: List<() -> Unit> = listOf(
+        { }, // TODO Change name
+        { }, // TODO Change email
+        { }, // TODO Change Currency
+        {
+            FirebaseAuth.getInstance().signOut()
+            navController?.navigate(route = MAIN_SCREEN_ROUTE)
+        },
+        { }, // TODO Delete User
+    )
+    
     LazyColumn{
-        items(typeButtons) { type ->
-            LargeButton(configuration = type){}
+        itemsIndexed(typeButtons) { index, type ->
+            LargeButton(configuration = type, onAdviceTriggered = optionFunctions[index])
             Spacer(modifier = Modifier.padding(dimens.space1))
         }
     }
