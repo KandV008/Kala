@@ -87,7 +87,7 @@ enum class LargeButtonConfiguration(
     CHANGE_NAME(CHANGE_NAME_LB, R.drawable.ic_account, "" /* TODO */),
     CHANGE_EMAIL(CHANGE_EMAIL_LB, R.drawable.ic_email,  "" /* TODO */),
     SET_CURRENCY(SET_CURRENCY_LB, R.drawable.ic_currency,  "" /* TODO */),
-    SIGN_UP(SIGN_UP_LB, R.drawable.ic_sign_up, "" /* TODO */),
+    SIGN_UP(SIGN_UP_LB, R.drawable.ic_sign_up, SIGN_UP_SCREEN_ROUTE),
     LOG_IN(LOG_IN_LB, R.drawable.ic_log_in,  "" /* TODO */),
     LOG_OUT(LOG_OUT_LB, R.drawable.ic_log_out,  "" /* TODO */),
     DELETE_USER(DELETE_USER_LB, R.drawable.ic_delete_account,  "" /* TODO */),

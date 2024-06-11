@@ -41,7 +41,8 @@ fun Logo(configuration: LogoConfiguration) {
                 .wrapContentSize(Alignment.Center),
             fontSize = dimens.fontSize6,
             textAlign = TextAlign.Center,
-            fontFamily = fontFamily
+            fontFamily = fontFamily,
+            color = Color.Black
         )
     }
 }
