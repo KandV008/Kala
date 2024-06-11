@@ -108,6 +108,6 @@
     <string name="invalid_scope_error_message">Invalid Scope of the exchange</string>
     <string name="no_money_exchange_added">No money exchange has been added</string>
     <string name="invalid_email_error_message">Invalid email</string>
-    <string name="invalid_password_error_message">The password must be 8 letters long, have more things</string>
-    <string name="failure_creating_user_message">An error had occurred during authentication.</string>
+    <string name="invalid_password_error_message">The password must be 8 characters long, at least one uppercase letter, and at least one number</string>
+    <string name="failure_creating_user_message">An error had occurred during authentication</string>
 </resources>
