@@ -27,6 +27,7 @@ import androidx.navigation.NavController
 import com.example.kala.configuration.ADD_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
+import com.example.kala.configuration.LOG_IN_SCREEN_ROUTE
 import com.example.kala.configuration.LargeButtonConfiguration
 import com.example.kala.configuration.LogoConfiguration
 import com.example.kala.configuration.SIGN_UP_SCREEN_ROUTE
@@ -50,7 +51,7 @@ fun MainScreen(
     }
     if (logInButtonTriggered){
         logInButtonTriggered = false
-        // TODO Navigate to Log In Screen
+        navController?.navigate(route = LOG_IN_SCREEN_ROUTE)
     }
 
     var signUpButtonTriggered by remember {
