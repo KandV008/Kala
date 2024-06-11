@@ -1,6 +1,7 @@
 package com.example.kala.screens
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -10,8 +11,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.kala.configuration.FooterConfiguration
@@ -24,9 +30,10 @@ import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.Title
 import com.example.kala.screens.components.buttons.LargeButton
+import com.example.kala.screens.components.popups.ConfirmationPopUp
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
-import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuth.getInstance
 
 /**
  * List of configurations for the type buttons in the Option screen.
@@ -80,17 +87,52 @@ fun OptionScreen(navController: NavController? = null){
  */
 @Composable
 fun OptionScreenBody(navController: NavController? = null){
+    var deleteButtonTriggered by remember {
+        mutableStateOf(false)
+    }
+    var deletingUser by remember {
+        mutableStateOf(false)
+    }
+
     val optionFunctions: List<() -> Unit> = listOf(
         { }, // TODO Change name
         { }, // TODO Change email
         { }, // TODO Change Currency
         {
-            FirebaseAuth.getInstance().signOut()
+            getInstance().signOut()
             navController?.navigate(route = MAIN_SCREEN_ROUTE)
         },
-        { }, // TODO Delete User
+        { deleteButtonTriggered = true },
     )
-    
+
+    if (deleteButtonTriggered){
+        ConfirmationPopUp(
+            onConfirmButton = {
+                deleteButtonTriggered = false
+                deletingUser = true
+            },
+            onDismissButton = { deleteButtonTriggered = false },
+        )
+    }
+
+    val current = LocalContext.current
+
+    if (deletingUser){
+        val currentUser = getInstance().currentUser
+
+        currentUser
+            ?.delete()
+            ?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // TODO Translation
+                    Toast.makeText(current, "Account deleted successfully.", Toast.LENGTH_SHORT).show()
+                    navController?.navigate(route = MAIN_SCREEN_ROUTE)
+                } else {
+                    Toast.makeText(current, "Account deletion failed.", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
     LazyColumn{
         itemsIndexed(typeButtons) { index, type ->
             LargeButton(configuration = type, onAdviceTriggered = optionFunctions[index])
