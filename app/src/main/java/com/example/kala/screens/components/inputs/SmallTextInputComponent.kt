@@ -52,7 +52,7 @@ fun SmallTextInput(
     onValueChange: (String) -> Unit
 ){
     val keyboardOptions = KeyboardOptions.Default.copy(
-        keyboardType = if (configuration.isPassword()) KeyboardType.Password else KeyboardType.Number
+        keyboardType = if (configuration.isPassword()) KeyboardType.Password else KeyboardType.Text
     )
 
     Column(

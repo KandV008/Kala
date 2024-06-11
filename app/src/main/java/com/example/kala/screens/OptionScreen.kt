@@ -80,7 +80,7 @@ fun OptionScreen(navController: NavController? = null){
 fun OptionScreenBody(){
     LazyColumn{
         items(typeButtons) { type ->
-            LargeButton(configuration = type)
+            LargeButton(configuration = type){}
             Spacer(modifier = Modifier.padding(dimens.space1))
         }
     }

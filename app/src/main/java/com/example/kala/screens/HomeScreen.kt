@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import com.example.kala.configuration.ADD_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.configuration.ChartConfiguration
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HOME_SCREEN_ROUTE
@@ -87,32 +88,42 @@ fun HomeScreenBody(
     navController: NavController? = null,
     currentMont: String
 ){
+    var centerButtonTriggered by remember {
+        mutableStateOf(false)
+    }
+    val onCenterTriggered = {
+        centerButtonTriggered = true
+    }
+    if (centerButtonTriggered){
+        centerButtonTriggered = false
+        navController?.navigate(route = ADD_EXCHANGE_SCREEN_ROUTE)
+    }
+
     var leftButtonTriggered by remember {
         mutableStateOf(false)
     }
     val onLeftTriggered = {
         leftButtonTriggered = true
     }
+    if (leftButtonTriggered){
+        leftButtonTriggered = false
+        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$currentMont")
+    }
+
     var rightButtonTriggered by remember {
         mutableStateOf(false)
     }
     val onRightTriggered = {
         rightButtonTriggered = true
     }
-
     if (rightButtonTriggered){
         rightButtonTriggered = false
         navController?.navigate(route = RECORD_SCREEN_ROUTE)
     }
 
-    if (leftButtonTriggered){
-        leftButtonTriggered = false
-        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$currentMont")
-    }
-
     LargeButton(
         configuration = LargeButtonConfiguration.ADD_EXCHANGE,
-        navController = navController
+        onAdviceTriggered = onCenterTriggered
     )
     Spacer(modifier = Modifier.padding(dimens.space0))
     Row {

@@ -13,6 +13,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,6 +29,7 @@ import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.LargeButtonConfiguration
 import com.example.kala.configuration.LogoConfiguration
+import com.example.kala.configuration.SIGN_UP_SCREEN_ROUTE
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.Logo
@@ -37,6 +42,28 @@ import com.example.kala.ui.theme.dimens
 fun MainScreen(
     navController: NavController? = null
 ) {
+    var logInButtonTriggered by remember {
+        mutableStateOf(false)
+    }
+    val onLogInTriggered = {
+        logInButtonTriggered = true
+    }
+    if (logInButtonTriggered){
+        logInButtonTriggered = false
+        // TODO Navigate to Log In Screen
+    }
+
+    var signUpButtonTriggered by remember {
+        mutableStateOf(false)
+    }
+    val onSignUpTriggered = {
+        signUpButtonTriggered = true
+    }
+    if (signUpButtonTriggered){
+        signUpButtonTriggered = false
+        navController?.navigate(route = SIGN_UP_SCREEN_ROUTE)
+    }
+
     Scaffold(
         topBar = {
             Header(
@@ -66,10 +93,16 @@ fun MainScreen(
 
             Spacer(modifier = Modifier.padding(dimens.space2))
             Spacer(modifier = Modifier.padding(dimens.space3))
-            LargeButton(configuration = LargeButtonConfiguration.LOG_IN)
+            LargeButton(
+                configuration = LargeButtonConfiguration.LOG_IN,
+                onAdviceTriggered = onLogInTriggered
+            )
 
             Spacer(modifier = Modifier.padding(dimens.space3))
-            LargeButton(configuration = LargeButtonConfiguration.SIGN_UP)
+            LargeButton(
+                configuration = LargeButtonConfiguration.SIGN_UP,
+                onAdviceTriggered = onSignUpTriggered
+            )
 
             Spacer(modifier = Modifier.padding(dimens.space3))
         }

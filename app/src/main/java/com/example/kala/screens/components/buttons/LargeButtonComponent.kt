@@ -45,12 +45,11 @@ import com.example.kala.ui.theme.fontFamily
  * Composable function for rendering a large button with customizable configuration.
  *
  * @param configuration The configuration for the large button.
- * @param navController The navigation controller used for navigating to a different screen.
  */
 @Composable
 fun LargeButton(
     configuration: LargeButtonConfiguration,
-    navController: NavController? = null
+    onAdviceTriggered: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -59,9 +58,7 @@ fun LargeButton(
             .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
     ) {
         Button(
-            onClick = {
-                navController?.navigate(route = configuration.getRoute())
-            },
+            onClick = onAdviceTriggered,
             modifier = Modifier
                 .fillMaxSize()
                 .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded)),
@@ -124,7 +121,7 @@ fun LargeButtonPreview() {
         ){
             items(LargeButtonConfiguration.entries.toTypedArray()){
                     value ->
-                LargeButton(configuration = value)
+                LargeButton(configuration = value){}
                 Spacer(modifier = Modifier.padding(dimens.padding0))
             }
         }
