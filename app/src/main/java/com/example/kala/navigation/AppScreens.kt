@@ -10,6 +10,7 @@ import com.example.kala.configuration.LANGUAGE_SCREEN_ROUTE
 import com.example.kala.configuration.OPTION_SCREEN_ROUTE
 import com.example.kala.configuration.RECORD_SCREEN_ROUTE
 import com.example.kala.configuration.REPORT_SCREEN_ROUTE
+import com.example.kala.configuration.SIGN_UP_SCREEN_ROUTE
 
 /**
  * Sealed class representing different screens/routes in the app.
@@ -63,4 +64,6 @@ sealed class AppScreens(val route: String) {
      * Represent the screen showing details about a month
      */
     object aboutMonthScreen: AppScreens(ABOUT_MONTH_SCREEN_ROUTE)
+
+    object signUpScreen: AppScreens(SIGN_UP_SCREEN_ROUTE)
 }
