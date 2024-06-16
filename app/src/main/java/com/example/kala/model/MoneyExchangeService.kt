@@ -5,6 +5,7 @@ import com.example.kala.entities.MoneyExchangeScope
 import com.example.kala.entities.MoneyExchangeType
 import com.example.kala.entities.MonthInformation
 import com.example.kala.storage.MoneyExchangeStorage
+import com.google.firebase.auth.FirebaseAuth
 
 private const val ADD_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Add Money Exchange"
 private const val ADD_MONEY_EXCHANGE_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Added new Money Exchange"
@@ -35,7 +36,17 @@ private const val GET_PREV_MONTH_RESULT_MESSAGE = "[MoneyExchangeService][RESULT
  */
 object MoneyExchangeService {
 
-    private val moneyExchangeStorage = MoneyExchangeStorage()
+    val moneyExchangeStorage = MoneyExchangeStorage()
+
+    private fun updateDataBase() {
+        FirebaseAuth.getInstance().currentUser?.email?.let {
+            FireBaseService.saveUser(it)
+        }
+    }
+
+    fun addMonthInformation(monthInformation: MonthInformation) {
+        moneyExchangeStorage.monthInformationMap[monthInformation.id] = monthInformation
+    }
 
     /**
      * Adds a new money exchange.
@@ -45,6 +56,7 @@ object MoneyExchangeService {
     fun addMoneyExchange(moneyExchange: MoneyExchange): Boolean{
         println(ADD_MONEY_EXCHANGE_ACTION_MESSAGE)
         this.moneyExchangeStorage.saveMoneyExchange(moneyExchange)
+        this.updateDataBase()
         println(ADD_MONEY_EXCHANGE_RESULT_MESSAGE)
         return true
     }
@@ -120,6 +132,7 @@ object MoneyExchangeService {
             it.description = updatedMoneyExchange.description
             println(EDIT_MONEY_EXCHANGE_RESULT_MESSAGE)
             this.moneyExchangeStorage.editMoneyExchange(it)
+            this.updateDataBase()
         } ?:
             throw IllegalArgumentException(INVALID_MONTH_ID_OR_EXCHANGE_ID_ERROR_MESSAGE)
     }

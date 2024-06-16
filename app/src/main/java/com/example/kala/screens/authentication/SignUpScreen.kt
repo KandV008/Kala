@@ -24,6 +24,7 @@ import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.LogoConfiguration
 import com.example.kala.configuration.SmallTextInputConfiguration
 import com.example.kala.configuration.TitleConfiguration
+import com.example.kala.model.FireBaseService
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.Logo
@@ -78,6 +79,7 @@ fun SignUpScreen(
                 .createUserWithEmailAndPassword(emailValue, passwordValue)
                 .addOnCompleteListener {
                     if (it.isSuccessful){
+                        FireBaseService.saveUser(emailValue)
                         navController?.navigate(route = HOME_SCREEN_ROUTE)
                     } else {
                         errorMessageList.add(FAILURE_CREATING_USER_MESSAGE)
@@ -148,6 +150,8 @@ fun SignUpScreen(
         }
     }
 }
+
+
 
 /**
  * Checks if the provided values for exchange are valid.

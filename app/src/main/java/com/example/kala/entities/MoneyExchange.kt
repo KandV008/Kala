@@ -24,7 +24,7 @@ data class MoneyExchange(
 ) {
     var id: Int = -1
     var monthAssociated: String = ""
-    val date: LocalDateTime = LocalDateTime.now()
+    var date: LocalDateTime = LocalDateTime.now()
 
     /**
      * Secondary constructor that takes string values for type and scope and converts them to enum values.

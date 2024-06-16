@@ -1,10 +1,7 @@
 package com.example.kala.storage
 
 import com.example.kala.entities.MoneyExchange
-import com.example.kala.entities.MoneyExchangeScope
-import com.example.kala.entities.MoneyExchangeType
 import com.example.kala.entities.MonthInformation
-import java.time.LocalDate
 import java.util.TreeMap
 
 private const val SAVE_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Save Money Exchange"
@@ -31,9 +28,11 @@ private const val EXIST_MONTH_INFORMATION_RESULT_MESSAGE = "[MoneyExchangeStorag
  * Storage class for managing money exchange data.
  */
 class MoneyExchangeStorage {
-    private val monthInformationMap: TreeMap<String, MonthInformation> = TreeMap()
+    var monthInformationMap: TreeMap<String, MonthInformation> = TreeMap()
 
+    /*
     init {
+
         // First Money Exchange for example
         val exampleMonthInformation = MonthInformation()
         val exampleMoneyExchange1 =
@@ -60,6 +59,7 @@ class MoneyExchangeStorage {
         prevMonthInformation.addMoneyExchange(exampleMoneyExchange3)
         this.monthInformationMap[idMonth] = prevMonthInformation
     }
+     */
 
     /**
      * Saves a money exchange.
@@ -136,7 +136,7 @@ class MoneyExchangeStorage {
      */
     fun getMoneyExchange(monthAssociated: String, exchange: Int): MoneyExchange? {
         println(GET_MONEY_EXCHANGE_ACTION_MESSAGE)
-        val moneyExchange = this.monthInformationMap[monthAssociated]?.summary?.get(exchange)
+        val moneyExchange = this.monthInformationMap[monthAssociated]?.summary?.get(exchange.toString())
         println(GET_MONEY_EXCHANGE_RESULT_MESSAGE + moneyExchange)
         return moneyExchange
     }
@@ -167,9 +167,10 @@ class MoneyExchangeStorage {
      */
     fun editMoneyExchange(moneyExchange: MoneyExchange): MoneyExchange {
         println(EDIT_MONEY_EXCHANGE_ACTION_MESSAGE)
-        this.monthInformationMap[moneyExchange.monthAssociated]?.summary?.set(moneyExchange.id,
-            moneyExchange
-        )
+        this.monthInformationMap[moneyExchange.monthAssociated]?.summary
+            ?.set(moneyExchange.id.toString(),
+                  moneyExchange
+            )
         println(EDIT_MONEY_EXCHANGE_RESULT_MESSAGE + moneyExchange)
         return moneyExchange
     }
