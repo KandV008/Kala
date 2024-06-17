@@ -34,7 +34,7 @@ import com.example.kala.screens.components.Title
 import com.example.kala.screens.components.buttons.LargeButton
 import com.example.kala.screens.components.inputs.SmallTextInput
 import com.example.kala.screens.components.popups.InvalidFormPopUp
-import com.example.kala.screens.errorMessageList
+import com.example.kala.screens.moneyExchange.errorMessageList
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 import com.google.firebase.auth.FirebaseAuth

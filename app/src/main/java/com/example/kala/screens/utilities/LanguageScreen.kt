@@ -1,4 +1,4 @@
-package com.example.kala.screens
+package com.example.kala.screens.utilities
 
 import android.annotation.SuppressLint
 import android.app.LocaleManager

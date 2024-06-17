@@ -1,4 +1,4 @@
-package com.example.kala.screens
+package com.example.kala.screens.moneyExchange
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
