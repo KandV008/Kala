@@ -11,6 +11,7 @@ import com.example.kala.configuration.LOG_IN_SCREEN_ROUTE
 import com.example.kala.configuration.MAIN_SCREEN_ROUTE
 import com.example.kala.configuration.OPTION_SCREEN_ROUTE
 import com.example.kala.configuration.RECORD_SCREEN_ROUTE
+import com.example.kala.configuration.CHANGE_PASS_SCREEN_ROUTE
 import com.example.kala.configuration.REPORT_SCREEN_ROUTE
 import com.example.kala.configuration.SIGN_UP_SCREEN_ROUTE
 
@@ -70,4 +71,5 @@ sealed class AppScreens(val route: String) {
     object mainScreen: AppScreens(MAIN_SCREEN_ROUTE)
     object signUpScreen: AppScreens(SIGN_UP_SCREEN_ROUTE)
     object logInScreen: AppScreens(LOG_IN_SCREEN_ROUTE)
+    object recoveryPassScreen: AppScreens(CHANGE_PASS_SCREEN_ROUTE)
 }

@@ -45,22 +45,15 @@ private val FAILURE_CREATING_USER_MESSAGE = R.string.failure_creating_user_messa
 fun SignUpScreen(
     navController: NavController? = null
 ) {
-
     var isPopUpVisible by remember { mutableStateOf(false) }
     val hidePopUp: () -> Unit = {
         isPopUpVisible = false
     }
 
     var adviceTriggered by remember { mutableStateOf(false) }
-
-    var usernameValue by remember { mutableStateOf("") }
     var emailValue by remember { mutableStateOf("") }
     var passwordValue by remember { mutableStateOf("") }
 
-    val updateUsernameValue: (String) -> Unit = { newValue ->
-        val replace = newValue.replace(",", ".")
-        usernameValue = replace
-    }
     val updateEmailValue: (String) -> Unit = { newValue ->
         emailValue = newValue
     }
@@ -123,12 +116,6 @@ fun SignUpScreen(
             Title(configuration = TitleConfiguration.SIGN_UP)
 
             Spacer(modifier = Modifier.padding(dimens.space1))
-            SmallTextInput(
-                configuration = SmallTextInputConfiguration.USERNAME,
-                usernameValue,
-                updateUsernameValue
-            )
-
             Spacer(modifier = Modifier.padding(dimens.space0))
             SmallTextInput(
                 configuration = SmallTextInputConfiguration.EMAIL,

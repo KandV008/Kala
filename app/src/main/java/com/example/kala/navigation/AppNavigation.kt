@@ -14,10 +14,11 @@ import com.example.kala.screens.HelpScreen
 import com.example.kala.screens.HomeScreen
 import com.example.kala.screens.LanguageScreen
 import com.example.kala.screens.MainScreen
-import com.example.kala.screens.OptionScreen
+import com.example.kala.screens.options.OptionScreen
 import com.example.kala.screens.RecordScreen
 import com.example.kala.screens.ReportScreen
 import com.example.kala.screens.authentication.LogInScreen
+import com.example.kala.screens.authentication.ChangePasswordScreen
 import com.example.kala.screens.authentication.SignUpScreen
 
 private const val HOME_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTION] Navigate to Home Screen"
@@ -33,6 +34,7 @@ private const val ABOUT_MONTH_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTIO
 private const val MAIN_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTION] Navigate to Main Screen"
 private const val SIGN_UP_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTION] Navigate to Sign Up Screen"
 private const val LOG_IN_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTION] Navigate to Log In Screen"
+private const val RECOVERY_PASS_SCREEN_NAVIGATION_MESSAGE = "[AppNavigation][ACTION] Navigate to Log In Screen"
 
 /**
  * Composable function defining the app's navigation.
@@ -129,6 +131,10 @@ fun AppNavigation(){
         composable(route = AppScreens.logInScreen.route){
             println(LOG_IN_SCREEN_NAVIGATION_MESSAGE)
             LogInScreen(navController)
+        }
+        composable(route = AppScreens.recoveryPassScreen.route){
+            println(RECOVERY_PASS_SCREEN_NAVIGATION_MESSAGE)
+            ChangePasswordScreen(navController)
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.kala.screens.authentication
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -14,19 +15,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.kala.R
 import com.example.kala.configuration.ADD_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.configuration.FooterConfiguration
-import com.example.kala.configuration.HOME_SCREEN_ROUTE
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.LargeButtonConfiguration
 import com.example.kala.configuration.LogoConfiguration
-import com.example.kala.configuration.CHANGE_PASS_SCREEN_ROUTE
+import com.example.kala.configuration.MAIN_SCREEN_ROUTE
 import com.example.kala.configuration.SmallTextInputConfiguration
 import com.example.kala.configuration.TitleConfiguration
-import com.example.kala.model.FireBaseService
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.Logo
@@ -37,13 +37,16 @@ import com.example.kala.screens.components.popups.InvalidFormPopUp
 import com.example.kala.screens.errorMessageList
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
-import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 
 private val FAILURE_LOG_IN_MESSAGE = R.string.failure_log_in_message
+private val INVALID_PASSWORD_ERROR_MESSAGE = R.string.invalid_password_error_message
+private val DISTINCT_PASSWORD_ERROR_MESSAGE = R.string.distinct_password_error_message
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun LogInScreen(
+fun ChangePasswordScreen(
     navController: NavController? = null
 ) {
 
@@ -53,41 +56,34 @@ fun LogInScreen(
     }
 
     var adviceTriggered by remember { mutableStateOf(false) }
-
     var emailValue by remember { mutableStateOf("") }
-    var passwordValue by remember { mutableStateOf("") }
 
     val updateEmailValue: (String) -> Unit = { newValue ->
         emailValue = newValue
     }
-    val updatePasswordValue: (String) -> Unit = { newValue ->
-        passwordValue = newValue
-    }
+
 
     if (adviceTriggered) {
         adviceTriggered = false
         errorMessageList.clear()
-        val validForm = isValidSignUp(emailValue, passwordValue)
-
-        if (validForm){
-            FirebaseAuth
-                .getInstance()
-                .signInWithEmailAndPassword(emailValue, passwordValue)
-                .addOnCompleteListener {
-                    if (it.isSuccessful){
-                        FireBaseService.loadUser(emailValue)
-                        navController?.navigate(route = HOME_SCREEN_ROUTE)
-                    } else {
-                        errorMessageList.add(FAILURE_LOG_IN_MESSAGE)
-                        isPopUpVisible = true
-                    }
+        val current = LocalContext.current
+        Firebase
+            .auth
+            .sendPasswordResetEmail(emailValue)
+            .addOnCompleteListener{
+                if (it.isSuccessful) {
+                    Toast
+                        .makeText(current, "Request sent. Check your email", Toast.LENGTH_LONG)
+                        .show()
+                    navController?.navigate(route = MAIN_SCREEN_ROUTE)
+                } else {
+                    errorMessageList.add(FAILURE_LOG_IN_MESSAGE)
+                    isPopUpVisible = true
                 }
-        } else {
-            isPopUpVisible = true
-        }
+            }
     }
 
-    if(isPopUpVisible){
+    if (isPopUpVisible) {
         InvalidFormPopUp(messageList = errorMessageList, onConfirmButton = hidePopUp)
     }
 
@@ -101,7 +97,7 @@ fun LogInScreen(
         },
         bottomBar = {
             Footer(
-                configuration = FooterConfiguration.BACK_AND_NEXT,
+                configuration = FooterConfiguration.ONLY_BACK,
                 navController = navController,
                 onAdviceTriggered = { adviceTriggered = true }
             )
@@ -116,29 +112,21 @@ fun LogInScreen(
             Spacer(modifier = Modifier.padding(dimens.space4))
             Logo(LogoConfiguration.SMALL)
             Spacer(modifier = Modifier.padding(dimens.space1))
-            Title(configuration = TitleConfiguration.LOG_IN)
+            Title(configuration = TitleConfiguration.RECOVERY_PASS)
 
-            Spacer(modifier = Modifier.padding(dimens.space1))
+            Spacer(modifier = Modifier.padding(dimens.space3))
+            Spacer(modifier = Modifier.padding(dimens.space3))
             SmallTextInput(
                 configuration = SmallTextInputConfiguration.EMAIL,
                 emailValue,
                 updateEmailValue
             )
 
-            Spacer(modifier = Modifier.padding(dimens.space0))
-            SmallTextInput(
-                configuration = SmallTextInputConfiguration.PASSWORD,
-                passwordValue,
-                updatePasswordValue
-            )
+            Spacer(modifier = Modifier.padding(dimens.space3))
 
-            Spacer(modifier = Modifier.padding(dimens.space2))
-            LargeButton(configuration = LargeButtonConfiguration.FORGOT_PASS) {
-                navController?.navigate(route = CHANGE_PASS_SCREEN_ROUTE)
+            LargeButton(configuration = LargeButtonConfiguration.SEND_REQUEST) {
+                adviceTriggered = true
             }
-
-            Spacer(modifier = Modifier.padding(dimens.space0))
-            // TODO Add special sign up
 
             Spacer(modifier = Modifier.padding(dimens.space4))
         }
@@ -151,6 +139,6 @@ fun LogInScreen(
  */
 @Preview(showBackground = true)
 @Composable
-fun LogInScreenPreview() {
-    LogInScreen()
+fun ChangePasswordScreenPreview() {
+    ChangePasswordScreen()
 }
