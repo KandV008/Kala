@@ -1,7 +1,6 @@
 package com.example.kala.screens
 
 import android.annotation.SuppressLint
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -26,6 +25,7 @@ import com.example.kala.configuration.LargeButtonConfiguration
 import com.example.kala.configuration.MAIN_SCREEN_ROUTE
 import com.example.kala.configuration.OPTION_SCREEN_ROUTE
 import com.example.kala.configuration.TitleConfiguration
+import com.example.kala.model.FireBaseService
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.Title
@@ -39,9 +39,6 @@ import com.google.firebase.auth.FirebaseAuth.getInstance
  * List of configurations for the type buttons in the Option screen.
  */
 val typeButtons: List<LargeButtonConfiguration> = listOf(
-    LargeButtonConfiguration.CHANGE_NAME,
-    LargeButtonConfiguration.CHANGE_EMAIL,
-    LargeButtonConfiguration.SET_CURRENCY,
     LargeButtonConfiguration.LOG_OUT,
     LargeButtonConfiguration.DELETE_USER,
 )
@@ -95,9 +92,6 @@ fun OptionScreenBody(navController: NavController? = null){
     }
 
     val optionFunctions: List<() -> Unit> = listOf(
-        { }, // TODO Change name
-        { }, // TODO Change email
-        { }, // TODO Change Currency
         {
             getInstance().signOut()
             navController?.navigate(route = MAIN_SCREEN_ROUTE)
@@ -118,19 +112,8 @@ fun OptionScreenBody(navController: NavController? = null){
     val current = LocalContext.current
 
     if (deletingUser){
-        val currentUser = getInstance().currentUser
-
-        currentUser
-            ?.delete()
-            ?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    // TODO Translation
-                    Toast.makeText(current, "Account deleted successfully.", Toast.LENGTH_SHORT).show()
-                    navController?.navigate(route = MAIN_SCREEN_ROUTE)
-                } else {
-                    Toast.makeText(current, "Account deletion failed.", Toast.LENGTH_SHORT).show()
-                }
-            }
+        deletingUser = false
+        FireBaseService.DeleteUser(current, navController)
     }
 
     LazyColumn{
@@ -140,6 +123,8 @@ fun OptionScreenBody(navController: NavController? = null){
         }
     }
 }
+
+
 
 /**
  * Preview function for testing and visualizing the Option screen.
