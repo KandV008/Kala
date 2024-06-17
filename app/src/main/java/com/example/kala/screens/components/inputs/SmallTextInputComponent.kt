@@ -23,10 +23,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -50,10 +46,13 @@ import com.example.kala.ui.theme.fontFamily
  * @param configuration The configuration for the small text input.
  */
 @Composable
-fun SmallTextInput(configuration: SmallTextInputConfiguration){
-    var textFieldState  by remember { mutableStateOf("") }
+fun SmallTextInput(
+    configuration: SmallTextInputConfiguration,
+    valueInput: String,
+    onValueChange: (String) -> Unit
+){
     val keyboardOptions = KeyboardOptions.Default.copy(
-        keyboardType = if (configuration.isPassword()) KeyboardType.Password else KeyboardType.Number
+        keyboardType = if (configuration.isPassword()) KeyboardType.Password else KeyboardType.Text
     )
 
     Column(
@@ -74,10 +73,8 @@ fun SmallTextInput(configuration: SmallTextInputConfiguration){
             ,
         ) {
             TextField(
-                value = textFieldState,
-                onValueChange = {
-                    textFieldState = it
-                },
+                value = valueInput,
+                onValueChange = onValueChange,
                 textStyle = TextStyle(
                     fontSize = dimens.fontSize0,
                     fontWeight = FontWeight.Bold,
@@ -95,7 +92,7 @@ fun SmallTextInput(configuration: SmallTextInputConfiguration){
                     Text(
                         text = stringResource(id = configuration.getPlaceholder()),
                         fontSize = dimens.fontSize0,
-                        color = Color.Black,
+                        color = Color.Gray,
                         fontWeight = FontWeight.Bold,
                         fontFamily = fontFamily,
                     )
@@ -141,7 +138,7 @@ fun PreviewSmallTextInput() {
         ){
             items(SmallTextInputConfiguration.entries.toTypedArray()){
                     value ->
-                SmallTextInput(configuration = value)
+                SmallTextInput(configuration = value, ""){}
                 Spacer(modifier = Modifier.padding(dimens.space0))
             }
         }

@@ -6,8 +6,8 @@ import com.example.kala.R
     SmallButtonComponent
  */
 
-val ENGLISH_ACTION = "en";
-val SPANISH_ACTION = "es";
+const val ENGLISH_ACTION = "en"
+const val SPANISH_ACTION = "es"
 
 enum class SmallButtonConfiguration(
     private val svgFile: Int,
@@ -81,18 +81,17 @@ val SEND_REQUEST_LB = R.string.send_request_lb
 enum class LargeButtonConfiguration(
     private val displayName: Int,
     private val svgFile: Int,
-    private val route: String,
 ) {
-    ADD_EXCHANGE(ADD_EXCHANGE_LB, R.drawable.ic_exchange, ADD_EXCHANGE_SCREEN_ROUTE),
-    CHANGE_NAME(CHANGE_NAME_LB, R.drawable.ic_account, "" /* TODO */),
-    CHANGE_EMAIL(CHANGE_EMAIL_LB, R.drawable.ic_email,  "" /* TODO */),
-    SET_CURRENCY(SET_CURRENCY_LB, R.drawable.ic_currency,  "" /* TODO */),
-    SIGN_UP(SIGN_UP_LB, R.drawable.ic_sign_up, "" /* TODO */),
-    LOG_IN(LOG_IN_LB, R.drawable.ic_log_in,  "" /* TODO */),
-    LOG_OUT(LOG_OUT_LB, R.drawable.ic_log_out,  "" /* TODO */),
-    DELETE_USER(DELETE_USER_LB, R.drawable.ic_delete_account,  "" /* TODO */),
-    FORGOT_PASS(FORGOT_PASS_LB, R.drawable.ic_question,  "" /* TODO */),
-    SEND_REQUEST(SEND_REQUEST_LB, R.drawable.ic_next,  "" /* TODO */);
+    ADD_EXCHANGE(ADD_EXCHANGE_LB, R.drawable.ic_exchange),
+    CHANGE_NAME(CHANGE_NAME_LB, R.drawable.ic_account),
+    CHANGE_EMAIL(CHANGE_EMAIL_LB, R.drawable.ic_email),
+    SET_CURRENCY(SET_CURRENCY_LB, R.drawable.ic_currency),
+    SIGN_UP(SIGN_UP_LB, R.drawable.ic_sign_up),
+    LOG_IN(LOG_IN_LB, R.drawable.ic_log_in),
+    LOG_OUT(LOG_OUT_LB, R.drawable.ic_log_out),
+    DELETE_USER(DELETE_USER_LB, R.drawable.ic_delete_account),
+    FORGOT_PASS(FORGOT_PASS_LB, R.drawable.ic_question),
+    SEND_REQUEST(SEND_REQUEST_LB, R.drawable.ic_next);
 
     fun getDisplayName(): Int {
         return displayName
@@ -100,10 +99,6 @@ enum class LargeButtonConfiguration(
 
     fun getSVGFile(): Int{
         return svgFile
-    }
-
-    fun getRoute(): String{
-        return route
     }
 }
 
