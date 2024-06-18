@@ -16,7 +16,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import com.example.kala.configuration.ABOUT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.configuration.EDIT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
@@ -26,11 +25,11 @@ import com.example.kala.entities.MoneyExchange
 import com.example.kala.model.MoneyExchangeService
 import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
-import com.example.kala.screens.components.popups.InvalidFormPopUp
 import com.example.kala.screens.components.Title
 import com.example.kala.screens.components.inputs.BigTextInput
 import com.example.kala.screens.components.inputs.MenuInput
 import com.example.kala.screens.components.inputs.NumberInput
+import com.example.kala.screens.components.popups.InvalidFormPopUp
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 
@@ -91,7 +90,7 @@ fun EditExchangeScreen(
             )
             MoneyExchangeService.editMoneyExchange(monthAssociated, exchange, updatedMoneyExchange)
             adviceTriggered = false
-            navController?.navigate(route = "$ABOUT_EXCHANGE_SCREEN_ROUTE/$monthAssociated/$exchange")
+            navController?.popBackStack()
         } else {
             isPopUpVisible = true
         }

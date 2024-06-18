@@ -39,7 +39,6 @@ import androidx.navigation.NavController
 import com.example.kala.configuration.ABOUT_MONTH_SCREEN_ROUTE
 import com.example.kala.configuration.FooterConfiguration
 import com.example.kala.configuration.HeaderConfiguration
-import com.example.kala.configuration.REPORT_SCREEN_ROUTE
 import com.example.kala.configuration.SVG_DESCRIPTION
 import com.example.kala.configuration.TitleConfiguration
 import com.example.kala.entities.MoneyExchangeScope
@@ -101,10 +100,6 @@ fun AboutMonthScreen(
         navController?.navigate(route = "$ABOUT_MONTH_SCREEN_ROUTE/$prevMonth/$currentType")
     }
 
-    val goBackTriggered = {
-        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$month")
-    }
-
     Scaffold(
         topBar = {
             Header(
@@ -117,8 +112,6 @@ fun AboutMonthScreen(
             Footer(
                 configuration = FooterConfiguration.BACK_AND_HOME,
                 navController = navController,
-                changeGoBackButton = true,
-                goBackTriggered = goBackTriggered,
             )
         },
     ){

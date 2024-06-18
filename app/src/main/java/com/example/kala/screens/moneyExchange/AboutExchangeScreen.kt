@@ -108,10 +108,6 @@ fun AboutExchangeScreen(
         )
     }
 
-    val goBackTriggered = {
-        navController?.navigate(route = RECORD_SCREEN_ROUTE)
-    }
-
     Scaffold(
         topBar = {
             Header(
@@ -124,8 +120,6 @@ fun AboutExchangeScreen(
             Footer(
                 configuration = FooterConfiguration.BACK_AND_HOME,
                 navController = navController,
-                changeGoBackButton = true,
-                goBackTriggered = goBackTriggered,
                 )
         },
     ){

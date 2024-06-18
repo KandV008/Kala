@@ -20,7 +20,6 @@ import androidx.navigation.NavController
 import com.example.kala.configuration.ABOUT_MONTH_SCREEN_ROUTE
 import com.example.kala.configuration.ChartConfiguration
 import com.example.kala.configuration.FooterConfiguration
-import com.example.kala.configuration.HOME_SCREEN_ROUTE
 import com.example.kala.configuration.HeaderConfiguration
 import com.example.kala.configuration.MediumButtonConfiguration
 import com.example.kala.configuration.REPORT_SCREEN_ROUTE
@@ -65,10 +64,6 @@ fun ReportScreen(
         navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$prevMonth")
     }
 
-    val goBackTriggered = {
-        navController?.navigate(route = HOME_SCREEN_ROUTE)
-    }
-
     Scaffold(
         topBar = {
             Header(
@@ -81,8 +76,6 @@ fun ReportScreen(
             Footer(
                 configuration = FooterConfiguration.BACK_AND_HOME,
                 navController = navController,
-                changeGoBackButton = true,
-                goBackTriggered = goBackTriggered,
             )
         },
     ){
