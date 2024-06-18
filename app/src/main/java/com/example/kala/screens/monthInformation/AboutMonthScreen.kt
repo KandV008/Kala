@@ -50,6 +50,7 @@ import com.example.kala.screens.components.Footer
 import com.example.kala.screens.components.Header
 import com.example.kala.screens.components.PieChartInfo
 import com.example.kala.screens.components.Title
+import com.example.kala.screens.components.formatMoneyValue
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 
@@ -193,7 +194,7 @@ fun SummaryScope(currentMonth: MonthInformation, currentType: MoneyExchangeType)
                     fontWeight = FontWeight.Bold,
                     fontSize = dimens.fontSize0,
                 )
-                Text(text = sumValue.toString(),
+                Text(text = formatMoneyValue(sumValue),
                     color = Color.Black,
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Bold,

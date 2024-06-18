@@ -77,7 +77,7 @@ fun AboutExchangeScreen(
     val svgFile = MoneyExchangeScope.getSVGFile(moneyExchange.scope)
     val valueSymbol = if (moneyExchange.type == MoneyExchangeType.EXPENSE) "-" else "+"
     val valueColor = if (moneyExchange.type == MoneyExchangeType.EXPENSE) Red0 else Green1
-    val valueText = valueSymbol + moneyExchange.getFormattedValue() + "€" //TODO € should be dynamic
+    val valueText = valueSymbol + moneyExchange.getFormattedValue() + "€"
 
     var leftButtonTriggered by remember {
         mutableStateOf(false)

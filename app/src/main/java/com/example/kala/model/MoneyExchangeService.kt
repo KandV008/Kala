@@ -105,6 +105,7 @@ object MoneyExchangeService {
             this.moneyExchangeStorage.deleteMoneyExchange(monthAssociated, exchange)
         deletedExchange?.let {
             println(DELETE_MONEY_EXCHANGE_RESULT_MESSAGE)
+            this.updateDataBase()
             return it
         } ?:
          throw IllegalArgumentException(INVALID_MONTH_ID_OR_EXCHANGE_ID_ERROR_MESSAGE)

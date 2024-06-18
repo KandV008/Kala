@@ -198,9 +198,11 @@ fun EmptyBarChartAdvice(){
 fun BarChartFooter(
     currentMonth: MonthInformation
 ){
-    val incomeValue = currentMonth.incomeMoney
-    val expenseValue = currentMonth.expensedMoney
-    val balanceValue = incomeValue - expenseValue
+    val incomeText = formatMoneyValue(currentMonth.incomeMoney)
+    val expenseText = formatMoneyValue(currentMonth.expensedMoney)
+    val balanceValue = currentMonth.incomeMoney - currentMonth.expensedMoney
+    val symbol = if (balanceValue >= 0) "+" else "-"
+    val balanceText = symbol + formatMoneyValue(balanceValue)
 
     Row(
         modifier = Modifier
@@ -208,13 +210,13 @@ fun BarChartFooter(
             .width(dimens.width8),
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        BarChartSummary(title = INCOME_TITLE_CHART, value = "+$incomeValue", color = Green1)
+        BarChartSummary(title = INCOME_TITLE_CHART, value = "+$incomeText", color = Green1)
         BarChartSummary(
             title = BALANCE_TITLE_CHART,
-            value = if (balanceValue >= 0) "+$balanceValue" else balanceValue.toString(),
+            value = balanceText,
             color = Orange0
         )
-        BarChartSummary(title = EXPENSE_TITLE_CHART, value = "-$expenseValue", color = Red0)
+        BarChartSummary(title = EXPENSE_TITLE_CHART, value = "-$expenseText", color = Red0)
     }
 }
 
@@ -249,6 +251,11 @@ fun BarChartSummary(title: Int, value: String, color: Color){
             fontWeight = FontWeight.Bold,
         )
     }
+}
+
+@SuppressLint("DefaultLocale")
+fun formatMoneyValue(value: Double): String{
+    return String.format("%.2f", value) + "€" //TODO Update the Money Exchange version
 }
 
 /**
