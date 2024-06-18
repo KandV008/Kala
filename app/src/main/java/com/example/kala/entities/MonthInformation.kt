@@ -42,10 +42,13 @@ class MonthInformation() {
     fun addMoneyExchange(newMoneyExchange: MoneyExchange): MoneyExchange {
         this.summary[newMoneyExchange.id.toString()] = newMoneyExchange
 
-        when (newMoneyExchange.type) {
-            MoneyExchangeType.EXPENSE -> expensedMoney += newMoneyExchange.value
-            MoneyExchangeType.INCOME -> incomeMoney += newMoneyExchange.value
-        }
+        expensedMoney = summary.values
+            .filter { it.type == MoneyExchangeType.EXPENSE }
+            .sumOf { it.value }
+
+        incomeMoney = summary.values
+            .filter { it.type == MoneyExchangeType.INCOME }
+            .sumOf { it.value }
 
         return newMoneyExchange
     }

@@ -30,37 +30,6 @@ private const val EXIST_MONTH_INFORMATION_RESULT_MESSAGE = "[MoneyExchangeStorag
 class MoneyExchangeStorage {
     var monthInformationMap: TreeMap<String, MonthInformation> = TreeMap()
 
-    /*
-    init {
-
-        // First Money Exchange for example
-        val exampleMonthInformation = MonthInformation()
-        val exampleMoneyExchange1 =
-            MoneyExchange(10.0, MoneyExchangeType.EXPENSE, MoneyExchangeScope.FOOD, "example")
-        exampleMoneyExchange1.id = 0
-        exampleMoneyExchange1.monthAssociated = "example"
-        exampleMonthInformation.addMoneyExchange(exampleMoneyExchange1)
-        // Second Money Exchange for example
-        val exampleMoneyExchange2 =
-            MoneyExchange(34.0, MoneyExchangeType.INCOME, MoneyExchangeScope.LEISURE, "example")
-        exampleMoneyExchange2.id = 1
-        exampleMoneyExchange2.monthAssociated = "example"
-        exampleMonthInformation.addMoneyExchange(exampleMoneyExchange2)
-        this.monthInformationMap["example"] = exampleMonthInformation
-        // First Money Exchange for previous month
-        val prevMonthInformation = MonthInformation()
-        val nextMonth = LocalDate.now().plusMonths(-1L)
-        prevMonthInformation.dateCreation = nextMonth
-        val idMonth = "${nextMonth.month}${nextMonth.year}"
-        val exampleMoneyExchange3 =
-            MoneyExchange(14.0, MoneyExchangeType.INCOME, MoneyExchangeScope.LEISURE, "example")
-        exampleMoneyExchange3.id = 0
-        exampleMoneyExchange3.monthAssociated = idMonth
-        prevMonthInformation.addMoneyExchange(exampleMoneyExchange3)
-        this.monthInformationMap[idMonth] = prevMonthInformation
-    }
-     */
-
     /**
      * Saves a money exchange.
      *
@@ -167,10 +136,7 @@ class MoneyExchangeStorage {
      */
     fun editMoneyExchange(moneyExchange: MoneyExchange): MoneyExchange {
         println(EDIT_MONEY_EXCHANGE_ACTION_MESSAGE)
-        this.monthInformationMap[moneyExchange.monthAssociated]?.summary
-            ?.set(moneyExchange.id.toString(),
-                  moneyExchange
-            )
+        this.monthInformationMap[moneyExchange.monthAssociated]?.addMoneyExchange(moneyExchange)
         println(EDIT_MONEY_EXCHANGE_RESULT_MESSAGE + moneyExchange)
         return moneyExchange
     }
