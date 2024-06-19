@@ -1,4 +1,4 @@
-package com.example.kala.entities
+package com.example.kala.model.entities
 
 import android.annotation.SuppressLint
 import java.time.LocalDateTime

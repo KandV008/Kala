@@ -1,4 +1,4 @@
-package com.example.kala.entities
+package com.example.kala.model.entities
 
 import java.time.LocalDate
 import java.util.TreeMap

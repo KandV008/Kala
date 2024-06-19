@@ -1,8 +1,9 @@
 package com.example.kala.storage
 
-import com.example.kala.entities.MoneyExchange
-import com.example.kala.entities.MoneyExchangeScope
-import com.example.kala.entities.MoneyExchangeType
+import com.example.kala.model.entities.MoneyExchange
+import com.example.kala.model.entities.MoneyExchangeScope
+import com.example.kala.model.entities.MoneyExchangeType
+import com.example.kala.model.storage.MoneyExchangeStorage
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Before

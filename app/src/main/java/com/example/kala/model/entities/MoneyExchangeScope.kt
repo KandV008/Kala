@@ -1,4 +1,4 @@
-package com.example.kala.entities
+package com.example.kala.model.entities
 
 import androidx.compose.ui.graphics.Color
 import com.example.kala.R

@@ -1,8 +1,8 @@
 package com.example.kala.model
 
-import com.example.kala.entities.MoneyExchange
-import com.example.kala.entities.MoneyExchangeScope
-import com.example.kala.entities.MoneyExchangeType
+import com.example.kala.model.entities.MoneyExchange
+import com.example.kala.model.entities.MoneyExchangeScope
+import com.example.kala.model.entities.MoneyExchangeType
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
