@@ -1,4 +1,4 @@
-package com.example.kala.screens.components
+package com.example.kala.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -20,10 +20,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import com.example.kala.configuration.FooterConfiguration
-import com.example.kala.configuration.HOME_SCREEN_ROUTE
-import com.example.kala.configuration.NavigationButtonConfiguration
-import com.example.kala.screens.components.buttons.NavigationButton
+import com.example.kala.navigation.HOME_SCREEN_ROUTE
+import com.example.kala.components.buttons.NavigationButton
+import com.example.kala.components.buttons.NavigationButtonConfiguration
 import com.example.kala.ui.theme.dimens
 
 /**

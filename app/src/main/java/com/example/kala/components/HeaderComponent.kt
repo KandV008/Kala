@@ -1,4 +1,4 @@
-package com.example.kala.screens.components
+package com.example.kala.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -24,12 +24,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import com.example.kala.configuration.HELP_SCREEN_ROUTE
-import com.example.kala.configuration.HeaderConfiguration
-import com.example.kala.configuration.LANGUAGE_SCREEN_ROUTE
-import com.example.kala.configuration.NAME_APPLICATION
-import com.example.kala.configuration.OPTION_SCREEN_ROUTE
-import com.example.kala.screens.components.buttons.NavigationButton
+import com.example.kala.navigation.HELP_SCREEN_ROUTE
+import com.example.kala.navigation.LANGUAGE_SCREEN_ROUTE
+import com.example.kala.navigation.OPTION_SCREEN_ROUTE
+import com.example.kala.components.buttons.NavigationButton
 import com.example.kala.ui.theme.dimens
 
 /**

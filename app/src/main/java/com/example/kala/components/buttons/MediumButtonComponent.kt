@@ -1,4 +1,4 @@
-package com.example.kala.screens.components.buttons
+package com.example.kala.components.buttons
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -6,11 +6,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -34,59 +33,51 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
-import com.example.kala.configuration.LargeButtonConfiguration
-import com.example.kala.configuration.SVG_DESCRIPTION
+import com.example.kala.components.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 import com.example.kala.ui.theme.fontFamily
 
 /**
- * Composable function for rendering a large button with customizable configuration.
+ * Composable function for rendering a medium-sized button with customizable configuration.
  *
- * @param configuration The configuration for the large button.
+ * @param configuration The configuration for the medium-sized button.
+ * @param onAdviceTriggered Callback function to be executed when the button is clicked.
  */
 @Composable
-fun LargeButton(
-    configuration: LargeButtonConfiguration,
+fun MediumButton(
+    configuration: MediumButtonConfiguration,
     onAdviceTriggered: () -> Unit
 ) {
     Box(
         modifier = Modifier
-            .height(dimens.height2)
-            .width(dimens.width8)
+            .height(dimens.height5)
+            .width(dimens.width3)
             .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
     ) {
         Button(
-            onClick = onAdviceTriggered,
+            onClick = {
+                onAdviceTriggered()
+            },
             modifier = Modifier
                 .fillMaxSize()
                 .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded)),
             colors = ButtonDefaults.buttonColors(Color.White),
             shape = RoundedCornerShape(dimens.rounded),
-            contentPadding = PaddingValues(dimens.padding3)
+            contentPadding = PaddingValues(dimens.padding3),
         ) {
-            Row(
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    text = stringResource(id = configuration.getDisplayName()),
-                    color = Color.Black,
-                    fontSize = dimens.fontSize2,
-                    textAlign = TextAlign.Justify,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.weight(1f),
-                    fontFamily = fontFamily
-                )
-
                 Box(
                     modifier = Modifier
                         .border(dimens.border, Color.Black, shape = CircleShape)
+                        .padding(dimens.padding2)
                         .clip(CircleShape)
-                        .size(dimens.image2)
+                        .size(dimens.image3)
                         .clip(CircleShape)
                         .padding(dimens.padding1),
                     contentAlignment = Alignment.Center,
@@ -98,19 +89,27 @@ fun LargeButton(
                         contentDescription = SVG_DESCRIPTION
                     )
                 }
+                Text(
+                    text = stringResource(id = configuration.getDisplayName()),
+                    color = Color.Black,
+                    fontSize = dimens.fontSize1,
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = fontFamily
+                )
             }
         }
     }
 }
 
 /**
- * Composable function for rendering a preview of the LargeButton component.
- * This preview function is used for testing and visualizing the LargeButton component.
+ * Composable function for rendering a preview of the MediumButton component.
+ * This preview function is used for testing and visualizing the MediumButton component.
  */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Preview
 @Composable
-fun LargeButtonPreview() {
+fun PreviewMediumButton() {
     Scaffold {
         LazyColumn (
             modifier = Modifier
@@ -119,12 +118,12 @@ fun LargeButtonPreview() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ){
-            items(LargeButtonConfiguration.entries.toTypedArray()){
+            items(MediumButtonConfiguration.entries.toTypedArray()){
                     value ->
-                LargeButton(configuration = value){}
+                MediumButton(configuration = value, onAdviceTriggered = {})
                 Spacer(modifier = Modifier.padding(dimens.padding0))
+
             }
         }
     }
 }
-

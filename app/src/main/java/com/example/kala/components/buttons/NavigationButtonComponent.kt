@@ -1,4 +1,4 @@
-package com.example.kala.screens.components.buttons
+package com.example.kala.components.buttons
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
@@ -24,9 +24,8 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.kala.configuration.DEFAULT_FLOAT
-import com.example.kala.configuration.NavigationButtonConfiguration
-import com.example.kala.configuration.SVG_DESCRIPTION
+import com.example.kala.components.DEFAULT_FLOAT
+import com.example.kala.components.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 

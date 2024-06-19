@@ -1,4 +1,4 @@
-package com.example.kala.screens.components
+package com.example.kala.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -17,7 +17,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.kala.configuration.TitleConfiguration
 import com.example.kala.ui.theme.dimens
 
 /**

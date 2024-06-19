@@ -1,4 +1,4 @@
-package com.example.kala.screens.components.popups
+package com.example.kala.components.popups
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background

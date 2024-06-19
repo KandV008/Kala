@@ -1,4 +1,4 @@
-package com.example.kala.configuration
+package com.example.kala.components.buttons
 
 import com.example.kala.R
 

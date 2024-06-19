@@ -1,4 +1,4 @@
-package com.example.kala.screens.components
+package com.example.kala.components.charts
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -35,11 +35,11 @@ import co.yml.charts.ui.barchart.BarChart
 import co.yml.charts.ui.barchart.models.BarChartData
 import co.yml.charts.ui.barchart.models.BarData
 import com.example.kala.R
-import com.example.kala.configuration.ChartButtonConfiguration
-import com.example.kala.configuration.ChartConfiguration
-import com.example.kala.entities.MonthInformation
+import com.example.kala.components.buttons.ChartButtonConfiguration
+import com.example.kala.components.ChartConfiguration
+import com.example.kala.model.entities.MonthInformation
 import com.example.kala.model.MoneyExchangeService
-import com.example.kala.screens.components.buttons.ChartButton
+import com.example.kala.components.buttons.ChartButton
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.Green1
 import com.example.kala.ui.theme.Orange0

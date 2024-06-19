@@ -1,4 +1,4 @@
-package com.example.kala.screens.components
+package com.example.kala.components
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -37,10 +37,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.kala.configuration.SVG_DESCRIPTION
-import com.example.kala.entities.MoneyExchange
-import com.example.kala.entities.MoneyExchangeScope
-import com.example.kala.entities.MoneyExchangeType
+import com.example.kala.model.entities.MoneyExchange
+import com.example.kala.model.entities.MoneyExchangeScope
+import com.example.kala.model.entities.MoneyExchangeType
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.Green1
 import com.example.kala.ui.theme.Red0

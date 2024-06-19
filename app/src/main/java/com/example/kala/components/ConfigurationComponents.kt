@@ -1,8 +1,9 @@
-package com.example.kala.configuration
+package com.example.kala.components
 
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.kala.R
+import com.example.kala.components.buttons.NavigationButtonConfiguration
 
 /*
     General

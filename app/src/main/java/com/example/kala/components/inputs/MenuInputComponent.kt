@@ -1,4 +1,4 @@
-package com.example.kala.screens.components.inputs
+package com.example.kala.components.inputs
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -45,8 +45,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.toSize
 import com.example.kala.R
-import com.example.kala.configuration.MenuInputConfiguration
-import com.example.kala.configuration.SVG_DESCRIPTION
+import com.example.kala.components.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 import com.example.kala.ui.theme.fontFamily

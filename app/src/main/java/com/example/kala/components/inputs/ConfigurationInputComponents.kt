@@ -1,11 +1,11 @@
-package com.example.kala.configuration
+package com.example.kala.components.inputs
 
 import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.ui.graphics.Color
 import com.example.kala.R
-import com.example.kala.entities.MoneyExchangeScope
-import com.example.kala.entities.MoneyExchangeType
+import com.example.kala.model.entities.MoneyExchangeScope
+import com.example.kala.model.entities.MoneyExchangeType
 
 /*
     General

@@ -1,4 +1,4 @@
-package com.example.kala.screens.components.inputs
+package com.example.kala.components.inputs
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -29,7 +29,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.kala.R
-import com.example.kala.configuration.inputTextColor
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 import com.example.kala.ui.theme.fontFamily
