@@ -23,15 +23,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.os.LocaleListCompat
 import androidx.navigation.NavController
-import com.example.kala.configuration.FooterConfiguration
-import com.example.kala.configuration.HeaderConfiguration
-import com.example.kala.configuration.LANGUAGE_SCREEN_ROUTE
-import com.example.kala.configuration.SmallButtonConfiguration
-import com.example.kala.configuration.TitleConfiguration
-import com.example.kala.screens.components.Footer
-import com.example.kala.screens.components.Header
-import com.example.kala.screens.components.Title
-import com.example.kala.screens.components.buttons.SmallButton
+import com.example.kala.components.FooterConfiguration
+import com.example.kala.components.HeaderConfiguration
+import com.example.kala.navigation.LANGUAGE_SCREEN_ROUTE
+import com.example.kala.components.buttons.SmallButtonConfiguration
+import com.example.kala.components.TitleConfiguration
+import com.example.kala.components.Footer
+import com.example.kala.components.Header
+import com.example.kala.components.Title
+import com.example.kala.components.buttons.SmallButton
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 

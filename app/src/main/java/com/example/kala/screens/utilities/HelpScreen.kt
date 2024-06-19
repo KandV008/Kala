@@ -20,14 +20,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import com.example.kala.configuration.FooterConfiguration
-import com.example.kala.configuration.HOME_SCREEN_ROUTE
-import com.example.kala.configuration.HeaderConfiguration
-import com.example.kala.configuration.TitleConfiguration
-import com.example.kala.model.HelpService
-import com.example.kala.screens.components.Footer
-import com.example.kala.screens.components.Header
-import com.example.kala.screens.components.Title
+import com.example.kala.components.FooterConfiguration
+import com.example.kala.navigation.HOME_SCREEN_ROUTE
+import com.example.kala.components.HeaderConfiguration
+import com.example.kala.components.TitleConfiguration
+import com.example.kala.components.Footer
+import com.example.kala.components.Header
+import com.example.kala.components.Title
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 

@@ -19,18 +19,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import com.example.kala.configuration.FooterConfiguration
-import com.example.kala.configuration.HeaderConfiguration
-import com.example.kala.configuration.LargeButtonConfiguration
-import com.example.kala.configuration.MAIN_SCREEN_ROUTE
-import com.example.kala.configuration.OPTION_SCREEN_ROUTE
-import com.example.kala.configuration.TitleConfiguration
+import com.example.kala.components.FooterConfiguration
+import com.example.kala.components.HeaderConfiguration
+import com.example.kala.components.buttons.LargeButtonConfiguration
+import com.example.kala.navigation.MAIN_SCREEN_ROUTE
+import com.example.kala.navigation.OPTION_SCREEN_ROUTE
+import com.example.kala.components.TitleConfiguration
 import com.example.kala.model.FireBaseService
-import com.example.kala.screens.components.Footer
-import com.example.kala.screens.components.Header
-import com.example.kala.screens.components.Title
-import com.example.kala.screens.components.buttons.LargeButton
-import com.example.kala.screens.components.popups.ConfirmationPopUp
+import com.example.kala.components.Footer
+import com.example.kala.components.Header
+import com.example.kala.components.Title
+import com.example.kala.components.buttons.LargeButton
+import com.example.kala.components.popups.ConfirmationPopUp
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 import com.google.firebase.auth.FirebaseAuth.getInstance
@@ -109,11 +109,9 @@ fun OptionScreenBody(navController: NavController? = null){
         )
     }
 
-    val current = LocalContext.current
-
     if (deletingUser){
         deletingUser = false
-        FireBaseService.DeleteUser(current, navController)
+        FireBaseService.DeleteUser(navController)
     }
 
     LazyColumn{

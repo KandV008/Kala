@@ -1,23 +1,14 @@
-package com.example.kala.model
+package com.example.kala.screens.utilities
 
-import com.example.kala.configuration.ABOUT_EXCHANGE_SCREEN_HELP
-import com.example.kala.configuration.ABOUT_EXCHANGE_SCREEN_ROUTE
-import com.example.kala.configuration.ABOUT_MONTH_SCREEN_HELP
-import com.example.kala.configuration.ABOUT_MONTH_SCREEN_ROUTE
-import com.example.kala.configuration.ADD_EXCHANGE_SCREEN_HELP
-import com.example.kala.configuration.ADD_EXCHANGE_SCREEN_ROUTE
-import com.example.kala.configuration.EDIT_EXCHANGE_SCREEN_HELP
-import com.example.kala.configuration.EDIT_EXCHANGE_SCREEN_ROUTE
-import com.example.kala.configuration.HOME_SCREEN_HELP
-import com.example.kala.configuration.HOME_SCREEN_ROUTE
-import com.example.kala.configuration.LANGUAGE_SCREEN_HELP
-import com.example.kala.configuration.LANGUAGE_SCREEN_ROUTE
-import com.example.kala.configuration.OPTION_SCREEN_HELP
-import com.example.kala.configuration.OPTION_SCREEN_ROUTE
-import com.example.kala.configuration.RECORD_SCREEN_HELP
-import com.example.kala.configuration.RECORD_SCREEN_ROUTE
-import com.example.kala.configuration.REPORT_SCREEN_HELP
-import com.example.kala.configuration.REPORT_SCREEN_ROUTE
+import com.example.kala.navigation.ABOUT_EXCHANGE_SCREEN_ROUTE
+import com.example.kala.navigation.ABOUT_MONTH_SCREEN_ROUTE
+import com.example.kala.navigation.ADD_EXCHANGE_SCREEN_ROUTE
+import com.example.kala.navigation.EDIT_EXCHANGE_SCREEN_ROUTE
+import com.example.kala.navigation.HOME_SCREEN_ROUTE
+import com.example.kala.navigation.LANGUAGE_SCREEN_ROUTE
+import com.example.kala.navigation.OPTION_SCREEN_ROUTE
+import com.example.kala.navigation.RECORD_SCREEN_ROUTE
+import com.example.kala.navigation.REPORT_SCREEN_ROUTE
 
 private const val GET_TEXT_ADVICE_SCREEN_ACTION_MESSAGE = "[HelpService][ACTION] Get Text Advice Screen"
 private const val GET_TEXT_ADVICE_SCREEN_RESULT_MESSAGE = "[HelpService][RESULT] Text for the Help Screen"
