@@ -38,8 +38,9 @@ import com.example.kala.R
 import com.example.kala.components.buttons.ChartButtonConfiguration
 import com.example.kala.components.ChartConfiguration
 import com.example.kala.model.entities.MonthInformation
-import com.example.kala.model.MoneyExchangeService
 import com.example.kala.components.buttons.ChartButton
+import com.example.kala.model.MonthInformationService
+import com.example.kala.model.UtilitiesService
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.Green1
 import com.example.kala.ui.theme.Orange0
@@ -59,7 +60,7 @@ fun BarChartInfo(
     onLeftTriggered: () -> Unit = {},
     onRightTriggered: () -> Unit = {},
 ){
-    val currentMonth = MoneyExchangeService.getMonthInformation(month)
+    val currentMonth = MonthInformationService.getMonthInformation(month)
 
     Box(
         modifier = Modifier
@@ -103,8 +104,8 @@ fun BarChartHeader(
     onLeftTriggered: () -> Unit = {},
     onRightTriggered: () -> Unit = {},
 ){
-    val leftChartButtonAlpha: Int = MoneyExchangeService.hasPrevMonth(currentMonth)
-    val rightChartButtonAlpha: Int = MoneyExchangeService.hasNextMonth(currentMonth)
+    val leftChartButtonAlpha: Int = MonthInformationService.hasPrevMonth(currentMonth)
+    val rightChartButtonAlpha: Int = MonthInformationService.hasNextMonth(currentMonth)
 
     Row(
         modifier = Modifier
@@ -198,11 +199,11 @@ fun EmptyBarChartAdvice(){
 fun BarChartFooter(
     currentMonth: MonthInformation
 ){
-    val incomeText = formatMoneyValue(currentMonth.incomeMoney)
-    val expenseText = formatMoneyValue(currentMonth.expensedMoney)
+    val incomeText = UtilitiesService.formatMoneyValue(currentMonth.incomeMoney)
+    val expenseText = UtilitiesService.formatMoneyValue(currentMonth.expensedMoney)
     val balanceValue = currentMonth.incomeMoney - currentMonth.expensedMoney
     val symbol = if (balanceValue >= 0) "+" else "-"
-    val balanceText = symbol + formatMoneyValue(balanceValue)
+    val balanceText = symbol + UtilitiesService.formatMoneyValue(balanceValue)
 
     Row(
         modifier = Modifier
@@ -251,11 +252,6 @@ fun BarChartSummary(title: Int, value: String, color: Color){
             fontWeight = FontWeight.Bold,
         )
     }
-}
-
-@SuppressLint("DefaultLocale")
-fun formatMoneyValue(value: Double): String{
-    return String.format("%.2f", value) + "€" //TODO Update the Money Exchange version
 }
 
 /**

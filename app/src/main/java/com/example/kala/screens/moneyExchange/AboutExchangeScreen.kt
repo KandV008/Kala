@@ -53,6 +53,7 @@ import com.example.kala.components.Header
 import com.example.kala.components.Title
 import com.example.kala.components.buttons.MediumButton
 import com.example.kala.components.popups.ConfirmationPopUp
+import com.example.kala.model.UtilitiesService
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.Green1
 import com.example.kala.ui.theme.Red0
@@ -77,7 +78,7 @@ fun AboutExchangeScreen(
     val svgFile = MoneyExchangeScope.getSVGFile(moneyExchange.scope)
     val valueSymbol = if (moneyExchange.type == MoneyExchangeType.EXPENSE) "-" else "+"
     val valueColor = if (moneyExchange.type == MoneyExchangeType.EXPENSE) Red0 else Green1
-    val valueText = valueSymbol + moneyExchange.getFormattedValue() + "€"
+    val valueText = valueSymbol + UtilitiesService.formatMoneyValue(moneyExchange.value)
 
     var leftButtonTriggered by remember {
         mutableStateOf(false)

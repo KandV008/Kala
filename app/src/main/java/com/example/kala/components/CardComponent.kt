@@ -37,6 +37,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.kala.model.UtilitiesService
 import com.example.kala.model.entities.MoneyExchange
 import com.example.kala.model.entities.MoneyExchangeScope
 import com.example.kala.model.entities.MoneyExchangeType
@@ -59,7 +60,7 @@ fun Card(
     val svgFile = MoneyExchangeScope.getSVGFile(moneyExchange.scope)
     val valueSymbol = if (moneyExchange.type == MoneyExchangeType.EXPENSE) "-" else "+"
     val valueColor = if (moneyExchange.type == MoneyExchangeType.EXPENSE) Red0 else Green1
-    val valueText = valueSymbol + moneyExchange.getFormattedValue() + "€" //TODO € should be dynamic
+    val valueText = valueSymbol + UtilitiesService.formatMoneyValue(moneyExchange.value)
 
     Box(
         modifier = Modifier

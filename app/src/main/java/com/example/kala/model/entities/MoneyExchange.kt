@@ -46,15 +46,6 @@ data class MoneyExchange(
         return date.format(formatter)
     }
 
-    /**
-     * Returns the formatted value string with two decimal places.
-     *
-     * @return The formatted value string.
-     */
-    @SuppressLint("DefaultLocale")
-    fun getFormattedValue(): String {
-        return String.format("%.2f", value)
-    }
 
     /**
      * Overrides the equals function to compare MoneyExchange objects based on their dates.

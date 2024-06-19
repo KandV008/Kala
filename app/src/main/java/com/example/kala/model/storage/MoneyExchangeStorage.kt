@@ -1,7 +1,7 @@
-package com.example.kala.storage
+package com.example.kala.model.storage
 
-import com.example.kala.entities.MoneyExchange
-import com.example.kala.entities.MonthInformation
+import com.example.kala.model.entities.MoneyExchange
+import com.example.kala.model.entities.MonthInformation
 import java.util.TreeMap
 
 private const val SAVE_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Save Money Exchange"
@@ -27,7 +27,7 @@ private const val EXIST_MONTH_INFORMATION_RESULT_MESSAGE = "[MoneyExchangeStorag
 /**
  * Storage class for managing money exchange data.
  */
-class MoneyExchangeStorage {
+object MoneyExchangeStorage {
     var monthInformationMap: TreeMap<String, MonthInformation> = TreeMap()
 
     /**
@@ -167,7 +167,7 @@ class MoneyExchangeStorage {
      * @param id The unique identifier of the month.
      * @return The newly created month information.
      */
-    private fun createMonthInformation(id: String): MonthInformation{
+    private fun createMonthInformation(id: String): MonthInformation {
         val newMonthInformation = MonthInformation()
         this.monthInformationMap[id] = newMonthInformation
         return newMonthInformation

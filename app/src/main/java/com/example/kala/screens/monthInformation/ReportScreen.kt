@@ -31,6 +31,7 @@ import com.example.kala.components.Footer
 import com.example.kala.components.Header
 import com.example.kala.components.Title
 import com.example.kala.components.buttons.MediumButton
+import com.example.kala.model.MonthInformationService
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 
@@ -45,7 +46,7 @@ fun ReportScreen(
     navController: NavController? = null,
     currentMonth: String,
 ){
-    val monthInformation = MoneyExchangeService.getMonthInformation(currentMonth)
+    val monthInformation = MonthInformationService.getMonthInformation(currentMonth)
 
     var leftButtonTriggered by remember { mutableStateOf(false) }
     val onLeftTriggered = { leftButtonTriggered = true }
@@ -54,13 +55,13 @@ fun ReportScreen(
 
     if (rightButtonTriggered){
         rightButtonTriggered = false
-        val nextMonth = MoneyExchangeService.getNextMonth(monthInformation)
+        val nextMonth = MonthInformationService.getNextMonth(monthInformation)
         navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$nextMonth")
     }
 
     if (leftButtonTriggered){
         leftButtonTriggered = false
-        val prevMonth = MoneyExchangeService.getPrevMonth(monthInformation)
+        val prevMonth = MonthInformationService.getPrevMonth(monthInformation)
         navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$prevMonth")
     }
 

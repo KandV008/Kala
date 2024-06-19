@@ -33,6 +33,7 @@ import com.example.kala.model.entities.MoneyExchangeType
 import com.example.kala.model.entities.MonthInformation
 import com.example.kala.model.MoneyExchangeService
 import com.example.kala.components.buttons.ChartButton
+import com.example.kala.model.MonthInformationService
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 
@@ -43,7 +44,7 @@ fun PieChartInfo(
     onLeftTriggered: () -> Unit = {},
     onRightTriggered: () -> Unit = {},
 ){
-    val currentMonth = MoneyExchangeService.getMonthInformation(month)
+    val currentMonth = MonthInformationService.getMonthInformation(month)
     val currentType = MoneyExchangeType.valueOf(type)
     val showPieChart = if (MoneyExchangeType.INCOME == currentType)
         currentMonth.incomeMoney != 0.0
@@ -89,8 +90,8 @@ fun PieChartHeader(
     onLeftTriggered: () -> Unit = {},
     onRightTriggered: () -> Unit = {},
 ){
-    val leftChartButtonAlpha: Int = MoneyExchangeService.hasPrevMonth(currentMonth)
-    val rightChartButtonAlpha: Int = MoneyExchangeService.hasNextMonth(currentMonth)
+    val leftChartButtonAlpha: Int = MonthInformationService.hasPrevMonth(currentMonth)
+    val rightChartButtonAlpha: Int = MonthInformationService.hasNextMonth(currentMonth)
 
     Row(
         modifier = Modifier

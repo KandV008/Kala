@@ -1,37 +1,33 @@
 package com.example.kala.model
 
+import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
-import com.example.kala.configuration.MAIN_SCREEN_ROUTE
-import com.example.kala.entities.MoneyExchange
-import com.example.kala.entities.MoneyExchangeScope
-import com.example.kala.entities.MoneyExchangeType
-import com.example.kala.entities.MonthInformation
+import com.example.kala.navigation.MAIN_SCREEN_ROUTE
+import com.example.kala.model.entities.MoneyExchange
+import com.example.kala.model.entities.MoneyExchangeScope
+import com.example.kala.model.entities.MoneyExchangeType
+import com.example.kala.model.entities.MonthInformation
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.firestore
-import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.firestore.toObject
-import java.time.LocalDate
 import java.time.LocalDateTime
-import java.util.TreeMap
 
+@SuppressLint("StaticFieldLeak")
 object FireBaseService {
-
     private const val COLLECTION_TAG = "users"
     private const val SUB_COLLECTION_TAG = "summary"
-    private const val DOCUMENT_TAG = "registeredMonths"
+    private val database = Firebase.firestore
 
     fun saveUser(email: String) {
-        val db = Firebase.firestore
-        val documentRef = db.collection(COLLECTION_TAG).document(email)
+        val documentRef = database.collection(COLLECTION_TAG).document(email)
 
-        for ((key, monthInfo) in MoneyExchangeService.moneyExchangeStorage.monthInformationMap) {
+        for ((key, monthInfo) in MonthInformationService.getAllMonthInformation()) {
             val docRef = documentRef.collection(SUB_COLLECTION_TAG).document(key)
             val monthInfoMap = monthInfo.monthInformationToMap()
             docRef.set(monthInfoMap)
@@ -45,16 +41,14 @@ object FireBaseService {
     }
 
     fun loadUser(email: String) {
-        val db = Firebase.firestore
-
-        db.collection(COLLECTION_TAG)
+        database.collection(COLLECTION_TAG)
             .document(email)
             .collection(SUB_COLLECTION_TAG)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
                     val monthInformation = documentToMonthInformation(document)
-                    MoneyExchangeService.addMonthInformation(monthInformation)
+                    MonthInformationService.addMonthInformation(monthInformation)
                 }
             }
             .addOnFailureListener { exception ->
@@ -96,20 +90,25 @@ object FireBaseService {
         return moneyExchange
     }
 
+    fun updateUser() {
+        FirebaseAuth.getInstance().currentUser?.email?.let {
+            this.saveUser(it)
+        }
+    }
+
     @Composable
     fun DeleteUser(
-        current: Context,
         navController: NavController?
     ) {
         val currentUser = FirebaseAuth.getInstance().currentUser
-        val db = Firebase.firestore
+        val current = LocalContext.current
 
         currentUser
             ?.delete()
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     currentUser.email?.let {
-                        db.collection(COLLECTION_TAG)
+                        database.collection(COLLECTION_TAG)
                             .document(it)
                             .delete()
                     }

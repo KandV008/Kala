@@ -49,7 +49,8 @@ import com.example.kala.components.Footer
 import com.example.kala.components.Header
 import com.example.kala.components.charts.PieChartInfo
 import com.example.kala.components.Title
-import com.example.kala.components.charts.formatMoneyValue
+import com.example.kala.model.MonthInformationService
+import com.example.kala.model.UtilitiesService
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 
@@ -66,7 +67,7 @@ fun AboutMonthScreen(
     type: String,
 
     ){
-    val currentMonth = MoneyExchangeService.getMonthInformation(month)
+    val currentMonth = MonthInformationService.getMonthInformation(month)
     val currentType = MoneyExchangeType.valueOf(type)
 
     val titleConfiguration =
@@ -90,13 +91,13 @@ fun AboutMonthScreen(
 
     if (rightButtonTriggered){
         rightButtonTriggered = false
-        val nextMonth = MoneyExchangeService.getNextMonth(currentMonth)
+        val nextMonth = MonthInformationService.getNextMonth(currentMonth)
         navController?.navigate(route = "$ABOUT_MONTH_SCREEN_ROUTE/$nextMonth/$currentType")
     }
 
     if (leftButtonTriggered){
         leftButtonTriggered = false
-        val prevMonth = MoneyExchangeService.getPrevMonth(currentMonth)
+        val prevMonth = MonthInformationService.getPrevMonth(currentMonth)
         navController?.navigate(route = "$ABOUT_MONTH_SCREEN_ROUTE/$prevMonth/$currentType")
     }
 
@@ -187,7 +188,7 @@ fun SummaryScope(currentMonth: MonthInformation, currentType: MoneyExchangeType)
                     fontWeight = FontWeight.Bold,
                     fontSize = dimens.fontSize0,
                 )
-                Text(text = formatMoneyValue(sumValue),
+                Text(text = UtilitiesService.formatMoneyValue(sumValue),
                     color = Color.Black,
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Bold,
