@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
-import com.example.kala.navigation.MAIN_SCREEN_ROUTE
+import com.example.kala.ui.screens.navigation.MAIN_SCREEN_ROUTE
 import com.example.kala.model.entities.MoneyExchange
 import com.example.kala.model.entities.MoneyExchangeScope
 import com.example.kala.model.entities.MoneyExchangeType
