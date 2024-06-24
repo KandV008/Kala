@@ -17,9 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.kala.ui.screens.navigation.ADD_EXCHANGE_SCREEN_ROUTE
-import com.example.kala.ui.components.FooterConfiguration
 import com.example.kala.ui.screens.navigation.HOME_SCREEN_ROUTE
-import com.example.kala.ui.components.HeaderConfiguration
 import com.example.kala.ui.components.inputs.MenuInputConfiguration
 import com.example.kala.ui.components.TitleConfiguration
 import com.example.kala.model.entities.MoneyExchange
@@ -31,6 +29,8 @@ import com.example.kala.ui.components.inputs.BigTextInput
 import com.example.kala.ui.components.inputs.MenuInput
 import com.example.kala.ui.components.inputs.NumberInput
 import com.example.kala.ui.components.popUps.InvalidFormPopUp
+import com.example.kala.ui.screens.commons.FooterConfiguration
+import com.example.kala.ui.screens.commons.HeaderConfiguration
 import com.example.kala.ui.screens.utilities.FormValidation.isValidForm
 import com.example.kala.ui.screens.utilities.errorMessageList
 import com.example.kala.ui.theme.BoneWhite

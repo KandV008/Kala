@@ -18,8 +18,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import com.example.kala.ui.components.FooterConfiguration
-import com.example.kala.ui.components.HeaderConfiguration
 import com.example.kala.ui.components.buttons.LargeButtonConfiguration
 import com.example.kala.ui.screens.navigation.MAIN_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.OPTION_SCREEN_ROUTE
@@ -30,6 +28,8 @@ import com.example.kala.ui.screens.commons.Header
 import com.example.kala.ui.components.Title
 import com.example.kala.ui.components.buttons.LargeButton
 import com.example.kala.ui.components.popUps.ConfirmationPopUp
+import com.example.kala.ui.screens.commons.FooterConfiguration
+import com.example.kala.ui.screens.commons.HeaderConfiguration
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 import com.google.firebase.auth.FirebaseAuth.getInstance

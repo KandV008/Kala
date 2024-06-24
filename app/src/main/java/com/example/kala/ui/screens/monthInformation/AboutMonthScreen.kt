@@ -37,8 +37,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.kala.ui.screens.navigation.ABOUT_MONTH_SCREEN_ROUTE
-import com.example.kala.ui.components.FooterConfiguration
-import com.example.kala.ui.components.HeaderConfiguration
 import com.example.kala.ui.components.SVG_DESCRIPTION
 import com.example.kala.ui.components.TitleConfiguration
 import com.example.kala.model.entities.MoneyExchangeScope
@@ -50,6 +48,8 @@ import com.example.kala.ui.screens.commons.Header
 import com.example.kala.ui.components.charts.PieChartInfo
 import com.example.kala.ui.components.Title
 import com.example.kala.model.MonthInformationService
+import com.example.kala.ui.screens.commons.FooterConfiguration
+import com.example.kala.ui.screens.commons.HeaderConfiguration
 import com.example.kala.ui.screens.utilities.Utilities
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens

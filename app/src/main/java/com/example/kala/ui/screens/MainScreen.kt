@@ -25,8 +25,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.kala.ui.screens.navigation.ADD_EXCHANGE_SCREEN_ROUTE
-import com.example.kala.ui.components.FooterConfiguration
-import com.example.kala.ui.components.HeaderConfiguration
 import com.example.kala.ui.screens.navigation.LOG_IN_SCREEN_ROUTE
 import com.example.kala.ui.components.buttons.LargeButtonConfiguration
 import com.example.kala.ui.components.LogoConfiguration
@@ -35,6 +33,8 @@ import com.example.kala.ui.screens.commons.Footer
 import com.example.kala.ui.screens.commons.Header
 import com.example.kala.ui.components.Logo
 import com.example.kala.ui.components.buttons.LargeButton
+import com.example.kala.ui.screens.commons.FooterConfiguration
+import com.example.kala.ui.screens.commons.HeaderConfiguration
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 

@@ -18,9 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.kala.R
 import com.example.kala.ui.screens.navigation.ADD_EXCHANGE_SCREEN_ROUTE
-import com.example.kala.ui.components.FooterConfiguration
 import com.example.kala.ui.screens.navigation.HOME_SCREEN_ROUTE
-import com.example.kala.ui.components.HeaderConfiguration
 import com.example.kala.ui.components.buttons.LargeButtonConfiguration
 import com.example.kala.ui.components.LogoConfiguration
 import com.example.kala.ui.screens.navigation.CHANGE_PASS_SCREEN_ROUTE
@@ -34,6 +32,8 @@ import com.example.kala.ui.components.Title
 import com.example.kala.ui.components.buttons.LargeButton
 import com.example.kala.ui.components.inputs.SmallTextInput
 import com.example.kala.ui.components.popUps.InvalidFormPopUp
+import com.example.kala.ui.screens.commons.FooterConfiguration
+import com.example.kala.ui.screens.commons.HeaderConfiguration
 import com.example.kala.ui.screens.utilities.FormValidation.isValidSignUp
 import com.example.kala.ui.screens.utilities.errorMessageList
 import com.example.kala.ui.theme.BoneWhite

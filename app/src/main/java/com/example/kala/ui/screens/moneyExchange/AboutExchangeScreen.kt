@@ -38,8 +38,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.kala.ui.screens.navigation.ABOUT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.EDIT_EXCHANGE_SCREEN_ROUTE
-import com.example.kala.ui.components.FooterConfiguration
-import com.example.kala.ui.components.HeaderConfiguration
 import com.example.kala.ui.components.buttons.MediumButtonConfiguration
 import com.example.kala.ui.screens.navigation.RECORD_SCREEN_ROUTE
 import com.example.kala.ui.components.SVG_DESCRIPTION
@@ -53,6 +51,8 @@ import com.example.kala.ui.screens.commons.Header
 import com.example.kala.ui.components.Title
 import com.example.kala.ui.components.buttons.MediumButton
 import com.example.kala.ui.components.popUps.ConfirmationPopUp
+import com.example.kala.ui.screens.commons.FooterConfiguration
+import com.example.kala.ui.screens.commons.HeaderConfiguration
 import com.example.kala.ui.screens.utilities.Utilities
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.Green1

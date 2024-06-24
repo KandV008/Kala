@@ -21,7 +21,6 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.kala.ui.screens.navigation.HOME_SCREEN_ROUTE
-import com.example.kala.ui.components.FooterConfiguration
 import com.example.kala.ui.components.buttons.NavigationButton
 import com.example.kala.ui.components.buttons.NavigationButtonConfiguration
 import com.example.kala.ui.theme.dimens

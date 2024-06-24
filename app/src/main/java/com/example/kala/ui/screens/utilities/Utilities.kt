@@ -2,6 +2,7 @@ package com.example.kala.ui.screens.utilities
 
 import android.annotation.SuppressLint
 import android.app.LocaleManager
+import android.content.Context
 import android.os.Build
 import android.os.LocaleList
 import androidx.appcompat.app.AppCompatDelegate
@@ -30,6 +31,17 @@ object Utilities {
                 .applicationLocales = LocaleList.forLanguageTags(action)
         } else {
             AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(action))
+        }
+    }
+
+    fun getLocale(context: Context): String {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            context.getSystemService(LocaleManager::class.java)
+                ?.applicationLocales
+                ?.toLanguageTags()
+                ?: ""
+        } else {
+            AppCompatDelegate.getApplicationLocales().toLanguageTags()
         }
     }
 

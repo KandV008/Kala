@@ -19,8 +19,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.kala.ui.screens.navigation.ABOUT_MONTH_SCREEN_ROUTE
 import com.example.kala.ui.components.ChartConfiguration
-import com.example.kala.ui.components.FooterConfiguration
-import com.example.kala.ui.components.HeaderConfiguration
 import com.example.kala.ui.components.buttons.MediumButtonConfiguration
 import com.example.kala.ui.screens.navigation.REPORT_SCREEN_ROUTE
 import com.example.kala.ui.components.TitleConfiguration
@@ -31,6 +29,8 @@ import com.example.kala.ui.screens.commons.Header
 import com.example.kala.ui.components.Title
 import com.example.kala.ui.components.buttons.MediumButton
 import com.example.kala.model.MonthInformationService
+import com.example.kala.ui.screens.commons.FooterConfiguration
+import com.example.kala.ui.screens.commons.HeaderConfiguration
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 

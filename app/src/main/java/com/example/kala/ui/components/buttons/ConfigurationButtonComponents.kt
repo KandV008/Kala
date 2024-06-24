@@ -1,6 +1,8 @@
 package com.example.kala.ui.components.buttons
 
+import android.content.Context
 import com.example.kala.R
+import com.example.kala.ui.screens.utilities.Utilities.getLocale
 
 /*
     SmallButtonComponent
@@ -106,12 +108,22 @@ enum class LargeButtonConfiguration(
     NavigationButtonComponent
  */
 
+fun getLanguageIconViaContext(context: Context): Int {
+    val locale = getLocale(context)
+    return getLanguageIcon(locale)
+}
+
+private fun getLanguageIcon(locale: String) = when (locale) {
+    SPANISH_ACTION -> R.drawable.ic_spain_flag
+    else -> R.drawable.ic_united_kingdom_flag
+}
+
 enum class NavigationButtonConfiguration(
-    private val svgFile: Int,
+    private var svgFile: Int,
 ) {
     LANGUAGE(
-        R.drawable.ic_united_kingdom_flag,
-    ), /* TODO Dynamic Icon */
+        R.drawable.ic_united_kingdom_flag
+    ), 
     HELP(
         R.drawable.ic_question,
     ),
@@ -128,8 +140,16 @@ enum class NavigationButtonConfiguration(
         R.drawable.ic_next,
     );
 
-    fun getSVGFile(): Int{
+    fun getSVGFile(): Int {
         return svgFile
+    }
+
+    fun updateIcon(newIcon: Int) {
+        svgFile = newIcon
+    }
+
+    fun updateIcon(language: String){
+        svgFile = getLanguageIcon(language)
     }
 }
 

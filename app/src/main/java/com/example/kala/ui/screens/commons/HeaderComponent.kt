@@ -27,7 +27,6 @@ import androidx.navigation.NavController
 import com.example.kala.ui.screens.navigation.HELP_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.LANGUAGE_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.OPTION_SCREEN_ROUTE
-import com.example.kala.ui.components.HeaderConfiguration
 import com.example.kala.ui.components.NAME_APPLICATION
 import com.example.kala.ui.components.buttons.NavigationButton
 import com.example.kala.ui.theme.dimens

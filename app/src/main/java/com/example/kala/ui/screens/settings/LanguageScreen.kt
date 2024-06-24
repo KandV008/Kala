@@ -17,15 +17,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import com.example.kala.ui.components.FooterConfiguration
-import com.example.kala.ui.components.HeaderConfiguration
 import com.example.kala.ui.screens.navigation.LANGUAGE_SCREEN_ROUTE
 import com.example.kala.ui.components.buttons.SmallButtonConfiguration
 import com.example.kala.ui.components.TitleConfiguration
 import com.example.kala.ui.screens.commons.Footer
 import com.example.kala.ui.screens.commons.Header
 import com.example.kala.ui.components.Title
+import com.example.kala.ui.components.buttons.NavigationButtonConfiguration
 import com.example.kala.ui.components.buttons.SmallButton
+import com.example.kala.ui.screens.commons.FooterConfiguration
+import com.example.kala.ui.screens.commons.HeaderConfiguration
 import com.example.kala.ui.screens.utilities.Utilities.SetLocale
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
@@ -82,6 +83,7 @@ fun LanguageScreenBody(navController: NavController?){
     if (adviceTriggered){
         adviceTriggered = false
         SetLocale(action)
+        NavigationButtonConfiguration.LANGUAGE.updateIcon(action)
         navController?.popBackStack()
     }
 
