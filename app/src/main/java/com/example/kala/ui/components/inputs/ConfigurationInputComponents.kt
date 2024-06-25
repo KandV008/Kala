@@ -88,17 +88,17 @@ enum class SmallTextInputConfiguration(
     PASSWORD(
         PASSWORD_LAYER_STI,
         PASSWORD_PLACEHOLDER_STI,
-        R.drawable.ic_password,
+        R.drawable.ic_pass,
     ),
     NEW_PASSWORD(
         NEW_PASSWORD_LAYER_STI,
         PASSWORD_PLACEHOLDER_STI,
-        R.drawable.ic_password,
+        R.drawable.ic_pass,
     ),
     REPEAT_PASSWORD(
         RESET_PASSWORD_LAYER_STI,
         PASSWORD_PLACEHOLDER_STI,
-        R.drawable.ic_password,
+        R.drawable.ic_pass,
     );
 
     fun getLayer(): Int{
