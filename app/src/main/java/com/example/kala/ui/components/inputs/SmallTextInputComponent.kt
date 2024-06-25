@@ -29,9 +29,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.OffsetMapping
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.TransformedText
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.kala.ui.components.SVG_DESCRIPTION
 import com.example.kala.ui.theme.BoneWhite
@@ -52,6 +57,12 @@ fun SmallTextInput(
     val keyboardOptions = KeyboardOptions.Default.copy(
         keyboardType = if (configuration.isPassword()) KeyboardType.Password else KeyboardType.Text
     )
+    
+    val visualTransformation =
+        if (configuration.isPassword())
+            AsteriskTransformation()
+        else
+            VisualTransformation.None
 
     Column(
         modifier = Modifier
@@ -78,6 +89,7 @@ fun SmallTextInput(
                     fontWeight = FontWeight.Bold,
                     color = Color.Gray
                 ),
+                visualTransformation = visualTransformation,
                 keyboardOptions = keyboardOptions,
                 modifier = Modifier
                     .width(dimens.width5)
@@ -115,6 +127,15 @@ fun SmallTextInput(
                 )
             }
         }
+    }
+}
+
+class AsteriskTransformation : VisualTransformation {
+    override fun filter(text: AnnotatedString): TransformedText {
+        // Replace each character with an asterisk
+        val transformedText = AnnotatedString("*".repeat(text.length))
+        // OffsetMapping.Identity ensures that cursor position and text selection work correctly
+        return TransformedText(transformedText, OffsetMapping.Identity)
     }
 }
 
