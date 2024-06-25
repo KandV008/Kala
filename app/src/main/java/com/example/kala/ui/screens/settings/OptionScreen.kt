@@ -21,7 +21,7 @@ import com.example.kala.ui.components.buttons.LargeButtonConfiguration
 import com.example.kala.ui.components.popUps.ConfirmationPopUp
 import com.example.kala.ui.screens.commons.FooterConfiguration
 import com.example.kala.ui.screens.commons.HeaderConfiguration
-import com.example.kala.ui.screens.commons.Layout
+import com.example.kala.ui.screens.commons.LayoutWithNoScroll
 import com.example.kala.ui.screens.navigation.MAIN_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.OPTION_SCREEN_ROUTE
 import com.example.kala.ui.theme.dimens
@@ -43,7 +43,7 @@ val typeButtons: List<LargeButtonConfiguration> = listOf(
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun OptionScreen(navController: NavController? = null){
-    Layout(
+    LayoutWithNoScroll(
         navController = navController,
         headerConfiguration = HeaderConfiguration.OPTION_SCREEN,
         triggerScreen = OPTION_SCREEN_ROUTE,

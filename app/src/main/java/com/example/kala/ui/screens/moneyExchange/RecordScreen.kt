@@ -37,7 +37,7 @@ import com.example.kala.ui.components.Title
 import com.example.kala.ui.components.TitleConfiguration
 import com.example.kala.ui.screens.commons.FooterConfiguration
 import com.example.kala.ui.screens.commons.HeaderConfiguration
-import com.example.kala.ui.screens.commons.Layout
+import com.example.kala.ui.screens.commons.LayoutWithNoScroll
 import com.example.kala.ui.screens.navigation.ABOUT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.RECORD_SCREEN_ROUTE
 import com.example.kala.ui.theme.dimens
@@ -74,7 +74,7 @@ fun RecordScreen(
         navController?.navigate(route = "$ABOUT_EXCHANGE_SCREEN_ROUTE/$monthSelected/$cardSelected")
     }
 
-    Layout(
+    LayoutWithNoScroll(
         navController = navController,
         headerConfiguration = HeaderConfiguration.REGISTERED_USER,
         triggerScreen = RECORD_SCREEN_ROUTE,
