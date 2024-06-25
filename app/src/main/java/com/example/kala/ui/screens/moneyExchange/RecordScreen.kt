@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -31,18 +30,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.kala.R
-import com.example.kala.ui.screens.navigation.ABOUT_EXCHANGE_SCREEN_ROUTE
-import com.example.kala.ui.screens.navigation.RECORD_SCREEN_ROUTE
-import com.example.kala.ui.components.TitleConfiguration
-import com.example.kala.model.entities.MoneyExchange
 import com.example.kala.model.MoneyExchangeService
+import com.example.kala.model.entities.MoneyExchange
 import com.example.kala.ui.components.Card
-import com.example.kala.ui.screens.commons.Footer
-import com.example.kala.ui.screens.commons.Header
 import com.example.kala.ui.components.Title
+import com.example.kala.ui.components.TitleConfiguration
 import com.example.kala.ui.screens.commons.FooterConfiguration
 import com.example.kala.ui.screens.commons.HeaderConfiguration
-import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.screens.commons.Layout
+import com.example.kala.ui.screens.navigation.ABOUT_EXCHANGE_SCREEN_ROUTE
+import com.example.kala.ui.screens.navigation.RECORD_SCREEN_ROUTE
 import com.example.kala.ui.theme.dimens
 
 val NO_MONEY_EXCHANGE_ADDED = R.string.no_money_exchange_added
@@ -77,32 +74,15 @@ fun RecordScreen(
         navController?.navigate(route = "$ABOUT_EXCHANGE_SCREEN_ROUTE/$monthSelected/$cardSelected")
     }
 
-    Scaffold(
-        topBar = {
-            Header(
-                configuration = HeaderConfiguration.REGISTERED_USER,
-                navController = navController,
-                triggerScreen = RECORD_SCREEN_ROUTE,
-            )
-        },
-        bottomBar = {
-            Footer(
-                configuration = FooterConfiguration.BACK_AND_HOME,
-                navController = navController,
-            )
-        },
-    ){
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(BoneWhite),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Spacer(modifier = Modifier.padding(dimens.space4))
-            Title(configuration = TitleConfiguration.RECORD)
-            RecordBody(moneyExchangeList, onAdviceTriggered)
-            Spacer(modifier = Modifier.padding(dimens.space4))
-        }
+    Layout(
+        navController = navController,
+        headerConfiguration = HeaderConfiguration.REGISTERED_USER,
+        triggerScreen = RECORD_SCREEN_ROUTE,
+        footerConfiguration = FooterConfiguration.BACK_AND_HOME,
+        onAdviceTriggered = {}
+    ) {
+        Title(configuration = TitleConfiguration.RECORD)
+        RecordBody(moneyExchangeList, onAdviceTriggered)
     }
 }
 

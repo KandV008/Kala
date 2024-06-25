@@ -6,10 +6,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -19,7 +17,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,22 +33,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import com.example.kala.ui.screens.navigation.ABOUT_MONTH_SCREEN_ROUTE
-import com.example.kala.ui.components.SVG_DESCRIPTION
-import com.example.kala.ui.components.TitleConfiguration
+import com.example.kala.model.MoneyExchangeService
+import com.example.kala.model.MonthInformationService
 import com.example.kala.model.entities.MoneyExchangeScope
 import com.example.kala.model.entities.MoneyExchangeType
 import com.example.kala.model.entities.MonthInformation
-import com.example.kala.model.MoneyExchangeService
-import com.example.kala.ui.screens.commons.Footer
-import com.example.kala.ui.screens.commons.Header
-import com.example.kala.ui.components.charts.PieChartInfo
+import com.example.kala.ui.components.SVG_DESCRIPTION
 import com.example.kala.ui.components.Title
-import com.example.kala.model.MonthInformationService
+import com.example.kala.ui.components.TitleConfiguration
+import com.example.kala.ui.components.charts.PieChartInfo
 import com.example.kala.ui.screens.commons.FooterConfiguration
 import com.example.kala.ui.screens.commons.HeaderConfiguration
+import com.example.kala.ui.screens.commons.Layout
+import com.example.kala.ui.screens.navigation.ABOUT_MONTH_SCREEN_ROUTE
 import com.example.kala.ui.screens.utilities.Utilities
-import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 
 /**
@@ -101,50 +96,33 @@ fun AboutMonthScreen(
         navController?.navigate(route = "$ABOUT_MONTH_SCREEN_ROUTE/$prevMonth/$currentType")
     }
 
-    Scaffold(
-        topBar = {
-            Header(
-                configuration = HeaderConfiguration.REGISTERED_USER,
-                navController = navController,
-                triggerScreen = ABOUT_MONTH_SCREEN_ROUTE,
-            )
-        },
-        bottomBar = {
-            Footer(
-                configuration = FooterConfiguration.BACK_AND_HOME,
-                navController = navController,
-            )
-        },
-    ){
-        Column(
+    Layout(
+        navController = navController,
+        headerConfiguration = HeaderConfiguration.REGISTERED_USER,
+        triggerScreen = ABOUT_MONTH_SCREEN_ROUTE,
+        footerConfiguration = FooterConfiguration.BACK_AND_HOME,
+        onAdviceTriggered = { }
+    ) {
+        Title(configuration = titleConfiguration)
+        Spacer(modifier = Modifier.padding(dimens.space1))
+        PieChartInfo(
+            month = month,
+            type = type,
+            onLeftTriggered = onLeftTriggered,
+            onRightTriggered = onRightTriggered
+        )
+        Spacer(modifier = Modifier.padding(dimens.space0))
+        Box(
             modifier = Modifier
-                .fillMaxSize()
-                .background(BoneWhite),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Spacer(modifier = Modifier.padding(dimens.space4))
-            Title(configuration = titleConfiguration)
-            Spacer(modifier = Modifier.padding(dimens.space1))
-            PieChartInfo(
-                month = month,
-                type = type,
-                onLeftTriggered = onLeftTriggered,
-                onRightTriggered = onRightTriggered
-            )
-            Spacer(modifier = Modifier.padding(dimens.space0))
-            Box(
-                modifier = Modifier
-                    .width(dimens.width8)
-                    .height(dimens.height7)
-                    .clip(RoundedCornerShape(dimens.rounded))
-                    .background(Color.White)
-                    .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
-                ,
-                contentAlignment = Alignment.Center
-            ){
-                SummaryScope(currentMonth, currentType)
-            }
-            Spacer(modifier = Modifier.padding(dimens.space4))
+                .width(dimens.width8)
+                .height(dimens.height7)
+                .clip(RoundedCornerShape(dimens.rounded))
+                .background(Color.White)
+                .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
+            ,
+            contentAlignment = Alignment.Center
+        ){
+            SummaryScope(currentMonth, currentType)
         }
     }
 }

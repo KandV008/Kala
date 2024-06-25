@@ -1,37 +1,30 @@
 package com.example.kala.ui.screens.monthInformation
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import com.example.kala.ui.screens.navigation.ABOUT_MONTH_SCREEN_ROUTE
-import com.example.kala.ui.components.ChartConfiguration
-import com.example.kala.ui.components.buttons.MediumButtonConfiguration
-import com.example.kala.ui.screens.navigation.REPORT_SCREEN_ROUTE
-import com.example.kala.ui.components.TitleConfiguration
-import com.example.kala.model.entities.MoneyExchangeType
-import com.example.kala.ui.components.charts.BarChartInfo
-import com.example.kala.ui.screens.commons.Footer
-import com.example.kala.ui.screens.commons.Header
-import com.example.kala.ui.components.Title
-import com.example.kala.ui.components.buttons.MediumButton
 import com.example.kala.model.MonthInformationService
+import com.example.kala.model.entities.MoneyExchangeType
+import com.example.kala.ui.components.ChartConfiguration
+import com.example.kala.ui.components.Title
+import com.example.kala.ui.components.TitleConfiguration
+import com.example.kala.ui.components.buttons.MediumButton
+import com.example.kala.ui.components.buttons.MediumButtonConfiguration
+import com.example.kala.ui.components.charts.BarChartInfo
 import com.example.kala.ui.screens.commons.FooterConfiguration
 import com.example.kala.ui.screens.commons.HeaderConfiguration
-import com.example.kala.ui.theme.BoneWhite
+import com.example.kala.ui.screens.commons.Layout
+import com.example.kala.ui.screens.navigation.ABOUT_MONTH_SCREEN_ROUTE
+import com.example.kala.ui.screens.navigation.REPORT_SCREEN_ROUTE
 import com.example.kala.ui.theme.dimens
 
 /**
@@ -64,41 +57,25 @@ fun ReportScreen(
         navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$prevMonth")
     }
 
-    Scaffold(
-        topBar = {
-            Header(
-                configuration = HeaderConfiguration.REGISTERED_USER,
-                navController = navController,
-                triggerScreen = REPORT_SCREEN_ROUTE,
-            )
-        },
-        bottomBar = {
-            Footer(
-                configuration = FooterConfiguration.BACK_AND_HOME,
-                navController = navController,
-            )
-        },
-    ){
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(BoneWhite),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Spacer(modifier = Modifier.padding(dimens.space4))
-            Title(configuration = TitleConfiguration.REPORT)
-            Spacer(modifier = Modifier.padding(dimens.space1))
-            BarChartInfo(
-                configuration = ChartConfiguration.REPORT_PAGE,
-                month = currentMonth,
-                onLeftTriggered = onLeftTriggered,
-                onRightTriggered = onRightTriggered,
-            )
-            Spacer(modifier = Modifier.padding(dimens.space1))
-            ReportScreenBody(navController, currentMonth)
-            Spacer(modifier = Modifier.padding(dimens.space4))
-        }
+    Layout(
+        navController = navController,
+        headerConfiguration = HeaderConfiguration.REGISTERED_USER,
+        triggerScreen = REPORT_SCREEN_ROUTE,
+        footerConfiguration = FooterConfiguration.BACK_AND_HOME,
+        onAdviceTriggered = { }
+    ) {
+        Title(configuration = TitleConfiguration.REPORT)
+        Spacer(modifier = Modifier.padding(dimens.space1))
+        BarChartInfo(
+            configuration = ChartConfiguration.REPORT_PAGE,
+            month = currentMonth,
+            onLeftTriggered = onLeftTriggered,
+            onRightTriggered = onRightTriggered,
+        )
+        Spacer(modifier = Modifier.padding(dimens.space1))
+        ReportScreenBody(navController, currentMonth)
     }
+
 }
 
 /**

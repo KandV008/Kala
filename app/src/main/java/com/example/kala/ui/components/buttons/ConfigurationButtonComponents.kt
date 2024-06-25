@@ -123,7 +123,7 @@ enum class NavigationButtonConfiguration(
 ) {
     LANGUAGE(
         R.drawable.ic_united_kingdom_flag
-    ), 
+    ),
     HELP(
         R.drawable.ic_question,
     ),
