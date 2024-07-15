@@ -103,12 +103,12 @@ object FireBaseService {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val current = LocalContext.current
 
-        currentUser
-            ?.delete()
-            ?.addOnSuccessListener {
-                currentUser.email?.let {
-                    database.collection(COLLECTION_TAG)
-                        .document(it)
+        currentUser!!.email?.let {
+            database.collection(COLLECTION_TAG)
+                .document(it)
+                .delete()
+                .addOnSuccessListener {
+                    currentUser
                         .delete()
                         .addOnSuccessListener {
                             Toast.makeText(
@@ -119,19 +119,20 @@ object FireBaseService {
                             MonthInformationService.clean()
                             navController?.navigate(route = MAIN_SCREEN_ROUTE)
                         }
-                        .addOnFailureListener {exception ->
-                            Log.d(TAG, "Error getting documents: ", exception)
-                            Toast.makeText(
-                                current,
-                                "Account deletion failed.",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                        .addOnFailureListener { exception ->
+                            throw exception
                         }
                 }
-            }
-            ?.addOnFailureListener { exception ->
-                Log.d(TAG, "Error getting documents: ", exception)
-            }
+                .addOnFailureListener {exception ->
+                    Log.d(TAG, "Error getting documents: ", exception)
+                    Toast.makeText(
+                        current,
+                        "Account deletion failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+        }
+
     }
 
 }
