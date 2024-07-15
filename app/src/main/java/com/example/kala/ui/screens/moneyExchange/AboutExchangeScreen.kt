@@ -51,6 +51,7 @@ import com.example.kala.ui.screens.navigation.ABOUT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.EDIT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.RECORD_SCREEN_ROUTE
 import com.example.kala.ui.screens.utilities.Utilities
+import com.example.kala.ui.screens.utilities.Utilities.getFormattedDate
 import com.example.kala.ui.theme.Green1
 import com.example.kala.ui.theme.Red0
 import com.example.kala.ui.theme.dimens
@@ -239,7 +240,7 @@ private fun DateSection(moneyExchange: MoneyExchange) {
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = moneyExchange.getFormattedDate(),
+            text = getFormattedDate(moneyExchange.date),
             color = Color.Black,
             modifier = Modifier
                 .fillMaxWidth(),

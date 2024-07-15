@@ -10,7 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.os.LocaleListCompat
 import com.example.kala.R
+import java.time.LocalDateTime
 import java.time.Month
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 object Utilities {
 
@@ -65,5 +68,13 @@ object Utilities {
         }
     }
 
-
+    /**
+     * Returns the date string in the format "dd MMM yy".
+     *
+     * @return The formatted date string.
+     */
+    fun getFormattedDate(date: LocalDateTime): String{
+        val formatter = DateTimeFormatter.ofPattern("dd MMM yy", Locale.getDefault())
+        return date.format(formatter)
+    }
 }

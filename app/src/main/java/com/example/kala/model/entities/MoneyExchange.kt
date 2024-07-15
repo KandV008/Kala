@@ -1,8 +1,6 @@
 package com.example.kala.model.entities
 
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 /**
  * Represents a money exchange object.
@@ -34,16 +32,6 @@ data class MoneyExchange(
         MoneyExchangeScope.valueOf(scope),
         description
     )
-
-    /**
-     * Returns the formatted date string in the format "dd MMM yy".
-     *
-     * @return The formatted date string.
-     */
-    fun getFormattedDate(): String {
-        val formatter = DateTimeFormatter.ofPattern("dd MMM yy", Locale.getDefault())
-        return date.format(formatter)
-    }
 
 
     /**

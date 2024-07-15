@@ -48,7 +48,6 @@ import com.example.kala.ui.theme.Orange0
 import com.example.kala.ui.theme.Red0
 import com.example.kala.ui.theme.dimens
 import com.example.kala.ui.theme.fontFamily
-import java.time.Month
 
 val EMPTY_CHART_ADVICE = R.string.empty_chart_advice
 val INCOME_TITLE_CHART = R.string.income_title_chart
@@ -204,7 +203,7 @@ fun BarChartFooter(
     val incomeText = Utilities.formatMoneyValue(currentMonth.incomeMoney)
     val expenseText = Utilities.formatMoneyValue(currentMonth.expensedMoney)
     val balanceValue = currentMonth.incomeMoney - currentMonth.expensedMoney
-    val symbol = if (balanceValue >= 0) "+" else "-"
+    val symbol = if (balanceValue >= 0) "+" else ""
     val balanceText = symbol + Utilities.formatMoneyValue(balanceValue)
 
     Row(

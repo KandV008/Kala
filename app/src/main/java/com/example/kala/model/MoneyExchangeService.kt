@@ -64,7 +64,7 @@ object MoneyExchangeService {
         val moneyExchange = MoneyExchangeStorage.getMoneyExchange(monthAssociated, exchange)
         moneyExchange?.let {
             println(MONEY_EXCHANGE_RESULT_MESSAGE)
-            return it.copy()
+            return it
         } ?:
             throw IllegalAccessError(INVALID_MONTH_ID_OR_EXCHANGE_ID_ERROR_MESSAGE)
     }

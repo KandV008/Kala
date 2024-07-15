@@ -41,6 +41,7 @@ import com.example.kala.ui.screens.utilities.Utilities
 import com.example.kala.model.entities.MoneyExchange
 import com.example.kala.model.entities.MoneyExchangeScope
 import com.example.kala.model.entities.MoneyExchangeType
+import com.example.kala.ui.screens.utilities.Utilities.getFormattedDate
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.Green1
 import com.example.kala.ui.theme.Red0
@@ -98,7 +99,7 @@ fun Card(
                         fontSize = dimens.fontSize3,
                     )
                     Text(
-                        text = moneyExchange.getFormattedDate(),
+                        text = getFormattedDate(moneyExchange.date),
                         color = Color.Black,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
