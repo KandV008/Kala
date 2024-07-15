@@ -15,11 +15,11 @@
     <string name="log_in_lb">Iniciar Sesión</string>
     <string name="log_out_lb">Cerrar Sesión</string>
     <string name="delete_user_lb">Borrar Usuario</string>
-    <string name="forgot_pass_lb">Recuperar contraseña?</string>
+    <string name="forgot_pass_lb">¿Algún problema?</string>
     <string name="send_request_lb">Enviar petición</string>
     <string name="sign_up_title">Registrarse</string>
     <string name="log_in_title">Iniciar Sesión</string>
-    <string name="recovery_pass_title">Recuperar Contraseña</string>
+    <string name="recovery_pass_title">Recuperación</string>
     <string name="request_done_title">Confirmar petición</string>
     <string name="change_pass_title">Cambiar contraseña</string>
     <string name="confirmation_title">Confirmación</string>
@@ -113,4 +113,18 @@
     <string name="failure_creating_user_message">An error had occurred during authentication.</string>
     <string name="failure_log_in_message" />
     <string name="distinct_password_error_message">\"They are not the same password\"</string>
+    <string name="slogan">Tu aplicación para gestionar gastos e ingresos</string>
+    <string name="recovery_pass_msg">Introduce tu email para recuperar tu contraseña</string>
+    <string name="january">Enero</string>
+    <string name="february">Febrero</string>
+    <string name="march">Marzo</string>
+    <string name="april">Abril</string>
+    <string name="may">Mayo</string>
+    <string name="june">Junio</string>
+    <string name="july">Julio</string>
+    <string name="august">Agosto</string>
+    <string name="september">Septiembre</string>
+    <string name="october">Octubre</string>
+    <string name="november">Noviembre</string>
+    <string name="december">Diciembre</string>
 </resources>

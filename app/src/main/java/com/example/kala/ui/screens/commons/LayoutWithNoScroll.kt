@@ -46,7 +46,7 @@ fun LayoutWithNoScroll(
             ,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Spacer(modifier = Modifier.padding(dimens.space3))
+            Spacer(modifier = Modifier.padding(dimens.space1))
             function()
         }
     }

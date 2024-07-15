@@ -1,6 +1,5 @@
 package com.example.kala.model.entities
 
-import android.annotation.SuppressLint
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -42,7 +41,7 @@ data class MoneyExchange(
      * @return The formatted date string.
      */
     fun getFormattedDate(): String {
-        val formatter = DateTimeFormatter.ofPattern("dd MMM yy", Locale.ENGLISH)
+        val formatter = DateTimeFormatter.ofPattern("dd MMM yy", Locale.getDefault())
         return date.format(formatter)
     }
 

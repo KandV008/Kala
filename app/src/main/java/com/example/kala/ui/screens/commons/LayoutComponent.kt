@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.example.kala.ui.screens.navigation.ADD_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 
@@ -50,7 +49,7 @@ fun Layout(
             ,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Spacer(modifier = Modifier.padding(dimens.space3))
+            Spacer(modifier = Modifier.padding(dimens.space1))
             function()
         }
     }

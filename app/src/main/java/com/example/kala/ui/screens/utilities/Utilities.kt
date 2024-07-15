@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.os.LocaleListCompat
+import com.example.kala.R
+import java.time.Month
 
 object Utilities {
 
@@ -42,6 +44,24 @@ object Utilities {
                 ?: ""
         } else {
             AppCompatDelegate.getApplicationLocales().toLanguageTags()
+        }
+    }
+
+    fun getMonthString(month: Month?): Int {
+        return when (month) {
+            Month.JANUARY -> R.string.january
+            Month.FEBRUARY -> R.string.february
+            Month.MARCH -> R.string.march
+            Month.APRIL -> R.string.april
+            Month.MAY -> R.string.may
+            Month.JUNE -> R.string.june
+            Month.JULY -> R.string.july
+            Month.AUGUST -> R.string.august
+            Month.SEPTEMBER -> R.string.september
+            Month.OCTOBER -> R.string.october
+            Month.NOVEMBER -> R.string.november
+            Month.DECEMBER -> R.string.december
+            else -> -1
         }
     }
 

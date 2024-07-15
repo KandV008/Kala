@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,6 +35,7 @@ import com.example.kala.model.entities.MonthInformation
 import com.example.kala.model.MoneyExchangeService
 import com.example.kala.ui.components.buttons.ChartButton
 import com.example.kala.model.MonthInformationService
+import com.example.kala.ui.screens.utilities.Utilities.getMonthString
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 
@@ -106,7 +108,7 @@ fun PieChartHeader(
             onAdviceTriggered = onLeftTriggered,
         )
         Text(
-            text = currentMonth.dateCreation.month.toString(),
+            text = stringResource(id = getMonthString(currentMonth.dateCreation.month)),
             color = Color.Black,
             fontSize = dimens.fontSize3,
             textAlign = TextAlign.Center,

@@ -41,12 +41,14 @@ import com.example.kala.model.entities.MonthInformation
 import com.example.kala.ui.components.buttons.ChartButton
 import com.example.kala.model.MonthInformationService
 import com.example.kala.ui.screens.utilities.Utilities
+import com.example.kala.ui.screens.utilities.Utilities.getMonthString
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.Green1
 import com.example.kala.ui.theme.Orange0
 import com.example.kala.ui.theme.Red0
 import com.example.kala.ui.theme.dimens
 import com.example.kala.ui.theme.fontFamily
+import java.time.Month
 
 val EMPTY_CHART_ADVICE = R.string.empty_chart_advice
 val INCOME_TITLE_CHART = R.string.income_title_chart
@@ -120,7 +122,7 @@ fun BarChartHeader(
             onAdviceTriggered = onLeftTriggered,
         )
         Text(
-            text = currentMonth.dateCreation.month.toString(),
+            text = stringResource(id = getMonthString(currentMonth.dateCreation.month)),
             color = Color.Black,
             fontSize = dimens.fontSize3,
             textAlign = TextAlign.Center,

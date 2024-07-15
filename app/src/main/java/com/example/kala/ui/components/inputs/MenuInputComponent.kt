@@ -91,6 +91,12 @@ fun MenuInput(
             Column {
                 OutlinedTextField(
                     value = valueInput,
+                    textStyle = TextStyle(
+                        fontSize = dimens.fontSize0,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black,
+                        fontFamily = fontFamily
+                    ),
                     onValueChange = onValueChange,
                     readOnly = true,
                     modifier = Modifier

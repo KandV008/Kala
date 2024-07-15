@@ -17,10 +17,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import com.example.kala.R
 import com.example.kala.ui.components.Logo
 import com.example.kala.ui.components.LogoConfiguration
 import com.example.kala.ui.components.buttons.LargeButton
@@ -96,7 +98,7 @@ fun SubTitle(){
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            text = "Your income and expense management app",
+            text = stringResource(id = R.string.slogan) ,
             fontSize = dimens.fontSize0,
             color = Color.Black,
             textAlign = TextAlign.Center,
