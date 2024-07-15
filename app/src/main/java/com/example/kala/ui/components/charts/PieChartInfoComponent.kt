@@ -130,35 +130,35 @@ fun PieChartBody(
     val pieChartData = PieChartData(
         slices = listOf(
             PieChartData.Slice(
-                label = MoneyExchangeScope.FOOD.toString(),
+                label = stringResource(id = MoneyExchangeScope.FOOD.getLabel()),
                 value = MoneyExchangeService
                     .getSumOfMoneyExchangeByScopeAndType(currentMonth, currentType, MoneyExchangeScope.FOOD)
                     .toFloat(),
                 color = MoneyExchangeScope.FOOD.getColor()
             ),
             PieChartData.Slice(
-                label = MoneyExchangeScope.LEISURE.toString(),
+                label = stringResource(id = MoneyExchangeScope.LEISURE.getLabel()),
                 value = MoneyExchangeService
                     .getSumOfMoneyExchangeByScopeAndType(currentMonth, currentType, MoneyExchangeScope.LEISURE)
                     .toFloat(),
                 color = MoneyExchangeScope.LEISURE.getColor()
             ),
             PieChartData.Slice(
-                label = MoneyExchangeScope.USEFUL.toString(),
+                label = stringResource(id = MoneyExchangeScope.USEFUL.getLabel()),
                 value = MoneyExchangeService
                     .getSumOfMoneyExchangeByScopeAndType(currentMonth, currentType, MoneyExchangeScope.USEFUL)
                     .toFloat(),
                 color = MoneyExchangeScope.USEFUL.getColor()
             ),
             PieChartData.Slice(
-                label = MoneyExchangeScope.MEDICINE.toString(),
+                label = stringResource(id = MoneyExchangeScope.MEDICINE.getLabel()),
                 value = MoneyExchangeService
                     .getSumOfMoneyExchangeByScopeAndType(currentMonth, currentType, MoneyExchangeScope.MEDICINE)
                     .toFloat(),
                 color = MoneyExchangeScope.MEDICINE.getColor()
             ),
             PieChartData.Slice(
-                label = MoneyExchangeScope.OTHER.toString(),
+                label = stringResource(id = MoneyExchangeScope.OTHER.getLabel()),
                 value = MoneyExchangeService
                     .getSumOfMoneyExchangeByScopeAndType(currentMonth, currentType, MoneyExchangeScope.OTHER)
                     .toFloat(),
