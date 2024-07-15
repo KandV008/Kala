@@ -21,6 +21,7 @@ import com.example.kala.ui.components.TitleConfiguration
 import com.example.kala.ui.screens.commons.FooterConfiguration
 import com.example.kala.ui.screens.commons.HeaderConfiguration
 import com.example.kala.ui.screens.commons.Layout
+import com.example.kala.ui.screens.navigation.HELP_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.HOME_SCREEN_ROUTE
 import com.example.kala.ui.theme.dimens
 
@@ -38,8 +39,8 @@ fun HelpScreen(
     Layout(
         navController = navController,
         headerConfiguration = HeaderConfiguration.HELP_SCREEN,
-        triggerScreen = "HELP_SCREEN", // TODO Manage
-        footerConfiguration = FooterConfiguration.BACK_AND_HOME,
+        triggerScreen = HELP_SCREEN_ROUTE,
+        footerConfiguration = FooterConfiguration.ONLY_BACK,
         onAdviceTriggered = { }
     ) {
         Title(configuration = TitleConfiguration.HELP)

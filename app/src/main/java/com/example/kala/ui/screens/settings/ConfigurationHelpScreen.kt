@@ -62,9 +62,6 @@ val OPTION_SCREEN_HELP = listOf(
     R.string.option_screen_help0,
     R.string.option_screen_help1,
     R.string.option_screen_help2,
-    R.string.option_screen_help3,
-    R.string.option_screen_help4,
-    R.string.option_screen_help5,
 )
 
 val LANGUAGE_SCREEN_HELP = listOf(
@@ -72,4 +69,32 @@ val LANGUAGE_SCREEN_HELP = listOf(
     R.string.language_screen_help1,
     R.string.language_screen_help2,
     R.string.language_screen_help3,
+)
+
+val MAIN_SCREEN_HELP = listOf(
+    R.string.main_screen_help0,
+    R.string.main_screen_help1,
+    R.string.main_screen_help2,
+    R.string.main_screen_help3
+)
+
+val LOG_IN_SCREEN_HELP = listOf(
+    R.string.log_in_screen_help0,
+    R.string.log_in_screen_help1,
+    R.string.log_in_screen_help2,
+    R.string.log_in_screen_help3,
+)
+
+val CHANGE_PASS_SCREEN_HELP = listOf(
+    R.string.change_pass_screen_help0,
+    R.string.change_pass_screen_help1,
+    R.string.change_pass_screen_help2,
+)
+
+val SIGN_UP_SCREEN_HELP = listOf(
+    R.string.sign_up_screen_help0,
+    R.string.sign_up_screen_help1,
+    R.string.sign_up_screen_help2,
+    R.string.sign_up_screen_help3,
+    R.string.sign_up_screen_help4,
 )

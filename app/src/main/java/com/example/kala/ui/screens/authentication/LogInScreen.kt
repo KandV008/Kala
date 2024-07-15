@@ -28,6 +28,7 @@ import com.example.kala.ui.screens.commons.Layout
 import com.example.kala.ui.screens.navigation.ADD_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.CHANGE_PASS_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.HOME_SCREEN_ROUTE
+import com.example.kala.ui.screens.navigation.LOG_IN_SCREEN_ROUTE
 import com.example.kala.ui.screens.utilities.FormValidation.isValidSignUp
 import com.example.kala.ui.screens.utilities.errorMessageList
 import com.example.kala.ui.theme.dimens
@@ -88,7 +89,7 @@ fun LogInScreen(
     Layout(
         navController = navController,
         headerConfiguration = HeaderConfiguration.UNREGISTERED_USER,
-        triggerScreen = ADD_EXCHANGE_SCREEN_ROUTE, // TODO Create Log In Help Screen
+        triggerScreen = LOG_IN_SCREEN_ROUTE,
         footerConfiguration = FooterConfiguration.BACK_AND_NEXT,
         onAdviceTriggered = { adviceTriggered = true }
     ) {

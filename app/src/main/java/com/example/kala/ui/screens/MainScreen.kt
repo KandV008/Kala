@@ -31,6 +31,7 @@ import com.example.kala.ui.screens.commons.FooterConfiguration
 import com.example.kala.ui.screens.commons.HeaderConfiguration
 import com.example.kala.ui.screens.commons.Layout
 import com.example.kala.ui.screens.navigation.LOG_IN_SCREEN_ROUTE
+import com.example.kala.ui.screens.navigation.MAIN_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.SIGN_UP_SCREEN_ROUTE
 import com.example.kala.ui.theme.dimens
 
@@ -64,7 +65,7 @@ fun MainScreen(
     Layout(
         navController = navController,
         headerConfiguration = HeaderConfiguration.UNREGISTERED_USER,
-        triggerScreen = "MAIN_SCREEN", // TODO Create Main Help Screen
+        triggerScreen = MAIN_SCREEN_ROUTE, // TODO Create Main Help Screen
         footerConfiguration = FooterConfiguration.EMPTY,
         onAdviceTriggered = {},
     ) {

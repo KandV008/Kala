@@ -3,12 +3,16 @@ package com.example.kala.ui.screens.settings
 import com.example.kala.ui.screens.navigation.ABOUT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.ABOUT_MONTH_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.ADD_EXCHANGE_SCREEN_ROUTE
+import com.example.kala.ui.screens.navigation.CHANGE_PASS_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.EDIT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.HOME_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.LANGUAGE_SCREEN_ROUTE
+import com.example.kala.ui.screens.navigation.LOG_IN_SCREEN_ROUTE
+import com.example.kala.ui.screens.navigation.MAIN_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.OPTION_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.RECORD_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.REPORT_SCREEN_ROUTE
+import com.example.kala.ui.screens.navigation.SIGN_UP_SCREEN_ROUTE
 
 private const val GET_TEXT_ADVICE_SCREEN_ACTION_MESSAGE = "[HelpService][ACTION] Get Text Advice Screen"
 private const val GET_TEXT_ADVICE_SCREEN_RESULT_MESSAGE = "[HelpService][RESULT] Text for the Help Screen"
@@ -27,6 +31,10 @@ object HelpService {
         ABOUT_MONTH_SCREEN_ROUTE to ABOUT_MONTH_SCREEN_HELP,
         OPTION_SCREEN_ROUTE to OPTION_SCREEN_HELP,
         LANGUAGE_SCREEN_ROUTE to LANGUAGE_SCREEN_HELP,
+        MAIN_SCREEN_ROUTE to MAIN_SCREEN_HELP,
+        LOG_IN_SCREEN_ROUTE to LOG_IN_SCREEN_HELP,
+        CHANGE_PASS_SCREEN_ROUTE to CHANGE_PASS_SCREEN_HELP,
+        SIGN_UP_SCREEN_ROUTE to SIGN_UP_SCREEN_HELP,
     )
 
     /**

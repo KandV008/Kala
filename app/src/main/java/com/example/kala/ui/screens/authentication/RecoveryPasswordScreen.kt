@@ -38,6 +38,7 @@ import com.example.kala.ui.screens.commons.FooterConfiguration
 import com.example.kala.ui.screens.commons.HeaderConfiguration
 import com.example.kala.ui.screens.commons.Layout
 import com.example.kala.ui.screens.navigation.ADD_EXCHANGE_SCREEN_ROUTE
+import com.example.kala.ui.screens.navigation.CHANGE_PASS_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.MAIN_SCREEN_ROUTE
 import com.example.kala.ui.screens.utilities.errorMessageList
 import com.example.kala.ui.theme.dimens
@@ -92,7 +93,7 @@ fun ChangePasswordScreen(
     Layout(
         navController = navController,
         headerConfiguration = HeaderConfiguration.UNREGISTERED_USER,
-        triggerScreen = ADD_EXCHANGE_SCREEN_ROUTE, // TODO Create Recovery Password Help Screen
+        triggerScreen = CHANGE_PASS_SCREEN_ROUTE,
         footerConfiguration = FooterConfiguration.ONLY_BACK,
         onAdviceTriggered = { adviceTriggered = true }
     ) {

@@ -36,7 +36,7 @@ fun LanguageScreen(navController: NavController? = null){
         navController = navController,
         headerConfiguration = HeaderConfiguration.LANGUAGE_SCREEN,
         triggerScreen = LANGUAGE_SCREEN_ROUTE,
-        footerConfiguration = FooterConfiguration.BACK_AND_HOME,
+        footerConfiguration = FooterConfiguration.ONLY_BACK,
         onAdviceTriggered = { }
     ) {
         Title(configuration = TitleConfiguration.LANGUAGES)

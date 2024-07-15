@@ -25,6 +25,7 @@ import com.example.kala.ui.screens.commons.HeaderConfiguration
 import com.example.kala.ui.screens.commons.Layout
 import com.example.kala.ui.screens.navigation.ADD_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.HOME_SCREEN_ROUTE
+import com.example.kala.ui.screens.navigation.SIGN_UP_SCREEN_ROUTE
 import com.example.kala.ui.screens.utilities.FormValidation.isValidSignUp
 import com.example.kala.ui.screens.utilities.errorMessageList
 import com.example.kala.ui.theme.dimens
@@ -83,7 +84,7 @@ fun SignUpScreen(
     Layout(
         navController = navController,
         headerConfiguration = HeaderConfiguration.UNREGISTERED_USER,
-        triggerScreen = ADD_EXCHANGE_SCREEN_ROUTE, // TODO Create Sign Up Help Screen
+        triggerScreen = SIGN_UP_SCREEN_ROUTE,
         footerConfiguration = FooterConfiguration.BACK_AND_NEXT,
         onAdviceTriggered = { adviceTriggered = true }
     ) {
