@@ -5,12 +5,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import com.example.kala.R
 import com.example.kala.model.MoneyExchangeService
 import com.example.kala.model.entities.MoneyExchange
 import com.example.kala.ui.components.Title
@@ -49,18 +51,22 @@ fun AddExchangeScreen(
 
     var valueExchange by remember { mutableStateOf("") }
     var typeExchange by remember { mutableStateOf("") }
+    var showTypeExchange by remember { mutableIntStateOf(R.string.empty) }
     var scopeExchange by remember { mutableStateOf("") }
+    var showScopeExchange by remember { mutableIntStateOf(R.string.empty) }
     var descriptionExchange by remember { mutableStateOf("") }
 
     val updateValueExchange: (String) -> Unit = { newValue ->
         val replace = newValue.replace(",", ".")
         valueExchange = replace
     }
-    val updateTypeExchange: (String) -> Unit = { newValue ->
+    val updateTypeExchange: (String, Int) -> Unit = { newValue, newShow ->
         typeExchange = newValue
+        showTypeExchange = newShow
     }
-    val updateScopeExchange: (String) -> Unit = { newValue ->
+    val updateScopeExchange: (String, Int) -> Unit = { newValue, newShow ->
         scopeExchange = newValue
+        showScopeExchange = newShow
     }
     val updateDescriptionExchange: (String) -> Unit = { newValue ->
         descriptionExchange = newValue
@@ -104,14 +110,14 @@ fun AddExchangeScreen(
         Spacer(modifier = Modifier.padding(dimens.space0))
         MenuInput(
             configuration = MenuInputConfiguration.TYPE,
-            valueInput = typeExchange,
+            valueInput = showTypeExchange,
             onValueChange = updateTypeExchange
         )
 
         Spacer(modifier = Modifier.padding(dimens.space0))
         MenuInput(
             configuration = MenuInputConfiguration.SCOPE,
-            valueInput = scopeExchange,
+            valueInput = showScopeExchange,
             onValueChange = updateScopeExchange
         )
 

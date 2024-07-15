@@ -40,7 +40,7 @@
     <string name="add_exchange_screen_help0">Ayuda de la pantalla de Añadir Transacción</string>
     <string name="add_exchange_screen_help1">\'Valor del Intercambio\' se refiere al dinero. Tiene que ser superior a Cero.</string>
     <string name="add_exchange_screen_help2">\'Tipo de la transacción\' se refiere si es un gasto o un ingreso. Tienes que elegir uno.</string>
-    <string name="add_echange_screen_help3">\'Ambito de la transacción\' se refiere en que ámbito se ha usado. Tienes que elegir uno.</string>
+    <string name="add_exchange_screen_help3">\'Ambito de la transacción\' se refiere en que ámbito se ha usado. Tienes que elegir uno.</string>
     <string name="add_exchange_screen_help4">\'Descripción\' se refiere a detalles de la transacción que no se pueden representar con los otros atributos. Es opcional.</string>
     <string name="add_exchange_screen_help5">Rellena todos los campos obligatorios y presiona la flecha de la derecha para continuar.</string>
     <string name="edit_exchange_screen_help0">Ayuda de la pantalla de Editar Transacción</string>

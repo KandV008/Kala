@@ -14,7 +14,7 @@ val ADD_EXCHANGE_SCREEN_HELP = listOf(
     R.string.add_exchange_screen_help0,
     R.string.add_exchange_screen_help1,
     R.string.add_exchange_screen_help2,
-    R.string.add_echange_screen_help3,
+    R.string.add_exchange_screen_help3,
     R.string.add_exchange_screen_help4,
     R.string.add_exchange_screen_help5,
 )
@@ -23,7 +23,7 @@ val EDIT_EXCHANGE_SCREEN_HELP = listOf(
     R.string.edit_exchange_screen_help0,
     R.string.add_exchange_screen_help1,
     R.string.add_exchange_screen_help2,
-    R.string.add_echange_screen_help3,
+    R.string.add_exchange_screen_help3,
     R.string.add_exchange_screen_help4,
     R.string.add_exchange_screen_help5,
 )

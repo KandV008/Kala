@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Kala</string>
+    <string name="empty" translatable="false" />
     <string name="see_report_md">See report</string>
     <string name="see_record_md">See record</string>
     <string name="see_delete_md">Delete Card</string>
@@ -39,7 +40,7 @@
     <string name="add_exchange_screen_help0">Add Exchange Screen Help</string>
     <string name="add_exchange_screen_help1">\'Value of the exchange\' it refers to the money, it must to be higher than Zero</string>
     <string name="add_exchange_screen_help2">\'Type of the exchange\' it refers if you expense or income the money. You have to choose one.</string>
-    <string name="add_echange_screen_help3">\'Scope of the exchange\' it refers to the attribute of the exchange. You have to choose one.</string>
+    <string name="add_exchange_screen_help3">\'Scope of the exchange\' it refers to the attribute of the exchange. You have to choose one.</string>
     <string name="add_exchange_screen_help4">\'Description\' if refers so additional information of the exchange. It is optional to fulfill.</string>
     <string name="add_exchange_screen_help5">Fill all the fields and press the right arrow to continue.</string>
     <string name="edit_exchange_screen_help0">Edit Exchange Screen Help</string>

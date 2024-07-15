@@ -60,8 +60,8 @@ import com.example.kala.ui.theme.fontFamily
 @Composable
 fun MenuInput(
     configuration: MenuInputConfiguration,
-    valueInput: String,
-    onValueChange: (String) -> Unit
+    valueInput: Int,
+    onValueChange: (String, Int) -> Unit
 ) {
     var mExpanded by remember { mutableStateOf(false) }
     val options = configuration.getOptions()
@@ -90,14 +90,14 @@ fun MenuInput(
         ) {
             Column {
                 OutlinedTextField(
-                    value = valueInput,
+                    value = stringResource(id = valueInput),
                     textStyle = TextStyle(
                         fontSize = dimens.fontSize0,
                         fontWeight = FontWeight.Bold,
                         color = Color.Black,
                         fontFamily = fontFamily
                     ),
-                    onValueChange = onValueChange,
+                    onValueChange = {  },
                     readOnly = true,
                     modifier = Modifier
                         .width(dimens.width5)
@@ -155,7 +155,7 @@ fun MenuInput(
                                 )
                             },
                             onClick = {
-                                onValueChange(label.first)
+                                onValueChange(label.first, label.second)
                                 mExpanded = false
                                 selectedImageResource = configuration.getSVG(label.first)
                             }
@@ -192,6 +192,9 @@ fun MenuInput(
 @Composable
 fun PreviewMenuInput() {
     var enumExchange by remember { mutableStateOf("") }
+    var showEnum by remember {
+        mutableIntStateOf(R.string.empty)
+    }
 
     Scaffold {
         LazyColumn (
@@ -203,7 +206,10 @@ fun PreviewMenuInput() {
         ){
             items(MenuInputConfiguration.entries.toTypedArray()){
                     value ->
-                MenuInput(value, enumExchange) { newValue -> enumExchange = newValue }
+                MenuInput(value, showEnum) { newValue, newShow ->
+                    enumExchange = newValue
+                    showEnum = newShow
+                }
                 Spacer(modifier = Modifier.padding(dimens.space0))
             }
         }
