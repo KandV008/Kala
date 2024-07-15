@@ -6,7 +6,9 @@ import android.util.Log
 import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
+import com.example.kala.R
 import com.example.kala.model.entities.MoneyExchange
 import com.example.kala.model.entities.MoneyExchangeScope
 import com.example.kala.model.entities.MoneyExchangeType
@@ -102,6 +104,8 @@ object FireBaseService {
     ) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val current = LocalContext.current
+        val successMessage = stringResource(id = R.string.delete_account_success_message)
+        val failedMessage = stringResource(id = R.string.delete_account_failed_message)
 
         currentUser!!.email?.let {
             database.collection(COLLECTION_TAG)
@@ -113,7 +117,7 @@ object FireBaseService {
                         .addOnSuccessListener {
                             Toast.makeText(
                                 current,
-                                "Account deleted successfully.",
+                                successMessage,
                                 Toast.LENGTH_SHORT
                             ).show()
                             MonthInformationService.clean()
@@ -127,7 +131,7 @@ object FireBaseService {
                     Log.d(TAG, "Error getting documents: ", exception)
                     Toast.makeText(
                         current,
-                        "Account deletion failed.",
+                        failedMessage,
                         Toast.LENGTH_SHORT
                     ).show()
                 }

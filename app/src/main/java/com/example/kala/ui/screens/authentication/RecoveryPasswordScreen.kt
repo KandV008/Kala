@@ -52,6 +52,7 @@ private val FAILURE_LOG_IN_MESSAGE = R.string.failure_log_in_message //TODO Adap
 fun ChangePasswordScreen(
     navController: NavController? = null
 ) {
+    val requestMessage = stringResource(id = R.string.request_message)
 
     var isPopUpVisible by remember { mutableStateOf(false) }
     val hidePopUp: () -> Unit = {
@@ -65,7 +66,6 @@ fun ChangePasswordScreen(
         emailValue = newValue
     }
 
-
     if (adviceTriggered) {
         adviceTriggered = false
         errorMessageList.clear()
@@ -76,7 +76,7 @@ fun ChangePasswordScreen(
             .addOnCompleteListener{
                 if (it.isSuccessful) {
                     Toast
-                        .makeText(current, "Request sent. Check your email", Toast.LENGTH_LONG) // TODO Translate
+                        .makeText(current, requestMessage, Toast.LENGTH_LONG)
                         .show()
                     navController?.navigate(route = MAIN_SCREEN_ROUTE)
                 } else {

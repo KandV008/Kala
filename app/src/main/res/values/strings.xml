@@ -140,4 +140,7 @@
     <string name="sign_up_screen_help2">Enter a valid email and password in the form.</string>
     <string name="sign_up_screen_help3">Your password must contain at least 8 letters, a capital letter and a number.</string>
     <string name="sign_up_screen_help4">You can also register with your Google account by clicking on the Google logo button.</string>
+    <string name="delete_account_success_message">Account deleted successfully.</string>
+    <string name="delete_account_failed_message">Account deletion failed.</string>
+    <string name="request_message">Request sent. Check your email</string>
 </resources>

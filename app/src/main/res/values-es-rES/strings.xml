@@ -140,4 +140,7 @@
     <string name="sign_up_screen_help2">Introduce un correo electrónico y contrasela validos en los formularios para crear la cuenta.</string>
     <string name="sign_up_screen_help3">Tu contraseña tiene que tener como mínimo 8 letras, una letra en mayúsculas y un número.</string>
     <string name="sign_up_screen_help4">También puedes registrarte con tu cuenta de Google presionando en el botón con el logo de Google.</string>
+    <string name="delete_account_success_message">Cuenta borrada con éxito.</string>
+    <string name="delete_account_failed_message">Error al borrar la cuenta.</string>
+    <string name="request_message">Solicitud enviada. Mira tu correo.</string>
 </resources>

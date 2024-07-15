@@ -65,7 +65,7 @@ fun MainScreen(
     Layout(
         navController = navController,
         headerConfiguration = HeaderConfiguration.UNREGISTERED_USER,
-        triggerScreen = MAIN_SCREEN_ROUTE, // TODO Create Main Help Screen
+        triggerScreen = MAIN_SCREEN_ROUTE,
         footerConfiguration = FooterConfiguration.EMPTY,
         onAdviceTriggered = {},
     ) {
