@@ -7,11 +7,11 @@ import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
-import com.example.kala.ui.screens.navigation.MAIN_SCREEN_ROUTE
 import com.example.kala.model.entities.MoneyExchange
 import com.example.kala.model.entities.MoneyExchangeScope
 import com.example.kala.model.entities.MoneyExchangeType
 import com.example.kala.model.entities.MonthInformation
+import com.example.kala.ui.screens.navigation.MAIN_SCREEN_ROUTE
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.QueryDocumentSnapshot
@@ -105,18 +105,32 @@ object FireBaseService {
 
         currentUser
             ?.delete()
-            ?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    currentUser.email?.let {
-                        database.collection(COLLECTION_TAG)
-                            .document(it)
-                            .delete()
-                    }
-                    Toast.makeText(current, "Account deleted successfully.", Toast.LENGTH_SHORT).show()
-                    navController?.navigate(route = MAIN_SCREEN_ROUTE)
-                } else {
-                    Toast.makeText(current, "Account deletion failed.", Toast.LENGTH_SHORT).show()
+            ?.addOnSuccessListener {
+                currentUser.email?.let {
+                    database.collection(COLLECTION_TAG)
+                        .document(it)
+                        .delete()
+                        .addOnSuccessListener {
+                            Toast.makeText(
+                                current,
+                                "Account deleted successfully.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            MonthInformationService.clean()
+                            navController?.navigate(route = MAIN_SCREEN_ROUTE)
+                        }
+                        .addOnFailureListener {exception ->
+                            Log.d(TAG, "Error getting documents: ", exception)
+                            Toast.makeText(
+                                current,
+                                "Account deletion failed.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                 }
+            }
+            ?.addOnFailureListener { exception ->
+                Log.d(TAG, "Error getting documents: ", exception)
             }
     }
 

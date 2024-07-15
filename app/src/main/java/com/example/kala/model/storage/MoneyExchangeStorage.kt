@@ -23,6 +23,9 @@ private const val GET_MONTH_INFORMATION_ACTION_MESSAGE = "[MoneyExchangeStorage]
 private const val GET_MONTH_INFORMATION_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] "
 private const val EXIST_MONTH_INFORMATION_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Exist Month Information"
 private const val EXIST_MONTH_INFORMATION_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] "
+private const val CLEAN_STORAGE_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Clean Storage"
+private const val CLEAN_STORAGE_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] Size of the Storage: "
+
 
 /**
  * Storage class for managing money exchange data.
@@ -184,6 +187,12 @@ object MoneyExchangeStorage {
         val containsKey = this.monthInformationMap.containsKey(idMonth)
         println(EXIST_MONTH_INFORMATION_RESULT_MESSAGE + containsKey)
         return containsKey
+    }
+
+    fun clean() {
+        println(CLEAN_STORAGE_ACTION_MESSAGE)
+        this.monthInformationMap.clear()
+        println(CLEAN_STORAGE_RESULT_MESSAGE +  this.monthInformationMap.size)
     }
 
 }

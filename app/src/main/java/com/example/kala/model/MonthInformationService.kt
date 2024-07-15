@@ -4,16 +4,18 @@ import com.example.kala.model.entities.MonthInformation
 import com.example.kala.model.storage.MoneyExchangeStorage
 import java.util.TreeMap
 
-private const val GET_MONTH_INFORMATION_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Get Month Information"
-private const val GET_MONTH_INFORMATION_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Month id: "
-private const val HAS_NEXT_MONTH_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Has Next Month"
-private const val HAS_NEXT_MONTH_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Exist next month: "
-private const val HAS_PREV_MONTH_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Has Prev Month"
-private const val HAS_PREV_MONTH_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Exist prev month: "
-private const val GET_NEXT_MONTH_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Get Next Month"
-private const val GET_NEXT_MONTH_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Next Month Id: "
-private const val GET_PREV_MONTH_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Get Prev Month"
-private const val GET_PREV_MONTH_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Prev Month Id: "
+private const val GET_MONTH_INFORMATION_ACTION_MESSAGE = "[MonthInformationService][ACTION] Get Month Information"
+private const val GET_MONTH_INFORMATION_RESULT_MESSAGE = "[MonthInformationService][RESULT] Month id: "
+private const val HAS_NEXT_MONTH_ACTION_MESSAGE = "[MonthInformationService][ACTION] Has Next Month"
+private const val HAS_NEXT_MONTH_RESULT_MESSAGE = "[MonthInformationService][RESULT] Exist next month: "
+private const val HAS_PREV_MONTH_ACTION_MESSAGE = "[MonthInformationService][ACTION] Has Prev Month"
+private const val HAS_PREV_MONTH_RESULT_MESSAGE = "[MonthInformationService][RESULT] Exist prev month: "
+private const val GET_NEXT_MONTH_ACTION_MESSAGE = "[MonthInformationService][ACTION] Get Next Month"
+private const val GET_NEXT_MONTH_RESULT_MESSAGE = "[MonthInformationService][RESULT] Next Month Id: "
+private const val GET_PREV_MONTH_ACTION_MESSAGE = "[MonthInformationService][ACTION] Get Prev Month"
+private const val GET_PREV_MONTH_RESULT_MESSAGE = "[MonthInformationService][RESULT] Prev Month Id: "
+private const val CLEAN_STORAGE_ACTION_MESSAGE = "[MonthInformationService][ACTION] Clean Storage"
+private const val CLEAN_STORAGE_RESULT_MESSAGE = "[MonthInformationService][RESULT] Storage cleaned "
 
 object MonthInformationService {
 
@@ -95,6 +97,12 @@ object MonthInformationService {
         val idMonth = "${prevMonth.month}${prevMonth.year}"
         println(GET_PREV_MONTH_RESULT_MESSAGE + idMonth)
         return idMonth
+    }
+
+    fun clean() {
+        println(CLEAN_STORAGE_ACTION_MESSAGE)
+        MoneyExchangeStorage.clean()
+        println(CLEAN_STORAGE_RESULT_MESSAGE)
     }
 
 }

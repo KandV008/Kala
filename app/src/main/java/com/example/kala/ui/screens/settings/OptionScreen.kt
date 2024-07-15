@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.kala.model.FireBaseService
+import com.example.kala.model.MonthInformationService
 import com.example.kala.ui.components.Title
 import com.example.kala.ui.components.TitleConfiguration
 import com.example.kala.ui.components.buttons.LargeButton
@@ -72,6 +73,7 @@ fun OptionScreenBody(navController: NavController? = null){
     val optionFunctions: List<() -> Unit> = listOf(
         {
             getInstance().signOut()
+            MonthInformationService.clean()
             navController?.navigate(route = MAIN_SCREEN_ROUTE)
         },
         { deleteButtonTriggered = true },
