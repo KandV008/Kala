@@ -9,7 +9,10 @@ import com.example.kala.model.entities.MoneyExchangeType
 import com.example.kala.model.entities.MonthInformation
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.firestore
 import java.time.LocalDateTime
 
@@ -97,25 +100,73 @@ object FireBaseService {
         val currentUser = FirebaseAuth.getInstance().currentUser
 
         currentUser!!.email?.let {
-            database.collection(COLLECTION_TAG)
-                .document(it)
+            val users = database.collection(COLLECTION_TAG)
+            val userId = it
+
+            users
+                .document(userId)
                 .delete()
                 .addOnSuccessListener {
-                    currentUser
-                        .delete()
-                        .addOnSuccessListener {
-                            MonthInformationService.clean()
-                            onComplete()
-                        }
-                        .addOnFailureListener { exception ->
-                            throw exception
-                        }
+                    eraseSubCollection(users, userId, currentUser, onComplete)
                 }
                 .addOnFailureListener {exception ->
                     Log.d(TAG, "Error getting documents: ", exception)
                     onFailure()
                 }
         }
+    }
+
+    private fun eraseSubCollection(
+        users: CollectionReference,
+        userId: String,
+        currentUser: FirebaseUser,
+        onComplete: () -> Unit
+    ) {
+        users
+            .document(userId)
+            .collection(SUB_COLLECTION_TAG)
+            .get()
+            .addOnSuccessListener { result ->
+                eraseDocuments(result, currentUser, onComplete)
+            }
+            .addOnFailureListener { exception ->
+                throw exception
+            }
+    }
+
+    private fun eraseDocuments(
+        result: QuerySnapshot,
+        currentUser: FirebaseUser,
+        onComplete: () -> Unit
+    ) {
+        val batch = database.batch()
+
+        for (document in result) {
+            batch.delete(document.reference)
+        }
+
+        batch.commit()
+            .addOnSuccessListener {
+                eraseUserFromAuthentication(currentUser, onComplete)
+            }
+            .addOnFailureListener { exception ->
+                throw exception
+            }
+    }
+
+    private fun eraseUserFromAuthentication(
+        currentUser: FirebaseUser,
+        onComplete: () -> Unit
+    ) {
+        currentUser
+            .delete()
+            .addOnSuccessListener {
+                MonthInformationService.clean()
+                onComplete()
+            }
+            .addOnFailureListener { exception ->
+                throw exception
+            }
     }
 
 }
