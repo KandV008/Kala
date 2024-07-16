@@ -63,14 +63,15 @@ fun SignUpScreen(
             FirebaseAuth
                 .getInstance()
                 .createUserWithEmailAndPassword(emailValue, passwordValue)
-                .addOnCompleteListener {
-                    if (it.isSuccessful){
-                        FireBaseService.saveUser(emailValue)
+                .addOnSuccessListener {
+                    FirebaseAuth.getInstance().currentUser?.uid?.let {
+                        FireBaseService.saveUser(it)
                         navController?.navigate(route = HOME_SCREEN_ROUTE)
-                    } else {
-                        errorMessageList.add(FAILURE_CREATING_USER_MESSAGE)
-                        isPopUpVisible = true
                     }
+                }
+                .addOnFailureListener {
+                    errorMessageList.add(FAILURE_CREATING_USER_MESSAGE)
+                    isPopUpVisible = true
                 }
         } else {
             isPopUpVisible = true

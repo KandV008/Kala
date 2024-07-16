@@ -22,8 +22,8 @@ object FireBaseService {
     private const val SUB_COLLECTION_TAG = "summary"
     private val database = Firebase.firestore
 
-    fun saveUser(email: String) {
-        val documentRef = database.collection(COLLECTION_TAG).document(email)
+    fun saveUser(userId: String) {
+        val documentRef = database.collection(COLLECTION_TAG).document(userId)
 
         for ((key, monthInfo) in MonthInformationService.getAllMonthInformation()) {
             val docRef = documentRef.collection(SUB_COLLECTION_TAG).document(key)
@@ -38,9 +38,9 @@ object FireBaseService {
         }
     }
 
-    fun loadUser(email: String, onComplete: () -> Unit) {
+    fun loadUser(userId: String, onComplete: () -> Unit) {
         database.collection(COLLECTION_TAG)
-            .document(email)
+            .document(userId)
             .collection(SUB_COLLECTION_TAG)
             .get()
             .addOnSuccessListener { result ->
@@ -88,7 +88,7 @@ object FireBaseService {
     }
 
     fun updateUser() {
-        FirebaseAuth.getInstance().currentUser?.email?.let {
+        FirebaseAuth.getInstance().currentUser?.uid?.let {
             this.saveUser(it)
         }
     }
@@ -99,7 +99,7 @@ object FireBaseService {
     ) {
         val currentUser = FirebaseAuth.getInstance().currentUser
 
-        currentUser!!.email?.let {
+        currentUser!!.uid.let {
             val users = database.collection(COLLECTION_TAG)
             val userId = it
 
