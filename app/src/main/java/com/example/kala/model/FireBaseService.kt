@@ -3,17 +3,10 @@ package com.example.kala.model
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.util.Log
-import android.widget.Toast
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavController
-import com.example.kala.R
 import com.example.kala.model.entities.MoneyExchange
 import com.example.kala.model.entities.MoneyExchangeScope
 import com.example.kala.model.entities.MoneyExchangeType
 import com.example.kala.model.entities.MonthInformation
-import com.example.kala.ui.screens.navigation.MAIN_SCREEN_ROUTE
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.QueryDocumentSnapshot
@@ -97,14 +90,11 @@ object FireBaseService {
         }
     }
 
-    @Composable
-    fun DeleteUser(
-        navController: NavController?
+    fun deleteUser(
+        onFailure: () -> Unit,
+        onComplete: () -> Unit
     ) {
         val currentUser = FirebaseAuth.getInstance().currentUser
-        val current = LocalContext.current
-        val successMessage = stringResource(id = R.string.delete_account_success_message)
-        val failedMessage = stringResource(id = R.string.delete_account_failed_message)
 
         currentUser!!.email?.let {
             database.collection(COLLECTION_TAG)
@@ -114,13 +104,8 @@ object FireBaseService {
                     currentUser
                         .delete()
                         .addOnSuccessListener {
-                            Toast.makeText(
-                                current,
-                                successMessage,
-                                Toast.LENGTH_SHORT
-                            ).show()
                             MonthInformationService.clean()
-                            navController?.navigate(route = MAIN_SCREEN_ROUTE)
+                            onComplete()
                         }
                         .addOnFailureListener { exception ->
                             throw exception
@@ -128,14 +113,9 @@ object FireBaseService {
                 }
                 .addOnFailureListener {exception ->
                     Log.d(TAG, "Error getting documents: ", exception)
-                    Toast.makeText(
-                        current,
-                        failedMessage,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    onFailure()
                 }
         }
-
     }
 
 }

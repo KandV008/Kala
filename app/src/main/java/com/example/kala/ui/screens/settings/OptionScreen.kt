@@ -1,6 +1,7 @@
 package com.example.kala.ui.screens.settings
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,8 +12,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import com.example.kala.R
 import com.example.kala.model.FireBaseService
 import com.example.kala.model.MonthInformationService
 import com.example.kala.ui.components.Title
@@ -61,6 +65,7 @@ fun OptionScreen(navController: NavController? = null){
 /**
  * Composable function for rendering the body of the Option screen.
  */
+@SuppressLint("ShowToast")
 @Composable
 fun OptionScreenBody(navController: NavController? = null){
     var deleteButtonTriggered by remember {
@@ -91,7 +96,16 @@ fun OptionScreenBody(navController: NavController? = null){
 
     if (deletingUser){
         deletingUser = false
-        FireBaseService.DeleteUser(navController)
+        val current = LocalContext.current
+        val successMessage = stringResource(id = R.string.delete_account_success_message)
+        val failedMessage = stringResource(id = R.string.delete_account_failed_message)
+
+        FireBaseService.deleteUser({
+            Toast.makeText(current, failedMessage, Toast.LENGTH_LONG).show()
+        }) {
+            Toast.makeText(current, successMessage, Toast.LENGTH_LONG).show()
+            navController?.navigate(route = MAIN_SCREEN_ROUTE)
+        }
     }
 
     LazyColumn{
