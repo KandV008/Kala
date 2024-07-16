@@ -143,4 +143,5 @@
     <string name="delete_account_success_message">Account deleted successfully.</string>
     <string name="delete_account_failed_message">Account deletion failed.</string>
     <string name="request_message">Request sent. Check your email</string>
+    <string name="failure_send_request_message">Invalid email. Try again!</string>
 </resources>

@@ -143,4 +143,5 @@
     <string name="delete_account_success_message">Cuenta borrada con éxito.</string>
     <string name="delete_account_failed_message">Error al borrar la cuenta.</string>
     <string name="request_message">Solicitud enviada. Mira tu correo.</string>
+    <string name="failure_send_request_message">El email no es válido. Vuelve a intentarlo.</string>
 </resources>

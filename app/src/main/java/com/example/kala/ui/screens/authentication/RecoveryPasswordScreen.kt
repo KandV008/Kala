@@ -37,7 +37,6 @@ import com.example.kala.ui.components.popUps.InvalidFormPopUp
 import com.example.kala.ui.screens.commons.FooterConfiguration
 import com.example.kala.ui.screens.commons.HeaderConfiguration
 import com.example.kala.ui.screens.commons.Layout
-import com.example.kala.ui.screens.navigation.ADD_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.CHANGE_PASS_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.MAIN_SCREEN_ROUTE
 import com.example.kala.ui.screens.utilities.errorMessageList
@@ -45,7 +44,7 @@ import com.example.kala.ui.theme.dimens
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 
-private val FAILURE_LOG_IN_MESSAGE = R.string.failure_log_in_message //TODO Adapt message
+private val FAILURE_SEND_REQUEST_MESSAGE = R.string.failure_send_request_message
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -80,7 +79,7 @@ fun ChangePasswordScreen(
                         .show()
                     navController?.navigate(route = MAIN_SCREEN_ROUTE)
                 } else {
-                    errorMessageList.add(FAILURE_LOG_IN_MESSAGE)
+                    errorMessageList.add(FAILURE_SEND_REQUEST_MESSAGE)
                     isPopUpVisible = true
                 }
             }

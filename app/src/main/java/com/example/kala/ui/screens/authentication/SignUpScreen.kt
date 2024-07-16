@@ -108,7 +108,6 @@ fun SignUpScreen(
         )
 
         Spacer(modifier = Modifier.padding(dimens.space0))
-        // TODO Add special sign up
     }
 }
 
