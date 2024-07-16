@@ -42,7 +42,7 @@ object FireBaseService {
         }
     }
 
-    fun loadUser(email: String) {
+    fun loadUser(email: String, onComplete: () -> Unit) {
         database.collection(COLLECTION_TAG)
             .document(email)
             .collection(SUB_COLLECTION_TAG)
@@ -52,12 +52,11 @@ object FireBaseService {
                     val monthInformation = documentToMonthInformation(document)
                     MonthInformationService.addMonthInformation(monthInformation)
                 }
+                onComplete()
             }
             .addOnFailureListener { exception ->
                 Log.d(TAG, "Error getting documents: ", exception)
             }
-
-        println()
     }
 
     private fun documentToMonthInformation(document: QueryDocumentSnapshot): MonthInformation {

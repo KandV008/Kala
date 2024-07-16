@@ -68,14 +68,14 @@ fun LogInScreen(
             FirebaseAuth
                 .getInstance()
                 .signInWithEmailAndPassword(emailValue, passwordValue)
-                .addOnCompleteListener {
-                    if (it.isSuccessful){
-                        FireBaseService.loadUser(emailValue)
+                .addOnSuccessListener {
+                    FireBaseService.loadUser(emailValue){
                         navController?.navigate(route = HOME_SCREEN_ROUTE)
-                    } else {
-                        errorMessageList.add(FAILURE_LOG_IN_MESSAGE)
-                        isPopUpVisible = true
                     }
+                }
+                .addOnFailureListener{
+                    errorMessageList.add(FAILURE_LOG_IN_MESSAGE)
+                    isPopUpVisible = true
                 }
         } else {
             isPopUpVisible = true
