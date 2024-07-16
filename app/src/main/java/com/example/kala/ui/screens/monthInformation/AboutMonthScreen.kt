@@ -60,9 +60,9 @@ fun AboutMonthScreen(
     navController: NavController? = null,
     month: String,
     type: String,
-
     ){
-    val currentMonth = MonthInformationService.getMonthInformation(month)
+    var monthId by remember { mutableStateOf(month) }
+    val currentMonth = MonthInformationService.getMonthInformation(monthId)
     val currentType = MoneyExchangeType.valueOf(type)
 
     val titleConfiguration =
@@ -71,29 +71,19 @@ fun AboutMonthScreen(
         else
             TitleConfiguration.INCOME
 
-    var leftButtonTriggered by remember {
-        mutableStateOf(false)
-    }
-    val onLeftTriggered = {
-        leftButtonTriggered = true
-    }
-    var rightButtonTriggered by remember {
-        mutableStateOf(false)
-    }
-    val onRightTriggered = {
-        rightButtonTriggered = true
-    }
+    var leftButtonTriggered by remember { mutableStateOf(false) }
+    val onLeftTriggered = { leftButtonTriggered = true }
+    var rightButtonTriggered by remember { mutableStateOf(false) }
+    val onRightTriggered = { rightButtonTriggered = true }
 
     if (rightButtonTriggered){
         rightButtonTriggered = false
-        val nextMonth = MonthInformationService.getNextMonth(currentMonth)
-        navController?.navigate(route = "$ABOUT_MONTH_SCREEN_ROUTE/$nextMonth/$currentType")
+        monthId = MonthInformationService.getNextMonth(currentMonth)
     }
 
     if (leftButtonTriggered){
         leftButtonTriggered = false
-        val prevMonth = MonthInformationService.getPrevMonth(currentMonth)
-        navController?.navigate(route = "$ABOUT_MONTH_SCREEN_ROUTE/$prevMonth/$currentType")
+        monthId = MonthInformationService.getPrevMonth(currentMonth)
     }
 
     Layout(
@@ -106,7 +96,7 @@ fun AboutMonthScreen(
         Title(configuration = titleConfiguration)
         Spacer(modifier = Modifier.padding(dimens.space1))
         PieChartInfo(
-            month = month,
+            month = monthId,
             type = type,
             onLeftTriggered = onLeftTriggered,
             onRightTriggered = onRightTriggered

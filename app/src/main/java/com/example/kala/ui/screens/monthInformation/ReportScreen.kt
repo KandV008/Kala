@@ -38,7 +38,8 @@ fun ReportScreen(
     navController: NavController? = null,
     currentMonth: String,
 ){
-    val monthInformation = MonthInformationService.getMonthInformation(currentMonth)
+    var monthId by remember { mutableStateOf(currentMonth) }
+    val monthInformation = MonthInformationService.getMonthInformation(monthId)
 
     var leftButtonTriggered by remember { mutableStateOf(false) }
     val onLeftTriggered = { leftButtonTriggered = true }
@@ -47,14 +48,12 @@ fun ReportScreen(
 
     if (rightButtonTriggered){
         rightButtonTriggered = false
-        val nextMonth = MonthInformationService.getNextMonth(monthInformation)
-        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$nextMonth")
+        monthId = MonthInformationService.getNextMonth(monthInformation)
     }
 
     if (leftButtonTriggered){
         leftButtonTriggered = false
-        val prevMonth = MonthInformationService.getPrevMonth(monthInformation)
-        navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$prevMonth")
+        monthId = MonthInformationService.getPrevMonth(monthInformation)
     }
 
     Layout(
@@ -68,12 +67,12 @@ fun ReportScreen(
         Spacer(modifier = Modifier.padding(dimens.space1))
         BarChartInfo(
             configuration = ChartConfiguration.REPORT_PAGE,
-            month = currentMonth,
+            month = monthId,
             onLeftTriggered = onLeftTriggered,
             onRightTriggered = onRightTriggered,
         )
         Spacer(modifier = Modifier.padding(dimens.space1))
-        ReportScreenBody(navController, currentMonth)
+        ReportScreenBody(navController, monthId)
     }
 
 }
