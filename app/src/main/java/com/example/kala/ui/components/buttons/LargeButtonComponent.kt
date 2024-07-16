@@ -43,6 +43,7 @@ import com.example.kala.ui.theme.fontFamily
  * Composable function for rendering a large button with customizable configuration.
  *
  * @param configuration The configuration for the large button.
+ * @param onAdviceTriggered Callback triggered when the button is clicked.
  */
 @Composable
 fun LargeButton(
@@ -110,16 +111,15 @@ fun LargeButton(
 @Composable
 fun LargeButtonPreview() {
     Scaffold {
-        LazyColumn (
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-        ){
-            items(LargeButtonConfiguration.entries.toTypedArray()){
-                    value ->
-                LargeButton(configuration = value){}
+        ) {
+            items(LargeButtonConfiguration.entries.toTypedArray()) { value ->
+                LargeButton(configuration = value) {}
                 Spacer(modifier = Modifier.padding(dimens.padding0))
             }
         }

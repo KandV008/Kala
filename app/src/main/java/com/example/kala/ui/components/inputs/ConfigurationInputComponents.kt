@@ -7,10 +7,9 @@ import com.example.kala.R
 import com.example.kala.model.entities.MoneyExchangeScope
 import com.example.kala.model.entities.MoneyExchangeType
 
-/*
-    General
+/**
+ * Colors and styles for text input fields using TextField in Compose.
  */
-
 val inputTextColor = TextFieldColors(
     focusedTextColor = Color.Unspecified,
     unfocusedTextColor = Color.Unspecified,
@@ -57,10 +56,6 @@ val inputTextColor = TextFieldColors(
     errorSuffixColor = Color.Unspecified
 )
 
-/*
-    SmallTextInputComponent
- */
-
 val USERNAME_LAYER_STI = R.string.username_layer_sti
 val USERNAME_PLACEHOLDER_STI = R.string.username_placeholder_sti
 val EMAIL_LAYER_STI = R.string.email_layer_sti
@@ -70,11 +65,17 @@ val PASSWORD_PLACEHOLDER_STI = R.string.password_placeholder_sti
 val NEW_PASSWORD_LAYER_STI = R.string.new_password_layer_sti
 val RESET_PASSWORD_LAYER_STI = R.string.reset_password_layer_sti
 
+/**
+ * Configuration enum for small text input fields, defining their layer, placeholder, and associated SVG file.
+ * @param layer Resource ID for the layer text of the input field.
+ * @param placeholder Resource ID for the placeholder text of the input field.
+ * @param svgFile Resource ID for the SVG file associated with the input field.
+ */
 enum class SmallTextInputConfiguration(
     private val layer: Int,
     private val placeholder: Int,
     private val svgFile: Int,
-){
+) {
     USERNAME(
         USERNAME_LAYER_STI,
         USERNAME_PLACEHOLDER_STI,
@@ -101,44 +102,59 @@ enum class SmallTextInputConfiguration(
         R.drawable.ic_pass,
     );
 
-    fun getLayer(): Int{
+    /**
+     * Returns the resource ID for the layer text.
+     */
+    fun getLayer(): Int {
         return layer
     }
 
-    fun getPlaceholder(): Int{
+    /**
+     * Returns the resource ID for the placeholder text.
+     */
+    fun getPlaceholder(): Int {
         return placeholder
     }
 
-    fun getSVGFile(): Int{
+    /**
+     * Returns the resource ID for the SVG file associated with the input configuration.
+     */
+    fun getSVGFile(): Int {
         return svgFile
     }
 
-    fun isPassword(): Boolean{
+    /**
+     * Checks if the input configuration represents a password field.
+     */
+    fun isPassword(): Boolean {
         return (this == PASSWORD) || (this == NEW_PASSWORD) || (this == REPEAT_PASSWORD)
     }
 
 }
-
-/*
-    MenuInputComponent
- */
 
 val SCOPE_LABEL_MI = R.string.scope_label_mi
 val SCOPE_PLACEHOLDER_MI = R.string.scope_placeholder_mi
 val TYPE_LABEL_MI = R.string.type_label_mi
 val TYPE_PLACEHOLDER_MI = R.string.type_placeholder_mi
 
+/**
+ * Configuration enum for menu input fields, defining their label, placeholder, options, and associated SVG map.
+ * @param label Resource ID for the label text of the menu input.
+ * @param placeholder Resource ID for the placeholder text of the menu input.
+ * @param options List of pairs representing options (name, label) available for selection.
+ * @param svgMap Map associating each option (as String) with its corresponding SVG resource ID.
+ */
 enum class MenuInputConfiguration(
     private val label: Int,
     private val placeholder: Int,
     private val options: List<Pair<String, Int>>,
     private val svgMap: Map<String, Int>,
-){
+) {
     SCOPE(
         SCOPE_LABEL_MI,
         SCOPE_PLACEHOLDER_MI,
         listOf(
-            Pair(MoneyExchangeScope.FOOD.toString(), MoneyExchangeScope.FOOD.getLabel()) ,
+            Pair(MoneyExchangeScope.FOOD.toString(), MoneyExchangeScope.FOOD.getLabel()),
             Pair(MoneyExchangeScope.LEISURE.toString(), MoneyExchangeScope.LEISURE.getLabel()),
             Pair(MoneyExchangeScope.MEDICINE.toString(), MoneyExchangeScope.MEDICINE.getLabel()),
             Pair(MoneyExchangeScope.USEFUL.toString(), MoneyExchangeScope.USEFUL.getLabel()),
@@ -162,22 +178,37 @@ enum class MenuInputConfiguration(
         mapOf(
             MoneyExchangeType.INCOME.toString() to R.drawable.ic_income,
             MoneyExchangeType.EXPENSE.toString() to R.drawable.ic_expense,
-            )
+        )
     );
 
-    fun getLabel(): Int{
+    /**
+     * Configuration enum for menu input fields, defining their label, placeholder, options, and associated SVG map.
+     */
+    fun getLabel(): Int {
         return label
     }
 
-    fun getOptions(): List<Pair<String, Int>>{
+    /**
+     * Returns the list of option pairs (name, label) associated with the configuration.
+     */
+    fun getOptions(): List<Pair<String, Int>> {
         return options
     }
 
-    fun getPlaceholder(): Int{
+    /**
+     * Returns the resource ID for the placeholder text.
+     */
+
+    fun getPlaceholder(): Int {
         return placeholder
     }
 
-    fun getSVG(option: String): Int{
+    /**
+     * Returns the resource ID for the SVG icon associated with the specified option.
+     * @param option The name of the option as String.
+     * @return Resource ID of the SVG icon associated with the option, defaulting to R.drawable.ic_question if not found.
+     */
+    fun getSVG(option: String): Int {
         return svgMap.getOrDefault(option, R.drawable.ic_question)
     }
 }

@@ -37,10 +37,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.kala.ui.screens.utilities.Utilities
 import com.example.kala.model.entities.MoneyExchange
 import com.example.kala.model.entities.MoneyExchangeScope
 import com.example.kala.model.entities.MoneyExchangeType
+import com.example.kala.ui.screens.utilities.Utilities
 import com.example.kala.ui.screens.utilities.Utilities.getFormattedDate
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.Green1
@@ -57,7 +57,7 @@ import com.example.kala.ui.theme.dimens
 fun Card(
     moneyExchange: MoneyExchange,
     onAdviceTriggered: (Int, String) -> Unit
-){
+) {
     val svgFile = MoneyExchangeScope.getSVGFile(moneyExchange.scope)
     val valueSymbol = if (moneyExchange.type == MoneyExchangeType.EXPENSE) "-" else "+"
     val valueColor = if (moneyExchange.type == MoneyExchangeType.EXPENSE) Red0 else Green1
@@ -150,7 +150,7 @@ fun Card(
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Preview(showBackground = true)
 @Composable
-fun CardPreview(){
+fun CardPreview() {
     // Initializing state variables
     var adviceTriggered by remember { mutableStateOf(false) }
     var cardSelected by remember { mutableIntStateOf(-1) }
@@ -171,13 +171,13 @@ fun CardPreview(){
     val moneyExchange = MoneyExchange(value, type, scope, description)
 
     Scaffold {
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-        ){
+        ) {
             Card(moneyExchange, onAdviceTriggered)
         }
     }

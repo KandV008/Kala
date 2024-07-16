@@ -33,7 +33,6 @@ data class MoneyExchange(
         description
     )
 
-
     /**
      * Overrides the equals function to compare MoneyExchange objects based on their dates.
      *

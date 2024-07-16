@@ -39,6 +39,14 @@ val CONFIRMATION_TEXT_POP_UP = R.string.confirmation_text_pop_up
 val CONFIRMATION_BUTTON_POP_UP = R.string.confirmation_button_pop_up
 val CONFIRMATION_DISMISS_POP_UP = R.string.confirmation_dismiss_pop_up
 
+/**
+ * Composable function that displays a confirmation dialog with optional dismiss button.
+ *
+ * @param onConfirmButton Callback function invoked when the confirmation button is clicked.
+ *                        Defaults to an empty lambda if not provided.
+ * @param onDismissButton Callback function invoked when the dismiss button is clicked.
+ *                        Defaults to an empty lambda if not provided.
+ */
 @Composable
 fun ConfirmationPopUp(
     onConfirmButton: () -> Unit = {},
@@ -46,7 +54,7 @@ fun ConfirmationPopUp(
 ) {
     AlertDialog(
         containerColor = Color.White,
-        onDismissRequest = {  },
+        onDismissRequest = { },
         title = {
             Text(
                 text = stringResource(id = CONFIRMATION_TITLE_POP_UP),
@@ -75,8 +83,7 @@ fun ConfirmationPopUp(
                     modifier = Modifier
                         .height(dimens.height2)
                         .width(dimens.width5)
-                        .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
-                    ,
+                        .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded)),
                 ) {
                     Button(
                         onClick = onConfirmButton,
@@ -113,8 +120,7 @@ fun ConfirmationPopUp(
                     modifier = Modifier
                         .height(dimens.height2)
                         .width(dimens.width5)
-                        .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
-                    ,
+                        .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded)),
                 ) {
                     Button(
                         onClick = onDismissButton,
@@ -146,18 +152,22 @@ fun ConfirmationPopUp(
 
 }
 
+/**
+ * Preview function to visually represent the [ConfirmationPopUp] composable.
+ * Displays a scaffolded column with the [ConfirmationPopUp] content.
+ */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Preview
 @Composable
 fun ConfirmationButton() {
     Scaffold {
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-        ){
+        ) {
             ConfirmationPopUp()
         }
     }

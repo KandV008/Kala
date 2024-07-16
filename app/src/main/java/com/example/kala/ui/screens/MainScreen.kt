@@ -35,6 +35,11 @@ import com.example.kala.ui.screens.navigation.MAIN_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.SIGN_UP_SCREEN_ROUTE
 import com.example.kala.ui.theme.dimens
 
+/**
+ * Main screen composable that displays the main interface with options to log in or sign up.
+ *
+ * @param navController Optional navigation controller to handle navigation actions.
+ */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen(
@@ -46,7 +51,7 @@ fun MainScreen(
     val onLogInTriggered = {
         logInButtonTriggered = true
     }
-    if (logInButtonTriggered){
+    if (logInButtonTriggered) {
         logInButtonTriggered = false
         navController?.navigate(route = LOG_IN_SCREEN_ROUTE)
     }
@@ -57,7 +62,7 @@ fun MainScreen(
     val onSignUpTriggered = {
         signUpButtonTriggered = true
     }
-    if (signUpButtonTriggered){
+    if (signUpButtonTriggered) {
         signUpButtonTriggered = false
         navController?.navigate(route = SIGN_UP_SCREEN_ROUTE)
     }
@@ -88,8 +93,11 @@ fun MainScreen(
     }
 }
 
+/**
+ * Composable function to display the subtitle with a specific style.
+ */
 @Composable
-fun SubTitle(){
+fun SubTitle() {
     Box(
         modifier = Modifier
             .height(dimens.height2)
@@ -99,7 +107,7 @@ fun SubTitle(){
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            text = stringResource(id = R.string.slogan) ,
+            text = stringResource(id = R.string.slogan),
             fontSize = dimens.fontSize0,
             color = Color.Black,
             textAlign = TextAlign.Center,
@@ -109,7 +117,7 @@ fun SubTitle(){
 }
 
 /**
- * Composable function for previewing adding a new money exchange.
+ * Composable function for previewing the main screen.
  */
 @Preview(showBackground = true)
 @Composable

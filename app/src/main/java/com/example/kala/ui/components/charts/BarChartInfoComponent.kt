@@ -35,11 +35,11 @@ import co.yml.charts.ui.barchart.BarChart
 import co.yml.charts.ui.barchart.models.BarChartData
 import co.yml.charts.ui.barchart.models.BarData
 import com.example.kala.R
-import com.example.kala.ui.components.buttons.ChartButtonConfiguration
-import com.example.kala.ui.components.ChartConfiguration
-import com.example.kala.model.entities.MonthInformation
-import com.example.kala.ui.components.buttons.ChartButton
 import com.example.kala.model.MonthInformationService
+import com.example.kala.model.entities.MonthInformation
+import com.example.kala.ui.components.ChartConfiguration
+import com.example.kala.ui.components.buttons.ChartButton
+import com.example.kala.ui.components.buttons.ChartButtonConfiguration
 import com.example.kala.ui.screens.utilities.Utilities
 import com.example.kala.ui.screens.utilities.Utilities.getMonthString
 import com.example.kala.ui.theme.BoneWhite
@@ -54,13 +54,21 @@ val INCOME_TITLE_CHART = R.string.income_title_chart
 val BALANCE_TITLE_CHART = R.string.balance_title_chart
 val EXPENSE_TITLE_CHART = R.string.expense_title_chart
 
+/**
+ * Composable function for displaying a bar chart with header, body, and footer information.
+ *
+ * @param configuration The configuration for the chart, including alpha values and behaviors.
+ * @param month The current month for which the chart displays data.
+ * @param onLeftTriggered Callback triggered when the left chart button is clicked.
+ * @param onRightTriggered Callback triggered when the right chart button is clicked.
+ */
 @Composable
 fun BarChartInfo(
     configuration: ChartConfiguration,
     month: String,
     onLeftTriggered: () -> Unit = {},
     onRightTriggered: () -> Unit = {},
-){
+) {
     val currentMonth = MonthInformationService.getMonthInformation(month)
 
     Box(
@@ -68,7 +76,7 @@ fun BarChartInfo(
             .height(dimens.height9)
             .width(dimens.width9)
             .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
-    ){
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -85,8 +93,8 @@ fun BarChartInfo(
                 modifier = Modifier
                     .clip(RoundedCornerShape(50.dp))
                     .size(dimens.height7)
-            ){
-                if (currentMonth.summary.size != 0){
+            ) {
+                if (currentMonth.summary.size != 0) {
                     BarChartBody(currentMonth)
                 } else {
                     EmptyBarChartAdvice()
@@ -98,13 +106,21 @@ fun BarChartInfo(
     }
 }
 
+/**
+ * Composable function for displaying the header section of a bar chart.
+ *
+ * @param configuration The configuration for the chart, including alpha values and behaviors.
+ * @param currentMonth Information about the current month displayed in the chart.
+ * @param onLeftTriggered Callback triggered when the left chart button is clicked.
+ * @param onRightTriggered Callback triggered when the right chart button is clicked.
+ */
 @Composable
 fun BarChartHeader(
     configuration: ChartConfiguration,
     currentMonth: MonthInformation,
     onLeftTriggered: () -> Unit = {},
     onRightTriggered: () -> Unit = {},
-){
+) {
     val leftChartButtonAlpha: Int = MonthInformationService.hasPrevMonth(currentMonth)
     val rightChartButtonAlpha: Int = MonthInformationService.hasNextMonth(currentMonth)
 
@@ -135,16 +151,21 @@ fun BarChartHeader(
     }
 }
 
+/**
+ * Composable function for displaying the body section of a bar chart.
+ *
+ * @param currentMonth Information about the current month displayed in the chart.
+ */
 @Composable
 fun BarChartBody(
     currentMonth: MonthInformation
-){
+) {
     val barsData = listOf(
         BarData(Point(0F, 0F), Color.White),
         BarData(Point(1.75F, currentMonth.incomeMoney.toFloat()), Green1),
         BarData(Point(2.5F, currentMonth.expensedMoney.toFloat()), Red0),
         BarData(Point(4F, 0F), Color.White),
-        )
+    )
 
     val xAxisData = AxisData.Builder()
         .axisLineColor(Color.Black)
@@ -170,18 +191,19 @@ fun BarChartBody(
 
     BarChart(
         modifier = Modifier
-            .background(Color.White)
-        ,
+            .background(Color.White),
         barChartData = barChartData,
     )
 }
 
+/**
+ * Composable function for displaying advice when the bar chart is empty.
+ */
 @Composable
-fun EmptyBarChartAdvice(){
+fun EmptyBarChartAdvice() {
     Column(
         modifier = Modifier
-            .fillMaxSize()
-        ,
+            .fillMaxSize(),
         verticalArrangement = Arrangement.Center
     ) {
         Text(
@@ -196,10 +218,15 @@ fun EmptyBarChartAdvice(){
 
 }
 
+/**
+ * Composable function for displaying the footer section of a bar chart.
+ *
+ * @param currentMonth Information about the current month displayed in the chart.
+ */
 @Composable
 fun BarChartFooter(
     currentMonth: MonthInformation
-){
+) {
     val incomeText = Utilities.formatMoneyValue(currentMonth.incomeMoney)
     val expenseText = Utilities.formatMoneyValue(currentMonth.expensedMoney)
     val balanceValue = currentMonth.incomeMoney - currentMonth.expensedMoney
@@ -230,14 +257,14 @@ fun BarChartFooter(
  * @param color The color associated with the chart information.
  */
 @Composable
-fun BarChartSummary(title: Int, value: String, color: Color){
-    Column (
+fun BarChartSummary(title: Int, value: String, color: Color) {
+    Column(
         modifier = Modifier
             .height(dimens.height3)
             .width(dimens.width1),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
-    ){
+    ) {
         Text(
             text = stringResource(id = title),
             color = color,
@@ -266,15 +293,14 @@ fun BarChartInfoPreview() {
     val idMonth = "example"
 
     Scaffold {
-        LazyColumn (
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-        ){
-            items(ChartConfiguration.entries.toTypedArray()){
-                    value ->
+        ) {
+            items(ChartConfiguration.entries.toTypedArray()) { value ->
                 BarChartInfo(configuration = value, month = idMonth)
                 Spacer(modifier = Modifier.padding(dimens.space1))
             }

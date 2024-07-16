@@ -3,44 +3,34 @@ package com.example.kala.ui.components
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.kala.R
-import com.example.kala.ui.components.buttons.NavigationButtonConfiguration
-
-/*
-    General
- */
 
 const val SVG_DESCRIPTION = "SVG from Button"
-fun invalidArgument(){
-    println("NOT VALID CONFIGURATION")
-}
-
 const val DEFAULT_FLOAT = 1F
 const val NAME_APPLICATION = "Kala"
-const val DEFAULT_STRING = "Sample Text"
 
-/*
-    LogoComponent
+/**
+ * Enum defining different configurations for the logo component.
+ *
+ * @property size The size of the logo in Dp (density-independent pixels).
  */
-
-enum class LogoConfiguration(private val size: Dp){
+enum class LogoConfiguration(private val size: Dp) {
     SMALL(150.dp),
     LARGE(200.dp);
 
+    /**
+     * Retrieves the size of the logo.
+     *
+     * @return The size of the logo in Dp.
+     */
     fun getSize(): Dp {
         return size
     }
 }
 
-/*
-    TitleComponent
- */
-
 val SIGN_UP_TITLE = R.string.sign_up_title
 val LOG_IN_TITLE = R.string.log_in_title
 val RECOVERY_PASS_TITLE = R.string.recovery_pass_title
-val REQUEST_DONE_TITLE = R.string.request_done_title
 val CHANGE_PASS_TITLE = R.string.change_pass_title
-val CONFIRMATION_TITLE = R.string.confirmation_title
 val OPTIONS_TITLE = R.string.options
 val ADD_EXCHANGE_TITLE = R.string.add_exchange_title
 val LANGUAGES_TITLE = R.string.languages_title
@@ -51,13 +41,19 @@ val REPORT_TITLE = R.string.report_title
 val EXPENSE_TITLE = R.string.expense_title
 val INCOME_TITLE = R.string.income_title
 
-enum class TitleConfiguration(private val displayName: Int){
+/**
+ * Enum class representing various screen titles used in the application.
+ *
+ * Each enum constant is associated with a title resource ID from `R.string`.
+ * This enum provides a centralized way to access title resources throughout the application.
+ *
+ * @property displayName The title resource ID associated with each enum constant.
+ */
+enum class TitleConfiguration(private val displayName: Int) {
     SIGN_UP(SIGN_UP_TITLE),
     LOG_IN(LOG_IN_TITLE),
     RECOVERY_PASS(RECOVERY_PASS_TITLE),
-    REQUEST_DONE(REQUEST_DONE_TITLE),
     CHANGE_PASS(CHANGE_PASS_TITLE),
-    CONFIRMATION(CONFIRMATION_TITLE),
     OPTIONS(OPTIONS_TITLE),
     ADD_EXCHANGE(ADD_EXCHANGE_TITLE),
     LANGUAGES(LANGUAGES_TITLE),
@@ -68,23 +64,34 @@ enum class TitleConfiguration(private val displayName: Int){
     EXPENSE(EXPENSE_TITLE),
     INCOME(INCOME_TITLE);
 
+    /**
+     * Retrieves the title resource ID associated with the enum constant.
+     *
+     * @return The title resource ID as an integer.
+     */
     fun getDisplayName(): Int {
         return displayName
     }
 }
 
-/*
-    ChartComponent
+/**
+ * Enum defining configurations for charts in the application.
+ *
+ * @property alpha The alpha value for the chart configuration.
  */
-
 enum class ChartConfiguration(
     private val alpha: Float,
-){
+) {
     HOME_PAGE(0F),
     REPORT_PAGE(1F),
     ;
 
-    fun alpha(): Float{
+    /**
+     * Retrieves the alpha value of the chart configuration.
+     *
+     * @return The alpha value of the chart configuration.
+     */
+    fun alpha(): Float {
         return alpha
     }
 }

@@ -4,27 +4,40 @@ import com.example.kala.model.entities.MoneyExchange
 import com.example.kala.model.entities.MonthInformation
 import java.util.TreeMap
 
-private const val SAVE_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Save Money Exchange"
-private const val CREATE_NEW_MONTH_INFORMATION_ADVICE_MESSAGE = "[MoneyExchangeStorage][ADVICE] Creating a new Month Information"
+private const val SAVE_MONEY_EXCHANGE_ACTION_MESSAGE =
+    "[MoneyExchangeStorage][ACTION] Save Money Exchange"
+private const val CREATE_NEW_MONTH_INFORMATION_ADVICE_MESSAGE =
+    "[MoneyExchangeStorage][ADVICE] Creating a new Month Information"
 private const val SAVE_MONEY_EXCHANGE_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] "
-private const val GET_NUM_MONTH_INFORMATION_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Get Num of Month Information"
+private const val GET_NUM_MONTH_INFORMATION_ACTION_MESSAGE =
+    "[MoneyExchangeStorage][ACTION] Get Num of Month Information"
 private const val GET_NUM_MONTH_INFORMATION_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] Num: "
-private const val GET_NUM_MONEY_EXCHANGE_FROM_MONTH_INFORMATION_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Get Num Money Exchanges From Month Information"
-private const val GET_NUM_MONEY_EXCHANGE_FROM_MONTH_INFORMATION_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] Num: "
-private const val GET_ALL_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Get All Money Exchanges"
-private const val GET_ALL_MONEY_EXCHANGE_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] Num of all money exchanges: "
-private const val GET_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Get Money Exchange"
+private const val GET_NUM_MONEY_EXCHANGE_FROM_MONTH_INFORMATION_ACTION_MESSAGE =
+    "[MoneyExchangeStorage][ACTION] Get Num Money Exchanges From Month Information"
+private const val GET_NUM_MONEY_EXCHANGE_FROM_MONTH_INFORMATION_RESULT_MESSAGE =
+    "[MoneyExchangeStorage][RESULT] Num: "
+private const val GET_ALL_MONEY_EXCHANGE_ACTION_MESSAGE =
+    "[MoneyExchangeStorage][ACTION] Get All Money Exchanges"
+private const val GET_ALL_MONEY_EXCHANGE_RESULT_MESSAGE =
+    "[MoneyExchangeStorage][RESULT] Num of all money exchanges: "
+private const val GET_MONEY_EXCHANGE_ACTION_MESSAGE =
+    "[MoneyExchangeStorage][ACTION] Get Money Exchange"
 private const val GET_MONEY_EXCHANGE_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] "
-private const val DELETE_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Delete Money Exchange"
+private const val DELETE_MONEY_EXCHANGE_ACTION_MESSAGE =
+    "[MoneyExchangeStorage][ACTION] Delete Money Exchange"
 private const val DELETE_MONEY_EXCHANGE_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] "
-private const val EDIT_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Edit Money Exchange"
+private const val EDIT_MONEY_EXCHANGE_ACTION_MESSAGE =
+    "[MoneyExchangeStorage][ACTION] Edit Money Exchange"
 private const val EDIT_MONEY_EXCHANGE_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] "
-private const val GET_MONTH_INFORMATION_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Get Month Information"
+private const val GET_MONTH_INFORMATION_ACTION_MESSAGE =
+    "[MoneyExchangeStorage][ACTION] Get Month Information"
 private const val GET_MONTH_INFORMATION_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] "
-private const val EXIST_MONTH_INFORMATION_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Exist Month Information"
+private const val EXIST_MONTH_INFORMATION_ACTION_MESSAGE =
+    "[MoneyExchangeStorage][ACTION] Exist Month Information"
 private const val EXIST_MONTH_INFORMATION_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] "
 private const val CLEAN_STORAGE_ACTION_MESSAGE = "[MoneyExchangeStorage][ACTION] Clean Storage"
-private const val CLEAN_STORAGE_RESULT_MESSAGE = "[MoneyExchangeStorage][RESULT] Size of the Storage: "
+private const val CLEAN_STORAGE_RESULT_MESSAGE =
+    "[MoneyExchangeStorage][RESULT] Size of the Storage: "
 
 
 /**
@@ -91,7 +104,7 @@ object MoneyExchangeStorage {
         val list: MutableList<MoneyExchange> = mutableListOf()
         val allMonths = this.monthInformationMap.values
 
-        allMonths.forEach{
+        allMonths.forEach {
             list.addAll(it.summary.values.reversed())
         }
 
@@ -108,7 +121,8 @@ object MoneyExchangeStorage {
      */
     fun getMoneyExchange(monthAssociated: String, exchange: Int): MoneyExchange? {
         println(GET_MONEY_EXCHANGE_ACTION_MESSAGE)
-        val moneyExchange = this.monthInformationMap[monthAssociated]?.summary?.get(exchange.toString())
+        val moneyExchange =
+            this.monthInformationMap[monthAssociated]?.summary?.get(exchange.toString())
         println(GET_MONEY_EXCHANGE_RESULT_MESSAGE + moneyExchange)
         return moneyExchange
     }
@@ -189,10 +203,14 @@ object MoneyExchangeStorage {
         return containsKey
     }
 
+    /**
+     * Clears all month information stored in the service.
+     * Prints messages before and after clearing.
+     */
     fun clean() {
         println(CLEAN_STORAGE_ACTION_MESSAGE)
         this.monthInformationMap.clear()
-        println(CLEAN_STORAGE_RESULT_MESSAGE +  this.monthInformationMap.size)
+        println(CLEAN_STORAGE_RESULT_MESSAGE + this.monthInformationMap.size)
     }
 
 }

@@ -25,7 +25,6 @@ import com.example.kala.ui.components.popUps.InvalidFormPopUp
 import com.example.kala.ui.screens.commons.FooterConfiguration
 import com.example.kala.ui.screens.commons.HeaderConfiguration
 import com.example.kala.ui.screens.commons.Layout
-import com.example.kala.ui.screens.navigation.ADD_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.CHANGE_PASS_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.HOME_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.LOG_IN_SCREEN_ROUTE
@@ -36,6 +35,11 @@ import com.google.firebase.auth.FirebaseAuth
 
 private val FAILURE_LOG_IN_MESSAGE = R.string.failure_log_in_message
 
+/**
+ * Composable function for rendering the Log In screen.
+ *
+ * @param navController The navigation controller for navigating between screens.
+ */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun LogInScreen(
@@ -64,16 +68,16 @@ fun LogInScreen(
         errorMessageList.clear()
         val validForm = isValidSignUp(emailValue, passwordValue)
 
-        if (validForm){
+        if (validForm) {
             FirebaseAuth
                 .getInstance()
                 .signInWithEmailAndPassword(emailValue, passwordValue)
                 .addOnSuccessListener {
-                    FireBaseService.loadUser(emailValue){
+                    FireBaseService.loadUser(emailValue) {
                         navController?.navigate(route = HOME_SCREEN_ROUTE)
                     }
                 }
-                .addOnFailureListener{
+                .addOnFailureListener {
                     errorMessageList.add(FAILURE_LOG_IN_MESSAGE)
                     isPopUpVisible = true
                 }
@@ -82,7 +86,7 @@ fun LogInScreen(
         }
     }
 
-    if(isPopUpVisible){
+    if (isPopUpVisible) {
         InvalidFormPopUp(messageList = errorMessageList, onConfirmButton = hidePopUp)
     }
 
@@ -121,8 +125,7 @@ fun LogInScreen(
 }
 
 /**
- * Composable function for previewing adding a new money exchange.
- *
+ * Composable function for previewing the Log In screen.
  */
 @Preview(showBackground = true)
 @Composable

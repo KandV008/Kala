@@ -13,6 +13,16 @@ import androidx.navigation.NavController
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 
+/**
+ * Composable function for rendering a layout without scrolling, wrapping the content in a Scaffold.
+ *
+ * @param navController The navigation controller for navigating between screens.
+ * @param headerConfiguration The configuration for the top header bar.
+ * @param triggerScreen The identifier for the current screen.
+ * @param footerConfiguration The configuration for the bottom footer bar.
+ * @param onAdviceTriggered Callback function triggered when advice is triggered.
+ * @param function The composable function to be included as the main content of the layout.
+ */
 @Composable
 fun LayoutWithNoScroll(
     navController: NavController?,
@@ -21,7 +31,7 @@ fun LayoutWithNoScroll(
     footerConfiguration: FooterConfiguration,
     onAdviceTriggered: () -> Unit,
     function: @Composable () -> Unit
-){
+) {
     Scaffold(
         topBar = {
             Header(
@@ -42,8 +52,7 @@ fun LayoutWithNoScroll(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .background(BoneWhite)
-            ,
+                .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(modifier = Modifier.padding(dimens.space1))

@@ -75,12 +75,12 @@ fun KalaTheme(
     val typography = Typography
     val appDimens: Dimens
 
-    when(window.widthSizeClass){
+    when (window.widthSizeClass) {
         WindowWidthSizeClass.Compact -> {
-            appDimens = if (config.screenWidthDp <= 360){
+            appDimens = if (config.screenWidthDp <= 360) {
                 CompactSmallDimens
                 //typography = CompactSmallTypography
-            } else if (config.screenWidthDp < 599){
+            } else if (config.screenWidthDp < 599) {
                 CompactMediumDimens
                 //typography = CompactMediumTypography
             } else {

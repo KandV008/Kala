@@ -47,7 +47,7 @@ fun NavigationButton(
             .size(dimens.image4)
             .alpha(alpha)
             .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
-    ){
+    ) {
         Button(
             onClick = onAdviceTriggered,
             colors = ButtonDefaults.buttonColors(Color.White),
@@ -78,13 +78,13 @@ fun NavigationButton(
 @Composable
 fun NavigationButtonPreview() {
     Scaffold {
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-        ){
+        ) {
             NavigationButton(NavigationButtonConfiguration.LANGUAGE)
             Spacer(modifier = Modifier.padding(dimens.space0))
             NavigationButton(NavigationButtonConfiguration.HOME)

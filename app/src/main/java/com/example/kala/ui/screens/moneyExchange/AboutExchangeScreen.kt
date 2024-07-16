@@ -69,7 +69,7 @@ fun AboutExchangeScreen(
     navController: NavController? = null,
     monthAssociated: String,
     exchange: Int,
-){
+) {
     val moneyExchange = MoneyExchangeService.getMoneyExchange(monthAssociated, exchange)
 
     val svgFile = MoneyExchangeScope.getSVGFile(moneyExchange.scope)
@@ -90,12 +90,12 @@ fun AboutExchangeScreen(
         rightButtonTriggered = true
     }
 
-    if (rightButtonTriggered){
+    if (rightButtonTriggered) {
         rightButtonTriggered = false
         navController?.navigate(route = "$EDIT_EXCHANGE_SCREEN_ROUTE/$monthAssociated/$exchange")
     }
 
-    if (leftButtonTriggered){
+    if (leftButtonTriggered) {
         ConfirmationPopUp(
             onConfirmButton = {
                 leftButtonTriggered = false
@@ -141,8 +141,7 @@ private fun ValueSection(valueText: String, valueColor: Color) {
             .height(dimens.height1)
             .clip(RoundedCornerShape(dimens.rounded))
             .background(Color.White)
-            .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
-        ,
+            .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded)),
         contentAlignment = Alignment.Center
 
     ) {
@@ -150,8 +149,7 @@ private fun ValueSection(valueText: String, valueColor: Color) {
             text = valueText,
             color = valueColor,
             modifier = Modifier
-                .fillMaxWidth()
-            ,
+                .fillMaxWidth(),
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
             fontSize = 30.sp,
@@ -183,10 +181,9 @@ private fun ScopeSection(moneyExchange: MoneyExchange, svgFile: Int) {
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .width(dimens.width2)
-                ,
+                    .width(dimens.width2),
                 contentAlignment = Alignment.Center
-            ){
+            ) {
                 Text(
                     text = stringResource(id = moneyExchange.scope.getLabel()),
                     color = Color.Black,
@@ -198,10 +195,9 @@ private fun ScopeSection(moneyExchange: MoneyExchange, svgFile: Int) {
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .width(dimens.width2)
-                ,
+                    .width(dimens.width2),
                 contentAlignment = Alignment.Center
-            ){
+            ) {
                 Box(
                     modifier = Modifier
                         .border(dimens.border, Color.Black, shape = CircleShape)
@@ -235,8 +231,7 @@ private fun DateSection(moneyExchange: MoneyExchange) {
             .width(dimens.width6)
             .clip(RoundedCornerShape(dimens.rounded))
             .background(Color.White)
-            .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
-        ,
+            .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded)),
         contentAlignment = Alignment.Center
     ) {
         Text(
@@ -302,6 +297,6 @@ private fun OptionSection(onLeftTriggered: () -> Unit, onRightTriggered: () -> U
  */
 @Preview(showBackground = true)
 @Composable
-fun AboutExchangeScreenPreview(){
-    AboutExchangeScreen(monthAssociated =  "example", exchange = 0)
+fun AboutExchangeScreenPreview() {
+    AboutExchangeScreen(monthAssociated = "example", exchange = 0)
 }

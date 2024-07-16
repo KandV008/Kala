@@ -28,24 +28,32 @@ import co.yml.charts.common.model.PlotType
 import co.yml.charts.ui.piechart.charts.PieChart
 import co.yml.charts.ui.piechart.models.PieChartConfig
 import co.yml.charts.ui.piechart.models.PieChartData
-import com.example.kala.ui.components.buttons.ChartButtonConfiguration
+import com.example.kala.model.MoneyExchangeService
+import com.example.kala.model.MonthInformationService
 import com.example.kala.model.entities.MoneyExchangeScope
 import com.example.kala.model.entities.MoneyExchangeType
 import com.example.kala.model.entities.MonthInformation
-import com.example.kala.model.MoneyExchangeService
 import com.example.kala.ui.components.buttons.ChartButton
-import com.example.kala.model.MonthInformationService
+import com.example.kala.ui.components.buttons.ChartButtonConfiguration
 import com.example.kala.ui.screens.utilities.Utilities.getMonthString
 import com.example.kala.ui.theme.BoneWhite
 import com.example.kala.ui.theme.dimens
 
+/**
+ * Composable function for displaying a pie chart with header and body information.
+ *
+ * @param month The month for which the pie chart displays data.
+ * @param type The type of money exchange (e.g., income or expense) to display.
+ * @param onLeftTriggered Callback triggered when the left chart button is clicked.
+ * @param onRightTriggered Callback triggered when the right chart button is clicked.
+ */
 @Composable
 fun PieChartInfo(
     month: String,
     type: String,
     onLeftTriggered: () -> Unit = {},
     onRightTriggered: () -> Unit = {},
-){
+) {
     val currentMonth = MonthInformationService.getMonthInformation(month)
     val currentType = MoneyExchangeType.valueOf(type)
     val showPieChart = if (MoneyExchangeType.INCOME == currentType)
@@ -58,7 +66,7 @@ fun PieChartInfo(
             .height(dimens.height8)
             .width(dimens.width9)
             .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
-    ){
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -74,8 +82,8 @@ fun PieChartInfo(
             Box(
                 modifier = Modifier
                     .size(dimens.height7)
-            ){
-                if (showPieChart){
+            ) {
+                if (showPieChart) {
                     PieChartBody(currentMonth, currentType)
                 } else {
                     EmptyBarChartAdvice()
@@ -86,12 +94,19 @@ fun PieChartInfo(
     }
 }
 
+/**
+ * Composable function for displaying the header section of a pie chart.
+ *
+ * @param currentMonth Information about the current month displayed in the chart.
+ * @param onLeftTriggered Callback triggered when the left chart button is clicked.
+ * @param onRightTriggered Callback triggered when the right chart button is clicked.
+ */
 @Composable
 fun PieChartHeader(
     currentMonth: MonthInformation,
     onLeftTriggered: () -> Unit = {},
     onRightTriggered: () -> Unit = {},
-){
+) {
     val leftChartButtonAlpha: Int = MonthInformationService.hasPrevMonth(currentMonth)
     val rightChartButtonAlpha: Int = MonthInformationService.hasNextMonth(currentMonth)
 
@@ -122,45 +137,71 @@ fun PieChartHeader(
     }
 }
 
+/**
+ * Composable function for displaying the body section of a pie chart.
+ *
+ * @param currentMonth Information about the current month displayed in the chart.
+ * @param currentType The type of money exchange (income or expense) to display.
+ */
 @Composable
 fun PieChartBody(
     currentMonth: MonthInformation,
     currentType: MoneyExchangeType
-){
+) {
     val pieChartData = PieChartData(
         slices = listOf(
             PieChartData.Slice(
                 label = stringResource(id = MoneyExchangeScope.FOOD.getLabel()),
                 value = MoneyExchangeService
-                    .getSumOfMoneyExchangeByScopeAndType(currentMonth, currentType, MoneyExchangeScope.FOOD)
+                    .getSumOfMoneyExchangeByScopeAndType(
+                        currentMonth,
+                        currentType,
+                        MoneyExchangeScope.FOOD
+                    )
                     .toFloat(),
                 color = MoneyExchangeScope.FOOD.getColor()
             ),
             PieChartData.Slice(
                 label = stringResource(id = MoneyExchangeScope.LEISURE.getLabel()),
                 value = MoneyExchangeService
-                    .getSumOfMoneyExchangeByScopeAndType(currentMonth, currentType, MoneyExchangeScope.LEISURE)
+                    .getSumOfMoneyExchangeByScopeAndType(
+                        currentMonth,
+                        currentType,
+                        MoneyExchangeScope.LEISURE
+                    )
                     .toFloat(),
                 color = MoneyExchangeScope.LEISURE.getColor()
             ),
             PieChartData.Slice(
                 label = stringResource(id = MoneyExchangeScope.USEFUL.getLabel()),
                 value = MoneyExchangeService
-                    .getSumOfMoneyExchangeByScopeAndType(currentMonth, currentType, MoneyExchangeScope.USEFUL)
+                    .getSumOfMoneyExchangeByScopeAndType(
+                        currentMonth,
+                        currentType,
+                        MoneyExchangeScope.USEFUL
+                    )
                     .toFloat(),
                 color = MoneyExchangeScope.USEFUL.getColor()
             ),
             PieChartData.Slice(
                 label = stringResource(id = MoneyExchangeScope.MEDICINE.getLabel()),
                 value = MoneyExchangeService
-                    .getSumOfMoneyExchangeByScopeAndType(currentMonth, currentType, MoneyExchangeScope.MEDICINE)
+                    .getSumOfMoneyExchangeByScopeAndType(
+                        currentMonth,
+                        currentType,
+                        MoneyExchangeScope.MEDICINE
+                    )
                     .toFloat(),
                 color = MoneyExchangeScope.MEDICINE.getColor()
             ),
             PieChartData.Slice(
                 label = stringResource(id = MoneyExchangeScope.OTHER.getLabel()),
                 value = MoneyExchangeService
-                    .getSumOfMoneyExchangeByScopeAndType(currentMonth, currentType, MoneyExchangeScope.OTHER)
+                    .getSumOfMoneyExchangeByScopeAndType(
+                        currentMonth,
+                        currentType,
+                        MoneyExchangeScope.OTHER
+                    )
                     .toFloat(),
                 color = MoneyExchangeScope.OTHER.getColor()
             ),
@@ -175,29 +216,28 @@ fun PieChartBody(
     )
 
     PieChart(
-        modifier = Modifier
-        ,
+        modifier = Modifier,
         pieChartData = pieChartData,
         pieChartConfig = pieChartConfig
     )
 }
 
 /**
- * Composable function for previewing the Chart component.
- * This preview function is used for testing and visualizing the Chart component.
+ * Composable function for previewing the PieChartInfo component.
+ * This preview function is used for testing and visualizing the PieChartInfo component.
  */
 @Preview
 @Composable
 fun PieChartInfoPreview() {
     val idMonth = "example"
 
-    Column (
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(BoneWhite),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
-    ){
+    ) {
         PieChartInfo(month = idMonth, type = "EXPENSE")
     }
 }

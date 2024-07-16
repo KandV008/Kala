@@ -46,6 +46,11 @@ import com.google.firebase.auth.auth
 
 private val FAILURE_SEND_REQUEST_MESSAGE = R.string.failure_send_request_message
 
+/**
+ * Composable function for rendering the Change Password screen.
+ *
+ * @param navController The navigation controller for navigating between screens.
+ */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ChangePasswordScreen(
@@ -72,7 +77,7 @@ fun ChangePasswordScreen(
         Firebase
             .auth
             .sendPasswordResetEmail(emailValue)
-            .addOnCompleteListener{
+            .addOnCompleteListener {
                 if (it.isSuccessful) {
                     Toast
                         .makeText(current, requestMessage, Toast.LENGTH_LONG)
@@ -129,7 +134,7 @@ fun RecoveryPassMessage() {
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            text = stringResource(id = R.string.recovery_pass_msg) ,
+            text = stringResource(id = R.string.recovery_pass_msg),
             fontSize = dimens.fontSize0,
             color = Color.Black,
             textAlign = TextAlign.Center,
@@ -139,8 +144,7 @@ fun RecoveryPassMessage() {
 }
 
 /**
- * Composable function for previewing adding a new money exchange.
- *
+ * Composable function for displaying the recovery password message.
  */
 @Preview(showBackground = true)
 @Composable

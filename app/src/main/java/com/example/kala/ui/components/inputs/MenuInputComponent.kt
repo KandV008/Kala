@@ -97,7 +97,7 @@ fun MenuInput(
                         color = Color.Black,
                         fontFamily = fontFamily
                     ),
-                    onValueChange = {  },
+                    onValueChange = { },
                     readOnly = true,
                     modifier = Modifier
                         .width(dimens.width5)
@@ -106,8 +106,7 @@ fun MenuInput(
                         .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
                         .onGloballyPositioned { coordinates ->
                             mTextFieldSize = coordinates.size.toSize()
-                        }
-                    ,
+                        },
                     placeholder = {
                         Text(
                             text = stringResource(id = configuration.getPlaceholder()),
@@ -170,8 +169,7 @@ fun MenuInput(
                     .size(dimens.image4)
                     .clip(CircleShape)
                     .background(Color.White)
-                    .padding(dimens.padding2)
-                ,
+                    .padding(dimens.padding2),
                 contentAlignment = Alignment.Center,
             ) {
                 Image(
@@ -197,15 +195,14 @@ fun PreviewMenuInput() {
     }
 
     Scaffold {
-        LazyColumn (
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-        ){
-            items(MenuInputConfiguration.entries.toTypedArray()){
-                    value ->
+        ) {
+            items(MenuInputConfiguration.entries.toTypedArray()) { value ->
                 MenuInput(value, showEnum) { newValue, newShow ->
                     enumExchange = newValue
                     showEnum = newShow

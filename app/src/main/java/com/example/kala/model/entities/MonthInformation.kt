@@ -10,6 +10,7 @@ import java.util.TreeMap
  * @property expensedMoney The total amount of money expended in the month.
  * @property incomeMoney The total amount of money earned in the month.
  * @property summary A TreeMap containing the money exchanges for the month.
+ * @property dateCreation The date when the MonthInformation was created.
  */
 class MonthInformation() {
     var id: String
@@ -18,7 +19,20 @@ class MonthInformation() {
     val summary: TreeMap<String, MoneyExchange> = TreeMap()
     var dateCreation: LocalDate = LocalDate.now()
 
-    constructor(id: String, expensedMoney: Double, incomeMoney: Double, dateCreation: String) : this() {
+    /**
+     * Primary constructor to initialize MonthInformation with specified parameters.
+     *
+     * @param id The unique identifier of the month.
+     * @param expensedMoney The total amount of money expended in the month.
+     * @param incomeMoney The total amount of money earned in the month.
+     * @param dateCreation The date when the MonthInformation was created (in string format).
+     */
+    constructor(
+        id: String,
+        expensedMoney: Double,
+        incomeMoney: Double,
+        dateCreation: String
+    ) : this() {
         this.id = id
         this.expensedMoney = expensedMoney
         this.incomeMoney = incomeMoney
@@ -26,7 +40,7 @@ class MonthInformation() {
     }
 
     /**
-     * Initializes the MonthInformation object and sets its ID based on the current month and year.
+     * Secondary constructor that initializes MonthInformation with default values.
      */
     init {
         val month = dateCreation.month.toString()
@@ -38,6 +52,7 @@ class MonthInformation() {
      * Adds a new money exchange to the summary and updates the total expenditure or income accordingly.
      *
      * @param newMoneyExchange The new money exchange to add.
+     * @return The added MoneyExchange object.
      */
     fun addMoneyExchange(newMoneyExchange: MoneyExchange): MoneyExchange {
         this.summary[newMoneyExchange.id.toString()] = newMoneyExchange
@@ -72,12 +87,22 @@ class MonthInformation() {
         } ?: false
     }
 
+    /**
+     * Converts MonthInformation object to a map representation for storage or serialization.
+     *
+     * @return A map representation of MonthInformation.
+     */
     override fun toString(): String {
         return "Month Information with the id: $id\n" +
                 "Date Creation = $dateCreation; Size of money exchange associated = ${summary.size}; " +
                 "Total expense money = $expensedMoney; Total income money = $incomeMoney"
     }
 
+    /**
+     * Converts a MoneyExchange object to a map representation for storage or serialization.
+     *
+     * @return A map representation of MoneyExchange.
+     */
     fun monthInformationToMap(): Map<String, Any> {
         return mapOf(
             "id" to this.id,
@@ -88,6 +113,11 @@ class MonthInformation() {
         )
     }
 
+    /**
+     * Provides a string representation of the MonthInformation object.
+     *
+     * @return A string describing the MonthInformation object.
+     */
     private fun MoneyExchange.toMap(): Map<String, Any> {
         return mapOf(
             "value" to this.value,

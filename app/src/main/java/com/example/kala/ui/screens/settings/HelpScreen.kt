@@ -35,7 +35,7 @@ import com.example.kala.ui.theme.dimens
 fun HelpScreen(
     navController: NavController? = null,
     triggerScreen: String,
-){
+) {
     Layout(
         navController = navController,
         headerConfiguration = HeaderConfiguration.HELP_SCREEN,
@@ -56,7 +56,7 @@ fun HelpScreen(
  * @param advices The list of advices to display in the Help screen.
  */
 @Composable
-fun HelpScreenBody(advices: List<Int>){
+fun HelpScreenBody(advices: List<Int>) {
     LazyColumn(
         modifier = Modifier
             .width(dimens.width7)
@@ -64,9 +64,8 @@ fun HelpScreenBody(advices: List<Int>){
             .background(Color.White)
             .border(dimens.border, Color.Black)
             .padding(dimens.padding5),
-    ){
-        items(advices){
-                advice ->
+    ) {
+        items(advices) { advice ->
             Text(
                 text = stringResource(id = advice),
                 color = Color.Black,
@@ -83,6 +82,6 @@ fun HelpScreenBody(advices: List<Int>){
  */
 @Preview(showBackground = true)
 @Composable
-fun HelpScreenPreview(){
+fun HelpScreenPreview() {
     HelpScreen(triggerScreen = HOME_SCREEN_ROUTE)
 }

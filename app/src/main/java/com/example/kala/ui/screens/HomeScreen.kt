@@ -37,7 +37,7 @@ import java.time.LocalDateTime
 @Composable
 fun HomeScreen(
     navController: NavController? = null
-){
+) {
     val today = LocalDateTime.now()
     val currentMonth = "${today.month}${today.year}"
 
@@ -59,19 +59,20 @@ fun HomeScreen(
  * Composable function for rendering the body of the Home screen.
  *
  * @param navController The navigation controller for navigating between screens.
+ * @param currentMont The current month to be passed to the report screen.
  */
 @Composable
 fun HomeScreenBody(
     navController: NavController? = null,
     currentMont: String
-){
+) {
     var centerButtonTriggered by remember {
         mutableStateOf(false)
     }
     val onCenterTriggered = {
         centerButtonTriggered = true
     }
-    if (centerButtonTriggered){
+    if (centerButtonTriggered) {
         centerButtonTriggered = false
         navController?.navigate(route = ADD_EXCHANGE_SCREEN_ROUTE)
     }
@@ -82,7 +83,7 @@ fun HomeScreenBody(
     val onLeftTriggered = {
         leftButtonTriggered = true
     }
-    if (leftButtonTriggered){
+    if (leftButtonTriggered) {
         leftButtonTriggered = false
         navController?.navigate(route = "$REPORT_SCREEN_ROUTE/$currentMont")
     }
@@ -93,7 +94,7 @@ fun HomeScreenBody(
     val onRightTriggered = {
         rightButtonTriggered = true
     }
-    if (rightButtonTriggered){
+    if (rightButtonTriggered) {
         rightButtonTriggered = false
         navController?.navigate(route = RECORD_SCREEN_ROUTE)
     }
@@ -116,7 +117,7 @@ fun HomeScreenBody(
  */
 @Preview(showBackground = true)
 @Composable
-fun HomeScreenPreview(){
+fun HomeScreenPreview() {
     HomeScreen()
 }
 

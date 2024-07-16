@@ -93,7 +93,8 @@ val CompactTypography = Typography(
     ),
 )
 
-val MediumTypography = Typography( //Original
+val MediumTypography = Typography(
+    //Original
     headlineLarge = TextStyle(
 
     ),

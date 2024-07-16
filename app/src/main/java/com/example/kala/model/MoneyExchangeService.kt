@@ -6,19 +6,32 @@ import com.example.kala.model.entities.MoneyExchangeType
 import com.example.kala.model.entities.MonthInformation
 import com.example.kala.model.storage.MoneyExchangeStorage
 
-private const val ADD_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Add Money Exchange"
-private const val ADD_MONEY_EXCHANGE_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Added new Money Exchange"
-private const val GET_ALL_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Get All Money Exchange"
-private const val GET_ALL_MONEY_EXCHANGE_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] All Money Exchanges"
-private const val GET_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Get Money Exchange"
-private const val MONEY_EXCHANGE_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Specific Money Exchange"
-private const val DELETE_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Delete Money Exchange"
-private const val DELETE_MONEY_EXCHANGE_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Deleted Money Exchange"
-private const val INVALID_MONTH_ID_OR_EXCHANGE_ID_ERROR_MESSAGE = "[MoneyExchangeService][ERROR] Invalid Month Id or/and Exchange Id"
-private const val EDIT_MONEY_EXCHANGE_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Edit Money Exchange"
-private const val EDIT_MONEY_EXCHANGE_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Edited Money Exchange"
-private const val GET_SUM_OF_MONEY_EXCHANGE_BY_SCOPE_AND_TYPE_ACTION_MESSAGE = "[MoneyExchangeService][ACTION] Get Sum Of Money Exchange By Scope And Type"
-private const val GET_SUM_OF_MONEY_EXCHANGE_BY_SCOPE_AND_TYPE_RESULT_MESSAGE = "[MoneyExchangeService][RESULT] Sum Of Money Exchange By Scope And Type: "
+private const val ADD_MONEY_EXCHANGE_ACTION_MESSAGE =
+    "[MoneyExchangeService][ACTION] Add Money Exchange"
+private const val ADD_MONEY_EXCHANGE_RESULT_MESSAGE =
+    "[MoneyExchangeService][RESULT] Added new Money Exchange"
+private const val GET_ALL_MONEY_EXCHANGE_ACTION_MESSAGE =
+    "[MoneyExchangeService][ACTION] Get All Money Exchange"
+private const val GET_ALL_MONEY_EXCHANGE_RESULT_MESSAGE =
+    "[MoneyExchangeService][RESULT] All Money Exchanges"
+private const val GET_MONEY_EXCHANGE_ACTION_MESSAGE =
+    "[MoneyExchangeService][ACTION] Get Money Exchange"
+private const val MONEY_EXCHANGE_RESULT_MESSAGE =
+    "[MoneyExchangeService][RESULT] Specific Money Exchange"
+private const val DELETE_MONEY_EXCHANGE_ACTION_MESSAGE =
+    "[MoneyExchangeService][ACTION] Delete Money Exchange"
+private const val DELETE_MONEY_EXCHANGE_RESULT_MESSAGE =
+    "[MoneyExchangeService][RESULT] Deleted Money Exchange"
+private const val INVALID_MONTH_ID_OR_EXCHANGE_ID_ERROR_MESSAGE =
+    "[MoneyExchangeService][ERROR] Invalid Month Id or/and Exchange Id"
+private const val EDIT_MONEY_EXCHANGE_ACTION_MESSAGE =
+    "[MoneyExchangeService][ACTION] Edit Money Exchange"
+private const val EDIT_MONEY_EXCHANGE_RESULT_MESSAGE =
+    "[MoneyExchangeService][RESULT] Edited Money Exchange"
+private const val GET_SUM_OF_MONEY_EXCHANGE_BY_SCOPE_AND_TYPE_ACTION_MESSAGE =
+    "[MoneyExchangeService][ACTION] Get Sum Of Money Exchange By Scope And Type"
+private const val GET_SUM_OF_MONEY_EXCHANGE_BY_SCOPE_AND_TYPE_RESULT_MESSAGE =
+    "[MoneyExchangeService][RESULT] Sum Of Money Exchange By Scope And Type: "
 
 
 /**
@@ -31,7 +44,7 @@ object MoneyExchangeService {
      *
      * @param moneyExchange The money exchange to add.
      */
-    fun addMoneyExchange(moneyExchange: MoneyExchange): Boolean{
+    fun addMoneyExchange(moneyExchange: MoneyExchange): Boolean {
         println(ADD_MONEY_EXCHANGE_ACTION_MESSAGE)
         MoneyExchangeStorage.saveMoneyExchange(moneyExchange)
         FireBaseService.updateUser()
@@ -65,8 +78,7 @@ object MoneyExchangeService {
         moneyExchange?.let {
             println(MONEY_EXCHANGE_RESULT_MESSAGE)
             return it
-        } ?:
-            throw IllegalAccessError(INVALID_MONTH_ID_OR_EXCHANGE_ID_ERROR_MESSAGE)
+        } ?: throw IllegalAccessError(INVALID_MONTH_ID_OR_EXCHANGE_ID_ERROR_MESSAGE)
     }
 
     /**
@@ -92,8 +104,7 @@ object MoneyExchangeService {
             println(EDIT_MONEY_EXCHANGE_RESULT_MESSAGE)
             MoneyExchangeStorage.editMoneyExchange(it)
             FireBaseService.updateUser()
-        } ?:
-            throw IllegalArgumentException(INVALID_MONTH_ID_OR_EXCHANGE_ID_ERROR_MESSAGE)
+        } ?: throw IllegalArgumentException(INVALID_MONTH_ID_OR_EXCHANGE_ID_ERROR_MESSAGE)
     }
 
     /**
@@ -112,8 +123,7 @@ object MoneyExchangeService {
             println(DELETE_MONEY_EXCHANGE_RESULT_MESSAGE)
             FireBaseService.updateUser()
             return it
-        } ?:
-        throw IllegalArgumentException(INVALID_MONTH_ID_OR_EXCHANGE_ID_ERROR_MESSAGE)
+        } ?: throw IllegalArgumentException(INVALID_MONTH_ID_OR_EXCHANGE_ID_ERROR_MESSAGE)
     }
 
     /**

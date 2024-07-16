@@ -53,7 +53,7 @@ val NO_MONEY_EXCHANGE_ADDED = R.string.no_money_exchange_added
 @Composable
 fun RecordScreen(
     navController: NavController? = null
-){
+) {
     val moneyExchangeList: List<MoneyExchange> = MoneyExchangeService.getAllMoneyExchanges()
 
     var adviceTriggered by remember { mutableStateOf(false) }
@@ -63,13 +63,14 @@ fun RecordScreen(
     var monthSelected by remember {
         mutableStateOf("")
     }
+
     val onAdviceTriggered: (Int, String) -> Unit = { idExchange, idMonth ->
         adviceTriggered = true
         cardSelected = idExchange
         monthSelected = idMonth
     }
 
-    if (adviceTriggered){
+    if (adviceTriggered) {
         adviceTriggered = false
         navController?.navigate(route = "$ABOUT_EXCHANGE_SCREEN_ROUTE/$monthSelected/$cardSelected")
     }
@@ -87,7 +88,10 @@ fun RecordScreen(
 }
 
 /**
- * Composable function for rendering the body content of the Record screen.
+ * Callback function triggered when an item/card is selected to navigate to the About Exchange screen.
+ *
+ * @param idExchange The id of the selected money exchange.
+ * @param idMonth The id of the selected month.
  */
 @Composable
 private fun RecordBody(
@@ -95,13 +99,13 @@ private fun RecordBody(
     onAdviceTriggered: (Int, String) -> Unit
 ) {
     Spacer(modifier = Modifier.padding(dimens.space1))
-    if (moneyExchangeList.isEmpty()){
-        Column (
+    if (moneyExchangeList.isEmpty()) {
+        Column(
             modifier = Modifier
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-        ){
+        ) {
             EmptyAdvice()
         }
     } else {
@@ -120,8 +124,11 @@ private fun RecordBody(
     }
 }
 
+/**
+ * Composable function for displaying advice when there are no money exchanges added.
+ */
 @Composable
-fun EmptyAdvice(){
+fun EmptyAdvice() {
     Box(
         modifier = Modifier
             .height(dimens.height4)
@@ -147,6 +154,6 @@ fun EmptyAdvice(){
  */
 @Preview(showBackground = true)
 @Composable
-fun RecordScreenPreview(){
+fun RecordScreenPreview() {
     RecordScreen()
 }

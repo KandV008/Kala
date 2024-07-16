@@ -13,40 +13,57 @@ private val INVALID_SCOPE_ERROR_MESSAGE = R.string.invalid_scope_error_message
 private val INVALID_EMAIL_ERROR_MESSAGE = R.string.invalid_email_error_message
 private val INVALID_PASSWORD_ERROR_MESSAGE = R.string.invalid_password_error_message
 
+/**
+ * Object containing form validation functions.
+ */
 object FormValidation {
 
     /**
-     * Checks if the provided values for exchange are valid.
+     * Checks if the provided email and password are valid for sign-up.
      *
-     * @return `true` if all values are valid, `false` otherwise.
+     * @param email The email to be validated.
+     * @param password The password to be validated.
+     * @return `true` if both email and password are valid, `false` otherwise.
      */
     fun isValidSignUp(
         email: String,
         password: String
     ): Boolean {
-        if (isNotValidEmail(email)){
+        if (isNotValidEmail(email)) {
             errorMessageList.add(INVALID_EMAIL_ERROR_MESSAGE)
         }
 
-        if (isNotValidPassword(password)){
+        if (isNotValidPassword(password)) {
             errorMessageList.add(INVALID_PASSWORD_ERROR_MESSAGE)
         }
 
         return errorMessageList.isEmpty()
     }
 
+    /**
+     * Checks if the provided email is valid.
+     *
+     * @param email The email to be validated.
+     * @return `true` if the email is not valid, `false` otherwise.
+     */
     private fun isNotValidEmail(email: String): Boolean {
         val emailRegex = "^[A-Za-z](.*)(@)(.+)(\\.)(.+)"
         return !emailRegex.toRegex().matches(email)
     }
 
-    private fun isNotValidPassword(password: String): Boolean{
+    /**
+     * Checks if the provided password is valid.
+     *
+     * @param password The password to be validated.
+     * @return `true` if the password is not valid, `false` otherwise.
+     */
+    private fun isNotValidPassword(password: String): Boolean {
         val passwordRegex = "^(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,}$"
         return !passwordRegex.toRegex().matches(password)
     }
 
     /**
-     * Checks if the provided values for exchange are valid.
+     * Checks if the provided values for money exchange are valid.
      *
      * @param valueExchange The value of the exchange as a string.
      * @param typeExchange The type of exchange as a string.
@@ -63,7 +80,7 @@ object FormValidation {
             if (toDouble <= 0) {
                 errorMessageList.add(INVALID_VALUE_ERROR_MESSAGE)
             }
-        } catch (e: NumberFormatException){
+        } catch (e: NumberFormatException) {
             errorMessageList.add(INVALID_VALUE_ERROR_MESSAGE)
         }
 

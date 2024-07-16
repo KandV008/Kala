@@ -41,7 +41,7 @@ fun ChartButton(
     alpha: Float = 1F,
     configuration: ChartButtonConfiguration,
     onAdviceTriggered: () -> Unit = {},
-){
+) {
     Box(
         modifier = Modifier
             .alpha(alpha)
@@ -57,8 +57,7 @@ fun ChartButton(
             contentPadding = PaddingValues(dimens.padding0),
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = dimens.padding0)
-            ,
+                .padding(horizontal = dimens.padding0),
             enabled = alpha > 0F,
         ) {
             Image(
@@ -80,15 +79,14 @@ fun ChartButton(
 @Composable
 fun ChartButtonPreview() {
     Scaffold {
-        LazyColumn (
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-        ){
-            items(ChartButtonConfiguration.entries.toTypedArray()){
-                    value ->
+        ) {
+            items(ChartButtonConfiguration.entries.toTypedArray()) { value ->
                 ChartButton(configuration = value)
                 Spacer(modifier = Modifier.padding(dimens.space1))
             }

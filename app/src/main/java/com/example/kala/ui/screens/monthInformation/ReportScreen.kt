@@ -31,13 +31,14 @@ import com.example.kala.ui.theme.dimens
  * Composable function for rendering the Report screen.
  *
  * @param navController The navigation controller for navigating between screens.
+ * @param currentMonth The current month identifier.
  */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ReportScreen(
     navController: NavController? = null,
     currentMonth: String,
-){
+) {
     var monthId by remember { mutableStateOf(currentMonth) }
     val monthInformation = MonthInformationService.getMonthInformation(monthId)
 
@@ -46,12 +47,12 @@ fun ReportScreen(
     var rightButtonTriggered by remember { mutableStateOf(false) }
     val onRightTriggered = { rightButtonTriggered = true }
 
-    if (rightButtonTriggered){
+    if (rightButtonTriggered) {
         rightButtonTriggered = false
         monthId = MonthInformationService.getNextMonth(monthInformation)
     }
 
-    if (leftButtonTriggered){
+    if (leftButtonTriggered) {
         leftButtonTriggered = false
         monthId = MonthInformationService.getPrevMonth(monthInformation)
     }
@@ -81,23 +82,24 @@ fun ReportScreen(
  * Composable function for rendering the body of the Report screen.
  *
  * @param navController The navigation controller for navigating between screens.
+ * @param currentMonth The current month identifier.
  */
 @Composable
 fun ReportScreenBody(
     navController: NavController? = null,
     currentMonth: String
-){
+) {
     var leftButtonTriggered by remember { mutableStateOf(false) }
     val onLeftTriggered = { leftButtonTriggered = true }
     var rightButtonTriggered by remember { mutableStateOf(false) }
     val onRightTriggered = { rightButtonTriggered = true }
 
-    if (leftButtonTriggered){
+    if (leftButtonTriggered) {
         leftButtonTriggered = false
         navController?.navigate(route = "$ABOUT_MONTH_SCREEN_ROUTE/$currentMonth/${MoneyExchangeType.INCOME}")
     }
 
-    if (rightButtonTriggered){
+    if (rightButtonTriggered) {
         rightButtonTriggered = false
         navController?.navigate(route = "$ABOUT_MONTH_SCREEN_ROUTE/$currentMonth/${MoneyExchangeType.EXPENSE}")
     }
@@ -115,7 +117,7 @@ fun ReportScreenBody(
  */
 @Preview(showBackground = true)
 @Composable
-fun ReportScreenPreview(){
+fun ReportScreenPreview() {
     ReportScreen(currentMonth = "example")
 }
 

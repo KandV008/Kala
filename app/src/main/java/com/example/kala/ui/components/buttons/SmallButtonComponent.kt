@@ -32,6 +32,7 @@ import com.example.kala.ui.theme.dimens
  * Composable function for rendering a small-sized button with customizable configuration.
  *
  * @param configuration The configuration for the small-sized button.
+ * @param onAdviceTriggered Callback triggered when the button is clicked, providing the action associated with the configuration.
  */
 @Composable
 fun SmallButton(
@@ -82,16 +83,16 @@ fun SmallButton(
 @Composable
 fun PreviewSmallButton() {
     Scaffold {
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-        ){
-            SmallButton(SmallButtonConfiguration.ENGLISH){}
+        ) {
+            SmallButton(SmallButtonConfiguration.ENGLISH) {}
             Spacer(modifier = Modifier.padding(dimens.space0))
-            SmallButton(SmallButtonConfiguration.SPANISH){}
+            SmallButton(SmallButtonConfiguration.SPANISH) {}
         }
     }
 }

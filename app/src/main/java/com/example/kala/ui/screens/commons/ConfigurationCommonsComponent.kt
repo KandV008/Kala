@@ -2,16 +2,19 @@ package com.example.kala.ui.screens.commons
 
 import com.example.kala.ui.components.buttons.NavigationButtonConfiguration
 
-/*
-    HeaderComponent
+/**
+ * Enum class defining configurations for the header component.
+ *
+ * @property left Pair of [NavigationButtonConfiguration] and alpha value for the left navigation button.
+ * @property center Alpha value for the application name in the center of the header.
+ * @property right Pair of [NavigationButtonConfiguration] and alpha value for the right navigation button.
  */
-
 enum class HeaderConfiguration(
     private val left: Pair<NavigationButtonConfiguration, Float>,
     private val center: Float,
     private val right: Pair<NavigationButtonConfiguration, Float>
 ) {
-    UNREGISTERED_USER (
+    UNREGISTERED_USER(
         Pair(NavigationButtonConfiguration.HELP, 1F),
         0F,
         Pair(NavigationButtonConfiguration.LANGUAGE, 1F)
@@ -37,28 +40,40 @@ enum class HeaderConfiguration(
         Pair(NavigationButtonConfiguration.LANGUAGE, 1F)
     );
 
-    fun left(): Pair<NavigationButtonConfiguration, Float>{
+    /**
+     * Retrieves the left navigation button configuration and its alpha value.
+     */
+    fun left(): Pair<NavigationButtonConfiguration, Float> {
         return left
     }
 
-    fun center(): Float{
+    /**
+     * Retrieves the alpha value for the application name in the center of the header.
+     */
+    fun center(): Float {
         return center
     }
 
-    fun right(): Pair<NavigationButtonConfiguration, Float>{
+    /**
+     * Retrieves the right navigation button configuration and its alpha value.
+     */
+    fun right(): Pair<NavigationButtonConfiguration, Float> {
         return right
     }
 }
 
-/*
-    FooterComponent
+/**
+ * Enum class defining configurations for the footer component.
+ *
+ * @property left Alpha value for the left footer button.
+ * @property center Alpha value for the center footer button.
+ * @property right Alpha value for the right footer button.
  */
-
 enum class FooterConfiguration(
     private val left: Float,
     private val center: Float,
     private val right: Float,
-){
+) {
     EMPTY(0F, 0F, 0F),
     ONLY_BACK(1F, 0F, 0F),
     ONLY_NEXT(0F, 0F, 1F),
@@ -67,15 +82,24 @@ enum class FooterConfiguration(
     NEXT_AND_HOME(0F, 1F, 1F),
     ALL(1F, 1F, 1F);
 
-    fun left(): Float{
+    /**
+     * Retrieves the alpha value for the left footer button.
+     */
+    fun left(): Float {
         return left
     }
 
-    fun center(): Float{
+    /**
+     * Retrieves the alpha value for the center footer button.
+     */
+    fun center(): Float {
         return center
     }
 
-    fun right(): Float{
+    /**
+     * Retrieves the alpha value for the right footer button.
+     */
+    fun right(): Float {
         return right
     }
 }

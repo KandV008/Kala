@@ -24,11 +24,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import com.example.kala.ui.components.NAME_APPLICATION
+import com.example.kala.ui.components.buttons.NavigationButton
 import com.example.kala.ui.screens.navigation.HELP_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.LANGUAGE_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.OPTION_SCREEN_ROUTE
-import com.example.kala.ui.components.NAME_APPLICATION
-import com.example.kala.ui.components.buttons.NavigationButton
 import com.example.kala.ui.theme.dimens
 
 /**
@@ -36,13 +36,14 @@ import com.example.kala.ui.theme.dimens
  *
  * @param configuration The configuration data for the header.
  * @param navController The navigation controller to handle navigation actions.
+ * @param triggerScreen Optional parameter indicating the trigger screen for navigation purposes.
  */
 @Composable
 fun Header(
     configuration: HeaderConfiguration,
     navController: NavController? = null,
     triggerScreen: String = "",
-    ) {
+) {
     val rightRoute =
         if (HeaderConfiguration.REGISTERED_USER == configuration)
             OPTION_SCREEN_ROUTE
@@ -57,12 +58,12 @@ fun Header(
         rightTriggered = true
     }
 
-    if (leftTriggered){
+    if (leftTriggered) {
         leftTriggered = false
         navController?.navigate(route = "$HELP_SCREEN_ROUTE/$triggerScreen")
     }
 
-    if (rightTriggered){
+    if (rightTriggered) {
         rightTriggered = false
         navController?.navigate(route = rightRoute)
     }

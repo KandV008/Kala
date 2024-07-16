@@ -53,6 +53,8 @@ import com.example.kala.ui.theme.dimens
  * Composable function for rendering the About month screen.
  *
  * @param navController The navigation controller for navigating between screens.
+ * @param month The month identifier.
+ * @param type The type of money exchange (income or expense).
  */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -60,7 +62,7 @@ fun AboutMonthScreen(
     navController: NavController? = null,
     month: String,
     type: String,
-    ){
+) {
     var monthId by remember { mutableStateOf(month) }
     val currentMonth = MonthInformationService.getMonthInformation(monthId)
     val currentType = MoneyExchangeType.valueOf(type)
@@ -76,12 +78,12 @@ fun AboutMonthScreen(
     var rightButtonTriggered by remember { mutableStateOf(false) }
     val onRightTriggered = { rightButtonTriggered = true }
 
-    if (rightButtonTriggered){
+    if (rightButtonTriggered) {
         rightButtonTriggered = false
         monthId = MonthInformationService.getNextMonth(currentMonth)
     }
 
-    if (leftButtonTriggered){
+    if (leftButtonTriggered) {
         leftButtonTriggered = false
         monthId = MonthInformationService.getPrevMonth(currentMonth)
     }
@@ -108,31 +110,34 @@ fun AboutMonthScreen(
                 .height(dimens.height7)
                 .clip(RoundedCornerShape(dimens.rounded))
                 .background(Color.White)
-                .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
-            ,
+                .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded)),
             contentAlignment = Alignment.Center
-        ){
+        ) {
             SummaryScope(currentMonth, currentType)
         }
     }
 }
 
+/**
+ * Composable function for rendering the summary of money exchange scopes for a specific month and type.
+ *
+ * @param currentMonth The current month information.
+ * @param currentType The current type of money exchange (income or expense).
+ */
 @Composable
-fun SummaryScope(currentMonth: MonthInformation, currentType: MoneyExchangeType){
-    LazyColumn{
+fun SummaryScope(currentMonth: MonthInformation, currentType: MoneyExchangeType) {
+    LazyColumn {
         items(
             MoneyExchangeScope.entries.toTypedArray()
-        ){
-                value ->
+        ) { value ->
             val svgFile = MoneyExchangeScope.getSVGFile(value)
             val sumValue = MoneyExchangeService
-                .getSumOfMoneyExchangeByScopeAndType(currentMonth, currentType,value)
+                .getSumOfMoneyExchangeByScopeAndType(currentMonth, currentType, value)
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(dimens.height0)
-                    .padding(horizontal = dimens.padding4, vertical = dimens.padding0)
-                ,
+                    .padding(horizontal = dimens.padding4, vertical = dimens.padding0),
                 Arrangement.SpaceBetween,
             ) {
                 Box(
@@ -156,11 +161,13 @@ fun SummaryScope(currentMonth: MonthInformation, currentType: MoneyExchangeType)
                     fontWeight = FontWeight.Bold,
                     fontSize = dimens.fontSize0,
                 )
-                Text(text = Utilities.formatMoneyValue(sumValue),
+                Text(
+                    text = Utilities.formatMoneyValue(sumValue),
                     color = Color.Black,
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Bold,
-                    fontSize = dimens.fontSize0,)
+                    fontSize = dimens.fontSize0,
+                )
             }
         }
     }
@@ -173,7 +180,7 @@ fun SummaryScope(currentMonth: MonthInformation, currentType: MoneyExchangeType)
  */
 @Preview(showBackground = true)
 @Composable
-fun AboutMonthScreenPreview(){
+fun AboutMonthScreenPreview() {
     AboutMonthScreen(month = "example", type = "EXPENSE")
 }
 

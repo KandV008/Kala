@@ -4,13 +4,15 @@ import android.content.Context
 import com.example.kala.R
 import com.example.kala.ui.screens.utilities.Utilities.getLocale
 
-/*
-    SmallButtonComponent
- */
-
 const val ENGLISH_ACTION = "en"
 const val SPANISH_ACTION = "es"
 
+/**
+ * Enum representing configurations for small-sized buttons.
+ *
+ * @property svgFile The resource ID of the SVG icon associated with the button configuration.
+ * @property action The action string associated with the button configuration.
+ */
 enum class SmallButtonConfiguration(
     private val svgFile: Int,
     private val action: String,
@@ -24,18 +26,20 @@ enum class SmallButtonConfiguration(
         SPANISH_ACTION
     );
 
-    fun getSVGFile(): Int{
+    /**
+     * Returns the resource ID of the SVG icon for this button configuration.
+     */
+    fun getSVGFile(): Int {
         return svgFile
     }
 
-    fun  getAction(): String{
+    /**
+     * Returns the action string associated with this button configuration.
+     */
+    fun getAction(): String {
         return action
     }
 }
-
-/*
-    MediumButtonComponent
- */
 
 val SEE_REPORT_MD = R.string.see_report_md
 val SEE_RECORD_MD = R.string.see_record_md
@@ -44,7 +48,12 @@ val EDIT_CARD_MD = R.string.edit_card_md
 val EXPENSE_DETAILS_MD = R.string.expense_details_md
 val INCOME_DETAILS_MD = R.string.income_details_md
 
-
+/**
+ * Enum representing configurations for medium-sized buttons.
+ *
+ * @property displayName The string resource ID representing the display name of the button.
+ * @property svgFile The resource ID of the SVG icon associated with the button configuration.
+ */
 enum class MediumButtonConfiguration(
     private val displayName: Int,
     private val svgFile: Int,
@@ -56,18 +65,20 @@ enum class MediumButtonConfiguration(
     EXPENSE(EXPENSE_DETAILS_MD, R.drawable.ic_expense),
     INCOME(INCOME_DETAILS_MD, R.drawable.ic_income);
 
+    /**
+     * Returns the string resource ID representing the display name of the button.
+     */
     fun getDisplayName(): Int {
         return displayName
     }
 
-    fun getSVGFile(): Int{
+    /**
+     * Returns the resource ID of the SVG icon for this button configuration.
+     */
+    fun getSVGFile(): Int {
         return svgFile
     }
 }
-
-/*
-    LargeButtonComponent
- */
 
 val ADD_EXCHANGE_LB = R.string.add_exchange_lb
 val CHANGE_NAME_LB = R.string.change_name_lb
@@ -80,6 +91,12 @@ val DELETE_USER_LB = R.string.delete_user_lb
 val FORGOT_PASS_LB = R.string.forgot_pass_lb
 val SEND_REQUEST_LB = R.string.send_request_lb
 
+/**
+ * Enum representing configurations for large-sized buttons.
+ *
+ * @property displayName The string resource ID representing the display name of the button.
+ * @property svgFile The resource ID of the SVG icon associated with the button configuration.
+ */
 enum class LargeButtonConfiguration(
     private val displayName: Int,
     private val svgFile: Int,
@@ -95,18 +112,20 @@ enum class LargeButtonConfiguration(
     FORGOT_PASS(FORGOT_PASS_LB, R.drawable.ic_question),
     SEND_REQUEST(SEND_REQUEST_LB, R.drawable.ic_next);
 
+    /**
+     * Returns the string resource ID representing the display name of the button.
+     */
     fun getDisplayName(): Int {
         return displayName
     }
 
-    fun getSVGFile(): Int{
+    /**
+     * Returns the resource ID of the SVG icon for this button configuration.
+     */
+    fun getSVGFile(): Int {
         return svgFile
     }
 }
-
-/*
-    NavigationButtonComponent
- */
 
 fun getLanguageIconViaContext(context: Context): Int {
     val locale = getLocale(context)
@@ -118,6 +137,11 @@ private fun getLanguageIcon(locale: String) = when (locale) {
     else -> R.drawable.ic_united_kingdom_flag
 }
 
+/**
+ * Enum representing configurations for navigation buttons.
+ *
+ * @property svgFile The resource ID of the SVG icon associated with the button configuration.
+ */
 enum class NavigationButtonConfiguration(
     private var svgFile: Int,
 ) {
@@ -140,31 +164,48 @@ enum class NavigationButtonConfiguration(
         R.drawable.ic_next,
     );
 
+    /**
+     * Returns the resource ID of the SVG icon for this button configuration.
+     */
     fun getSVGFile(): Int {
         return svgFile
     }
 
+    /**
+     * Updates the SVG icon for this button configuration.
+     *
+     * @param newIcon The new resource ID of the SVG icon.
+     */
     fun updateIcon(newIcon: Int) {
         svgFile = newIcon
     }
 
-    fun updateIcon(language: String){
+    /**
+     * Updates the SVG icon for this button configuration based on language.
+     *
+     * @param language The language action string (`ENGLISH_ACTION` or `SPANISH_ACTION`).
+     */
+    fun updateIcon(language: String) {
         svgFile = getLanguageIcon(language)
     }
 }
 
-/*
-    ChartButtonComponent
+/**
+ * Enum representing configurations for chart navigation buttons.
+ *
+ * @property svgFile The resource ID of the SVG icon associated with the button configuration.
  */
-
 enum class ChartButtonConfiguration(
     private val svgFile: Int,
-){
+) {
     LEFT(R.drawable.ic_previous),
     RIGHT(R.drawable.ic_succesor),
     ;
 
-    fun getSVGFile(): Int{
+    /**
+     * Returns the resource ID of the SVG icon for this button configuration.
+     */
+    fun getSVGFile(): Int {
         return svgFile
     }
 }

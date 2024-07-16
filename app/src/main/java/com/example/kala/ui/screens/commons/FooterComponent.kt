@@ -20,9 +20,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import com.example.kala.ui.screens.navigation.HOME_SCREEN_ROUTE
 import com.example.kala.ui.components.buttons.NavigationButton
 import com.example.kala.ui.components.buttons.NavigationButtonConfiguration
+import com.example.kala.ui.screens.navigation.HOME_SCREEN_ROUTE
 import com.example.kala.ui.theme.dimens
 
 /**
@@ -53,17 +53,17 @@ fun Footer(
         rightTriggered = true
     }
 
-    if (leftTriggered){
+    if (leftTriggered) {
         leftTriggered = false
         navController?.popBackStack()
     }
 
-    if (centerTriggered){
+    if (centerTriggered) {
         centerTriggered = false
         navController?.navigate(route = HOME_SCREEN_ROUTE)
     }
 
-    if (rightTriggered){
+    if (rightTriggered) {
         rightTriggered = false
         onAdviceTriggered()
     }
@@ -84,12 +84,12 @@ fun Footer(
                 configuration = NavigationButtonConfiguration.BACK,
                 alpha = configuration.left(),
                 onAdviceTriggered = onLeftTriggered,
-                )
+            )
             NavigationButton(
                 configuration = NavigationButtonConfiguration.HOME,
                 alpha = configuration.center(),
                 onAdviceTriggered = onCenterTriggered,
-                )
+            )
             NavigationButton(
                 configuration = NavigationButtonConfiguration.NEXT,
                 alpha = configuration.right(),

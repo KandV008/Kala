@@ -47,7 +47,7 @@ val typeButtons: List<LargeButtonConfiguration> = listOf(
  */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun OptionScreen(navController: NavController? = null){
+fun OptionScreen(navController: NavController? = null) {
     LayoutWithNoScroll(
         navController = navController,
         headerConfiguration = HeaderConfiguration.OPTION_SCREEN,
@@ -64,10 +64,12 @@ fun OptionScreen(navController: NavController? = null){
 
 /**
  * Composable function for rendering the body of the Option screen.
+ *
+ * @param navController The navigation controller for navigating between screens.
  */
 @SuppressLint("ShowToast")
 @Composable
-fun OptionScreenBody(navController: NavController? = null){
+fun OptionScreenBody(navController: NavController? = null) {
     var deleteButtonTriggered by remember {
         mutableStateOf(false)
     }
@@ -84,7 +86,7 @@ fun OptionScreenBody(navController: NavController? = null){
         { deleteButtonTriggered = true },
     )
 
-    if (deleteButtonTriggered){
+    if (deleteButtonTriggered) {
         ConfirmationPopUp(
             onConfirmButton = {
                 deleteButtonTriggered = false
@@ -94,7 +96,7 @@ fun OptionScreenBody(navController: NavController? = null){
         )
     }
 
-    if (deletingUser){
+    if (deletingUser) {
         deletingUser = false
         val current = LocalContext.current
         val successMessage = stringResource(id = R.string.delete_account_success_message)
@@ -108,7 +110,7 @@ fun OptionScreenBody(navController: NavController? = null){
         }
     }
 
-    LazyColumn{
+    LazyColumn {
         itemsIndexed(typeButtons) { index, type ->
             LargeButton(configuration = type, onAdviceTriggered = optionFunctions[index])
             Spacer(modifier = Modifier.padding(dimens.space1))
@@ -117,12 +119,11 @@ fun OptionScreenBody(navController: NavController? = null){
 }
 
 
-
 /**
  * Preview function for testing and visualizing the Option screen.
  */
 @Preview(showBackground = true)
 @Composable
-fun OptionScreenPreview(){
+fun OptionScreenPreview() {
     OptionScreen()
 }

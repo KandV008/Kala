@@ -111,15 +111,14 @@ fun MediumButton(
 @Composable
 fun PreviewMediumButton() {
     Scaffold {
-        LazyColumn (
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-        ){
-            items(MediumButtonConfiguration.entries.toTypedArray()){
-                    value ->
+        ) {
+            items(MediumButtonConfiguration.entries.toTypedArray()) { value ->
                 MediumButton(configuration = value, onAdviceTriggered = {})
                 Spacer(modifier = Modifier.padding(dimens.padding0))
 

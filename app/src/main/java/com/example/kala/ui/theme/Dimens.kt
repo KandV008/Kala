@@ -55,7 +55,7 @@ data class Dimens(
     val padding4: Dp = 0.dp,
     val padding5: Dp = 0.dp,
     val padding6: Dp = 0.dp,
-    )
+)
 
 val CompactSmallDimens = Dimens(
     height0 = 25.dp,

@@ -34,7 +34,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.OffsetMapping
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -47,17 +46,19 @@ import com.example.kala.ui.theme.fontFamily
  * Composable function for rendering a small text input field.
  *
  * @param configuration The configuration for the small text input.
+ * @param valueInput The current value of the text input.
+ * @param onValueChange Callback function invoked when the value of the text input changes.
  */
 @Composable
 fun SmallTextInput(
     configuration: SmallTextInputConfiguration,
     valueInput: String,
     onValueChange: (String) -> Unit
-){
+) {
     val keyboardOptions = KeyboardOptions.Default.copy(
         keyboardType = if (configuration.isPassword()) KeyboardType.Password else KeyboardType.Text
     )
-    
+
     val visualTransformation =
         if (configuration.isPassword())
             AsteriskTransformation()
@@ -67,7 +68,7 @@ fun SmallTextInput(
     Column(
         modifier = Modifier
             .width(dimens.width8)
-    ){
+    ) {
         Text(
             text = stringResource(id = configuration.getLayer()),
             fontSize = dimens.fontSize1,
@@ -78,8 +79,7 @@ fun SmallTextInput(
 
         Row(
             modifier = Modifier
-                .height(dimens.height2)
-            ,
+                .height(dimens.height2),
         ) {
             TextField(
                 value = valueInput,
@@ -95,8 +95,7 @@ fun SmallTextInput(
                     .width(dimens.width5)
                     .height(dimens.height2)
                     .clip(RoundedCornerShape(dimens.rounded))
-                    .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
-                ,
+                    .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded)),
                 colors = inputTextColor,
                 placeholder = {
                     Text(
@@ -115,8 +114,7 @@ fun SmallTextInput(
                     .size(dimens.image4)
                     .clip(CircleShape)
                     .background(Color.White)
-                    .padding(dimens.padding2)
-                ,
+                    .padding(dimens.padding2),
                 contentAlignment = Alignment.Center,
             ) {
                 Image(
@@ -130,6 +128,9 @@ fun SmallTextInput(
     }
 }
 
+/**
+ * Transformation for masking text with asterisks (used for password fields).
+ */
 class AsteriskTransformation : VisualTransformation {
     override fun filter(text: AnnotatedString): TransformedText {
         // Replace each character with an asterisk
@@ -148,16 +149,15 @@ class AsteriskTransformation : VisualTransformation {
 @Composable
 fun PreviewSmallTextInput() {
     Scaffold {
-        LazyColumn (
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-        ){
-            items(SmallTextInputConfiguration.entries.toTypedArray()){
-                    value ->
-                SmallTextInput(configuration = value, ""){}
+        ) {
+            items(SmallTextInputConfiguration.entries.toTypedArray()) { value ->
+                SmallTextInput(configuration = value, "") {}
                 Spacer(modifier = Modifier.padding(dimens.space0))
             }
         }

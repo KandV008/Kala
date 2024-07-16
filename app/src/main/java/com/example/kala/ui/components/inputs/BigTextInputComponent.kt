@@ -43,7 +43,7 @@ val DESCRIPTION_PLACEHOLDER_BTI = R.string.description_placeholder_bti
  * @param onValueChange Callback function to be executed when the value of the input field changes.
  */
 @Composable
-fun BigTextInput(valueInput: String, onValueChange: (String) -> Unit){
+fun BigTextInput(valueInput: String, onValueChange: (String) -> Unit) {
     val keyboardOptions = KeyboardOptions.Default.copy(
         keyboardType = KeyboardType.Text
     )
@@ -51,7 +51,7 @@ fun BigTextInput(valueInput: String, onValueChange: (String) -> Unit){
     Column(
         modifier = Modifier
             .width(dimens.width8)
-    ){
+    ) {
         Text(
             text = stringResource(id = DESCRIPTION_LABEL_BTI),
             fontSize = dimens.fontSize1,
@@ -71,8 +71,7 @@ fun BigTextInput(valueInput: String, onValueChange: (String) -> Unit){
                 .fillMaxWidth()
                 .height(dimens.height6)
                 .clip(RoundedCornerShape(dimens.rounded))
-                .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
-            ,
+                .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded)),
             placeholder = {
                 Text(
                     text = stringResource(id = DESCRIPTION_PLACEHOLDER_BTI),
@@ -100,13 +99,13 @@ fun PreviewBigTextInput() {
     var descriptionExchange by remember { mutableStateOf("") }
 
     Scaffold {
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-        ){
+        ) {
             BigTextInput(valueInput = descriptionExchange)
             { newValue -> descriptionExchange = newValue }
         }

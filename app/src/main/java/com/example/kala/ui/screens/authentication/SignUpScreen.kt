@@ -23,7 +23,6 @@ import com.example.kala.ui.components.popUps.InvalidFormPopUp
 import com.example.kala.ui.screens.commons.FooterConfiguration
 import com.example.kala.ui.screens.commons.HeaderConfiguration
 import com.example.kala.ui.screens.commons.Layout
-import com.example.kala.ui.screens.navigation.ADD_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.HOME_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.SIGN_UP_SCREEN_ROUTE
 import com.example.kala.ui.screens.utilities.FormValidation.isValidSignUp
@@ -33,6 +32,11 @@ import com.google.firebase.auth.FirebaseAuth
 
 private val FAILURE_CREATING_USER_MESSAGE = R.string.failure_creating_user_message
 
+/**
+ * Composable function for rendering the SignUp screen.
+ *
+ * @param navController The navigation controller for navigating between screens.
+ */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun SignUpScreen(
@@ -59,7 +63,7 @@ fun SignUpScreen(
         errorMessageList.clear()
         val validForm = isValidSignUp(emailValue, passwordValue)
 
-        if (validForm){
+        if (validForm) {
             FirebaseAuth
                 .getInstance()
                 .createUserWithEmailAndPassword(emailValue, passwordValue)
@@ -78,7 +82,7 @@ fun SignUpScreen(
         }
     }
 
-    if(isPopUpVisible){
+    if (isPopUpVisible) {
         InvalidFormPopUp(messageList = errorMessageList, onConfirmButton = hidePopUp)
     }
 
@@ -114,11 +118,8 @@ fun SignUpScreen(
 
 
 
-
-
 /**
- * Composable function for previewing adding a new money exchange.
- *
+ * Composable function for previewing the SignUp screen.
  */
 @Preview(showBackground = true)
 @Composable

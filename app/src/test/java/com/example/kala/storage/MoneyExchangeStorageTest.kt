@@ -22,7 +22,7 @@ class MoneyExchangeStorageTest {
      * Initializes test data before each test.
      */
     @Before
-    fun onBefore(){
+    fun onBefore() {
         val value = 30.0
         val type: MoneyExchangeType = MoneyExchangeType.EXPENSE
         val scope: MoneyExchangeScope = MoneyExchangeScope.FOOD

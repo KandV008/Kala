@@ -20,7 +20,7 @@ class MoneyExchangeTest {
      * Initializes test data before each test.
      */
     @Before
-    fun onBefore(){
+    fun onBefore() {
         val value = 30.0
         val type: MoneyExchangeType = MoneyExchangeType.EXPENSE
         val scope: MoneyExchangeScope = MoneyExchangeScope.FOOD
@@ -36,7 +36,7 @@ class MoneyExchangeTest {
      * Test case for creating a new MoneyExchange object.
      */
     @Test
-    fun `Create a New Money Exchange`(){
+    fun `Create a New Money Exchange`() {
         val value = 15.0
         val type: MoneyExchangeType = MoneyExchangeType.INCOME
         val scope: MoneyExchangeScope = MoneyExchangeScope.OTHER
@@ -48,7 +48,7 @@ class MoneyExchangeTest {
      * Test case for reading a MoneyExchange object.
      */
     @Test
-    fun  `Read a Money Exchange`(){
+    fun `Read a Money Exchange`() {
         val expectedValue = 30.0
         assertEquals(expectedValue, moneyExchange.value)
 
@@ -66,7 +66,7 @@ class MoneyExchangeTest {
      * Test case for editing a MoneyExchange object.
      */
     @Test
-    fun `Edit a Money Exchange`(){
+    fun `Edit a Money Exchange`() {
         val newValue = 50.0
         moneyExchange.value = newValue
         val expectedValue = 50
@@ -77,11 +77,11 @@ class MoneyExchangeTest {
      * Test case for deleting a MoneyExchange object from an array.
      */
     @Test
-    fun `Delete a Money Exchange from an array`(){
+    fun `Delete a Money Exchange from an array`() {
         val startValue = listMoneyExchange.size
         listMoneyExchange.removeAt(0)
         val endValue = listMoneyExchange.size
         val expected = 1
-        assertEquals(expected, startValue-endValue)
+        assertEquals(expected, startValue - endValue)
     }
 }

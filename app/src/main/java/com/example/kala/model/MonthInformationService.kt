@@ -4,25 +4,45 @@ import com.example.kala.model.entities.MonthInformation
 import com.example.kala.model.storage.MoneyExchangeStorage
 import java.util.TreeMap
 
-private const val GET_MONTH_INFORMATION_ACTION_MESSAGE = "[MonthInformationService][ACTION] Get Month Information"
-private const val GET_MONTH_INFORMATION_RESULT_MESSAGE = "[MonthInformationService][RESULT] Month id: "
+private const val GET_MONTH_INFORMATION_ACTION_MESSAGE =
+    "[MonthInformationService][ACTION] Get Month Information"
+private const val GET_MONTH_INFORMATION_RESULT_MESSAGE =
+    "[MonthInformationService][RESULT] Month id: "
 private const val HAS_NEXT_MONTH_ACTION_MESSAGE = "[MonthInformationService][ACTION] Has Next Month"
-private const val HAS_NEXT_MONTH_RESULT_MESSAGE = "[MonthInformationService][RESULT] Exist next month: "
+private const val HAS_NEXT_MONTH_RESULT_MESSAGE =
+    "[MonthInformationService][RESULT] Exist next month: "
 private const val HAS_PREV_MONTH_ACTION_MESSAGE = "[MonthInformationService][ACTION] Has Prev Month"
-private const val HAS_PREV_MONTH_RESULT_MESSAGE = "[MonthInformationService][RESULT] Exist prev month: "
+private const val HAS_PREV_MONTH_RESULT_MESSAGE =
+    "[MonthInformationService][RESULT] Exist prev month: "
 private const val GET_NEXT_MONTH_ACTION_MESSAGE = "[MonthInformationService][ACTION] Get Next Month"
-private const val GET_NEXT_MONTH_RESULT_MESSAGE = "[MonthInformationService][RESULT] Next Month Id: "
+private const val GET_NEXT_MONTH_RESULT_MESSAGE =
+    "[MonthInformationService][RESULT] Next Month Id: "
 private const val GET_PREV_MONTH_ACTION_MESSAGE = "[MonthInformationService][ACTION] Get Prev Month"
-private const val GET_PREV_MONTH_RESULT_MESSAGE = "[MonthInformationService][RESULT] Prev Month Id: "
+private const val GET_PREV_MONTH_RESULT_MESSAGE =
+    "[MonthInformationService][RESULT] Prev Month Id: "
 private const val CLEAN_STORAGE_ACTION_MESSAGE = "[MonthInformationService][ACTION] Clean Storage"
-private const val CLEAN_STORAGE_RESULT_MESSAGE = "[MonthInformationService][RESULT] Storage cleaned "
+private const val CLEAN_STORAGE_RESULT_MESSAGE =
+    "[MonthInformationService][RESULT] Storage cleaned "
 
+/**
+ * Service object responsible for managing and accessing month information.
+ */
 object MonthInformationService {
 
+    /**
+     * Adds the provided [monthInformation] to the storage.
+     *
+     * @param monthInformation The month information to add.
+     */
     fun addMonthInformation(monthInformation: MonthInformation) {
         MoneyExchangeStorage.monthInformationMap[monthInformation.id] = monthInformation
     }
 
+    /**
+     * Retrieves all month information stored in the system.
+     *
+     * @return A [TreeMap] containing all month information mapped by their IDs.
+     */
     fun getAllMonthInformation(): TreeMap<String, MonthInformation> {
         return MoneyExchangeStorage.monthInformationMap
     }
@@ -99,6 +119,10 @@ object MonthInformationService {
         return idMonth
     }
 
+    /**
+     * Cleans the money exchange storage by performing necessary cleanup operations.
+     * This function prints messages before and after cleaning the storage.
+     */
     fun clean() {
         println(CLEAN_STORAGE_ACTION_MESSAGE)
         MoneyExchangeStorage.clean()

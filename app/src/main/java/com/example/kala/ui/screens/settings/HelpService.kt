@@ -14,8 +14,10 @@ import com.example.kala.ui.screens.navigation.RECORD_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.REPORT_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.SIGN_UP_SCREEN_ROUTE
 
-private const val GET_TEXT_ADVICE_SCREEN_ACTION_MESSAGE = "[HelpService][ACTION] Get Text Advice Screen"
-private const val GET_TEXT_ADVICE_SCREEN_RESULT_MESSAGE = "[HelpService][RESULT] Text for the Help Screen"
+private const val GET_TEXT_ADVICE_SCREEN_ACTION_MESSAGE =
+    "[HelpService][ACTION] Get Text Advice Screen"
+private const val GET_TEXT_ADVICE_SCREEN_RESULT_MESSAGE =
+    "[HelpService][RESULT] Text for the Help Screen"
 
 /**
  * Service class for managing the messages for the help screen.
@@ -42,7 +44,7 @@ object HelpService {
      * @param screen The route of the screen for which help text is requested.
      * @return The list of help text associated with the specified screen, or an empty list if no help text is found.
      */
-    fun getTextAdviceScreen(screen: String): List<Int>{
+    fun getTextAdviceScreen(screen: String): List<Int> {
         println(GET_TEXT_ADVICE_SCREEN_ACTION_MESSAGE)
         val textForHelpScreen = textAdviceScreen[screen].orEmpty()
         println(GET_TEXT_ADVICE_SCREEN_RESULT_MESSAGE)

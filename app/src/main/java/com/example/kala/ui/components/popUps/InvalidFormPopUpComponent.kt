@@ -37,6 +37,12 @@ import com.example.kala.ui.theme.fontFamily
 val INVALID_FORM_TITLE_POP_UP = R.string.invalid_form_title_pop_up
 val INVALID_FORM_BUTTON_POP_UP = R.string.invalid_form_button_pop_up
 
+/**
+ * Composable function that displays an alert dialog for invalid form submissions.
+ *
+ * @param messageList A list of resource IDs representing error messages to display.
+ * @param onConfirmButton Callback function invoked when the confirmation button is clicked.
+ */
 @Composable
 fun InvalidFormPopUp(
     messageList: MutableList<Int>,
@@ -44,7 +50,7 @@ fun InvalidFormPopUp(
 ) {
     AlertDialog(
         containerColor = Color.White,
-        onDismissRequest = {  },
+        onDismissRequest = { },
         title = {
             Text(
                 text = stringResource(id = INVALID_FORM_TITLE_POP_UP),
@@ -83,8 +89,7 @@ fun InvalidFormPopUp(
                         .height(dimens.height2)
                         .width(dimens.width5)
                         .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
-                        .align(Alignment.CenterHorizontally)
-                    ,
+                        .align(Alignment.CenterHorizontally),
                 ) {
                     Button(
                         onClick = onConfirmButton,
@@ -116,6 +121,10 @@ fun InvalidFormPopUp(
 
 }
 
+/**
+ * Preview function to visually represent the [InvalidFormPopUp] composable.
+ * Displays a scaffolded column with the [InvalidFormPopUp] content.
+ */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Preview
 @Composable
@@ -124,14 +133,14 @@ fun InvalidFormPopUpButton() {
     val exampleList: MutableList<Int> = mutableListOf()
 
     Scaffold {
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-        ){
-            InvalidFormPopUp(exampleList){}
+        ) {
+            InvalidFormPopUp(exampleList) {}
         }
     }
 }

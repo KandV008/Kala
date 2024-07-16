@@ -31,7 +31,7 @@ import com.example.kala.ui.theme.dimens
  */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun LanguageScreen(navController: NavController? = null){
+fun LanguageScreen(navController: NavController? = null) {
     Layout(
         navController = navController,
         headerConfiguration = HeaderConfiguration.LANGUAGE_SCREEN,
@@ -48,9 +48,11 @@ fun LanguageScreen(navController: NavController? = null){
 
 /**
  * Composable function for rendering the body of the Language screen.
+ *
+ * @param navController The navigation controller for navigating between screens.
  */
 @Composable
-fun LanguageScreenBody(navController: NavController?){
+fun LanguageScreenBody(navController: NavController?) {
 
     var action by remember { mutableStateOf("") }
     var adviceTriggered by remember { mutableStateOf(false) }
@@ -59,7 +61,7 @@ fun LanguageScreenBody(navController: NavController?){
         adviceTriggered = true
     }
 
-    if (adviceTriggered){
+    if (adviceTriggered) {
         adviceTriggered = false
         SetLocale(action)
         NavigationButtonConfiguration.LANGUAGE.updateIcon(action)
@@ -78,6 +80,6 @@ fun LanguageScreenBody(navController: NavController?){
  */
 @Preview(showBackground = true)
 @Composable
-fun LanguageScreenPreview(){
+fun LanguageScreenPreview() {
     LanguageScreen()
 }

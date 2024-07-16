@@ -81,7 +81,7 @@ fun EditExchangeScreen(
         errorMessageList.clear()
         val validForm = isValidForm(valueExchange, typeExchange, scopeExchange)
 
-        if (validForm){
+        if (validForm) {
             val updatedMoneyExchange = MoneyExchange(
                 valueExchange.toDouble(),
                 typeExchange,
@@ -96,7 +96,7 @@ fun EditExchangeScreen(
         }
     }
 
-    if(isPopUpVisible){
+    if (isPopUpVisible) {
         InvalidFormPopUp(messageList = errorMessageList, onConfirmButton = hidePopUp)
     }
 

@@ -77,7 +77,7 @@ fun AddExchangeScreen(
         errorMessageList.clear()
         val validForm = isValidForm(valueExchange, typeExchange, scopeExchange)
 
-        if (validForm){
+        if (validForm) {
             val newMoneyExchange = MoneyExchange(
                 valueExchange.toDouble(),
                 typeExchange,
@@ -91,7 +91,7 @@ fun AddExchangeScreen(
         }
     }
 
-    if(isPopUpVisible){
+    if (isPopUpVisible) {
         InvalidFormPopUp(messageList = errorMessageList, onConfirmButton = hidePopUp)
     }
 
@@ -129,8 +129,7 @@ fun AddExchangeScreen(
 
 
 /**
- * Composable function for previewing adding a new money exchange.
- *
+ * Composable function for previewing editing a new money exchange.
  */
 @Preview(showBackground = true)
 @Composable

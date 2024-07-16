@@ -50,7 +50,7 @@ val NUMBER_INPUT_LABEL = R.string.number_input_label
  * @param onValueChange Callback function to be executed when the value of the number input field changes.
  */
 @Composable
-fun NumberInput(valueInput: String, onValueChange: (String) -> Unit){
+fun NumberInput(valueInput: String, onValueChange: (String) -> Unit) {
     val keyboardOptions = KeyboardOptions.Default.copy(
         keyboardType = KeyboardType.Number
     )
@@ -58,7 +58,7 @@ fun NumberInput(valueInput: String, onValueChange: (String) -> Unit){
     Column(
         modifier = Modifier
             .width(dimens.width8)
-    ){
+    ) {
         Text(
             text = stringResource(id = NUMBER_INPUT_LABEL),
             fontSize = dimens.fontSize1,
@@ -67,8 +67,7 @@ fun NumberInput(valueInput: String, onValueChange: (String) -> Unit){
         )
         Row(
             modifier = Modifier
-                .height(dimens.height2)
-            ,
+                .height(dimens.height2),
         ) {
             TextField(
                 value = valueInput,
@@ -104,8 +103,7 @@ fun NumberInput(valueInput: String, onValueChange: (String) -> Unit){
                     .size(dimens.image4)
                     .clip(CircleShape)
                     .background(Color.White)
-                    .padding(dimens.padding2)
-                ,
+                    .padding(dimens.padding2),
                 contentAlignment = Alignment.Center,
             ) {
                 Image(
@@ -128,13 +126,13 @@ fun NumberInput(valueInput: String, onValueChange: (String) -> Unit){
 @Composable
 fun PreviewNumberInput() {
     Scaffold {
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(BoneWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-        ){
+        ) {
             var valueExchange by remember { mutableStateOf("0.00") }
             NumberInput(valueInput = valueExchange) { newValue ->
                 valueExchange = newValue
