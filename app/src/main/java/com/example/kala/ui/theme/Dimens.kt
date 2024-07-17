@@ -55,7 +55,7 @@ data class Dimens(
     val padding4: Dp = 0.dp,
     val padding5: Dp = 0.dp,
     val padding6: Dp = 0.dp,
-    )
+)
 
 val CompactSmallDimens = Dimens(
     height0 = 25.dp,
@@ -161,7 +161,7 @@ val CompactMediumDimens = Dimens(
     padding6 = 30.dp,
 )
 
-val CompactDimens = Dimens( // TODO Responsive
+val CompactDimens = Dimens(
     height0 = 40.dp,
     height1 = 50.dp,
     height2 = 60.dp,
@@ -213,7 +213,7 @@ val CompactDimens = Dimens( // TODO Responsive
     padding6 = 30.dp,
 )
 
-val MediumDimens = Dimens( // TODO Responsive
+val MediumDimens = Dimens(
     height0 = 40.dp,
     height1 = 50.dp,
     height2 = 60.dp,
@@ -265,7 +265,7 @@ val MediumDimens = Dimens( // TODO Responsive
     padding6 = 30.dp,
 )
 
-val ExpandedDimens = Dimens( // TODO Responsive
+val ExpandedDimens = Dimens(
     height0 = 40.dp,
     height1 = 50.dp,
     height2 = 60.dp,

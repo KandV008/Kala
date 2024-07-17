@@ -1,5 +1,9 @@
 package com.example.kala.entities
 
+import com.example.kala.model.entities.MoneyExchange
+import com.example.kala.model.entities.MoneyExchangeScope
+import com.example.kala.model.entities.MoneyExchangeType
+import com.example.kala.model.entities.MonthInformation
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test

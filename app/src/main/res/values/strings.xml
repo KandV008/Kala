@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Kala</string>
+    <string name="empty" translatable="false" />
     <string name="see_report_md">See report</string>
     <string name="see_record_md">See record</string>
     <string name="see_delete_md">Delete Card</string>
@@ -39,7 +40,7 @@
     <string name="add_exchange_screen_help0">Add Exchange Screen Help</string>
     <string name="add_exchange_screen_help1">\'Value of the exchange\' it refers to the money, it must to be higher than Zero</string>
     <string name="add_exchange_screen_help2">\'Type of the exchange\' it refers if you expense or income the money. You have to choose one.</string>
-    <string name="add_echange_screen_help3">\'Scope of the exchange\' it refers to the attribute of the exchange. You have to choose one.</string>
+    <string name="add_exchange_screen_help3">\'Scope of the exchange\' it refers to the attribute of the exchange. You have to choose one.</string>
     <string name="add_exchange_screen_help4">\'Description\' if refers so additional information of the exchange. It is optional to fulfill.</string>
     <string name="add_exchange_screen_help5">Fill all the fields and press the right arrow to continue.</string>
     <string name="edit_exchange_screen_help0">Edit Exchange Screen Help</string>
@@ -62,11 +63,8 @@
     <string name="about_month_help3">If the buttons don\'t show, it is because doesn\'t exist a previous or next month.</string>
     <string name="about_month_help4">Below the pie chart there are all the scopes with their icon and total money associated.</string>
     <string name="option_screen_help0">Options Screen Help</string>
-    <string name="option_screen_help1">\'Change name\' let you to change the name associated to your account.</string>
-    <string name="option_screen_help2">\'Change email\' let you to change the email associated to your account.</string>
-    <string name="option_screen_help3">\'Set currency\' let you to change the symbol showed with the money. It isn\'t a currency conversion.</string>
-    <string name="option_screen_help4">\'Log Out\' let you to end your current session.</string>
-    <string name="option_screen_help5">\'Delete User\' let you to erase your account.</string>
+    <string name="option_screen_help1">\'Log Out\' let you to end your current session.</string>
+    <string name="option_screen_help2">\'Delete User\' let you to erase your account.</string>
     <string name="language_screen_help0">Language Screen Help</string>
     <string name="language_screen_help1">It shows all the available languages for the application.</string>
     <string name="language_screen_help2">You can choose the language of the application by clicking in one.</string>
@@ -110,6 +108,39 @@
     <string name="invalid_email_error_message">Invalid email</string>
     <string name="invalid_password_error_message">The password must be 8 characters long, at least one uppercase letter, and at least one number</string>
     <string name="failure_creating_user_message">An error had occurred during authentication</string>
-    <string name="failure_log_in_message">Email or password are not correct.</string>
-    <string name="distinct_password_error_message">\"They are not the same password\"</string>
+    <string name="failure_log_in_message">Email or password are not correct. Try again.</string>
+    <string name="slogan">Your income and expense management app</string>
+    <string name="recovery_pass_msg">Enter your email to send you \na recovery password form</string>
+    <string name="january">January</string>
+    <string name="february">February</string>
+    <string name="march">March</string>
+    <string name="april">April</string>
+    <string name="may">May</string>
+    <string name="june">June</string>
+    <string name="july">July</string>
+    <string name="august">August</string>
+    <string name="september">September</string>
+    <string name="october">October</string>
+    <string name="november">November</string>
+    <string name="december">December</string>
+    <string name="main_screen_help0">Main Screen Help</string>
+    <string name="main_screen_help1">Landing screen where you can choose how to authenticate in the application.</string>
+    <string name="main_screen_help2">\'Log In\' let you to enter in the application with your email.</string>
+    <string name="main_screen_help3">\'Sign Up\' let you to create a new account to use the application.</string>
+    <string name="log_in_screen_help0">Log In Screen Help</string>
+    <string name="log_in_screen_help1">You have to enter your email address and password to log in.</string>
+    <string name="log_in_screen_help2">\'Recovery pass\' let you to change your password if you don\'t remember it.</string>
+    <string name="log_in_screen_help3">You can also log in with your Google account by clicking on the Google logo button.</string>
+    <string name="change_pass_screen_help0">Change Password Screen Help</string>
+    <string name="change_pass_screen_help1">It shows a formulary to enter your email to send you a message to change your password.</string>
+    <string name="change_pass_screen_help2">\'Send Request\' let you to send the email with the form to change your password.</string>
+    <string name="sign_up_screen_help0">Sign Up Screen Help</string>
+    <string name="sign_up_screen_help1">It lets you to create a new account in the application.</string>
+    <string name="sign_up_screen_help2">Enter a valid email and password in the form.</string>
+    <string name="sign_up_screen_help3">Your password must contain at least 8 letters, a capital letter and a number.</string>
+    <string name="sign_up_screen_help4">You can also register with your Google account by clicking on the Google logo button.</string>
+    <string name="delete_account_success_message">Account deleted successfully.</string>
+    <string name="delete_account_failed_message">Account deletion failed.</string>
+    <string name="request_message">Request sent. Check your email</string>
+    <string name="failure_send_request_message">Invalid email. Try again!</string>
 </resources>
