@@ -8,12 +8,17 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import com.example.kala.MainActivity
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -37,12 +42,14 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
+@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @Composable
 fun KalaTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
-    content: @Composable () -> Unit
+    activity: Activity = LocalContext.current as MainActivity,
+    content: @Composable () -> Unit,
 ) {
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
@@ -62,9 +69,47 @@ fun KalaTheme(
         }
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
+    val window = calculateWindowSizeClass(activity = activity)
+    val config = LocalConfiguration.current
+
+    val typography = Typography
+    val appDimens: Dimens
+
+    when (window.widthSizeClass) {
+        WindowWidthSizeClass.Compact -> {
+            appDimens = if (config.screenWidthDp <= 360) {
+                CompactSmallDimens
+                //typography = CompactSmallTypography
+            } else if (config.screenWidthDp < 599) {
+                CompactMediumDimens
+                //typography = CompactMediumTypography
+            } else {
+                CompactDimens
+                //typography = CompactTypography
+            }
+        }
+
+        WindowWidthSizeClass.Medium -> {
+            appDimens = MediumDimens
+            //typography = MediumTypography
+        }
+
+        else -> {
+            appDimens = ExpandedDimens
+            //typography = ExpandedTypography
+        }
+    }
+
+    AppUtils(appDimens = appDimens) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            typography = typography,
+            content = content
+        )
+    }
+
 }
+
+val dimens
+    @Composable
+    get() = LocalAppDimens.current

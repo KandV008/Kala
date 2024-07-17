@@ -1,0 +1,232 @@
+package com.example.kala.model
+
+import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
+import android.util.Log
+import com.example.kala.model.entities.MoneyExchange
+import com.example.kala.model.entities.MoneyExchangeScope
+import com.example.kala.model.entities.MoneyExchangeType
+import com.example.kala.model.entities.MonthInformation
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.firestore
+import java.time.LocalDateTime
+
+/**
+ * Service object responsible for handling Firebase operations related to user data.
+ */
+@SuppressLint("StaticFieldLeak")
+object FireBaseService {
+    private const val COLLECTION_TAG = "users"
+    private const val SUB_COLLECTION_TAG = "summary"
+    private val database = Firebase.firestore
+
+    /**
+     * Saves the user's month information to FireStore under the user's document.
+     *
+     * @param userId The ID of the user to save data for.
+     */
+    fun saveUser(userId: String) {
+        val documentRef = database.collection(COLLECTION_TAG).document(userId)
+
+        for ((key, monthInfo) in MonthInformationService.getAllMonthInformation()) {
+            val docRef = documentRef.collection(SUB_COLLECTION_TAG).document(key)
+            val monthInfoMap = monthInfo.monthInformationToMap()
+            docRef.set(monthInfoMap)
+                .addOnSuccessListener {
+                    println("MonthInformation successfully written!")
+                }
+                .addOnFailureListener { e ->
+                    println("Error writing MonthInformation: $e")
+                }
+        }
+    }
+
+    /**
+     * Loads the user's month information from FireStore and adds it to the local storage.
+     *
+     * @param userId The ID of the user to load data for.
+     * @param onComplete Callback function called after data loading is complete.
+     */
+    fun loadUser(userId: String, onComplete: () -> Unit) {
+        database.collection(COLLECTION_TAG)
+            .document(userId)
+            .collection(SUB_COLLECTION_TAG)
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    val monthInformation = documentToMonthInformation(document)
+                    MonthInformationService.addMonthInformation(monthInformation)
+                }
+                onComplete()
+            }
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "Error getting documents: ", exception)
+            }
+    }
+
+    /**
+     * Converts a FireStore document snapshot into a MonthInformation object.
+     *
+     * @param document The FireStore document snapshot to convert.
+     * @return The converted MonthInformation object.
+     * @throws IllegalStateException if required fields are missing or null.
+     */
+    private fun documentToMonthInformation(document: QueryDocumentSnapshot): MonthInformation {
+        val id = document.id
+        val expensedMoney: Double = document.getDouble("expensedMoney")
+            ?: throw IllegalStateException("expensedMoney cannot be null")
+        val incomeMoney = document.getDouble("incomeMoney")
+            ?: throw IllegalStateException("expensedMoney cannot be null")
+        val dateCreation = document.getString("dateCreation")
+            ?: throw IllegalStateException("expensedMoney cannot be null")
+
+        val monthInformation = MonthInformation(id, expensedMoney, incomeMoney, dateCreation)
+
+        val entries = (document.get("summary") as HashMap<String, HashMap<String, Any>>).entries
+
+        for (entry in entries) {
+            val moneyExchange: MoneyExchange = documentToMoneyExchange(entry.value)
+            monthInformation.summary[moneyExchange.id.toString()] = moneyExchange
+        }
+
+        return monthInformation
+    }
+
+    /**
+     * Converts a HashMap representation of a MoneyExchange into a MoneyExchange object.
+     *
+     * @param doc The HashMap containing MoneyExchange data.
+     * @return The converted MoneyExchange object.
+     */
+    private fun documentToMoneyExchange(doc: HashMap<String, Any>): MoneyExchange {
+        val value = doc["value"] as Double
+        val type = MoneyExchangeType.valueOf(doc["type"] as String)
+        val scope = MoneyExchangeScope.valueOf(doc["scope"] as String)
+        val description = doc["description"] as String?
+
+        val moneyExchange = MoneyExchange(value, type, scope, description)
+        moneyExchange.id = (doc["id"] as Long).toInt()
+        moneyExchange.monthAssociated = doc["monthAssociated"] as String
+        moneyExchange.date = LocalDateTime.parse(doc["date"] as String)
+
+        return moneyExchange
+    }
+
+    /**
+     * Updates the current user's month information in FireStore.
+     */
+    fun updateUser() {
+        FirebaseAuth.getInstance().currentUser?.uid?.let {
+            this.saveUser(it)
+        }
+    }
+
+    /**
+     * Deletes the current user's data from FireStore and authentication.
+     *
+     * @param onFailure Callback function invoked if deletion fails.
+     * @param onComplete Callback function invoked after deletion is complete.
+     */
+    fun deleteUser(
+        onFailure: () -> Unit,
+        onComplete: () -> Unit
+    ) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+
+        currentUser!!.uid.let {
+            val users = database.collection(COLLECTION_TAG)
+            val userId = it
+
+            users
+                .document(userId)
+                .delete()
+                .addOnSuccessListener {
+                    eraseSubCollection(users, userId, currentUser, onComplete)
+                }
+                .addOnFailureListener { exception ->
+                    Log.d(TAG, "Error getting documents: ", exception)
+                    onFailure()
+                }
+        }
+    }
+
+    /**
+     * Deletes the sub-collection of month information under the current user's document in FireStore.
+     *
+     * @param users The collection reference to the 'users' collection.
+     * @param userId The ID of the user to delete data for.
+     * @param currentUser The current FirebaseUser object.
+     * @param onComplete Callback function invoked after deletion is complete.
+     */
+    private fun eraseSubCollection(
+        users: CollectionReference,
+        userId: String,
+        currentUser: FirebaseUser,
+        onComplete: () -> Unit
+    ) {
+        users
+            .document(userId)
+            .collection(SUB_COLLECTION_TAG)
+            .get()
+            .addOnSuccessListener { result ->
+                eraseDocuments(result, currentUser, onComplete)
+            }
+            .addOnFailureListener { exception ->
+                throw exception
+            }
+    }
+
+    /**
+     * Deletes all documents within a FireStore QuerySnapshot batch.
+     *
+     * @param result The FireStore QuerySnapshot containing documents to delete.
+     * @param currentUser The current FirebaseUser object.
+     * @param onComplete Callback function invoked after deletion is complete.
+     */
+    private fun eraseDocuments(
+        result: QuerySnapshot,
+        currentUser: FirebaseUser,
+        onComplete: () -> Unit
+    ) {
+        val batch = database.batch()
+
+        for (document in result) {
+            batch.delete(document.reference)
+        }
+
+        batch.commit()
+            .addOnSuccessListener {
+                eraseUserFromAuthentication(currentUser, onComplete)
+            }
+            .addOnFailureListener { exception ->
+                throw exception
+            }
+    }
+
+    /**
+     * Deletes the current user's authentication account.
+     *
+     * @param currentUser The current FirebaseUser object.
+     * @param onComplete Callback function invoked after deletion is complete.
+     */
+    private fun eraseUserFromAuthentication(
+        currentUser: FirebaseUser,
+        onComplete: () -> Unit
+    ) {
+        currentUser
+            .delete()
+            .addOnSuccessListener {
+                MonthInformationService.clean()
+                onComplete()
+            }
+            .addOnFailureListener { exception ->
+                throw exception
+            }
+    }
+
+}
