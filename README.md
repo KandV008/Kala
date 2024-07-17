@@ -30,7 +30,7 @@ Kala is a simple monthly income and expense management application. If you want 
 | :-: |
 | `beta` |
 
-In order to use the application it is necessary to [download the Kala APK](/kala-beta.apk) on the desired android device. C
+In order to use the application it is necessary to [download the Kala APK](/kala-beta.apk) on the desired android device. 
 
 **IMPORTANT**: The device SO must be Android 8 or higher.
 
