@@ -16,7 +16,7 @@ class MoneyExchangeStorageTest {
 
     private lateinit var moneyExchange: MoneyExchange
     private lateinit var listMoneyExchange: MutableList<MoneyExchange>
-    private val storage = MoneyExchangeStorage()
+    private val storage = MoneyExchangeStorage
 
     /**
      * Initializes test data before each test.

@@ -98,4 +98,12 @@ object FormValidation {
 
         return errorMessageList.isEmpty()
     }
+
+    fun isValidRecoveryPassword(email: String): Boolean {
+        if (isNotValidEmail(email)) {
+            errorMessageList.add(INVALID_EMAIL_ERROR_MESSAGE)
+        }
+
+        return errorMessageList.isEmpty()
+    }
 }

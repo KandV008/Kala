@@ -39,6 +39,7 @@ import com.example.kala.ui.screens.commons.HeaderConfiguration
 import com.example.kala.ui.screens.commons.Layout
 import com.example.kala.ui.screens.navigation.CHANGE_PASS_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.MAIN_SCREEN_ROUTE
+import com.example.kala.ui.screens.utilities.FormValidation.isValidRecoveryPassword
 import com.example.kala.ui.screens.utilities.errorMessageList
 import com.example.kala.ui.theme.dimens
 import com.google.firebase.Firebase
@@ -74,22 +75,26 @@ fun ChangePasswordScreen(
         adviceTriggered = false
         errorMessageList.clear()
         val current = LocalContext.current
-        Firebase
-            .auth
-            .sendPasswordResetEmail(emailValue)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
+        val validForm = isValidRecoveryPassword(emailValue)
+
+        if (validForm) {
+            Firebase
+                .auth
+                .sendPasswordResetEmail(emailValue)
+                .addOnSuccessListener {
                     Toast
                         .makeText(current, requestMessage, Toast.LENGTH_LONG)
                         .show()
                     navController?.navigate(route = MAIN_SCREEN_ROUTE)
-                } else {
+                }
+                .addOnFailureListener{
                     errorMessageList.add(FAILURE_SEND_REQUEST_MESSAGE)
                     isPopUpVisible = true
                 }
-            }
+        } else {
+            isPopUpVisible = true
+        }
     }
-
     if (isPopUpVisible) {
         InvalidFormPopUp(messageList = errorMessageList, onConfirmButton = hidePopUp)
     }

@@ -105,11 +105,10 @@
     <string name="invalid_type_error_message">Tipo invalido de transacción</string>
     <string name="invalid_scope_error_message">Ámbito invalido de transacción</string>
     <string name="no_money_exchange_added">Ninguna transacción ha sido añadida.</string>
-    <string name="invalid_email_error_message">Invalid email</string>
-    <string name="invalid_password_error_message">The password must be 8 letters long, have more things</string>
-    <string name="failure_creating_user_message">An error had occurred during authentication.</string>
-    <string name="failure_log_in_message" />
-    <string name="distinct_password_error_message">\"They are not the same password\"</string>
+    <string name="invalid_email_error_message">Correo no válido</string>
+    <string name="invalid_password_error_message">La contraseña tiene que tener como mínimo 8 letras, una mayúscula y un número.</string>
+    <string name="failure_creating_user_message">Un error ha ocurrido durante la autenticación.</string>
+    <string name="failure_log_in_message">El correo o la contraseña no son correcto. Vuelve a intentarlo.</string>
     <string name="slogan">Tu aplicación para gestionar gastos e ingresos</string>
     <string name="recovery_pass_msg">Introduce tu email para recuperar tu contraseña</string>
     <string name="january">Enero</string>
