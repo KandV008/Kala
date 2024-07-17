@@ -73,8 +73,10 @@ fun LogInScreen(
                 .getInstance()
                 .signInWithEmailAndPassword(emailValue, passwordValue)
                 .addOnSuccessListener {
-                    FireBaseService.loadUser(emailValue) {
-                        navController?.navigate(route = HOME_SCREEN_ROUTE)
+                    FirebaseAuth.getInstance().currentUser?.uid?.let {
+                        FireBaseService.loadUser(it) {
+                            navController?.navigate(route = HOME_SCREEN_ROUTE)
+                        }
                     }
                 }
                 .addOnFailureListener {
