@@ -45,28 +45,6 @@ import com.example.kala.ui.theme.dimens
 fun MainScreen(
     navController: NavController? = null
 ) {
-    var logInButtonTriggered by remember {
-        mutableStateOf(false)
-    }
-    val onLogInTriggered = {
-        logInButtonTriggered = true
-    }
-    if (logInButtonTriggered) {
-        logInButtonTriggered = false
-        navController?.navigate(route = LOG_IN_SCREEN_ROUTE)
-    }
-
-    var signUpButtonTriggered by remember {
-        mutableStateOf(false)
-    }
-    val onSignUpTriggered = {
-        signUpButtonTriggered = true
-    }
-    if (signUpButtonTriggered) {
-        signUpButtonTriggered = false
-        navController?.navigate(route = SIGN_UP_SCREEN_ROUTE)
-    }
-
     Layout(
         navController = navController,
         headerConfiguration = HeaderConfiguration.UNREGISTERED_USER,
@@ -82,13 +60,17 @@ fun MainScreen(
         Spacer(modifier = Modifier.padding(dimens.space3))
         LargeButton(
             configuration = LargeButtonConfiguration.LOG_IN,
-            onAdviceTriggered = onLogInTriggered
+            onAdviceTriggered = {
+                navController?.navigate(route = LOG_IN_SCREEN_ROUTE)
+            }
         )
 
         Spacer(modifier = Modifier.padding(dimens.space3))
         LargeButton(
             configuration = LargeButtonConfiguration.SIGN_UP,
-            onAdviceTriggered = onSignUpTriggered
+            onAdviceTriggered = {
+                navController?.navigate(route = SIGN_UP_SCREEN_ROUTE)
+            }
         )
     }
 }

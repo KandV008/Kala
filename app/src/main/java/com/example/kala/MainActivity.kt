@@ -8,7 +8,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.kala.ui.components.buttons.NavigationButtonConfiguration
 import com.example.kala.ui.components.buttons.getLanguageIconViaContext
 import com.example.kala.ui.screens.AppNavigation
+import com.example.kala.ui.screens.navigation.AppScreens
 import com.example.kala.ui.theme.KalaTheme
+import com.google.firebase.auth.FirebaseAuth
 
 /**
  * MainActivity is the entry point of the application.
@@ -27,9 +29,19 @@ class MainActivity : AppCompatActivity() {
         val languageIcon = getLanguageIconViaContext(this)
         NavigationButtonConfiguration.LANGUAGE.updateIcon(languageIcon)
 
+        val currentUser = FirebaseAuth.getInstance().currentUser
+
+        val startDestination = if (currentUser != null) {
+            AppScreens.homeScreen.route
+        } else {
+            AppScreens.mainScreen.route
+        }
+
         setContent {
             KalaTheme {
-                AppNavigation()
+                AppNavigation(
+                    startDestination
+                )
             }
         }
     }
@@ -42,6 +54,6 @@ class MainActivity : AppCompatActivity() {
 @Composable
 fun GreetingPreview() {
     KalaTheme {
-        AppNavigation()
+        AppNavigation(AppScreens.mainScreen.route)
     }
 }
