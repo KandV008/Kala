@@ -69,7 +69,7 @@ fun BigTextInput(valueInput: String, onValueChange: (String) -> Unit) {
             keyboardOptions = keyboardOptions,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(dimens.height6)
+                .height(dimens.heightBigTextInput)
                 .clip(RoundedCornerShape(dimens.rounded))
                 .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded)),
             placeholder = {

@@ -28,6 +28,27 @@ import com.example.kala.ui.screens.navigation.EDIT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.ui.screens.utilities.FormValidation.isValidForm
 import com.example.kala.ui.screens.utilities.errorMessageList
 import com.example.kala.ui.theme.dimens
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_NAME
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_NAME
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_WIDTH_DP
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_NAME
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_NAME
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.TABLET_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.TABLET_NAME
+import com.example.kala.ui.screens.utilities.TABLET_WIDTH_DP
+import com.example.kala.ui.theme.AppUtils
+import com.example.kala.ui.theme.LargePhone
+import com.example.kala.ui.theme.LargeTablet
+import com.example.kala.ui.theme.MediumPhone
+import com.example.kala.ui.theme.SmallPhone
+import com.example.kala.ui.theme.Tablet
 
 /**
  * Composable function for editing a money exchange.

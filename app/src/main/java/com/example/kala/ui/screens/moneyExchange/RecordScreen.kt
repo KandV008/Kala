@@ -32,6 +32,8 @@ import androidx.navigation.NavController
 import com.example.kala.R
 import com.example.kala.model.MoneyExchangeService
 import com.example.kala.model.entities.MoneyExchange
+import com.example.kala.model.entities.MoneyExchangeScope
+import com.example.kala.model.entities.MoneyExchangeType
 import com.example.kala.ui.components.Card
 import com.example.kala.ui.components.Title
 import com.example.kala.ui.components.TitleConfiguration
@@ -41,6 +43,27 @@ import com.example.kala.ui.screens.commons.LayoutWithNoScroll
 import com.example.kala.ui.screens.navigation.ABOUT_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.RECORD_SCREEN_ROUTE
 import com.example.kala.ui.theme.dimens
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_NAME
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_NAME
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_WIDTH_DP
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_NAME
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_NAME
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.TABLET_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.TABLET_NAME
+import com.example.kala.ui.screens.utilities.TABLET_WIDTH_DP
+import com.example.kala.ui.theme.AppUtils
+import com.example.kala.ui.theme.LargePhone
+import com.example.kala.ui.theme.LargeTablet
+import com.example.kala.ui.theme.MediumPhone
+import com.example.kala.ui.theme.SmallPhone
+import com.example.kala.ui.theme.Tablet
 
 val NO_MONEY_EXCHANGE_ADDED = R.string.no_money_exchange_added
 
@@ -52,10 +75,9 @@ val NO_MONEY_EXCHANGE_ADDED = R.string.no_money_exchange_added
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun RecordScreen(
-    navController: NavController? = null
+    navController: NavController? = null,
+    moneyExchangeList: List<MoneyExchange> = MoneyExchangeService.getAllMoneyExchanges()
 ) {
-    val moneyExchangeList: List<MoneyExchange> = MoneyExchangeService.getAllMoneyExchanges()
-
     var adviceTriggered by remember { mutableStateOf(false) }
     var cardSelected by remember {
         mutableIntStateOf(-1)
@@ -89,9 +111,6 @@ fun RecordScreen(
 
 /**
  * Callback function triggered when an item/card is selected to navigate to the About Exchange screen.
- *
- * @param idExchange The id of the selected money exchange.
- * @param idMonth The id of the selected month.
  */
 @Composable
 private fun RecordBody(
@@ -149,11 +168,92 @@ fun EmptyAdvice() {
     }
 }
 
+private fun previewMoneyExchanges(): List<MoneyExchange> {
+    return listOf(
+        MoneyExchange(
+            123.45,
+            MoneyExchangeType.INCOME,
+            MoneyExchangeScope.USEFUL
+        )
+    )
+}
+
 /**
- * Preview function for testing and visualizing the Record screen.
+ * Preview for the Record screen on a small phone.
  */
-@Preview(showBackground = true)
+@Preview(
+    name = SMALL_PHONE_NAME,
+    widthDp = SMALL_PHONE_WIDTH_DP,
+    heightDp = SMALL_PHONE_HEIGHT_DP,
+    showBackground = true
+)
 @Composable
-fun RecordScreenPreview() {
-    RecordScreen()
+fun RecordScreenSmallPhonePreview() {
+    AppUtils(appDimens = SmallPhone) {
+        RecordScreen(moneyExchangeList = previewMoneyExchanges())
+    }
+}
+
+/**
+ * Preview for the Record screen on a medium phone.
+ */
+@Preview(
+    name = MEDIUM_PHONE_NAME,
+    widthDp = MEDIUM_PHONE_WIDTH_DP,
+    heightDp = MEDIUM_PHONE_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun RecordScreenMediumPhonePreview() {
+    AppUtils(appDimens = MediumPhone) {
+        RecordScreen(moneyExchangeList = previewMoneyExchanges())
+    }
+}
+
+/**
+ * Preview for the Record screen on a large phone.
+ */
+@Preview(
+    name = LARGE_PHONE_NAME,
+    widthDp = LARGE_PHONE_WIDTH_DP,
+    heightDp = LARGE_PHONE_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun RecordScreenLargePhonePreview() {
+    AppUtils(appDimens = LargePhone) {
+        RecordScreen(moneyExchangeList = previewMoneyExchanges())
+    }
+}
+
+/**
+ * Preview for the Record screen on a tablet.
+ */
+@Preview(
+    name = TABLET_NAME,
+    widthDp = TABLET_WIDTH_DP,
+    heightDp = TABLET_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun RecordScreenTabletPreview() {
+    AppUtils(appDimens = Tablet) {
+        RecordScreen(moneyExchangeList = previewMoneyExchanges())
+    }
+}
+
+/**
+ * Preview for the Record screen on a large tablet.
+ */
+@Preview(
+    name = LARGE_TABLET_NAME,
+    widthDp = LARGE_TABLET_WIDTH_DP,
+    heightDp = LARGE_TABLET_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun RecordScreenLargeTabletPreview() {
+    AppUtils(appDimens = LargeTablet) {
+        RecordScreen(moneyExchangeList = previewMoneyExchanges())
+    }
 }

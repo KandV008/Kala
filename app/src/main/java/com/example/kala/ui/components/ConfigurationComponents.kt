@@ -1,8 +1,10 @@
 package com.example.kala.ui.components
 
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.kala.R
+import com.example.kala.ui.theme.dimens
 
 const val SVG_DESCRIPTION = "SVG from Button"
 const val DEFAULT_FLOAT = 1F
@@ -10,21 +12,10 @@ const val NAME_APPLICATION = "Kala"
 
 /**
  * Enum defining different configurations for the logo component.
- *
- * @property size The size of the logo in Dp (density-independent pixels).
  */
-enum class LogoConfiguration(private val size: Dp) {
-    SMALL(150.dp),
-    LARGE(200.dp);
-
-    /**
-     * Retrieves the size of the logo.
-     *
-     * @return The size of the logo in Dp.
-     */
-    fun getSize(): Dp {
-        return size
-    }
+enum class LogoConfiguration {
+    SMALL,
+    LARGE;
 }
 
 val SIGN_UP_TITLE = R.string.sign_up_title

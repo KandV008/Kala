@@ -92,7 +92,7 @@ fun SmallTextInput(
                 visualTransformation = visualTransformation,
                 keyboardOptions = keyboardOptions,
                 modifier = Modifier
-                    .width(dimens.width5)
+                    .width(dimens.widthInput)
                     .height(dimens.height2)
                     .clip(RoundedCornerShape(dimens.rounded))
                     .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded)),

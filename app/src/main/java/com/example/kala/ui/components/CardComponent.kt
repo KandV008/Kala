@@ -65,8 +65,8 @@ fun Card(
 
     Box(
         modifier = Modifier
-            .height(dimens.height4)
-            .width(dimens.width8)
+            .height(dimens.heightCard)
+            .width(dimens.widthCard)
             .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
     ) {
         Button(
@@ -86,8 +86,9 @@ fun Card(
             ) {
                 Column(
                     modifier = Modifier
-                        .width(dimens.width4)
+                        .width(dimens.widthCardColumn)
                 ) {
+                    //Money
                     Text(
                         text = valueText,
                         color = valueColor,
@@ -96,31 +97,33 @@ fun Card(
                             .height(dimens.height1),
                         textAlign = TextAlign.Center,
                         fontWeight = FontWeight.Bold,
-                        fontSize = dimens.fontSize3,
+                        fontSize = dimens.fontSizeMoney,
                     )
+                    //Date
                     Text(
                         text = getFormattedDate(moneyExchange.date),
                         color = Color.Black,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
                         fontWeight = FontWeight.Bold,
-                        fontSize = dimens.fontSize0,
+                        fontSize = dimens.fontSizeDate,
                     )
                 }
 
                 Column(
                     modifier = Modifier
-                        .width(dimens.width4),
+                        .width(dimens.widthCardColumn),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    //MoneyExchangeScope Icon
                     Box(
                         modifier = Modifier
                             .border(dimens.border, Color.Black, shape = CircleShape)
                             .size(dimens.image3)
                             .clip(CircleShape)
                             .background(Color.White)
-                            .padding(dimens.padding0),
+                            .padding(dimens.padding1),
                         contentAlignment = Alignment.Center,
                     ) {
                         Image(
@@ -128,14 +131,14 @@ fun Card(
                             contentDescription = SVG_DESCRIPTION
                         )
                     }
-
+                    //MoneyExchangeScope Text
                     Text(
                         text = stringResource(id = moneyExchange.scope.getLabel()),
                         color = Color.Black,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
                         fontWeight = FontWeight.Bold,
-                        fontSize = dimens.fontSize0,
+                        fontSize = dimens.fontSizeDate,
                     )
                 }
             }

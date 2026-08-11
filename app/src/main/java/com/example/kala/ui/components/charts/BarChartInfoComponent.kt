@@ -73,8 +73,8 @@ fun BarChartInfo(
 
     Box(
         modifier = Modifier
-            .height(dimens.height9)
-            .width(dimens.width9)
+            .height(dimens.heightBarChartInfo)
+            .width(dimens.widthChartInfo)
             .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
     ) {
         Column(
@@ -92,7 +92,7 @@ fun BarChartInfo(
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(50.dp))
-                    .size(dimens.height7)
+                    .size(dimens.heightGraph)
             ) {
                 if (currentMonth.summary.size != 0) {
                     BarChartBody(currentMonth)
@@ -261,7 +261,7 @@ fun BarChartSummary(title: Int, value: String, color: Color) {
     Column(
         modifier = Modifier
             .height(dimens.height3)
-            .width(dimens.width1),
+            .width(dimens.widthBarChartInfo),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {

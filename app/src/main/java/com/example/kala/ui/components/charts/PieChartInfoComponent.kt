@@ -63,8 +63,8 @@ fun PieChartInfo(
 
     Box(
         modifier = Modifier
-            .height(dimens.height8)
-            .width(dimens.width9)
+            .height(dimens.heightPieChartInfo)
+            .width(dimens.widthChartInfo)
             .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
     ) {
         Column(
@@ -81,7 +81,7 @@ fun PieChartInfo(
             Spacer(modifier = Modifier.padding(dimens.padding3))
             Box(
                 modifier = Modifier
-                    .size(dimens.height7)
+                    .size(dimens.heightGraph)
             ) {
                 if (showPieChart) {
                     PieChartBody(currentMonth, currentType)

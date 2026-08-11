@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -55,6 +56,27 @@ import com.example.kala.ui.screens.utilities.Utilities.getFormattedDate
 import com.example.kala.ui.theme.Green1
 import com.example.kala.ui.theme.Red0
 import com.example.kala.ui.theme.dimens
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_NAME
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_NAME
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_WIDTH_DP
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_NAME
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_NAME
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.TABLET_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.TABLET_NAME
+import com.example.kala.ui.screens.utilities.TABLET_WIDTH_DP
+import com.example.kala.ui.theme.AppUtils
+import com.example.kala.ui.theme.LargePhone
+import com.example.kala.ui.theme.LargeTablet
+import com.example.kala.ui.theme.MediumPhone
+import com.example.kala.ui.theme.SmallPhone
+import com.example.kala.ui.theme.Tablet
 
 /**
  * Composable function for displaying the About Exchange screen.
@@ -69,9 +91,11 @@ fun AboutExchangeScreen(
     navController: NavController? = null,
     monthAssociated: String,
     exchange: Int,
+    moneyExchange: MoneyExchange = MoneyExchangeService.getMoneyExchange(
+        monthAssociated,
+        exchange
+    )
 ) {
-    val moneyExchange = MoneyExchangeService.getMoneyExchange(monthAssociated, exchange)
-
     val svgFile = MoneyExchangeScope.getSVGFile(moneyExchange.scope)
     val valueSymbol = if (moneyExchange.type == MoneyExchangeType.EXPENSE) "-" else "+"
     val valueColor = if (moneyExchange.type == MoneyExchangeType.EXPENSE) Red0 else Green1
@@ -137,7 +161,7 @@ fun AboutExchangeScreen(
 private fun ValueSection(valueText: String, valueColor: Color) {
     Box(
         modifier = Modifier
-            .width(dimens.width6)
+            .width(dimens.widthMessage)
             .height(dimens.height1)
             .clip(RoundedCornerShape(dimens.rounded))
             .background(Color.White)
@@ -168,7 +192,7 @@ private fun ScopeSection(moneyExchange: MoneyExchange, svgFile: Int) {
     Box(
         modifier = Modifier
             .height(dimens.height3)
-            .width(dimens.width6)
+            .width(dimens.widthMessage)
             .clip(RoundedCornerShape(dimens.rounded))
             .background(Color.White)
             .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded)),
@@ -176,12 +200,13 @@ private fun ScopeSection(moneyExchange: MoneyExchange, svgFile: Int) {
     ) {
         Row(
             modifier = Modifier.fillMaxSize(),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
         ) {
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .width(dimens.width2),
+                    .width(dimens.widthAboutExchange),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
@@ -195,7 +220,7 @@ private fun ScopeSection(moneyExchange: MoneyExchange, svgFile: Int) {
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .width(dimens.width2),
+                    .width(dimens.widthAboutExchange),
                 contentAlignment = Alignment.Center
             ) {
                 Box(
@@ -228,7 +253,7 @@ private fun DateSection(moneyExchange: MoneyExchange) {
     Box(
         modifier = Modifier
             .height(dimens.height2)
-            .width(dimens.width6)
+            .width(dimens.widthMessage)
             .clip(RoundedCornerShape(dimens.rounded))
             .background(Color.White)
             .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded)),
@@ -257,7 +282,7 @@ private fun DescriptionSection(moneyExchange: MoneyExchange) {
     Box(
         modifier = Modifier
             .height(dimens.height5)
-            .width(dimens.width6)
+            .width(dimens.widthMessage)
             .clip(RoundedCornerShape(dimens.rounded))
             .background(Color.White)
             .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
@@ -271,7 +296,7 @@ private fun DescriptionSection(moneyExchange: MoneyExchange) {
                     .fillMaxWidth(),
                 textAlign = TextAlign.Justify,
                 fontWeight = FontWeight.Bold,
-                fontSize = 25.sp,
+                fontSize = dimens.fontSizeDescription,
             )
         }
     }
@@ -292,11 +317,111 @@ private fun OptionSection(onLeftTriggered: () -> Unit, onRightTriggered: () -> U
     }
 }
 
+private fun previewMoneyExchange(): MoneyExchange {
+    return MoneyExchange(
+            123.45,
+            MoneyExchangeType.INCOME,
+            MoneyExchangeScope.USEFUL,
+            description = "Lore ipsum..."
+        )
+}
+
 /**
- * Composable function for previewing the AboutExchangeScreen.
+ * Preview for the About Exchange screen on a small phone.
  */
-@Preview(showBackground = true)
+@Preview(
+    name = SMALL_PHONE_NAME,
+    widthDp = SMALL_PHONE_WIDTH_DP,
+    heightDp = SMALL_PHONE_HEIGHT_DP,
+    showBackground = true
+)
 @Composable
-fun AboutExchangeScreenPreview() {
-    AboutExchangeScreen(monthAssociated = "example", exchange = 0)
+fun AboutExchangeScreenSmallPhonePreview() {
+    AppUtils(appDimens = SmallPhone) {
+        AboutExchangeScreen(
+            monthAssociated = "example",
+            exchange = 0,
+            moneyExchange = previewMoneyExchange()
+        )
+    }
+}
+
+/**
+ * Preview for the About Exchange screen on a medium phone.
+ */
+@Preview(
+    name = MEDIUM_PHONE_NAME,
+    widthDp = MEDIUM_PHONE_WIDTH_DP,
+    heightDp = MEDIUM_PHONE_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun AboutExchangeScreenMediumPhonePreview() {
+    AppUtils(appDimens = MediumPhone) {
+        AboutExchangeScreen(
+            monthAssociated = "example",
+            exchange = 0,
+            moneyExchange = previewMoneyExchange()
+        )
+    }
+}
+
+/**
+ * Preview for the About Exchange screen on a large phone.
+ */
+@Preview(
+    name = LARGE_PHONE_NAME,
+    widthDp = LARGE_PHONE_WIDTH_DP,
+    heightDp = LARGE_PHONE_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun AboutExchangeScreenLargePhonePreview() {
+    AppUtils(appDimens = LargePhone) {
+        AboutExchangeScreen(
+            monthAssociated = "example",
+            exchange = 0,
+            moneyExchange = previewMoneyExchange()
+        )
+    }
+}
+
+/**
+ * Preview for the About Exchange screen on a tablet.
+ */
+@Preview(
+    name = TABLET_NAME,
+    widthDp = TABLET_WIDTH_DP,
+    heightDp = TABLET_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun AboutExchangeScreenTabletPreview() {
+    AppUtils(appDimens = Tablet) {
+        AboutExchangeScreen(
+            monthAssociated = "example",
+            exchange = 0,
+            moneyExchange = previewMoneyExchange()
+        )
+    }
+}
+
+/**
+ * Preview for the About Exchange screen on a large tablet.
+ */
+@Preview(
+    name = LARGE_TABLET_NAME,
+    widthDp = LARGE_TABLET_WIDTH_DP,
+    heightDp = LARGE_TABLET_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun AboutExchangeScreenLargeTabletPreview() {
+    AppUtils(appDimens = LargeTablet) {
+        AboutExchangeScreen(
+            monthAssociated = "example",
+            exchange = 0,
+            moneyExchange = previewMoneyExchange()
+        )
+    }
 }

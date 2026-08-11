@@ -32,6 +32,27 @@ import com.example.kala.ui.screens.utilities.FormValidation.isValidSignUp
 import com.example.kala.ui.screens.utilities.errorMessageList
 import com.example.kala.ui.theme.dimens
 import com.google.firebase.auth.FirebaseAuth
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_NAME
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_NAME
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_WIDTH_DP
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_NAME
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_NAME
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.TABLET_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.TABLET_NAME
+import com.example.kala.ui.screens.utilities.TABLET_WIDTH_DP
+import com.example.kala.ui.theme.AppUtils
+import com.example.kala.ui.theme.LargePhone
+import com.example.kala.ui.theme.LargeTablet
+import com.example.kala.ui.theme.MediumPhone
+import com.example.kala.ui.theme.SmallPhone
+import com.example.kala.ui.theme.Tablet
 
 private val FAILURE_LOG_IN_MESSAGE = R.string.failure_log_in_message
 
@@ -127,10 +148,81 @@ fun LogInScreen(
 }
 
 /**
- * Composable function for previewing the Log In screen.
+ * Preview for the Log In screen on a small phone.
  */
-@Preview(showBackground = true)
+@Preview(
+    name = SMALL_PHONE_NAME,
+    widthDp = SMALL_PHONE_WIDTH_DP,
+    heightDp = SMALL_PHONE_HEIGHT_DP,
+    showBackground = true
+)
 @Composable
-fun LogInScreenPreview() {
-    LogInScreen()
+fun LogInScreenSmallPhonePreview() {
+    AppUtils(appDimens = SmallPhone) {
+        LogInScreen()
+    }
+}
+
+/**
+ * Preview for the Log In screen on a medium phone.
+ */
+@Preview(
+    name = MEDIUM_PHONE_NAME,
+    widthDp = MEDIUM_PHONE_WIDTH_DP,
+    heightDp = MEDIUM_PHONE_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun LogInScreenMediumPhonePreview() {
+    AppUtils(appDimens = MediumPhone) {
+        LogInScreen()
+    }
+}
+
+/**
+ * Preview for the Log In screen on a large phone.
+ */
+@Preview(
+    name = LARGE_PHONE_NAME,
+    widthDp = LARGE_PHONE_WIDTH_DP,
+    heightDp = LARGE_PHONE_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun LogInScreenLargePhonePreview() {
+    AppUtils(appDimens = LargePhone) {
+        LogInScreen()
+    }
+}
+
+/**
+ * Preview for the Log In screen on a tablet.
+ */
+@Preview(
+    name = TABLET_NAME,
+    widthDp = TABLET_WIDTH_DP,
+    heightDp = TABLET_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun LogInScreenTabletPreview() {
+    AppUtils(appDimens = Tablet) {
+        LogInScreen()
+    }
+}
+
+/**
+ * Preview for the Log In screen on a large tablet.
+ */
+@Preview(
+    name = LARGE_TABLET_NAME,
+    widthDp = LARGE_TABLET_WIDTH_DP,
+    heightDp = LARGE_TABLET_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun LogInScreenLargeTabletPreview() {
+    AppUtils(appDimens = LargeTablet) {
+        LogInScreen()
+    }
 }

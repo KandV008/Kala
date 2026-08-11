@@ -29,5 +29,5 @@ fun AppUtils(
  * A CompositionLocal for providing the application dimensions.
  */
 val LocalAppDimens = compositionLocalOf {
-    CompactDimens
+    LargePhone
 }

@@ -52,7 +52,7 @@ fun MediumButton(
     Box(
         modifier = Modifier
             .height(dimens.height5)
-            .width(dimens.width3)
+            .width(dimens.widthMediumButton)
             .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
     ) {
         Button(
@@ -69,14 +69,11 @@ fun MediumButton(
             Column(
                 modifier = Modifier
                     .fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
+                verticalArrangement = Arrangement.SpaceAround,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(
                     modifier = Modifier
-                        .border(dimens.border, Color.Black, shape = CircleShape)
-                        .padding(dimens.padding2)
-                        .clip(CircleShape)
                         .size(dimens.image3)
                         .clip(CircleShape)
                         .padding(dimens.padding1),
@@ -93,9 +90,11 @@ fun MediumButton(
                     text = stringResource(id = configuration.getDisplayName()),
                     color = Color.Black,
                     fontSize = dimens.fontSize1,
+                    lineHeight = dimens.fontSize1 * 1.2f,
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Bold,
-                    fontFamily = fontFamily
+                    fontFamily = fontFamily,
+                    modifier = Modifier,
                 )
             }
         }

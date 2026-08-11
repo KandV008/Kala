@@ -73,7 +73,7 @@ fun Footer(
             .fillMaxWidth()
             .border(dimens.border, Color.Black, RectangleShape)
             .background(Color.White)
-            .padding(dimens.padding6, dimens.padding3)
+            .padding(dimens.paddingHeaderFooter, dimens.padding3)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),

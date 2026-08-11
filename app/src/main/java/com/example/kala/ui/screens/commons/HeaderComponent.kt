@@ -73,7 +73,7 @@ fun Header(
             .fillMaxWidth()
             .border(dimens.border, Color.Black, RectangleShape)
             .background(Color.White)
-            .padding(dimens.padding6, dimens.padding3)
+            .padding(dimens.paddingHeaderFooter, dimens.padding3)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -88,7 +88,7 @@ fun Header(
             Text(
                 text = NAME_APPLICATION,
                 color = Color.Black,
-                fontSize = dimens.fontSize4,
+                fontSize = dimens.fontSizeHeader,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.alpha(configuration.center())

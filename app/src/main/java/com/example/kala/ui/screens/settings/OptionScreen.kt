@@ -31,6 +31,27 @@ import com.example.kala.ui.screens.navigation.MAIN_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.OPTION_SCREEN_ROUTE
 import com.example.kala.ui.theme.dimens
 import com.google.firebase.auth.FirebaseAuth.getInstance
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_NAME
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_NAME
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_WIDTH_DP
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_NAME
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_NAME
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.TABLET_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.TABLET_NAME
+import com.example.kala.ui.screens.utilities.TABLET_WIDTH_DP
+import com.example.kala.ui.theme.AppUtils
+import com.example.kala.ui.theme.LargePhone
+import com.example.kala.ui.theme.LargeTablet
+import com.example.kala.ui.theme.MediumPhone
+import com.example.kala.ui.theme.SmallPhone
+import com.example.kala.ui.theme.Tablet
 
 /**
  * List of configurations for the type buttons in the Option screen.
@@ -120,10 +141,81 @@ fun OptionScreenBody(navController: NavController? = null) {
 
 
 /**
- * Preview function for testing and visualizing the Option screen.
+ * Preview for the Option screen on a small phone.
  */
-@Preview(showBackground = true)
+@Preview(
+    name = SMALL_PHONE_NAME,
+    widthDp = SMALL_PHONE_WIDTH_DP,
+    heightDp = SMALL_PHONE_HEIGHT_DP,
+    showBackground = true
+)
 @Composable
-fun OptionScreenPreview() {
-    OptionScreen()
+fun OptionScreenSmallPhonePreview() {
+    AppUtils(appDimens = SmallPhone) {
+        OptionScreen()
+    }
+}
+
+/**
+ * Preview for the Option screen on a medium phone.
+ */
+@Preview(
+    name = MEDIUM_PHONE_NAME,
+    widthDp = MEDIUM_PHONE_WIDTH_DP,
+    heightDp = MEDIUM_PHONE_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun OptionScreenMediumPhonePreview() {
+    AppUtils(appDimens = MediumPhone) {
+        OptionScreen()
+    }
+}
+
+/**
+ * Preview for the Option screen on a large phone.
+ */
+@Preview(
+    name = LARGE_PHONE_NAME,
+    widthDp = LARGE_PHONE_WIDTH_DP,
+    heightDp = LARGE_PHONE_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun OptionScreenLargePhonePreview() {
+    AppUtils(appDimens = LargePhone) {
+        OptionScreen()
+    }
+}
+
+/**
+ * Preview for the Option screen on a tablet.
+ */
+@Preview(
+    name = TABLET_NAME,
+    widthDp = TABLET_WIDTH_DP,
+    heightDp = TABLET_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun OptionScreenTabletPreview() {
+    AppUtils(appDimens = Tablet) {
+        OptionScreen()
+    }
+}
+
+/**
+ * Preview for the Option screen on a large tablet.
+ */
+@Preview(
+    name = LARGE_TABLET_NAME,
+    widthDp = LARGE_TABLET_WIDTH_DP,
+    heightDp = LARGE_TABLET_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun OptionScreenLargeTabletPreview() {
+    AppUtils(appDimens = LargeTablet) {
+        OptionScreen()
+    }
 }

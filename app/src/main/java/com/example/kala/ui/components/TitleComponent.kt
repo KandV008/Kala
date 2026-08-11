@@ -29,14 +29,14 @@ fun Title(configuration: TitleConfiguration) {
     Box(
         modifier = Modifier
             .height(dimens.height1)
-            .width(dimens.width7)
+            .width(dimens.widthMessage)
             .border(dimens.border, Color.Black)
             .background(Color.White),
         contentAlignment = Alignment.Center,
     ) {
         Text(
             text = stringResource(id = configuration.getDisplayName()),
-            fontSize = dimens.fontSize5,
+            fontSize = dimens.fontSizeTitle,
             color = Color.Black,
             textAlign = TextAlign.Justify,
             fontWeight = FontWeight.Bold,
