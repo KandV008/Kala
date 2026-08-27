@@ -21,6 +21,7 @@ import com.example.kala.model.FireBaseService
 import com.example.kala.model.MonthInformationService
 import com.example.kala.ui.components.Title
 import com.example.kala.ui.components.TitleConfiguration
+import com.example.kala.ui.components.buttons.BuyMeACoffeeButton
 import com.example.kala.ui.components.buttons.LargeButton
 import com.example.kala.ui.components.buttons.LargeButtonConfiguration
 import com.example.kala.ui.components.popUps.ConfirmationPopUp
@@ -52,6 +53,8 @@ import com.example.kala.ui.theme.LargeTablet
 import com.example.kala.ui.theme.MediumPhone
 import com.example.kala.ui.theme.SmallPhone
 import com.example.kala.ui.theme.Tablet
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
 
 /**
  * List of configurations for the type buttons in the Option screen.
@@ -98,13 +101,19 @@ fun OptionScreenBody(navController: NavController? = null) {
         mutableStateOf(false)
     }
 
+    val context = LocalContext.current
+    val successMessage = stringResource(R.string.delete_account_success_message)
+    val failedMessage = stringResource(R.string.delete_account_failed_message)
+
     val optionFunctions: List<() -> Unit> = listOf(
         {
             getInstance().signOut()
             MonthInformationService.clean()
-            navController?.navigate(route = MAIN_SCREEN_ROUTE)
+            navController?.navigate(MAIN_SCREEN_ROUTE)
         },
-        { deleteButtonTriggered = true },
+        {
+            deleteButtonTriggered = true
+        }
     )
 
     if (deleteButtonTriggered) {
@@ -113,28 +122,53 @@ fun OptionScreenBody(navController: NavController? = null) {
                 deleteButtonTriggered = false
                 deletingUser = true
             },
-            onDismissButton = { deleteButtonTriggered = false },
+            onDismissButton = {
+                deleteButtonTriggered = false
+            }
         )
     }
 
-    if (deletingUser) {
-        deletingUser = false
-        val current = LocalContext.current
-        val successMessage = stringResource(id = R.string.delete_account_success_message)
-        val failedMessage = stringResource(id = R.string.delete_account_failed_message)
+    LaunchedEffect(deletingUser) {
+        if (deletingUser) {
+            FireBaseService.deleteUser(
+                {
+                    Toast.makeText(
+                        context,
+                        failedMessage,
+                        Toast.LENGTH_LONG
+                    ).show()
 
-        FireBaseService.deleteUser({
-            Toast.makeText(current, failedMessage, Toast.LENGTH_LONG).show()
-        }) {
-            Toast.makeText(current, successMessage, Toast.LENGTH_LONG).show()
-            navController?.navigate(route = MAIN_SCREEN_ROUTE)
+                    deletingUser = false
+                }
+            ) {
+                Toast.makeText(
+                    context,
+                    successMessage,
+                    Toast.LENGTH_LONG
+                ).show()
+
+                deletingUser = false
+                navController?.navigate(MAIN_SCREEN_ROUTE)
+            }
         }
     }
 
-    LazyColumn {
+    LazyColumn(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         itemsIndexed(typeButtons) { index, type ->
-            LargeButton(configuration = type, onAdviceTriggered = optionFunctions[index])
-            Spacer(modifier = Modifier.padding(dimens.space1))
+            LargeButton(
+                configuration = type,
+                onAdviceTriggered = optionFunctions[index]
+            )
+
+            Spacer(
+                modifier = Modifier.padding(dimens.space1)
+            )
+        }
+
+        item {
+            BuyMeACoffeeButton()
         }
     }
 }

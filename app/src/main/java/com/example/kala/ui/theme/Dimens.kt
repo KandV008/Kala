@@ -43,6 +43,8 @@ data class Dimens(
     val rounded: Dp = 0.dp,
     val shadow: Dp = 0.dp,
     val border: Dp = 0.dp,
+    val buyMeACoffeeButtonWidth: Dp = 0.dp,
+    val buyMeACoffeeButtonHeight: Dp = 0.dp,
     //Space
     val space0: Dp = 0.dp,
     val space1: Dp = 0.dp,
@@ -113,6 +115,8 @@ val SmallPhone = Dimens(
     rounded = 7.dp,
     shadow = 7.dp,
     border = 1.dp,
+    buyMeACoffeeButtonWidth = 200.dp,
+    buyMeACoffeeButtonHeight = 56.1.dp,
     //Space
     space0 = 5.dp,
     space1 = 7.dp,
@@ -183,6 +187,8 @@ val MediumPhone = Dimens(
     rounded = 10.dp,
     shadow = 10.dp,
     border = 2.dp,
+    buyMeACoffeeButtonWidth = 250.dp,
+    buyMeACoffeeButtonHeight = 70.2.dp,
     //Space
     space0 = 5.dp,
     space1 = 10.dp,
@@ -253,6 +259,8 @@ val LargePhone = Dimens(
     rounded = 10.dp,
     shadow = 10.dp,
     border = 2.dp,
+    buyMeACoffeeButtonWidth = 300.dp,
+    buyMeACoffeeButtonHeight = 84.2.dp,
     //Space
     space0 = 7.dp,
     space1 = 12.dp,
@@ -323,6 +331,8 @@ val Tablet = Dimens(
     rounded = 10.dp,
     shadow = 10.dp,
     border = 2.dp,
+    buyMeACoffeeButtonWidth = 320.dp,
+    buyMeACoffeeButtonHeight = 89.8.dp,
     //Space
     space0 = 10.dp,
     space1 = 15.dp,
@@ -393,6 +403,8 @@ val LargeTablet = Dimens(
     rounded = 10.dp,
     shadow = 10.dp,
     border = 2.dp,
+    buyMeACoffeeButtonWidth = 350.dp,
+    buyMeACoffeeButtonHeight = 98.3.dp,
     //Space
     space0 = 15.dp,
     space1 = 30.dp,
