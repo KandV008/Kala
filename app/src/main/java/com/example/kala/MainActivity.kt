@@ -5,6 +5,7 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.kala.model.FireBaseService
 import com.example.kala.ui.components.buttons.NavigationButtonConfiguration
 import com.example.kala.ui.components.buttons.getLanguageIconViaContext
 import com.example.kala.ui.screens.AppNavigation
@@ -31,17 +32,23 @@ class MainActivity : AppCompatActivity() {
 
         val currentUser = FirebaseAuth.getInstance().currentUser
 
-        val startDestination = if (currentUser != null) {
-            AppScreens.homeScreen.route
-        } else {
-            AppScreens.mainScreen.route
-        }
+        if (currentUser != null) {
 
-        setContent {
-            KalaTheme {
-                AppNavigation(
-                    startDestination
-                )
+            FireBaseService.loadUser(currentUser.uid) {
+
+                setContent {
+                    KalaTheme {
+                        AppNavigation(AppScreens.homeScreen.route)
+                    }
+                }
+            }
+
+        } else {
+
+            setContent {
+                KalaTheme {
+                    AppNavigation(AppScreens.mainScreen.route)
+                }
             }
         }
     }
