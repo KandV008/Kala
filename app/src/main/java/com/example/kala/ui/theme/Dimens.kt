@@ -287,9 +287,9 @@ val LargePhone = Dimens(
 val Tablet = Dimens(
     //Height
     height0 = 40.dp,
-    height1 = 60.dp,
+    height1 = 65.dp,
     height2 = 70.dp,
-    height3 = 80.dp,
+    height3 = 90.dp,
     height4 = 100.dp,
     height5 = 175.dp,
     heightBigTextInput = 180.dp,
@@ -298,7 +298,7 @@ val Tablet = Dimens(
     heightSummaryScope = 230.dp,
     heightCard = 120.dp,
     heightPieChartInfo = 300.dp,
-    heightBarChartInfo = 425.dp,
+    heightBarChartInfo = 450.dp,
     heightHelp = 600.dp,
     //Image
     imageAboutMonth = 40.dp,
@@ -357,9 +357,9 @@ val Tablet = Dimens(
 val LargeTablet = Dimens(
     //Height
     height0 = 50.dp,
-    height1 = 65.dp,
+    height1 = 70.dp,
     height2 = 75.dp,
-    height3 = 80.dp,
+    height3 = 90.dp,
     height4 = 100.dp,
     height5 = 175.dp,
     heightBigTextInput = 180.dp,
