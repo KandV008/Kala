@@ -21,7 +21,6 @@ import com.example.kala.model.FireBaseService
 import com.example.kala.model.MonthInformationService
 import com.example.kala.ui.components.Title
 import com.example.kala.ui.components.TitleConfiguration
-import com.example.kala.ui.components.buttons.BuyMeACoffeeButton
 import com.example.kala.ui.components.buttons.LargeButton
 import com.example.kala.ui.components.buttons.LargeButtonConfiguration
 import com.example.kala.ui.components.popUps.ConfirmationPopUp
@@ -165,10 +164,6 @@ fun OptionScreenBody(navController: NavController? = null) {
             Spacer(
                 modifier = Modifier.padding(dimens.space1)
             )
-        }
-
-        item {
-            BuyMeACoffeeButton()
         }
     }
 }
