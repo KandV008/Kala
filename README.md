@@ -28,7 +28,7 @@ Kala is a simple monthly income and expense management application. If you want 
 
 | Current Version | 
 | :-: |
-| `beta` |
+| `v1.0` |
 
 In order to use the application it is necessary to [download the Kala APK](/kala-beta.apk) on the desired android device. 
 
