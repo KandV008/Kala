@@ -77,25 +77,25 @@ fun KalaTheme(
 
     when (window.widthSizeClass) {
         WindowWidthSizeClass.Compact -> {
-            appDimens = if (config.screenWidthDp <= 360) {
-                CompactSmallDimens
+            appDimens = if (config.screenWidthDp <= 375) {
+                SmallPhone
                 //typography = CompactSmallTypography
-            } else if (config.screenWidthDp < 599) {
-                CompactMediumDimens
+            } else if (config.screenWidthDp < 430) {
+                MediumPhone
                 //typography = CompactMediumTypography
             } else {
-                CompactDimens
+                LargePhone
                 //typography = CompactTypography
             }
         }
 
         WindowWidthSizeClass.Medium -> {
-            appDimens = MediumDimens
+            appDimens = Tablet
             //typography = MediumTypography
         }
 
         else -> {
-            appDimens = ExpandedDimens
+            appDimens = LargeTablet
             //typography = ExpandedTypography
         }
     }

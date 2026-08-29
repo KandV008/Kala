@@ -83,11 +83,8 @@ fun LargeButton(
 
                 Box(
                     modifier = Modifier
-                        .border(dimens.border, Color.Black, shape = CircleShape)
                         .clip(CircleShape)
-                        .size(dimens.image2)
-                        .clip(CircleShape)
-                        .padding(dimens.padding1),
+                        .size(dimens.imageLargeButton),
                     contentAlignment = Alignment.Center,
                 ) {
                     Image(

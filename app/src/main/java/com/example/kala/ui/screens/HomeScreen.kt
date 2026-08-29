@@ -25,6 +25,27 @@ import com.example.kala.ui.screens.navigation.ADD_EXCHANGE_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.HOME_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.RECORD_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.REPORT_SCREEN_ROUTE
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_NAME
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_NAME
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_WIDTH_DP
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_NAME
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_NAME
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.TABLET_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.TABLET_NAME
+import com.example.kala.ui.screens.utilities.TABLET_WIDTH_DP
+import com.example.kala.ui.theme.AppUtils
+import com.example.kala.ui.theme.LargePhone
+import com.example.kala.ui.theme.LargeTablet
+import com.example.kala.ui.theme.MediumPhone
+import com.example.kala.ui.theme.SmallPhone
+import com.example.kala.ui.theme.Tablet
 import com.example.kala.ui.theme.dimens
 import java.time.LocalDateTime
 
@@ -112,12 +133,81 @@ fun HomeScreenBody(
 }
 
 /**
- * Composable function for previewing the Home screen.
- * This preview function is used for testing and visualizing the Home screen.
+ * Composable function for previewing the Home screen on a small phone.
  */
-@Preview(showBackground = true)
+@Preview(
+    name = SMALL_PHONE_NAME,
+    widthDp = SMALL_PHONE_WIDTH_DP,
+    heightDp = SMALL_PHONE_HEIGHT_DP,
+    showBackground = true
+)
 @Composable
-fun HomeScreenPreview() {
-    HomeScreen()
+fun HomeScreenSmallPhonePreview() {
+    AppUtils(appDimens = SmallPhone) {
+        HomeScreen()
+    }
 }
 
+/**
+ * Composable function for previewing the Home screen on a medium phone.
+ */
+@Preview(
+    name = MEDIUM_PHONE_NAME,
+    widthDp = MEDIUM_PHONE_WIDTH_DP,
+    heightDp = MEDIUM_PHONE_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun HomeScreenMediumPhonePreview() {
+    AppUtils(appDimens = MediumPhone) {
+        HomeScreen()
+    }
+}
+
+/**
+ * Composable function for previewing the Home screen on a large phone.
+ */
+@Preview(
+    name = LARGE_PHONE_NAME,
+    widthDp = LARGE_PHONE_WIDTH_DP,
+    heightDp = LARGE_PHONE_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun HomeScreenLargePhonePreview() {
+    AppUtils(appDimens = LargePhone) {
+        HomeScreen()
+    }
+}
+
+/**
+ * Composable function for previewing the Home screen on a tablet.
+ */
+@Preview(
+    name = TABLET_NAME,
+    widthDp = TABLET_WIDTH_DP,
+    heightDp = TABLET_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun HomeScreenTabletPreview() {
+    AppUtils(appDimens = Tablet) {
+        HomeScreen()
+    }
+}
+
+/**
+ * Composable function for previewing the Home screen on a large tablet.
+ */
+@Preview(
+    name = LARGE_TABLET_NAME,
+    widthDp = LARGE_TABLET_WIDTH_DP,
+    heightDp = LARGE_TABLET_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun HomeScreenLargeTabletPreview() {
+    AppUtils(appDimens = LargeTablet) {
+        HomeScreen()
+    }
+}

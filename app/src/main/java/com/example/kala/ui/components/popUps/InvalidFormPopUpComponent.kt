@@ -87,7 +87,7 @@ fun InvalidFormPopUp(
                 Box(
                     modifier = Modifier
                         .height(dimens.height2)
-                        .width(dimens.width5)
+                        .width(dimens.widthInput)
                         .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
                         .align(Alignment.CenterHorizontally),
                 ) {

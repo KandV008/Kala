@@ -44,6 +44,27 @@ import com.example.kala.ui.screens.utilities.errorMessageList
 import com.example.kala.ui.theme.dimens
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_NAME
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_NAME
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_WIDTH_DP
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_NAME
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_NAME
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.TABLET_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.TABLET_NAME
+import com.example.kala.ui.screens.utilities.TABLET_WIDTH_DP
+import com.example.kala.ui.theme.AppUtils
+import com.example.kala.ui.theme.LargePhone
+import com.example.kala.ui.theme.LargeTablet
+import com.example.kala.ui.theme.MediumPhone
+import com.example.kala.ui.theme.SmallPhone
+import com.example.kala.ui.theme.Tablet
 
 private val FAILURE_SEND_REQUEST_MESSAGE = R.string.failure_send_request_message
 
@@ -133,7 +154,7 @@ fun RecoveryPassMessage() {
     Box(
         modifier = Modifier
             .height(dimens.height2)
-            .width(dimens.width7)
+            .width(dimens.widthMessage)
             .border(dimens.border, Color.Black)
             .background(Color.White),
         contentAlignment = Alignment.Center,
@@ -149,10 +170,81 @@ fun RecoveryPassMessage() {
 }
 
 /**
- * Composable function for displaying the recovery password message.
+ * Preview for the Change Password screen on a small phone.
  */
-@Preview(showBackground = true)
+@Preview(
+    name = SMALL_PHONE_NAME,
+    widthDp = SMALL_PHONE_WIDTH_DP,
+    heightDp = SMALL_PHONE_HEIGHT_DP,
+    showBackground = true
+)
 @Composable
-fun ChangePasswordScreenPreview() {
-    ChangePasswordScreen()
+fun ChangePasswordScreenSmallPhonePreview() {
+    AppUtils(appDimens = SmallPhone) {
+        ChangePasswordScreen()
+    }
+}
+
+/**
+ * Preview for the Change Password screen on a medium phone.
+ */
+@Preview(
+    name = MEDIUM_PHONE_NAME,
+    widthDp = MEDIUM_PHONE_WIDTH_DP,
+    heightDp = MEDIUM_PHONE_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun ChangePasswordScreenMediumPhonePreview() {
+    AppUtils(appDimens = MediumPhone) {
+        ChangePasswordScreen()
+    }
+}
+
+/**
+ * Preview for the Change Password screen on a large phone.
+ */
+@Preview(
+    name = LARGE_PHONE_NAME,
+    widthDp = LARGE_PHONE_WIDTH_DP,
+    heightDp = LARGE_PHONE_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun ChangePasswordScreenLargePhonePreview() {
+    AppUtils(appDimens = LargePhone) {
+        ChangePasswordScreen()
+    }
+}
+
+/**
+ * Preview for the Change Password screen on a tablet.
+ */
+@Preview(
+    name = TABLET_NAME,
+    widthDp = TABLET_WIDTH_DP,
+    heightDp = TABLET_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun ChangePasswordScreenTabletPreview() {
+    AppUtils(appDimens = Tablet) {
+        ChangePasswordScreen()
+    }
+}
+
+/**
+ * Preview for the Change Password screen on a large tablet.
+ */
+@Preview(
+    name = LARGE_TABLET_NAME,
+    widthDp = LARGE_TABLET_WIDTH_DP,
+    heightDp = LARGE_TABLET_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun ChangePasswordScreenLargeTabletPreview() {
+    AppUtils(appDimens = LargeTablet) {
+        ChangePasswordScreen()
+    }
 }

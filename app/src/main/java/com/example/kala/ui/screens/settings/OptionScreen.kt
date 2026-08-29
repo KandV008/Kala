@@ -31,6 +31,29 @@ import com.example.kala.ui.screens.navigation.MAIN_SCREEN_ROUTE
 import com.example.kala.ui.screens.navigation.OPTION_SCREEN_ROUTE
 import com.example.kala.ui.theme.dimens
 import com.google.firebase.auth.FirebaseAuth.getInstance
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_NAME
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_NAME
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_WIDTH_DP
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_NAME
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_NAME
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.TABLET_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.TABLET_NAME
+import com.example.kala.ui.screens.utilities.TABLET_WIDTH_DP
+import com.example.kala.ui.theme.AppUtils
+import com.example.kala.ui.theme.LargePhone
+import com.example.kala.ui.theme.LargeTablet
+import com.example.kala.ui.theme.MediumPhone
+import com.example.kala.ui.theme.SmallPhone
+import com.example.kala.ui.theme.Tablet
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
 
 /**
  * List of configurations for the type buttons in the Option screen.
@@ -77,13 +100,19 @@ fun OptionScreenBody(navController: NavController? = null) {
         mutableStateOf(false)
     }
 
+    val context = LocalContext.current
+    val successMessage = stringResource(R.string.delete_account_success_message)
+    val failedMessage = stringResource(R.string.delete_account_failed_message)
+
     val optionFunctions: List<() -> Unit> = listOf(
         {
             getInstance().signOut()
             MonthInformationService.clean()
-            navController?.navigate(route = MAIN_SCREEN_ROUTE)
+            navController?.navigate(MAIN_SCREEN_ROUTE)
         },
-        { deleteButtonTriggered = true },
+        {
+            deleteButtonTriggered = true
+        }
     )
 
     if (deleteButtonTriggered) {
@@ -92,38 +121,130 @@ fun OptionScreenBody(navController: NavController? = null) {
                 deleteButtonTriggered = false
                 deletingUser = true
             },
-            onDismissButton = { deleteButtonTriggered = false },
+            onDismissButton = {
+                deleteButtonTriggered = false
+            }
         )
     }
 
-    if (deletingUser) {
-        deletingUser = false
-        val current = LocalContext.current
-        val successMessage = stringResource(id = R.string.delete_account_success_message)
-        val failedMessage = stringResource(id = R.string.delete_account_failed_message)
+    LaunchedEffect(deletingUser) {
+        if (deletingUser) {
+            FireBaseService.deleteUser(
+                {
+                    Toast.makeText(
+                        context,
+                        failedMessage,
+                        Toast.LENGTH_LONG
+                    ).show()
 
-        FireBaseService.deleteUser({
-            Toast.makeText(current, failedMessage, Toast.LENGTH_LONG).show()
-        }) {
-            Toast.makeText(current, successMessage, Toast.LENGTH_LONG).show()
-            navController?.navigate(route = MAIN_SCREEN_ROUTE)
+                    deletingUser = false
+                }
+            ) {
+                Toast.makeText(
+                    context,
+                    successMessage,
+                    Toast.LENGTH_LONG
+                ).show()
+
+                deletingUser = false
+                navController?.navigate(MAIN_SCREEN_ROUTE)
+            }
         }
     }
 
-    LazyColumn {
+    LazyColumn(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         itemsIndexed(typeButtons) { index, type ->
-            LargeButton(configuration = type, onAdviceTriggered = optionFunctions[index])
-            Spacer(modifier = Modifier.padding(dimens.space1))
+            LargeButton(
+                configuration = type,
+                onAdviceTriggered = optionFunctions[index]
+            )
+
+            Spacer(
+                modifier = Modifier.padding(dimens.space1)
+            )
         }
     }
 }
 
 
 /**
- * Preview function for testing and visualizing the Option screen.
+ * Preview for the Option screen on a small phone.
  */
-@Preview(showBackground = true)
+@Preview(
+    name = SMALL_PHONE_NAME,
+    widthDp = SMALL_PHONE_WIDTH_DP,
+    heightDp = SMALL_PHONE_HEIGHT_DP,
+    showBackground = true
+)
 @Composable
-fun OptionScreenPreview() {
-    OptionScreen()
+fun OptionScreenSmallPhonePreview() {
+    AppUtils(appDimens = SmallPhone) {
+        OptionScreen()
+    }
+}
+
+/**
+ * Preview for the Option screen on a medium phone.
+ */
+@Preview(
+    name = MEDIUM_PHONE_NAME,
+    widthDp = MEDIUM_PHONE_WIDTH_DP,
+    heightDp = MEDIUM_PHONE_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun OptionScreenMediumPhonePreview() {
+    AppUtils(appDimens = MediumPhone) {
+        OptionScreen()
+    }
+}
+
+/**
+ * Preview for the Option screen on a large phone.
+ */
+@Preview(
+    name = LARGE_PHONE_NAME,
+    widthDp = LARGE_PHONE_WIDTH_DP,
+    heightDp = LARGE_PHONE_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun OptionScreenLargePhonePreview() {
+    AppUtils(appDimens = LargePhone) {
+        OptionScreen()
+    }
+}
+
+/**
+ * Preview for the Option screen on a tablet.
+ */
+@Preview(
+    name = TABLET_NAME,
+    widthDp = TABLET_WIDTH_DP,
+    heightDp = TABLET_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun OptionScreenTabletPreview() {
+    AppUtils(appDimens = Tablet) {
+        OptionScreen()
+    }
+}
+
+/**
+ * Preview for the Option screen on a large tablet.
+ */
+@Preview(
+    name = LARGE_TABLET_NAME,
+    widthDp = LARGE_TABLET_WIDTH_DP,
+    heightDp = LARGE_TABLET_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun OptionScreenLargeTabletPreview() {
+    AppUtils(appDimens = LargeTablet) {
+        OptionScreen()
+    }
 }

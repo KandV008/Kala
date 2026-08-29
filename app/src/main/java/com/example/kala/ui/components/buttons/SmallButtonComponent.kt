@@ -41,7 +41,7 @@ fun SmallButton(
 ) {
     Box(
         modifier = Modifier
-            .size(dimens.image5)
+            .size(dimens.imageSmallButton)
             .shadow(dimens.shadow, shape = RoundedCornerShape(dimens.rounded))
     ) {
         Button(
@@ -57,8 +57,6 @@ fun SmallButton(
         ) {
             Box(
                 modifier = Modifier
-                    .border(dimens.border, Color.Black, shape = CircleShape)
-                    .padding(dimens.padding2)
                     .fillMaxSize()
                     .padding(dimens.padding1),
                 contentAlignment = Alignment.Center,

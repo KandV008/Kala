@@ -26,10 +26,15 @@ import com.example.kala.ui.theme.fontFamily
  */
 @Composable
 fun Logo(configuration: LogoConfiguration) {
+    val size = when (configuration) {
+        LogoConfiguration.SMALL -> dimens.sizeLogoSmall
+        LogoConfiguration.LARGE -> dimens.sizeLogoBig
+    }
+
     Box(
         modifier = Modifier
             .background(Color.White)
-            .size(configuration.getSize())
+            .size(size)
             .border(dimens.border, Color.Black)
     ) {
         Text(
@@ -37,7 +42,7 @@ fun Logo(configuration: LogoConfiguration) {
             Modifier
                 .fillMaxSize()
                 .wrapContentSize(Alignment.Center),
-            fontSize = dimens.fontSize6,
+            fontSize = dimens.fontSizeLogo,
             textAlign = TextAlign.Center,
             fontFamily = fontFamily,
             color = Color.Black

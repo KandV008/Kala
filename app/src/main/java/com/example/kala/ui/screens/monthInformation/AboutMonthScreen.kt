@@ -48,6 +48,27 @@ import com.example.kala.ui.screens.commons.Layout
 import com.example.kala.ui.screens.navigation.ABOUT_MONTH_SCREEN_ROUTE
 import com.example.kala.ui.screens.utilities.Utilities
 import com.example.kala.ui.theme.dimens
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_NAME
+import com.example.kala.ui.screens.utilities.LARGE_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_NAME
+import com.example.kala.ui.screens.utilities.LARGE_TABLET_WIDTH_DP
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_NAME
+import com.example.kala.ui.screens.utilities.MEDIUM_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_NAME
+import com.example.kala.ui.screens.utilities.SMALL_PHONE_WIDTH_DP
+import com.example.kala.ui.screens.utilities.TABLET_HEIGHT_DP
+import com.example.kala.ui.screens.utilities.TABLET_NAME
+import com.example.kala.ui.screens.utilities.TABLET_WIDTH_DP
+import com.example.kala.ui.theme.AppUtils
+import com.example.kala.ui.theme.LargePhone
+import com.example.kala.ui.theme.LargeTablet
+import com.example.kala.ui.theme.MediumPhone
+import com.example.kala.ui.theme.SmallPhone
+import com.example.kala.ui.theme.Tablet
 
 /**
  * Composable function for rendering the About month screen.
@@ -107,7 +128,7 @@ fun AboutMonthScreen(
         Box(
             modifier = Modifier
                 .width(dimens.width8)
-                .height(dimens.height7)
+                .height(dimens.heightSummaryScope)
                 .clip(RoundedCornerShape(dimens.rounded))
                 .background(Color.White)
                 .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded)),
@@ -136,18 +157,20 @@ fun SummaryScope(currentMonth: MonthInformation, currentType: MoneyExchangeType)
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(dimens.height0)
+                    .height(dimens.heightSummaryRow)
                     .padding(horizontal = dimens.padding4, vertical = dimens.padding0),
                 Arrangement.SpaceBetween,
+                Alignment.CenterVertically
             ) {
                 Box(
                     modifier = Modifier
                         .border(dimens.border, Color.Black, shape = CircleShape)
-                        .size(dimens.image0)
+                        .size(dimens.imageAboutMonth)
                         .clip(CircleShape)
                         .background(Color.White)
                         .padding(dimens.padding0),
                     contentAlignment = Alignment.Center,
+
                 ) {
                     Image(
                         painter = painterResource(id = svgFile),
@@ -159,14 +182,14 @@ fun SummaryScope(currentMonth: MonthInformation, currentType: MoneyExchangeType)
                     color = Color.Black,
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Bold,
-                    fontSize = dimens.fontSize0,
+                    fontSize = dimens.fontSizeSummaryRow,
                 )
                 Text(
                     text = Utilities.formatMoneyValue(sumValue),
                     color = Color.Black,
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Bold,
-                    fontSize = dimens.fontSize0,
+                    fontSize = dimens.fontSizeSummaryRow,
                 )
             }
         }
@@ -175,12 +198,97 @@ fun SummaryScope(currentMonth: MonthInformation, currentType: MoneyExchangeType)
 
 
 /**
- * Composable function for previewing the About month screen.
- * This preview function is used for testing and visualizing the About month screen.
+ * Preview for the About Month screen on a small phone.
  */
-@Preview(showBackground = true)
+@Preview(
+    name = SMALL_PHONE_NAME,
+    widthDp = SMALL_PHONE_WIDTH_DP,
+    heightDp = SMALL_PHONE_HEIGHT_DP,
+    showBackground = true
+)
 @Composable
-fun AboutMonthScreenPreview() {
-    AboutMonthScreen(month = "example", type = "EXPENSE")
+fun AboutMonthScreenSmallPhonePreview() {
+    AppUtils(appDimens = SmallPhone) {
+        AboutMonthScreen(
+            month = "example",
+            type = "EXPENSE"
+        )
+    }
+}
+
+/**
+ * Preview for the About Month screen on a medium phone.
+ */
+@Preview(
+    name = MEDIUM_PHONE_NAME,
+    widthDp = MEDIUM_PHONE_WIDTH_DP,
+    heightDp = MEDIUM_PHONE_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun AboutMonthScreenMediumPhonePreview() {
+    AppUtils(appDimens = MediumPhone) {
+        AboutMonthScreen(
+            month = "example",
+            type = "EXPENSE"
+        )
+    }
+}
+
+/**
+ * Preview for the About Month screen on a large phone.
+ */
+@Preview(
+    name = LARGE_PHONE_NAME,
+    widthDp = LARGE_PHONE_WIDTH_DP,
+    heightDp = LARGE_PHONE_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun AboutMonthScreenLargePhonePreview() {
+    AppUtils(appDimens = LargePhone) {
+        AboutMonthScreen(
+            month = "example",
+            type = "EXPENSE"
+        )
+    }
+}
+
+/**
+ * Preview for the About Month screen on a tablet.
+ */
+@Preview(
+    name = TABLET_NAME,
+    widthDp = TABLET_WIDTH_DP,
+    heightDp = TABLET_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun AboutMonthScreenTabletPreview() {
+    AppUtils(appDimens = Tablet) {
+        AboutMonthScreen(
+            month = "example",
+            type = "EXPENSE"
+        )
+    }
+}
+
+/**
+ * Preview for the About Month screen on a large tablet.
+ */
+@Preview(
+    name = LARGE_TABLET_NAME,
+    widthDp = LARGE_TABLET_WIDTH_DP,
+    heightDp = LARGE_TABLET_HEIGHT_DP,
+    showBackground = true
+)
+@Composable
+fun AboutMonthScreenLargeTabletPreview() {
+    AppUtils(appDimens = LargeTablet) {
+        AboutMonthScreen(
+            month = "example",
+            type = "EXPENSE"
+        )
+    }
 }
 

@@ -50,9 +50,9 @@ private const val RECOVERY_PASS_SCREEN_NAVIGATION_MESSAGE =
  * Composable function defining the app's navigation.
  */
 @Composable
-fun AppNavigation() {
+fun AppNavigation(startDestination: String) {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = AppScreens.mainScreen.route) {
+    NavHost(navController = navController, startDestination = startDestination) {
         composable(route = AppScreens.homeScreen.route) {
             println(HOME_SCREEN_NAVIGATION_MESSAGE)
             HomeScreen(navController)

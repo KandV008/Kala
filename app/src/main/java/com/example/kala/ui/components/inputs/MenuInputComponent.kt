@@ -100,7 +100,7 @@ fun MenuInput(
                     onValueChange = { },
                     readOnly = true,
                     modifier = Modifier
-                        .width(dimens.width5)
+                        .width(dimens.widthInput)
                         .clip(RoundedCornerShape(dimens.rounded))
                         .background(Color.White)
                         .border(dimens.border, Color.Black, RoundedCornerShape(dimens.rounded))
@@ -123,7 +123,7 @@ fun MenuInput(
                             painter = painterResource(id = icon),
                             contentDescription = "contentDescription",
                             modifier = Modifier
-                                .size(dimens.image1)
+                                .size(dimens.imageMenuInput)
                                 .clickable { mExpanded = !mExpanded }
                         )
                     }
